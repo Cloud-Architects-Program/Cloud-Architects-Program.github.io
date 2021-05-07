@@ -498,11 +498,7 @@ the database password into the MySQL configuration as an environment variable:</
 
 <p><strong>Step 3</strong>  Launch <code>frontend</code> container</p>
 <p>Now launch a frontend container, mapping the container port 80 - where the web application is exposed - to port 8080 on the host machine:</p>
-<div class="codehilite"><pre><span></span><code>docker run -p 8080:80 --net gowebapp -d --name gowebapp \
---hostname gowebapp &lt;user-name&gt;/gowebapp:v1
-
-
-#TODO Launch `frontend` container in background
+<div class="codehilite"><pre><span></span><code>#TODO Launch `frontend` container in background
 #TODO Use this settings: `--name gowebapp` `--hostname gowebapp` 
 #TODO Map the container port 80  - to port 8080 on the host machine
 #TODO Container needs to run on network: `gowebapp`
