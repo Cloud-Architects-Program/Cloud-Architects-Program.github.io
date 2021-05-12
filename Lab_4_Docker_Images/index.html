@@ -282,11 +282,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-building-docker-images" class="md-nav__link">
-    1 Building Docker Images
+  <a href="#1-distributing-docker-images-with-container-registry" class="md-nav__link">
+    1 Distributing Docker images with Container Registry
   </a>
   
-    <nav class="md-nav" aria-label="1 Building Docker Images">
+    <nav class="md-nav" aria-label="1 Distributing Docker images with Container Registry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -325,15 +325,35 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#124-automated-builds-with-google-cloud-build" class="md-nav__link">
-    1.2.4 Automated Builds with Google Cloud Build
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-follow-docker-best-practices" class="md-nav__link">
+    2 Follow Docker Best Practices
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Follow Docker Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-inspecting-dockerfiles-with-dockle" class="md-nav__link">
+    2.1 Inspecting Dockerfiles with dockle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-automated-builds-with-google-cloud-build" class="md-nav__link">
+    2.2 Automated Builds with Google Cloud Build
+  </a>
   
 </li>
         
@@ -399,11 +419,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-building-docker-images" class="md-nav__link">
-    1 Building Docker Images
+  <a href="#1-distributing-docker-images-with-container-registry" class="md-nav__link">
+    1 Distributing Docker images with Container Registry
   </a>
   
-    <nav class="md-nav" aria-label="1 Building Docker Images">
+    <nav class="md-nav" aria-label="1 Distributing Docker images with Container Registry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -442,15 +462,35 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#124-automated-builds-with-google-cloud-build" class="md-nav__link">
-    1.2.4 Automated Builds with Google Cloud Build
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-follow-docker-best-practices" class="md-nav__link">
+    2 Follow Docker Best Practices
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Follow Docker Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-inspecting-dockerfiles-with-dockle" class="md-nav__link">
+    2.1 Inspecting Dockerfiles with dockle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-automated-builds-with-google-cloud-build" class="md-nav__link">
+    2.2 Automated Builds with Google Cloud Build
+  </a>
   
 </li>
         
@@ -484,7 +524,7 @@
 <p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
 <p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
 <p>Once opened, you can use it to run the instructions for this lab.</p>
-<h1 id="1-building-docker-images">1 Building Docker Images<a class="headerlink" href="#1-building-docker-images" title="Permanent link">&para;</a></h1>
+<h1 id="1-distributing-docker-images-with-container-registry">1 Distributing Docker images with Container Registry<a class="headerlink" href="#1-distributing-docker-images-with-container-registry" title="Permanent link">&para;</a></h1>
 <p>In the previous modules, we learned how to use Docker images
 to run Docker containers. Docker images that we used have been downloaded from
 the Docker Hub, a Docker image registry maintained by Docker Inc. In this section we will create a
@@ -763,7 +803,46 @@ Kill and delete that container by running the following command, but make sure t
 <div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
 </code></pre></div>
 
-<h3 id="124-automated-builds-with-google-cloud-build">1.2.4 Automated Builds with Google Cloud Build<a class="headerlink" href="#124-automated-builds-with-google-cloud-build" title="Permanent link">&para;</a></h3>
+<h1 id="2-follow-docker-best-practices">2 Follow Docker Best Practices<a class="headerlink" href="#2-follow-docker-best-practices" title="Permanent link">&para;</a></h1>
+<h2 id="21-inspecting-dockerfiles-with-dockle">2.1 Inspecting Dockerfiles with <code>dockle</code><a class="headerlink" href="#21-inspecting-dockerfiles-with-dockle" title="Permanent link">&para;</a></h2>
+<p><code>Dockle</code> - Container Image Linter for Security, Helping build the Best-Practice Docker Image, Easy to start</p>
+<p><code>Dockle</code> helps you:</p>
+<ul>
+<li>Build Best Practice Docker images</li>
+<li>Build secure Docker images</li>
+<li>Checkpoints includes CIS Benchmarks</li>
+</ul>
+<p><strong>Step 1</strong>  Install Dockle</p>
+<div class="codehilite"><pre><span></span><code>$ VERSION=$(
+ curl --silent &quot;https://api.github.com/repos/goodwithtech/dockle/releases/latest&quot; | \
+ grep &#39;&quot;tag_name&quot;:&#39; | \
+ sed -E &#39;s/.*&quot;v([^&quot;]+)&quot;.*/\1/&#39; \
+) &amp;&amp; curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
+$ sudo dpkg -i dockle.deb &amp;&amp; rm dockle.deb
+</code></pre></div>
+
+<p><strong>Step 2</strong> Experiment with existing applications we've created in the class:</p>
+<div class="codehilite"><pre><span></span><code>$ dockle image [YOUR_IMAGE_NAME]
+</code></pre></div>
+
+<p>e.g.</p>
+<div class="codehilite"><pre><span></span><code>dockle archy/myfirstapp
+</code></pre></div>
+
+<p>output:</p>
+<div class="codehilite"><pre><span></span><code>WARN    - CIS-DI-0001: Create a user for the container
+    * Last user should not be root
+WARN    - DKL-DI-0006: Avoid latest tag
+    * Avoid &#39;latest&#39; tag
+INFO    - CIS-DI-0005: Enable Content trust for Docker
+    * export DOCKER_CONTENT_TRUST=1 before docker pull/build
+INFO    - CIS-DI-0006: Add HEALTHCHECK instruction to the container image
+    * not found HEALTHCHECK statement
+INFO    - DKL-LI-0003: Only put necessary files
+    * Suspicious directory : tmp
+</code></pre></div>
+
+<h2 id="22-automated-builds-with-google-cloud-build">2.2 Automated Builds with Google Cloud Build<a class="headerlink" href="#22-automated-builds-with-google-cloud-build" title="Permanent link">&para;</a></h2>
 <p><strong>Live Demo:</strong></p>
 <ul>
 <li>GCR Image scanning</li>

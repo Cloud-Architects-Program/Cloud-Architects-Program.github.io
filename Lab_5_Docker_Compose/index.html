@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-docker-compose" class="md-skip">
+        <a href="#1-docker-security" class="md-skip">
           Skip to content
         </a>
       
@@ -264,8 +264,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Lab 5 Docker Compose
@@ -281,8 +279,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -291,23 +287,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-docker-compose_1" class="md-nav__link">
-    1 Docker Compose
+  <a href="#1-docker-security" class="md-nav__link">
+    1 Docker Security
   </a>
   
-    <nav class="md-nav" aria-label="1 Docker Compose">
+    <nav class="md-nav" aria-label="1 Docker Security">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-deploy-guestbook-app-with-compose" class="md-nav__link">
-    1.1 Deploy Guestbook app with Compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-deploy-voting-app-using-compose" class="md-nav__link">
-    1.2 Deploy Voting App using Compose
+  <a href="#11-scan-images-with-trivy" class="md-nav__link">
+    1.1 Scan images with Trivy
   </a>
   
 </li>
@@ -318,23 +307,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-docker-security" class="md-nav__link">
-    2 Docker Security
+  <a href="#2-docker-compose" class="md-nav__link">
+    2 Docker Compose
   </a>
   
-    <nav class="md-nav" aria-label="2 Docker Security">
+    <nav class="md-nav" aria-label="2 Docker Compose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-scan-images-with-trivy" class="md-nav__link">
-    2.1 Scan images with Trivy
+  <a href="#21-deploy-guestbook-app-with-compose" class="md-nav__link">
+    2.1 Deploy Guestbook app with Compose
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#21-follow-docker-best-practices" class="md-nav__link">
-    2.1 Follow Docker Best Practices
+  <a href="#22-deploy-voting-app-using-compose" class="md-nav__link">
+    2.2 Deploy Voting App using Compose
   </a>
   
 </li>
@@ -374,8 +363,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -384,23 +371,16 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-docker-compose_1" class="md-nav__link">
-    1 Docker Compose
+  <a href="#1-docker-security" class="md-nav__link">
+    1 Docker Security
   </a>
   
-    <nav class="md-nav" aria-label="1 Docker Compose">
+    <nav class="md-nav" aria-label="1 Docker Security">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-deploy-guestbook-app-with-compose" class="md-nav__link">
-    1.1 Deploy Guestbook app with Compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-deploy-voting-app-using-compose" class="md-nav__link">
-    1.2 Deploy Voting App using Compose
+  <a href="#11-scan-images-with-trivy" class="md-nav__link">
+    1.1 Scan images with Trivy
   </a>
   
 </li>
@@ -411,23 +391,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-docker-security" class="md-nav__link">
-    2 Docker Security
+  <a href="#2-docker-compose" class="md-nav__link">
+    2 Docker Compose
   </a>
   
-    <nav class="md-nav" aria-label="2 Docker Security">
+    <nav class="md-nav" aria-label="2 Docker Compose">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-scan-images-with-trivy" class="md-nav__link">
-    2.1 Scan images with Trivy
+  <a href="#21-deploy-guestbook-app-with-compose" class="md-nav__link">
+    2.1 Deploy Guestbook app with Compose
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#21-follow-docker-best-practices" class="md-nav__link">
-    2.1 Follow Docker Best Practices
+  <a href="#22-deploy-voting-app-using-compose" class="md-nav__link">
+    2.2 Deploy Voting App using Compose
   </a>
   
 </li>
@@ -450,16 +430,50 @@
               
                 
                 
-                <p>Lab 5 Docker Compose and Docker ecosystem</p>
+                <p>Lab 5 Docker Compose and Docker Security</p>
 <p><strong>Objective:</strong></p>
 <ul>
 <li>Practice to use Docker Compose, </li>
 </ul>
-<h1 id="1-docker-compose">1 Docker Compose<a class="headerlink" href="#1-docker-compose" title="Permanent link">&para;</a></h1>
-<h2 id="1-docker-compose_1">1 Docker Compose<a class="headerlink" href="#1-docker-compose_1" title="Permanent link">&para;</a></h2>
+<h2 id="1-docker-security">1 Docker Security<a class="headerlink" href="#1-docker-security" title="Permanent link">&para;</a></h2>
+<h3 id="11-scan-images-with-trivy">1.1 Scan images with <a href="https://aquasecurity.github.io/trivy/v0.18.0/">Trivy</a><a class="headerlink" href="#11-scan-images-with-trivy" title="Permanent link">&para;</a></h3>
+<p>Trivy (tri pronounced like trigger, vy pronounced like envy) is a simple and comprehensive vulnerability scanner for containers and other artifacts. A software vulnerability is a glitch, flaw, or weakness present in the software or in an Operating System. Trivy detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.). Trivy is easy to use. Just install the binary and you're ready to scan. All you need to do for scanning is to specify a target such as an image name of the container.</p>
+<p><strong>Step 1</strong>  Install Trivy</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+</code></pre></div>
+
+<p><strong>Step 2</strong> Specify an image name (and a tag).</p>
+<div class="codehilite"><pre><span></span><code>$ trivy image [YOUR_IMAGE_NAME]
+</code></pre></div>
+
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><code>$ trivy image python:3.4-alpine
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>2019-05-16T01:20:43.180+0900    INFO    Updating vulnerability database...
+2019-05-16T01:20:53.029+0900    INFO    Detecting Alpine vulnerabilities...
+
+python:3.4-alpine3.9 (alpine 3.9.2)
+===================================
+Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
+
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| LIBRARY | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |             TITLE              |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| openssl | CVE-2019-1543    | MEDIUM   | 1.1.1a-r1         | 1.1.1b-r1     | openssl: ChaCha20-Poly1305     |
+|         |                  |          |                   |               | with long nonces               |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Explore local images in your environment. </p>
+<h1 id="2-docker-compose">2 Docker Compose<a class="headerlink" href="#2-docker-compose" title="Permanent link">&para;</a></h1>
 <p>In this module, will guide you through the process of building a multi-container
 application using docker compose. The application code is available at GitHub: <a href="https://github.com/Cloud-Architects-Program/ycit019">https://github.com/Cloud-Architects-Program/ycit019</a></p>
-<h3 id="11-deploy-guestbook-app-with-compose">1.1 Deploy Guestbook app with Compose<a class="headerlink" href="#11-deploy-guestbook-app-with-compose" title="Permanent link">&para;</a></h3>
+<h2 id="21-deploy-guestbook-app-with-compose">2.1 Deploy Guestbook app with Compose<a class="headerlink" href="#21-deploy-guestbook-app-with-compose" title="Permanent link">&para;</a></h2>
 <p>Let’s build another application. This time we going to create famous Guestbook
 application.</p>
 <p>Guestbook consists of three services. A redis-master node, a set of redis-slave
@@ -546,7 +560,7 @@ Removing guestbook_redis-slave_1 ... done
 Removing network guestbook_default
 </code></pre></div>
 
-<h3 id="12-deploy-voting-app-using-compose">1.2 Deploy Voting App using Compose<a class="headerlink" href="#12-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h3>
+<h2 id="22-deploy-voting-app-using-compose">2.2 Deploy Voting App using Compose<a class="headerlink" href="#22-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Switch to <code>Module5/example-voting-app</code> folder :</p>
 <div class="codehilite"><pre><span></span><code>cd ~/ycit019/Module5/example-voting-app/
 </code></pre></div>
@@ -675,78 +689,6 @@ docker-compose v3 is out of scope for this Lab. However you got the idea!</p>
 <p>Read the Docker-Compose <a href="https://docs.docker.com/compose/compose-file/">documentation</a> on new syntax.</p>
 <p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019/blob/main/Module5/v3-voting-app">here</a> for you reference.</p>
 </div>
-<h2 id="2-docker-security">2 Docker Security<a class="headerlink" href="#2-docker-security" title="Permanent link">&para;</a></h2>
-<h3 id="21-scan-images-with-trivy">2.1 Scan images with <a href="https://aquasecurity.github.io/trivy/v0.18.0/">Trivy</a><a class="headerlink" href="#21-scan-images-with-trivy" title="Permanent link">&para;</a></h3>
-<p>Trivy (tri pronounced like trigger, vy pronounced like envy) is a simple and comprehensive vulnerability scanner for containers and other artifacts. A software vulnerability is a glitch, flaw, or weakness present in the software or in an Operating System. Trivy detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.). Trivy is easy to use. Just install the binary and you're ready to scan. All you need to do for scanning is to specify a target such as an image name of the container.</p>
-<p><strong>Step 1</strong>  Install Trivy</p>
-<div class="codehilite"><pre><span></span><code>sudo apt-get install wget apt-transport-https gnupg lsb-release
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-sudo apt-get update
-sudo apt-get install trivy
-</code></pre></div>
-
-<p><strong>Step 2</strong> Specify an image name (and a tag).</p>
-<div class="codehilite"><pre><span></span><code>$ trivy image [YOUR_IMAGE_NAME]
-</code></pre></div>
-
-<p>For example:</p>
-<div class="codehilite"><pre><span></span><code>$ trivy image python:3.4-alpine
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>2019-05-16T01:20:43.180+0900    INFO    Updating vulnerability database...
-2019-05-16T01:20:53.029+0900    INFO    Detecting Alpine vulnerabilities...
-
-python:3.4-alpine3.9 (alpine 3.9.2)
-===================================
-Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
-
-+---------+------------------+----------+-------------------+---------------+--------------------------------+
-| LIBRARY | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |             TITLE              |
-+---------+------------------+----------+-------------------+---------------+--------------------------------+
-| openssl | CVE-2019-1543    | MEDIUM   | 1.1.1a-r1         | 1.1.1b-r1     | openssl: ChaCha20-Poly1305     |
-|         |                  |          |                   |               | with long nonces               |
-+---------+------------------+----------+-------------------+---------------+--------------------------------+
-</code></pre></div>
-
-<p><strong>Step 3</strong>  Explore local images in your environment. </p>
-<h3 id="21-follow-docker-best-practices">2.1 Follow Docker Best Practices<a class="headerlink" href="#21-follow-docker-best-practices" title="Permanent link">&para;</a></h3>
-<p><code>Dockle</code> - Container Image Linter for Security, Helping build the Best-Practice Docker Image, Easy to start</p>
-<p><code>Dockle</code> helps you:</p>
-<ul>
-<li>Build Best Practice Docker images</li>
-<li>Build secure Docker images</li>
-<li>Checkpoints includes CIS Benchmarks</li>
-</ul>
-<p><strong>Step 1</strong>  Install Dockle</p>
-<div class="codehilite"><pre><span></span><code>$ VERSION=$(
- curl --silent &quot;https://api.github.com/repos/goodwithtech/dockle/releases/latest&quot; | \
- grep &#39;&quot;tag_name&quot;:&#39; | \
- sed -E &#39;s/.*&quot;v([^&quot;]+)&quot;.*/\1/&#39; \
-) &amp;&amp; curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
-$ sudo dpkg -i dockle.deb &amp;&amp; rm dockle.deb
-</code></pre></div>
-
-<p><strong>Step 2</strong> Experiment with existing applications we've created in the class:</p>
-<div class="codehilite"><pre><span></span><code>$ dockle image [YOUR_IMAGE_NAME]
-</code></pre></div>
-
-<p>e.g.</p>
-<div class="codehilite"><pre><span></span><code>dockle archy/myfirstapp
-</code></pre></div>
-
-<p>output:</p>
-<div class="codehilite"><pre><span></span><code>WARN    - CIS-DI-0001: Create a user for the container
-    * Last user should not be root
-WARN    - DKL-DI-0006: Avoid latest tag
-    * Avoid &#39;latest&#39; tag
-INFO    - CIS-DI-0005: Enable Content trust for Docker
-    * export DOCKER_CONTENT_TRUST=1 before docker pull/build
-INFO    - CIS-DI-0006: Add HEALTHCHECK instruction to the container image
-    * not found HEALTHCHECK statement
-INFO    - DKL-LI-0003: Only put necessary files
-    * Suspicious directory : tmp
-</code></pre></div>
                 
               
               
