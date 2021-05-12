@@ -661,11 +661,17 @@ registry, you can check that your image exists with command below:</p>
 
 <p><strong>Step 3</strong> Now run a container in a background and expose a standard HTTP port
 (80), which is redirected to the container’s port 5000:</p>
-<div class="codehilite"><pre><span></span><code>docker run -dp 80:5000 --name myfirstapp &lt;Docker-hub-user-name&gt;/myfirstapp
+<div class="codehilite"><pre><span></span><code>docker run -dp 8080:5000 --name myfirstapp &lt;Docker-hub-user-name&gt;/myfirstapp
 </code></pre></div>
 
-<p><strong>Step 4</strong> Use your browser to open the address http://<VM or Laptop IP> and
-check that the application works.</p>
+<p><strong>Step 4</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
 <p><strong>Step 5</strong> Stop the container and remove it:</p>
 <div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
 </code></pre></div>
@@ -822,7 +828,7 @@ $ sudo dpkg -i dockle.deb &amp;&amp; rm dockle.deb
 </code></pre></div>
 
 <p><strong>Step 2</strong> Experiment with existing applications we've created in the class:</p>
-<div class="codehilite"><pre><span></span><code>$ dockle image [YOUR_IMAGE_NAME]
+<div class="codehilite"><pre><span></span><code>$ dockle [YOUR_IMAGE_NAME]
 </code></pre></div>
 
 <p>e.g.</p>
