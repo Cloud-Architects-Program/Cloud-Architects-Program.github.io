@@ -476,7 +476,7 @@ Click $MY_REPO &gt; gowebapp-mysql to view the file&#39;s contents in the source
 
 ## 2 Build and push Docker images to Google Container Registry (GCR)
 
-## 2.1 Build and push `gowebapp-mysql` Image to GCR
+### 2.1 Build and push `gowebapp-mysql` Image to GCR
 
 **Step 1** Locate folder with mysql config
 </code></pre></div>
@@ -560,7 +560,7 @@ Run and test Docker images locally
     Docker images has been pushed to GCR registry
 
 
-## 2.3 Test application by running with Docker Engine.
+### 2.3 Test application by running with Docker Engine.
 
 
 **Step 1** Create Docker user-defined network
@@ -603,13 +603,13 @@ You should be able to access the application at Google Cloud `Web Preview` Conso
     Web Preview using port `8080` by default. If you application using other port, you can edit this as needed.
 
 
-## 2.4 Cleanup running applications and unused networks
+### 2.4 Cleanup running applications and unused networks
 </code></pre></div>
 
 <h3 id="todo-docker-xxx">TODO docker xxx<a class="headerlink" href="#todo-docker-xxx" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code># 3 Docker Compose
+<div class="codehilite"><pre><span></span><code>## 3 Docker Compose
 
-## 3.1 Test application locally with Docker Compose
+### 3.1 Test application locally with Docker Compose
 
 **Task:** Automate local testing with `Docker Compose` by creating
 `docker-compose.yaml` file which contains:
@@ -712,7 +712,7 @@ You should be able to access the application at Google Cloud `Web Preview` Conso
 
 
 
-## 3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+### 3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
 
 
 **Step 1** Commit gowebapp and gowebapp-mysql folders using the following Git commands:
@@ -724,7 +724,7 @@ git commit -m "adding docker-compose.yml"</p>
 </code></pre></div>
 
 <p>git push origin master</p>
-<div class="codehilite"><pre><span></span><code>## 3.2 Grant viewing permissions for a repository to Instructors/Teachers
+<div class="codehilite"><pre><span></span><code>### 3.3 Grant viewing permissions for a repository to Instructors/Teachers
 
 Reference [document](https://cloud.google.com/source-repositories/docs/granting-users-access)
 </code></pre></div>

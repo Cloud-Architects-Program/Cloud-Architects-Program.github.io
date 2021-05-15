@@ -329,6 +329,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" class="md-nav__link">
+    3.3 Grant viewing permissions for a repository to Instructors/Teachers
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -524,6 +538,20 @@
           <li class="md-nav__item">
   <a href="#31-test-application-locally-with-docker-compose" class="md-nav__link">
     3.1 Test application locally with Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" class="md-nav__link">
+    3.3 Grant viewing permissions for a repository to Instructors/Teachers
   </a>
   
 </li>
@@ -837,6 +865,27 @@ networks: #TODO
 <p class="admonition-title">Important</p>
 <p>Make sure <code>gowebapp</code> and <code>gowebapp1</code> networks has been deleted!!!</p>
 </div>
+<h3 id="32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher">3.2 Commit docker-compose file to repository and share it with Instructor/Teacher<a class="headerlink" href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Commit gowebapp and gowebapp-mysql folders using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;adding docker-compose.yml&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h3 id="33-grant-viewing-permissions-for-a-repository-to-instructorsteachers">3.3 Grant viewing permissions for a repository to Instructors/Teachers<a class="headerlink" href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" title="Permanent link">&para;</a></h3>
+<p>Reference <a href="https://cloud.google.com/source-repositories/docs/granting-users-access">document</a></p>
+<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:ayrat.khayretdinov@gmail.com&#39; --role=roles/browser
+gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:dima.kassab@gmail.com&#39; --role=roles/browser
+</code></pre></div>
+
+<p>Submit link to your Cloud Source Repository to LMS, replace with you values</p>
+<div class="codehilite"><pre><span></span><code>https://source.cloud.google.com/${PROJECT_ID}/$MY_REPO
+</code></pre></div>
+
+<p>e.g: https://source.cloud.google.com/ycit019-project/ayratk-notepad</p>
                 
               
               
