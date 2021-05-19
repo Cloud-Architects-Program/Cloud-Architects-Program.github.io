@@ -649,12 +649,15 @@
 --image-project=ubuntu-os-cloud 
 </code></pre></div>
 
-<p><strong>Step 2</strong> Capture the private IP address of the VM</p>
-<div class="codehilite"><pre><span></span><code>export NODE_IP=&lt;REPLACE_WITH_NODE_PRIVATE_IP&gt;
-</code></pre></div>
-
+<p><strong>Step 2</strong> Capture the private IP address of the VM
+Record the IP address of the node, as we will need later.</p>
 <p><strong>Step 3</strong> Once the vm is created, you can ssh into it</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute ssh k8s-cluster --zone us-central1-c
+</code></pre></div>
+
+<p>You can also ssh into the node through the console if you prefer that.</p>
+<p><strong>Step 4</strong> Define the NODE_IP as an environment variable.</p>
+<div class="codehilite"><pre><span></span><code>export NODE_IP=&lt;REPLACE_WITH_NODE_PRIVATE_IP&gt;
 </code></pre></div>
 
 <h3 id="12-let-iptables-see-bridged-traffic">1.2 Let iptables see bridged traffic<a class="headerlink" href="#12-let-iptables-see-bridged-traffic" title="Permanent link">&para;</a></h3>
@@ -787,7 +790,7 @@ EOF
 <div class="codehilite"><pre><span></span><code>  mkdir -p $HOME/.kube
   cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   chown $(id -u):$(id -g) $HOME/.kube/config
-    export KUBECONFIG=$HOME/.kube/config
+  export KUBECONFIG=$HOME/.kube/config
 </code></pre></div>
 
 <p>Let's validate that the installation was successful. You should now be able to run kubectl commands and see that all cluster Pods
@@ -795,9 +798,12 @@ are running (except DNS one):</p>
 <div class="codehilite"><pre><span></span><code>watch kubectl get pods --all-namespaces -o wide
 </code></pre></div>
 
+<p>To exit back to the terminal, press ctrl+c</p>
 <h3 id="16-deploy-calico-networking-via-self-hosted-as-a-daemon-set">1.6 Deploy Calico Networking (via self-hosted, as a daemon set)<a class="headerlink" href="#16-deploy-calico-networking-via-self-hosted-as-a-daemon-set" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Lets download the Calico manifest:</p>
-<p>curl https://docs.projectcalico.org/manifests/calico.yaml -O</p>
+<div class="codehilite"><pre><span></span><code>curl https://docs.projectcalico.org/manifests/calico.yaml -O
+</code></pre></div>
+
 <div class="admonition note">
 <p class="admonition-title">Note<p>You can customize Calico deployments based on you needs. For instance by changing:</p>
 <p><code>(Optional) In the manifest, change CALICO_IPV4POOL_IPIP from "always" to "cross-subnet".
@@ -807,11 +813,11 @@ are running (except DNS one):</p>
 </div>
 <p>This time we are not going to modify defaults Calico values.</p>
 <p><strong>Step 2</strong>  Now lets deploy Calico as a daemon set.</p>
-<div class="codehilite"><pre><span></span><code>    kubectl apply -f calico.yaml
+<div class="codehilite"><pre><span></span><code>kubectl apply -f calico.yaml
 </code></pre></div>
 
 <p>Watch the Calico/node pod for the master get created (hopefully successfully)</p>
-<div class="codehilite"><pre><span></span><code>    watch kubectl get pods --all-namespaces -o wide
+<div class="codehilite"><pre><span></span><code>watch kubectl get pods --all-namespaces -o wide
 </code></pre></div>
 
 <h3 id="17-join-worker-node">1.7 Join worker node<a class="headerlink" href="#17-join-worker-node" title="Permanent link">&para;</a></h3>
@@ -862,7 +868,7 @@ kubectl get deployment nginx
 </p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note<p>At a single point of time, we develop the new "Major"/"Minor" version of Kubernetes (today - Kubernetes 1.20), and we support three existing releases as the "Patch" releases (today - 1.19.x, 1.20.x and 1.21.x).</p>
+<p class="admonition-title">Note<p>At a single point of time, we develop the new "Major"/"Minor" version of Kubernetes (today - Kubernetes 1.21), and we support three existing releases as the "Patch" releases (today - 1.19.x, 1.20.x and 1.21.x).</p>
 </p>
 </div>
 <h4 id="212-verify-cluster-default-namespaces">2.1.2 Verify Cluster default namespaces.<a class="headerlink" href="#212-verify-cluster-default-namespaces" title="Permanent link">&para;</a></h4>
