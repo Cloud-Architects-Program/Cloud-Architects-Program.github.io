@@ -227,6 +227,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ass2_solution/" class="md-nav__link">
+        Assignment2 - Solution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -234,14 +249,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -387,8 +402,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-labels-nodes" class="md-nav__link">
-    2.2 Labels Nodes
+  <a href="#22-label-nodes" class="md-nav__link">
+    2.2 Label Nodes
   </a>
   
 </li>
@@ -602,8 +617,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-labels-nodes" class="md-nav__link">
-    2.2 Labels Nodes
+  <a href="#22-label-nodes" class="md-nav__link">
+    2.2 Label Nodes
   </a>
   
 </li>
@@ -879,7 +894,7 @@ kubectl label pods echoserver env=test
 <div class="codehilite"><pre><span></span><code>kubectl get pods -l env=test
 </code></pre></div>
 
-<h3 id="22-labels-nodes">2.2 Labels Nodes<a class="headerlink" href="#22-labels-nodes" title="Permanent link">&para;</a></h3>
+<h3 id="22-label-nodes">2.2 Label Nodes<a class="headerlink" href="#22-label-nodes" title="Permanent link">&para;</a></h3>
 <p>Reference: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/</p>
 <p><strong>Step 1</strong> List available nodes</p>
 <div class="codehilite"><pre><span></span><code>kubectl get nodes
@@ -893,11 +908,11 @@ kubectl label pods echoserver env=test
 <div class="codehilite"><pre><span></span><code>kubectl get nodes --show-labels
 </code></pre></div>
 
-<p><strong>Step 5</strong>  Label the node as <code>size: small</code>. Make sure to replace YOUR_NODE_NAME with one of the nodes you have.</p>
+<p><strong>Step 4</strong>  Label the node as <code>size: small</code>. Make sure to replace YOUR_NODE_NAME with one of the nodes you have.</p>
 <div class="codehilite"><pre><span></span><code>kubectl label node YOUR_NODE_NAME size=small
 </code></pre></div>
 
-<p><strong>Step 6</strong> Check the labels for this node</p>
+<p><strong>Step 5</strong> Check the labels for this node</p>
 <div class="codehilite"><pre><span></span><code>kubectl get node YOUR_NODE_NAME --show-labels | grep size
 </code></pre></div>
 
@@ -953,9 +968,7 @@ No events.
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Above output contains three endpoints and a node port. It is 30366 in the
-output above, but it can be different in your case. Remember this port to
-use it in the next step.</p>
+<p>The above output contains one endpoint and a node port, 30366, but it can be different in your case. Remember this port to use it in the next step.</p>
 </div>
 <p><strong>Step 4</strong> We need to open the node port on one of the cluster nodes to be able to access the service externally. Let's first find the exteran IP address of one of the nodes.</p>
 <div class="codehilite"><pre><span></span><code>kubectl get nodes -o wide

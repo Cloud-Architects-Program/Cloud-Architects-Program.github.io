@@ -14,7 +14,7 @@
     
     
       
-        <title>1 Containerize Applications - YCIT019</title>
+        <title>Assignment2 - Solution - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1 Containerize Applications
+              Assignment2 - Solution
             
           </span>
         </div>
@@ -227,19 +227,169 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Assignment2 - Solution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Assignment2 - Solution
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-lab-environment" class="md-nav__link">
+    Prepare Lab Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configure-cloud-source-repository" class="md-nav__link">
+    1 Configure Cloud Source Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-create-a-repository-with-cloud-source-repository" class="md-nav__link">
+    1.1 Create a repository with Cloud Source Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-and-push-docker-images-to-google-container-registry-gcr" class="md-nav__link">
+    2 Build and push Docker images to Google Container Registry (GCR)
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Build and push Docker images to Google Container Registry (GCR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-build-and-push-gowebapp-mysql-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp-mysql Image to GCR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-build-and-push-gowebapp-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp Image to GCR
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Build and push gowebapp Image to GCR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#23-test-application-by-running-with-docker-engine" class="md-nav__link">
+    2.3 Test application by running with Docker Engine.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-cleanup-running-applications-and-unused-networks" class="md-nav__link">
+    2.4 Cleanup running applications and unused networks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    3 Docker Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-test-application-locally-with-docker-compose" class="md-nav__link">
+    3.1 Test application locally with Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" class="md-nav__link">
+    3.3 Grant viewing permissions for a repository to Instructors/Teachers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -367,12 +517,80 @@
     1.1 Create a repository with Cloud Source Repository
   </a>
   
-    <nav class="md-nav" aria-label="1.1 Create a repository with Cloud Source Repository">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-and-push-docker-images-to-google-container-registry-gcr" class="md-nav__link">
+    2 Build and push Docker images to Google Container Registry (GCR)
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Build and push Docker images to Google Container Registry (GCR)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#todo-docker-xxx" class="md-nav__link">
-    TODO docker xxx
+  <a href="#21-build-and-push-gowebapp-mysql-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp-mysql Image to GCR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-build-and-push-gowebapp-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp Image to GCR
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Build and push gowebapp Image to GCR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#23-test-application-by-running-with-docker-engine" class="md-nav__link">
+    2.3 Test application by running with Docker Engine.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-cleanup-running-applications-and-unused-networks" class="md-nav__link">
+    2.4 Cleanup running applications and unused networks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    3 Docker Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-test-application-locally-with-docker-compose" class="md-nav__link">
+    3.1 Test application locally with Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" class="md-nav__link">
+    3.3 Grant viewing permissions for a repository to Instructors/Teachers
   </a>
   
 </li>
@@ -473,205 +691,195 @@ Total 119 (delta 22), reused 0 (delta 0)
 remote: Resolving deltas: 100% (22/22)
 To https://source.developers.google.com/p/mcgil-stundent/r/notepad-gowebapp
  * [new branch]      master -&gt; master
- ```
-
-Browse files in the Google Cloud Source repository
-
-
-**Step 7**  Browse files in the Google Cloud Source repository
-
-Use the Google Cloud Source Repositories source code browser to view repository files. 
-You can filter your view to focus on a specific branch, tag, or comment.
-
-Browse the Assignment 2 files you pushed to the repository by opening the Navigation menu and selecting 
-Source Repositories &gt; Source Code.
-
-!!! result
-    The console shows the files in the master branch at the most recent commit.
-
-
-**Step 8** View a file in the Google Cloud repository
-
-Click $MY_REPO &gt; gowebapp to view the file&#39;s contents in the source code browser
-
-Click $MY_REPO &gt; gowebapp-mysql to view the file&#39;s contents in the source code browser
-
-
-
-## 2 Build and push Docker images to Google Container Registry (GCR)
-
-### 2.1 Build and push `gowebapp-mysql` Image to GCR
-
-**Step 1** Locate folder with mysql config
 </code></pre></div>
 
-<p>cd ~/$MY_REPO/gowebapp-mysql</p>
-<div class="codehilite"><pre><span></span><code>**Step 2** Review the existing Dockerfile
+<p>Browse files in the Google Cloud Source repository</p>
+<p><strong>Step 7</strong>  Browse files in the Google Cloud Source repository</p>
+<p>Use the Google Cloud Source Repositories source code browser to view repository files. 
+You can filter your view to focus on a specific branch, tag, or comment.</p>
+<p>Browse the Assignment 2 files you pushed to the repository by opening the Navigation menu and selecting 
+Source Repositories &gt; Source Code.</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The console shows the files in the master branch at the most recent commit.</p>
+</div>
+<p><strong>Step 8</strong> View a file in the Google Cloud repository</p>
+<div class="codehilite"><pre><span></span><code>Click $MY_REPO &gt; gowebapp to view the file&#39;s contents in the source code browser
 </code></pre></div>
 
-<p>cat Dockerfile</p>
-<div class="codehilite"><pre><span></span><code>output:
+<div class="codehilite"><pre><span></span><code>Click $MY_REPO &gt; gowebapp-mysql to view the file&#39;s contents in the source code browser
 </code></pre></div>
 
-<p>FROM mysql:8.0</p>
-<p>LABEL maintainer "student@mcgill.ca"
-LABEL gowebapp-sql "v1"</p>
-<p>COPY gowebapp.sql /docker-entrypoint-initdb.d/</p>
-<div class="codehilite"><pre><span></span><code>**Step 2** Get the Project ID:
+<h2 id="2-build-and-push-docker-images-to-google-container-registry-gcr">2 Build and push Docker images to Google Container Registry (GCR)<a class="headerlink" href="#2-build-and-push-docker-images-to-google-container-registry-gcr" title="Permanent link">&para;</a></h2>
+<h3 id="21-build-and-push-gowebapp-mysql-image-to-gcr">2.1 Build and push <code>gowebapp-mysql</code> Image to GCR<a class="headerlink" href="#21-build-and-push-gowebapp-mysql-image-to-gcr" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Locate folder with mysql config</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp-mysql
 </code></pre></div>
 
-<p>PROJECT_ID=$(gcloud config get-value project)</p>
-<div class="codehilite"><pre><span></span><code>**Step 3** Enable the required APIs:
+<p><strong>Step 2</strong> Review the existing Dockerfile</p>
+<div class="codehilite"><pre><span></span><code>cat Dockerfile
 </code></pre></div>
 
-<p>gcloud services enable containerregistry.googleapis.com</p>
-<div class="codehilite"><pre><span></span><code>**Step 4** Build gowebapp-mysql Docker image with GCR registry address locally
+<p>output:</p>
+<div class="codehilite"><pre><span></span><code>FROM mysql:8.0
+
+LABEL maintainer &quot;student@mcgill.ca&quot;
+LABEL gowebapp-sql &quot;v1&quot;
+
+COPY gowebapp.sql /docker-entrypoint-initdb.d/
 </code></pre></div>
 
-<p>docker build -t gcr.io/${PROJECT_ID}/gowebapp-mysql:v1 .</p>
-<div class="codehilite"><pre><span></span><code>Build the image locally. Make sure to include &quot;.&quot; at the end. Make sure the
+<p><strong>Step 2</strong> Get the Project ID:</p>
+<div class="codehilite"><pre><span></span><code>PROJECT_ID=$(gcloud config get-value project)
+</code></pre></div>
+
+<p><strong>Step 3</strong> Enable the required APIs:</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable containerregistry.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 4</strong> Build gowebapp-mysql Docker image with GCR registry address locally</p>
+<div class="codehilite"><pre><span></span><code>docker build -t gcr.io/${PROJECT_ID}/gowebapp-mysql:v1 .
+</code></pre></div>
+
+<p>Build the image locally. Make sure to include "." at the end. Make sure the
 build runs to completion without errors. You should get a success message.
-Run and test Docker images locally
-
-**Step 5** Push the image to gcr.io:
+Run and test Docker images locally</p>
+<p><strong>Step 5</strong> Push the image to gcr.io:</p>
+<div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
 </code></pre></div>
 
-<p>docker push gcr.io/${PROJECT_ID}/gowebapp-mysql:v1</p>
-<div class="codehilite"><pre><span></span><code>**Step 6**  Login to GCP console -&gt; Container Registry -&gt; Images
-
-!!! result
-    Docker images has been pushed to GCR registry
-
-
-## 2.1 Build and push `gowebapp` Image to GCR
-
-**Step 1** Locate folder with mysql config
+<p><strong>Step 6</strong>  Login to GCP console -&gt; Container Registry -&gt; Images</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Docker images has been pushed to GCR registry</p>
+</div>
+<h2 id="21-build-and-push-gowebapp-image-to-gcr">2.1 Build and push <code>gowebapp</code> Image to GCR<a class="headerlink" href="#21-build-and-push-gowebapp-image-to-gcr" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Locate folder with mysql config</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp
 </code></pre></div>
 
-<p>cd ~/$MY_REPO/gowebapp</p>
-<div class="codehilite"><pre><span></span><code>**Step 2** Review the existing Dockerfile
+<p><strong>Step 2</strong> Review the existing Dockerfile</p>
+<div class="codehilite"><pre><span></span><code>cat Dockerfile
 </code></pre></div>
 
-<p>cat Dockerfile</p>
-<div class="codehilite"><pre><span></span><code>output:
+<p>output:</p>
+<div class="codehilite"><pre><span></span><code>FROM golang:1.16.4
+
+LABEL maintainer &quot;student@mcgill.ca&quot;
+LABEL gowebapp &quot;v1&quot;
+
+EXPOSE 80
+
+ENV GO111MODULE=auto
+ENV GOPATH=/go
+
+COPY /code $GOPATH/src/gowebapp/
+
+WORKDIR $GOPATH/src/gowebapp/
+
+RUN go get &amp;&amp; go install
+
+ENTRYPOINT $GOPATH/bin/gowebapp
 </code></pre></div>
 
-<p>FROM golang:1.16.4</p>
-<p>LABEL maintainer "student@mcgill.ca"
-LABEL gowebapp "v1"</p>
-<p>EXPOSE 80</p>
-<p>ENV GO111MODULE=auto
-ENV GOPATH=/go</p>
-<p>COPY /code $GOPATH/src/gowebapp/</p>
-<p>WORKDIR $GOPATH/src/gowebapp/</p>
-<p>RUN go get &amp;&amp; go install</p>
-<p>ENTRYPOINT $GOPATH/bin/gowebapp</p>
-<div class="codehilite"><pre><span></span><code>**Step 4** Build gowebapp Docker image with GCR registry address l locally
+<p><strong>Step 4</strong> Build gowebapp Docker image with GCR registry address l locally</p>
+<div class="codehilite"><pre><span></span><code>docker build -t gcr.io/${PROJECT_ID}/gowebapp:v1 .
 </code></pre></div>
 
-<p>docker build -t gcr.io/${PROJECT_ID}/gowebapp:v1 .</p>
-<div class="codehilite"><pre><span></span><code>Build the image locally. Make sure to include &quot;.&quot; at the end. Make sure the
+<p>Build the image locally. Make sure to include "." at the end. Make sure the
 build runs to completion without errors. You should get a success message.
-Run and test Docker images locally
-
-**Step 5** Push the image to gcr.io:
+Run and test Docker images locally</p>
+<p><strong>Step 5</strong> Push the image to gcr.io:</p>
+<div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/gowebapp:v1
 </code></pre></div>
 
-<p>docker push gcr.io/${PROJECT_ID}/gowebapp:v1</p>
-<div class="codehilite"><pre><span></span><code>**Step 6**  Login to GCP console -&gt; Container Registry -&gt; Images
-
-!!! result
-    Docker images has been pushed to GCR registry
-
-
-### 2.3 Test application by running with Docker Engine.
-
-
-**Step 1** Create Docker user-defined network
-
-To facilitate cross-container communication, let&#39;s first define a user-defined
-network in which to run the frontend and backend containers:
-</code></pre></div>
-
-<p>docker network create gowebapp \
+<p><strong>Step 6</strong>  Login to GCP console -&gt; Container Registry -&gt; Images</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Docker images has been pushed to GCR registry</p>
+</div>
+<h3 id="23-test-application-by-running-with-docker-engine">2.3 Test application by running with Docker Engine.<a class="headerlink" href="#23-test-application-by-running-with-docker-engine" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create Docker user-defined network</p>
+<p>To facilitate cross-container communication, let's first define a user-defined
+network in which to run the frontend and backend containers:</p>
+<div class="codehilite"><pre><span></span><code>docker network create gowebapp \
 -d bridge \
---subnet 172.19.0.0/16</p>
-<div class="codehilite"><pre><span></span><code>**Step 2**  Launch backend container
+--subnet 172.19.0.0/16
+</code></pre></div>
 
-Next, let&#39;s launch a frontend and backend container using the Docker CLI.
+<p><strong>Step 2</strong>  Launch backend container</p>
+<p>Next, let's launch a frontend and backend container using the Docker CLI.
 First, we launch the database container, as it will take a bit longer to
 startup, and the frontend container depends on it. Notice how we are injecting
-the database password into the MySQL configuration as an environment variable:
+the database password into the MySQL configuration as an environment variable:</p>
+<div class="codehilite"><pre><span></span><code>docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql \
+-d -e MYSQL_ROOT_PASSWORD=rootpasswd gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
 </code></pre></div>
 
-<p>docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql \
--d -e MYSQL_ROOT_PASSWORD=rootpasswd gcr.io/${PROJECT_ID}/gowebapp-mysql:v1</p>
-<div class="codehilite"><pre><span></span><code>**Step 3**  Launch frontend container
-
-Now launch a frontend container, mapping the container port 80 - where the web application is exposed - to port 8080
- on the host machine:
+<p><strong>Step 3</strong>  Launch frontend container</p>
+<p>Now launch a frontend container, mapping the container port 80 - where the web application is exposed - to port 8080
+ on the host machine:</p>
+<div class="codehilite"><pre><span></span><code>docker run -p 8080:80 --net gowebapp -d --name gowebapp \
+--hostname gowebapp gcr.io/${PROJECT_ID}/gowebapp:v1
 </code></pre></div>
 
-<p>docker run -p 8080:80 --net gowebapp -d --name gowebapp \
---hostname gowebapp gcr.io/${PROJECT_ID}/gowebapp:v1</p>
-<div class="codehilite"><pre><span></span><code>**Step 4**  Test the application locally
-
-Now that we&#39;ve launched the application containers, let&#39;s try to test the web
-application locally.
-
-You should be able to access the application at Google Cloud `Web Preview` Console:
-
-![alt text](images/web_preview.png &quot;Web Preview&quot;)
-
-!!! note
-    Web Preview using port `8080` by default. If you application using other port, you can edit this as needed.
-
-
-### 2.4 Cleanup running applications and unused networks
+<p><strong>Step 4</strong>  Test the application locally</p>
+<p>Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<h3 id="24-cleanup-running-applications-and-unused-networks">2.4 Cleanup running applications and unused networks<a class="headerlink" href="#24-cleanup-running-applications-and-unused-networks" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>### TODO docker xxx
 </code></pre></div>
 
-<h3 id="todo-docker-xxx">TODO docker xxx<a class="headerlink" href="#todo-docker-xxx" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>## 3 Docker Compose
-
-### 3.1 Test application locally with Docker Compose
-
-**Task:** Automate local testing with `Docker Compose` by creating
-`docker-compose.yaml` file which contains:
-
- * User-defined network `gowebapp1`
-
- * Service `gowebapp-mysql`
-
- * Service `gowebapp`
-
-!!! reference
-    Docker Compose v2 [documentations](https://docs.docker.com/compose/compose-file/compose-file-v2/)
-
-!!! note 
-    Starting from Docker Compose 1.27.0+, v2 and v3 format has been merged,
-    there for if you using latest version above 1.27.0+ you do need to specify version of docker-compose.
-
-!!! implementation
-
-    1. Ensure that `Mysql` start first and then `webapp` services
-    2. Ensure that `Mysql` database is fully up prior to start `webapp` services
-    using [healthcheck](https://docs.docker.com/compose/compose-file/compose-file-v2/#healthcheck) feature of docker compose.
-    3. Ensure that `webapp-mysql`and `webapp` build with Docker-Compose
-    4. Ensure that environment variable `MYSQL_ROOT_PASSWORD` is set inside of the
-    docker compose file.
-
-**Step 1** Create compose file
+<h2 id="3-docker-compose">3 Docker Compose<a class="headerlink" href="#3-docker-compose" title="Permanent link">&para;</a></h2>
+<h3 id="31-test-application-locally-with-docker-compose">3.1 Test application locally with Docker Compose<a class="headerlink" href="#31-test-application-locally-with-docker-compose" title="Permanent link">&para;</a></h3>
+<p><strong>Task:</strong> Automate local testing with <code>Docker Compose</code> by creating
+<code>docker-compose.yaml</code> file which contains:</p>
+<ul>
+<li>
+<p>User-defined network <code>gowebapp1</code></p>
+</li>
+<li>
+<p>Service <code>gowebapp-mysql</code></p>
+</li>
+<li>
+<p>Service <code>gowebapp</code></p>
+</li>
+</ul>
+<div class="admonition reference">
+<p class="admonition-title">Reference</p>
+<p>Docker Compose v2 <a href="https://docs.docker.com/compose/compose-file/compose-file-v2/">documentations</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Starting from Docker Compose 1.27.0+, v2 and v3 format has been merged,
+there for if you using latest version above 1.27.0+ you do need to specify version of docker-compose.</p>
+</div>
+<div class="admonition implementation">
+<p class="admonition-title">Implementation</p>
+<ol>
+<li>Ensure that <code>Mysql</code> start first and then <code>webapp</code> services</li>
+<li>Ensure that <code>Mysql</code> database is fully up prior to start <code>webapp</code> services
+using <a href="https://docs.docker.com/compose/compose-file/compose-file-v2/#healthcheck">healthcheck</a> feature of docker compose.</li>
+<li>Ensure that <code>webapp-mysql</code>and <code>webapp</code> build with Docker-Compose</li>
+<li>Ensure that environment variable <code>MYSQL_ROOT_PASSWORD</code> is set inside of the
+docker compose file.</li>
+</ol>
+</div>
+<p><strong>Step 1</strong> Create compose file</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/
 </code></pre></div>
 
-<p>cd ~/$MY_REPO/</p>
-<div class="codehilite"><pre><span></span><code>
+<div class="codehilite"><pre><span></span><code>vim docker-compose.yaml
 </code></pre></div>
 
-<p>vim docker-compose.yaml</p>
-<div class="codehilite"><pre><span></span><code>Create structure as following:
-</code></pre></div>
-
-<p>version: '2.4'
+<p>Create structure as following:</p>
+<div class="codehilite"><pre><span></span><code>version: &#39;2.4&#39;
 services:
   gowebapp-mysql:
     build: ./gowebapp-mysql
@@ -679,7 +887,7 @@ services:
       MYSQL_ROOT_PASSWORD: rootpasswd
     hostname: gowebapp-mysql
     healthcheck:
-      test: "/usr/bin/mysql --user=root --password=rootpasswd --execute \"SHOW DATABASES;\""
+      test: &quot;/usr/bin/mysql --user=root --password=rootpasswd --execute \&quot;SHOW DATABASES;\&quot;&quot;
       interval: 2s
       timeout: 5s
       retries: 30
@@ -689,7 +897,7 @@ services:
     build: ./gowebapp
     hostname: gowebapp
     ports:
-      - "8080:80"
+      - &quot;8080:80&quot;
     depends_on:
       gowebapp-mysql:
         condition: service_healthy
@@ -697,69 +905,62 @@ services:
       - gowebapp1
 networks:
   gowebapp1:
-    driver: bridge</p>
-<div class="codehilite"><pre><span></span><code>!!! note
-    In this case we using Compose v2.4 version due to support of healthcheck
-    feature.
-
-**Step 2** Run compose file
+    driver: bridge
 </code></pre></div>
 
-<p>export CLOUDSDK_PYTHON=/usr/bin/python    # https://github.com/google-github-actions/setup-gcloud/issues/128</p>
-<div class="codehilite"><pre><span></span><code>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case we using Compose v2.4 version due to support of healthcheck
+feature.</p>
+</div>
+<p><strong>Step 2</strong> Run compose file</p>
+<div class="codehilite"><pre><span></span><code>export CLOUDSDK_PYTHON=/usr/bin/python    # https://github.com/google-github-actions/setup-gcloud/issues/128
 </code></pre></div>
 
-<p>docker-compose up -d</p>
-<div class="codehilite"><pre><span></span><code>**Step 3**  Test the application locally
-
-Now that we&#39;ve launched the application containers, let&#39;s try to test the web
-application locally.
-
-You should be able to access the application at Google Cloud `Web Preview` Console:
-
-![alt text](images/web_preview.png &quot;Web Preview&quot;)
-
-!!! note
-    Web Preview using port `8080` by default. If you application using other port, you can edit this as needed.
-
-
-**Step 4** Tear down environment
+<div class="codehilite"><pre><span></span><code>docker-compose up -d
 </code></pre></div>
 
-<p>docker-compose down</p>
-<div class="codehilite"><pre><span></span><code>**Step 5** Cleanup created networks
+<p><strong>Step 3</strong>  Test the application locally</p>
+<p>Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<p><strong>Step 4</strong> Tear down environment</p>
+<div class="codehilite"><pre><span></span><code>docker-compose down
 </code></pre></div>
 
-<p>docker network ls</p>
-<div class="codehilite"><pre><span></span><code>!!! important
-    Make sure `gowebapp` and `gowebapp1` networks has been deleted!!!
-
-
-
-### 3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
-
-
-**Step 1** Commit gowebapp and gowebapp-mysql folders using the following Git commands:
+<p><strong>Step 5</strong> Cleanup created networks</p>
+<div class="codehilite"><pre><span></span><code>docker network ls
 </code></pre></div>
 
-<p>git add .
-git commit -m "adding docker-compose.yml"</p>
-<div class="codehilite"><pre><span></span><code>**Step 2** Push commit to the Cloud Source Repositories:
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Make sure <code>gowebapp</code> and <code>gowebapp1</code> networks has been deleted!!!</p>
+</div>
+<h3 id="32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher">3.2 Commit docker-compose file to repository and share it with Instructor/Teacher<a class="headerlink" href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Commit gowebapp and gowebapp-mysql folders using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;adding docker-compose.yml&quot;
 </code></pre></div>
 
-<p>git push origin master</p>
-<div class="codehilite"><pre><span></span><code>### 3.3 Grant viewing permissions for a repository to Instructors/Teachers
-
-Reference [document](https://cloud.google.com/source-repositories/docs/granting-users-access)
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<p>gcloud projects add-iam-policy-binding mcgil-stundent --member='user:ayrat.khayretdinov@gmail.com' --role=roles/browser
-gcloud projects add-iam-policy-binding mcgil-stundent --member='user:dima.kassab@gmail.com' --role=roles/browser</p>
-<div class="codehilite"><pre><span></span><code>Submit link to your Cloud Source Repository to LMS, replace with you values
+<h3 id="33-grant-viewing-permissions-for-a-repository-to-instructorsteachers">3.3 Grant viewing permissions for a repository to Instructors/Teachers<a class="headerlink" href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" title="Permanent link">&para;</a></h3>
+<p>Reference <a href="https://cloud.google.com/source-repositories/docs/granting-users-access">document</a></p>
+<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:ayrat.khayretdinov@gmail.com&#39; --role=roles/browser
+gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:dima.kassab@gmail.com&#39; --role=roles/browser
 </code></pre></div>
 
-<p>https://source.cloud.google.com/${PROJECT_ID}/$MY_REPO
-```</p>
+<p>Submit link to your Cloud Source Repository to LMS, replace with you values</p>
+<div class="codehilite"><pre><span></span><code>https://source.cloud.google.com/${PROJECT_ID}/$MY_REPO
+</code></pre></div>
+
 <p>e.g: https://source.cloud.google.com/ycit019-project/ayratk-notepad</p>
                 
               
@@ -776,6 +977,39 @@ gcloud projects add-iam-policy-binding mcgil-stundent --member='user:dima.kassab
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ass2/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Assignment2
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../Lab_2_Docker_basics/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lab 2 Docker Basics
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
