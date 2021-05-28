@@ -525,15 +525,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-deleting-namepsaces" class="md-nav__link">
-    5.3 Deleting Namepsaces
+  <a href="#53-setting-the-namespace-preference" class="md-nav__link">
+    5.3 Setting the namespace preference.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#54-create-a-pod-in-a-different-namespace" class="md-nav__link">
-    5.4 Create a pod in a different namespace
+  <a href="#64-deleting-namespaces" class="md-nav__link">
+    6.4 Deleting Namespaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-create-a-pod-in-a-different-namespace" class="md-nav__link">
+    6.5 Create a pod in a different namespace
   </a>
   
 </li>
@@ -740,15 +747,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#53-deleting-namepsaces" class="md-nav__link">
-    5.3 Deleting Namepsaces
+  <a href="#53-setting-the-namespace-preference" class="md-nav__link">
+    5.3 Setting the namespace preference.
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#54-create-a-pod-in-a-different-namespace" class="md-nav__link">
-    5.4 Create a pod in a different namespace
+  <a href="#64-deleting-namespaces" class="md-nav__link">
+    6.4 Deleting Namespaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-create-a-pod-in-a-different-namespace" class="md-nav__link">
+    6.5 Create a pod in a different namespace
   </a>
   
 </li>
@@ -1165,7 +1179,7 @@ Features to learn what else Kubernetes is capable of!</p>
 <li>Splitting complex systems with several components into smaller groups</li>
 <li>Separating resources in a multi-tenant env: production, development and
 QA environments</li>
-<li>Separating resources per productio</li>
+<li>Separating resources per production</li>
 <li>Separating per-user or per-department or any other logical group</li>
 </ul>
 <p>Some other rules and regulations:</p>
@@ -1277,21 +1291,139 @@ command, as shown below:</p>
 <div class="codehilite"><pre><span></span><code>kubectl create namespace custom-namespace2
 </code></pre></div>
 
-<h3 id="53-deleting-namepsaces">5.3 Deleting Namepsaces<a class="headerlink" href="#53-deleting-namepsaces" title="Permanent link">&para;</a></h3>
+<h3 id="53-setting-the-namespace-preference">5.3 Setting the namespace preference.<a class="headerlink" href="#53-setting-the-namespace-preference" title="Permanent link">&para;</a></h3>
+<p>By default, a Kubernetes cluster will instantiate a <code>default namespace</code> when
+provisioning the cluster to hold the default set of Pods, Services, and
+Deployments used by the cluster. So by default all <code>kubectl</code> calls such as
+list or create resources will end up in <code>default namespace</code>.</p>
+<p>However sometimes you want to list or create resources in other namespaces than
+<code>default namespace</code>. As we discussed in previous exercise this can be done by
+specifying <code>-n</code>  or <code>--namespace</code> to point in which namespaces action has to
+be done. However it is not convenient to do this action every time. Below example will show
+how to create 2 namespaces <code>dev</code> and <code>prod</code> and switch between each other.</p>
+<p><strong>Step 1</strong> <code>kubectl</code> API uses so called <code>kubeconfig context</code> where you can
+controls which namespace, user or cluster needs to be accessed.</p>
+<p>In order to display which context is currently in use run:</p>
+<div class="codehilite"><pre><span></span><code>KUBECONFIG=~/.kube/config
+kubectl config current-context
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We running in <code>kubernetes-admin@kubernetes</code> context, which is default for
+lab environment.</p>
+</div>
+<p><strong>Step 3</strong> To see full view of the <code>kubeconfig context</code> run:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our context named as <code>kubernetes-admin@kubernetes</code> uses cluster <code>cluster</code>,
+and user <code>kubernetes-admin</code></p>
+</div>
+<p><strong>Step 4</strong> The result of the above command comes from kubeconfig file, in our
+case we defined it under <code>~/.kube/config</code>.</p>
+<div class="codehilite"><pre><span></span><code>echo $KUBECONFIG
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>KUBECONFIG is configured to use following ~/.kube/config file</p>
+</div>
+<div class="codehilite"><pre><span></span><code>cat ~/.kube/config
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KUBECONFIG environment variable is a list of paths to configuration
+files. The list is colon-delimited for Linux and Mac, and
+semicolon-delimited for Windows. We already set KUBECONFIG environment
+variable in a first step of exercise to be <code>~/.kube/config</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use use multiple <code>kubeconfig</code> files at the same time and view merged
+config:</p>
+<p><code>$ KUBECONFIG=~/.kube/config:~/.kube/kubconfig2 kubectl config view</code></p>
+</div>
+<p><strong>Step 5</strong> Create two new namespaces <code>dev</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create namespace dev
+</code></pre></div>
+
+<p>And  <code>prod</code> namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create namespace prod
+</code></pre></div>
+
+<p><strong>Step 7</strong> Let’s switch to operate in the <code>development</code> namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
+</code></pre></div>
+
+<p>We can see now that our current context is switched to dev:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
+</code></pre></div>
+
+<p>Output:</p>
+<div class="codehilite"><pre><span></span><code>    namespace: dev
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>At this point, all requests we make to the Kubernetes cluster from the
+command line are scoped to the development namespace.</p>
+</div>
+<p><strong>Step 8</strong> Let's test that all resources going to be created in <code>dev</code> namespace.</p>
+<div class="codehilite"><pre><span></span><code>kubectl run devsnowflake --image=nginx
+</code></pre></div>
+
+<p><strong>Step 9</strong> Verify result of creation:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Developers are able to do what they want, and they do not have to worry
+about affecting content in the production namespace.</p>
+</div>
+<p><strong>Step 10</strong> Now switch to the <code>production</code> namespace and show how resources in
+one namespace are hidden from the other.</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=prod
+</code></pre></div>
+
+<p>The production namespace should be empty, and the following commands should
+return nothing.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 11</strong> Let's create some <code>production</code> workloads:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run prodapp --image=nginx
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n prod
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>At this point, it should be clear that the resources users create in one
+namespace are hidden from the other namespace.</p>
+</div>
+<h3 id="64-deleting-namespaces">6.4 Deleting Namespaces<a class="headerlink" href="#64-deleting-namespaces" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Delete a namespace with</p>
 <div class="codehilite"><pre><span></span><code>kubectl delete namespaces custom-namespace
-kubectl delete namespaces custom-namespace2
+kubectl delete namespaces dev
+kubectl delete namespaces prod
 </code></pre></div>
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>In Kubernetes when you
+<p>Unlike with OpenStack where when you delete a project/tenant, underlining
+resources will still exist as zombies and not deleted. In Kubernetes when you
 delete namespace it deletes <em>everything</em> under it (pods, svc, rc, and etc.)!
 This is called <code>resource garbage collection</code> in Kubernetes.</p>
 </div>
 <p>Delete process is asynchronous, so you may see <code>Terminating</code> state for some
 time.</p>
-<h3 id="54-create-a-pod-in-a-different-namespace">5.4 Create a pod in a different namespace<a class="headerlink" href="#54-create-a-pod-in-a-different-namespace" title="Permanent link">&para;</a></h3>
+<h3 id="65-create-a-pod-in-a-different-namespace">6.5 Create a pod in a different namespace<a class="headerlink" href="#65-create-a-pod-in-a-different-namespace" title="Permanent link">&para;</a></h3>
 <p>Create <code>test</code> namespace:</p>
 <div class="codehilite"><pre><span></span><code>kubectl create ns test
 </code></pre></div>
@@ -1305,7 +1437,7 @@ metadata:
 spec:
   containers:
   - name: echoserver
-    image: gcr.io/google_containers/echoserver:1.10
+    image: gcr.io/google_containers/echoserver:1.4
     ports:
     - containerPort: 8080
 EOF
