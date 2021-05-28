@@ -378,18 +378,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../ass3/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
       
-      <label class="md-nav__link" for="__nav_6">
+      <label class="md-nav__link" for="__nav_7">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_6">
+        <label class="md-nav__title" for="__nav_7">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -916,8 +931,8 @@ git commit -m &quot;adding docker-compose.yml&quot;
 
 <h3 id="33-grant-viewing-permissions-for-a-repository-to-instructorsteachers">3.3 Grant viewing permissions for a repository to Instructors/Teachers<a class="headerlink" href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" title="Permanent link">&para;</a></h3>
 <p>Reference <a href="https://cloud.google.com/source-repositories/docs/granting-users-access">document</a></p>
-<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:ayrat.khayretdinov@gmail.com&#39; --role=roles/browser
-gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:dima.kassab@gmail.com&#39; --role=roles/browser
+<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:ayrat.khayretdinov@gmail.com&#39; --role=roles/viewer
+gcloud projects add-iam-policy-binding mcgil-stundent --member=&#39;user:dima.kassab@gmail.com&#39; --role=roles/viewer
 </code></pre></div>
 
 <p>Submit link to your Cloud Source Repository to LMS, replace with you values</p>
