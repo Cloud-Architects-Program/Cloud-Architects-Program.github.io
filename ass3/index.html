@@ -284,8 +284,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-create-gke-cluster" class="md-nav__link">
-    1.2 Create GKE Cluster
+  <a href="#21-create-gke-cluster" class="md-nav__link">
+    2.1 Create GKE Cluster
   </a>
   
 </li>
@@ -344,18 +344,19 @@
     2.7 Rolling Upgrade
   </a>
   
-    <nav class="md-nav" aria-label="2.7 Rolling Upgrade">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    3.1 Commit docker-compose file to repository and share it with Instructor/Teacher
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    2.8 Commit K8s manifests to repository and share it with Instructor/Teacher
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#29-cleaning-up" class="md-nav__link">
+    2.9 Cleaning Up
+  </a>
   
 </li>
       
@@ -502,8 +503,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-create-gke-cluster" class="md-nav__link">
-    1.2 Create GKE Cluster
+  <a href="#21-create-gke-cluster" class="md-nav__link">
+    2.1 Create GKE Cluster
   </a>
   
 </li>
@@ -562,18 +563,19 @@
     2.7 Rolling Upgrade
   </a>
   
-    <nav class="md-nav" aria-label="2.7 Rolling Upgrade">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    3.1 Commit docker-compose file to repository and share it with Instructor/Teacher
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    2.8 Commit K8s manifests to repository and share it with Instructor/Teacher
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#29-cleaning-up" class="md-nav__link">
+    2.9 Cleaning Up
+  </a>
   
 </li>
       
@@ -612,7 +614,7 @@
 <p><em>Option 1:</em> You can develop in <a href="https://shell.cloud.google.com/">Google Cloud Shell Editor</a></p>
 <p><em>Option 2:</em> You can also develop locally on your laptop using <a href="https://code.visualstudio.com/">VCScode</a>. We recommend to use it in conjunction with VSC YAML extension from <a href="https://t.co/D5r4HZZdUC?amp=1">Redhat</a></p>
 <p><em>Option 3:</em> Use your preferred text editor on Linux VM (vim, nano).</p>
-<h2 id="12-create-gke-cluster">1.2 Create GKE Cluster<a class="headerlink" href="#12-create-gke-cluster" title="Permanent link">&para;</a></h2>
+<h2 id="21-create-gke-cluster">2.1 Create GKE Cluster<a class="headerlink" href="#21-create-gke-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enbale the Google Kubernetes Engine API.</p>
 <div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
 </code></pre></div>
@@ -918,7 +920,7 @@ Upgrade strategy called <code>RollingUpdate</code>.</p>
 <div class="codehilite"><pre><span></span><code>#TO DO
 </code></pre></div>
 
-<h3 id="31-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher">3.1 Commit docker-compose file to repository and share it with Instructor/Teacher<a class="headerlink" href="#31-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h3>
+<h2 id="28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.8 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .
 git commit -m &quot;k8s manifests&quot;
@@ -926,6 +928,11 @@ git commit -m &quot;k8s manifests&quot;
 
 <p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
 <div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h2 id="29-cleaning-up">2.9 Cleaning Up<a class="headerlink" href="#29-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-concepts
 </code></pre></div>
                 
               
