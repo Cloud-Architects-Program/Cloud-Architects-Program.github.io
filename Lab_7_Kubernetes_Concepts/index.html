@@ -1132,7 +1132,7 @@ You can use this for command for CI/CD pipeline.</p>
 </div>
 <p>Suppose that we want to update the webk8sbirthday Pods to use the
 hello-app:2.0 image instead of the hello-app:1.0 image.</p>
-<div class="codehilite"><pre><span></span><code>kubectl set image deployment/hello-app hello-app=gcr.io/google-samples/hello-app:1.0 --record
+<div class="codehilite"><pre><span></span><code>kubectl set image deployment/hello-app hello-app=gcr.io/google-samples/hello-app:2.0 --record
 kubectl get pods
 </code></pre></div>
 
