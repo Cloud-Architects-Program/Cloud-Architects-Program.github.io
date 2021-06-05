@@ -14,7 +14,7 @@
     
     
       
-        <title>Assignment3 - YCIT019</title>
+        <title>1 Deploy Applications on Kubernetes - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assignment3
+              1 Deploy Applications on Kubernetes
             
           </span>
         </div>
@@ -242,128 +242,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Assignment3
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ass3/" class="md-nav__link">
         Assignment3
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#11-development-tools" class="md-nav__link">
-    1.1 Development Tools
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#21-create-gke-cluster" class="md-nav__link">
-    2.1 Create GKE Cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#22-setup-kubectl-autocomplete" class="md-nav__link">
-    2.2 Setup KUBECTL AUTOCOMPLETE
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#23-create-dev-namespace-and-make-it-default" class="md-nav__link">
-    2.3 Create 'dev' namespace and make it default.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#24-create-service-object-for-mysql" class="md-nav__link">
-    2.4 Create Service Object for MySQL
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#25-create-deployment-object-for-the-backend-mysql-database" class="md-nav__link">
-    2.5 Create Deployment object for the backend MySQL database
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#25-create-a-k8s-service-for-the-frontend-gowebapp" class="md-nav__link">
-    2.5 Create a K8s Service for the frontend gowebapp.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" class="md-nav__link">
-    2.6 Create a K8s Deployment object for the frontend gowebapp
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-fix-gowebapp-code-bugs-and-build-a-new-image" class="md-nav__link">
-    2.7 Fix gowebapp code bugs and build a new image.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-rolling-upgrade" class="md-nav__link">
-    2.7 Rolling Upgrade
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    2.8 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#29-cleaning-up" class="md-nav__link">
-    2.9 Cleaning Up
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -667,32 +550,17 @@ k8s-concepts  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.
 echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc
 </code></pre></div>
 
+<h2 id="23-create-dev-namespace-and-make-it-default">2.3 Create 'dev' namespace and make it default.<a class="headerlink" href="#23-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
 <div class="codehilite"><pre><span></span><code>kubectl create ns dev
 </code></pre></div>
 
-<p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
 <div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
 </code></pre></div>
 
-<p><strong>Step 4</strong> Verify current context:</p>
-<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
-</code></pre></div>
-
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p><code>dev</code></p>
-</div>
-<h2 id="23-create-dev-namespace-and-make-it-default">2.3 Create 'dev' namespace and make it default.<a class="headerlink" href="#23-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
-<div class="codehilite"><pre><span></span><code>kubectl #TO DO(create namespace `dev`)
-</code></pre></div>
-
-<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
-<div class="codehilite"><pre><span></span><code>kubectl #TO DO (make `dev` context default)
-</code></pre></div>
-
 <p><strong>Step 3</strong> Verify current context:</p>
-<div class="codehilite"><pre><span></span><code>kubectl config current-context
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
 </code></pre></div>
 
 <div class="admonition result">
@@ -751,18 +619,19 @@ git commit -m &quot;adding K8s manifests in deploy folder&quot;
 <p class="admonition-title">Note</p>
 <p>You can also use VCS or Cloud Code to work with <code>yaml</code> manifest.</p>
 </div>
-<div class="codehilite"><pre><span></span><code>#TODO: Specify Kubernetes API apiVersion
-#TODO: Identify the kind of Object
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: Service
 metadata:
- #TODO: Give the service a name: &quot;gowebapp-mysql&quot;
+  name: gowebapp-mysql
   labels:
-    #TODO: Add a label KV &quot;run: gowebapp-mysql&quot;
+    run: gowebapp-mysql
 spec:
-  #TODO: leave the clusterIP to None. We allow k8s to assign clusterIP.
+  clusterIP: None
   ports:
-    #TODO: Define a &quot;port&quot; as 3306
-    #TODO: Define a &quot;targetPort&quot; as 3306
-  #TODO: Add a selector for our pods as label &quot;run&quot; with value &quot;gowebapp-mysql&quot;
+  - port: 3306
+    targetPort: 3306
+  selector:
+    run: gowebapp-mysql
 </code></pre></div>
 
 <p><strong>Step 3</strong> Create a Service object for MySQL</p>
@@ -981,39 +850,6 @@ git commit -m &quot;k8s manifests&quot;
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../ass2_solution/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Assignment2 - Solution
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../ass4/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Assignment4
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

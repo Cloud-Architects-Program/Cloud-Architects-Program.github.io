@@ -327,43 +327,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#24-create-a-namespace-dev" class="md-nav__link">
-    2.4 Create a Namespace dev
+  <a href="#24-update-dockercompose-file-to-support-changes" class="md-nav__link">
+    2.4 Update DockerCompose file to support changes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-create-a-secret" class="md-nav__link">
-    2.5 Create a Secret
+  <a href="#31-create-a-namespace-dev" class="md-nav__link">
+    3.1 Create a Namespace dev
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#26-create-configmap-and-probes-to-mysql" class="md-nav__link">
-    2.6 Create ConfigMap and Probes to MySQL
+  <a href="#32-create-a-secret" class="md-nav__link">
+    3.2 Create a Secret
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#27-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
-    2.7 Deploy webapp by Referencing Secret, ConfigMap and define Probes
+  <a href="#33-create-configmap-and-probes-to-mysql" class="md-nav__link">
+    3.3 Create ConfigMap and Probes to MySQL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    2.9 Commit K8s manifests to repository and share it with Instructor/Teacher
+  <a href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
+    3.4 Deploy webapp by Referencing Secret, ConfigMap and define Probes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#210-cleaning-up" class="md-nav__link">
-    2.10 Cleaning Up
+  <a href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.5 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-cleaning-up" class="md-nav__link">
+    3.6 Cleaning Up
   </a>
   
 </li>
@@ -551,43 +558,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#24-create-a-namespace-dev" class="md-nav__link">
-    2.4 Create a Namespace dev
+  <a href="#24-update-dockercompose-file-to-support-changes" class="md-nav__link">
+    2.4 Update DockerCompose file to support changes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-create-a-secret" class="md-nav__link">
-    2.5 Create a Secret
+  <a href="#31-create-a-namespace-dev" class="md-nav__link">
+    3.1 Create a Namespace dev
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#26-create-configmap-and-probes-to-mysql" class="md-nav__link">
-    2.6 Create ConfigMap and Probes to MySQL
+  <a href="#32-create-a-secret" class="md-nav__link">
+    3.2 Create a Secret
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#27-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
-    2.7 Deploy webapp by Referencing Secret, ConfigMap and define Probes
+  <a href="#33-create-configmap-and-probes-to-mysql" class="md-nav__link">
+    3.3 Create ConfigMap and Probes to MySQL
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    2.9 Commit K8s manifests to repository and share it with Instructor/Teacher
+  <a href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
+    3.4 Deploy webapp by Referencing Secret, ConfigMap and define Probes
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#210-cleaning-up" class="md-nav__link">
-    2.10 Cleaning Up
+  <a href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.5 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-cleaning-up" class="md-nav__link">
+    3.6 Cleaning Up
   </a>
   
 </li>
@@ -746,8 +760,8 @@ if os.Getenv(&quot;DB_PASSWORD&quot;) != &quot;&quot; {
 
 <div class="codehilite"><pre><span></span><code>FROM golang:1.16.4
 
-LABEL maintainer &quot;cloudnative@cloudops.com&quot;
-LABEL gowebapp &quot;v3&quot;
+LABEL maintainer &quot;student@mcgill.ca&quot;
+LABEL gowebapp &quot;v1&quot;
 
 EXPOSE 80
 
@@ -801,7 +815,7 @@ MySQL DB password:</p>
 </div>
 <div class="codehilite"><pre><span></span><code>docker run -p 8080:80 \
 -v ~/$MY_REPO/gowebapp/config:/go/src/gowebapp/config \
--e DB_PASSWORD=rootpasswd --net gowebapp -d --name gowebapp \
+--net gowebapp -d --name gowebapp \
 --hostname gowebapp gcr.io/${PROJECT_ID}/gowebapp:v3
 </code></pre></div>
 
@@ -819,7 +833,42 @@ application locally.</p>
 <p class="admonition-title">Result</p>
 <p>By externalizing application configuration, you have made it easier to manage and modify your application configuration at deployment time. This will be very helpful as we deploy our applications to Kubernetes</p>
 </div>
-<h2 id="24-create-a-namespace-dev">2.4 Create a Namespace <code>dev</code><a class="headerlink" href="#24-create-a-namespace-dev" title="Permanent link">&para;</a></h2>
+<p><strong>Step 5</strong> Cleanup environment</p>
+<div class="codehilite"><pre><span></span><code>docker rm -f $(docker ps -q)
+docker network rm gowebapp
+</code></pre></div>
+
+<h2 id="24-update-dockercompose-file-to-support-changes">2.4 Update DockerCompose file to support changes<a class="headerlink" href="#24-update-dockercompose-file-to-support-changes" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Edit docker-compose file</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>vim docker-compose.yml
+
+#TODO Define gowebapp configuration as volume
+#Ref: https://docs.docker.com/compose/compose-file/compose-file-v2/#volumes
+#Path Hint: ./gowebapp/config:/go/src/gowebapp/config
+</code></pre></div>
+
+<p><strong>Step 3</strong> Test application</p>
+<div class="codehilite"><pre><span></span><code>export CLOUDSDK_PYTHON=/usr/bin/python 
+docker-compose up -d
+</code></pre></div>
+
+<p><strong>Step 4</strong>  Test the application locally</p>
+<p>Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<p><strong>Step 5</strong> Tear down environment</p>
+<div class="codehilite"><pre><span></span><code>docker-compose down
+</code></pre></div>
+
+<h2 id="31-create-a-namespace-dev">3.1 Create a Namespace <code>dev</code><a class="headerlink" href="#31-create-a-namespace-dev" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
 <div class="codehilite"><pre><span></span><code>kubectl create ns dev
 </code></pre></div>
@@ -836,7 +885,7 @@ application locally.</p>
 <p class="admonition-title">Result</p>
 <p><code>dev</code></p>
 </div>
-<h2 id="25-create-a-secret">2.5 Create a Secret<a class="headerlink" href="#25-create-a-secret" title="Permanent link">&para;</a></h2>
+<h2 id="32-create-a-secret">3.2 Create a Secret<a class="headerlink" href="#32-create-a-secret" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> <code>Base64</code> Encode MySQL password <code>rootpasswd</code>. See Lab 8 for more details.</p>
 <p><strong>Step 2</strong> Edit a secret for the MySQL password in <code>dev</code> namespaces.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy4a
@@ -889,12 +938,11 @@ spec:
         name: gowebapp-mysql
         ports:
         - containerPort: 3306
-        livenessProbe:
-          tcpSocket:
-            port: 3306
-          initialDelaySeconds: 30
-          timeoutSeconds: 2
-        #TODO add a readiness probe for tcpSocket 3306 with a 25 second initial delay, and a timeout of 2 seconds
+        #TODO add a livenessProbe which performs tcpSocket probe
+        #aginst port 3306 with an initial
+        # deay of 30 seconds, and a timeout of 2 seconds
+        #TODO add a readinessProbe for tcpSocket port 3306 with a 25 second 
+        #initial delay, and a timeout of 2 seconds   
 </code></pre></div>
 
 <p><strong>Step 2</strong>  Start the rolling upgrade and record the command used in the rollout history:</p>
@@ -909,7 +957,7 @@ spec:
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
-<h2 id="26-create-configmap-and-probes-to-mysql">2.6 Create ConfigMap and Probes to MySQL<a class="headerlink" href="#26-create-configmap-and-probes-to-mysql" title="Permanent link">&para;</a></h2>
+<h2 id="33-create-configmap-and-probes-to-mysql">3.3 Create ConfigMap and Probes to MySQL<a class="headerlink" href="#33-create-configmap-and-probes-to-mysql" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
 <div class="codehilite"><pre><span></span><code>kubectl create configmap gowebapp --from-file=webapp-config-json=~/$MY_REPO/gowebapp/config/config.json
 kubectl describe configmap gowebapp
@@ -919,7 +967,7 @@ kubectl describe configmap gowebapp
 <p class="admonition-title">Note</p>
 <p>The entire file contents from config.json are stored under the key <code>webapp-config-json</code></p>
 </div>
-<h2 id="27-deploy-webapp-by-referencing-secret-configmap-and-define-probes">2.7 Deploy <code>webapp</code> by Referencing Secret, ConfigMap and define Probes<a class="headerlink" href="#27-deploy-webapp-by-referencing-secret-configmap-and-define-probes" title="Permanent link">&para;</a></h2>
+<h2 id="34-deploy-webapp-by-referencing-secret-configmap-and-define-probes">3.4 Deploy <code>webapp</code> by Referencing Secret, ConfigMap and define Probes<a class="headerlink" href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Update <code>gowebapp-deployment.yaml</code> under <code>~/$MY_REPO/deploy4a/</code></p>
 <p>In this exercise, we will add liveness/readiness probes to our deployments. For more information, see here:
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/</p>
@@ -952,11 +1000,11 @@ spec:
           - containerPort: 80
         livenessProbe:
         #TODO add a livenessProbe which performs httpGet
-aginst the /register endpoint on port 80 with an initial
-deay of 15 seconds, and a timeout of 5 seconds
-        readinessProbe:
-aginst the /register endpoint on port 80 with an initial
-deay of 25 seconds, and a timeout of 5 seconds
+        #aginst  the /register endpoint on port 80 with an initial
+        # deay of 15 seconds, and a timeout of 5 seconds
+        #TODO add a livenessProbe which performs httpGet 
+        # aginst the /register endpoint on port 80 with an initial
+        # deay of 25 seconds, and a timeout of 5 seconds
         volumeMounts:
           - #TODO: give the volume a name:config-volume
             #TODO: specify the mountPath: /go/src/gowebapp/config
@@ -1009,7 +1057,7 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 <p class="admonition-title">Result</p>
 <p>Congrats!!! You've deployed you code to Kubernetes</p>
 </div>
-<h2 id="29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.9 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<h2 id="35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">3.5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .
 git commit -m &quot;k8s manifests for Hands-on Assignment 4&quot;
@@ -1019,7 +1067,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 4&quot;
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<h2 id="210-cleaning-up">2.10 Cleaning Up<a class="headerlink" href="#210-cleaning-up" title="Permanent link">&para;</a></h2>
+<h2 id="36-cleaning-up">3.6 Cleaning Up<a class="headerlink" href="#36-cleaning-up" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Delete the cluster</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-concepts
 </code></pre></div>
