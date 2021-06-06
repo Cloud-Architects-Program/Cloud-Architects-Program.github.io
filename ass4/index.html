@@ -931,10 +931,10 @@ spec:
       - env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
-          #TODO: replace value: cloudops with secretKeyRef
+          #TODO: replace value: `rootpasswd` with secretKeyRef
           #TODO: name is mysql
           #TODO: key is password
-        image: archyufa/gowebapp-mysql:v1
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
         name: gowebapp-mysql
         ports:
         - containerPort: 3306
@@ -990,11 +990,11 @@ spec:
       containers:
       - env:
       name: DB_PASSWORD
-          #TODO: replace value: cloudops with valueFrom:
+          #TODO: replace value: `rootpasswd` with valueFrom:
             secretKeyRef:
               #TODO: name is mysql
               #TODO: key is password
-        image: &lt;#TODO_user-name&gt;/gowebapp:v1
+        image: gcr.io/${PROJECT_ID}/gowebapp:v3
         name: gowebapp
         ports:
           - containerPort: 80
