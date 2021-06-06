@@ -14,7 +14,7 @@
     
     
       
-        <title>1 Deploy Applications on Kubernetes - YCIT019</title>
+        <title>Assignment3 - Solution - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1 Deploy Applications on Kubernetes
+              Assignment3 - Solution
             
           </span>
         </div>
@@ -257,6 +257,138 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Assignment3 - Solution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Assignment3 - Solution
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-development-tools" class="md-nav__link">
+    1.1 Development Tools
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-create-gke-cluster" class="md-nav__link">
+    2.1 Create GKE Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-setup-kubectl-autocomplete" class="md-nav__link">
+    2.2 Setup KUBECTL AUTOCOMPLETE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-create-dev-namespace-and-make-it-default" class="md-nav__link">
+    2.3 Create 'dev' namespace and make it default.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-create-service-object-for-mysql" class="md-nav__link">
+    2.4 Create Service Object for MySQL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-create-deployment-object-for-the-backend-mysql-database" class="md-nav__link">
+    2.5 Create Deployment object for the backend MySQL database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-create-a-k8s-service-for-the-frontend-gowebapp" class="md-nav__link">
+    2.5 Create a K8s Service for the frontend gowebapp.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" class="md-nav__link">
+    2.6 Create a K8s Deployment object for the frontend gowebapp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-fix-gowebapp-code-bugs-and-build-a-new-image" class="md-nav__link">
+    2.7 Fix gowebapp code bugs and build a new image.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-rolling-upgrade" class="md-nav__link">
+    2.7 Rolling Upgrade
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    2.8 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-cleaning-up" class="md-nav__link">
+    2.9 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../ass4/" class="md-nav__link">
@@ -277,14 +409,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" >
       
-      <label class="md-nav__link" for="__nav_8">
+      <label class="md-nav__link" for="__nav_9">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_8">
+        <label class="md-nav__title" for="__nav_9">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -673,11 +805,8 @@ spec:
       containers:
       - env:
         - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-          #TODO: replace value: rootpasswd with secretKeyRef
-          #TODO: name is mysql
-          #TODO: key is password
-        image: image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
         name: gowebapp-mysql
         ports:
         - containerPort: 3306
@@ -714,13 +843,14 @@ kind: Service
 metadata:
   name: gowebapp
   labels:
-    #TODO: give the Service a label: run: gowebapp
-    #TODO: give the Service a label: tier: frontend
+    run: gowebapp
 spec:
-  #TODO: Define a &quot;ports&quot; array with the &quot;port&quot; attribute: 9000 and &quot;targetPort&quot; attributes: 80
-  #TODO: Add a selector for our pods as label &quot;run&quot; with value &quot;gowebapp&quot;
-  #TODO: Add a Service Type of LoadBalancer
-  #If you need help, see reference: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  type: LoadBalancer
 </code></pre></div>
 
 <p><strong>Step 2</strong> Create a Service object for gowebapp</p>
@@ -737,30 +867,29 @@ spec:
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
-#TODO: define the kind of object as Deployment
+kind: Deployment
 metadata:
-  #TODO: Add a name attribute for the service as &quot;gowebapp&quot;
+  name: gowebapp
   labels:
-    #TODO: give the Deployment a label: run: gowebapp
-    #TODO: give the Deployment a label: tier: frontend
+    run: gowebapp
 spec:
-  #TODO: Define number of replicas, set it to 2
-  #TODO: add selector KV &quot;run: gowebapp&quot;
+  replicas: 2
+  selector:
+    matchLabels:
+      run: gowebapp
   template:
     metadata:
       labels:
         run: gowebapp
-        tier: frontend
     spec:
       containers:
       - env:
-        - #TODO: define name as MYSQL_ROOT_PASSWORD
-          #TODO: define value as cloudops
-        #TODO: Replace &lt;user-name&gt; with value you Docker-Hub ID.
-        image: #TODO define gowebapp image created at Ass1
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp:v1
         name: gowebapp
         ports:
-        - #TODO: define the container port as 80
+        - containerPort: 80
 </code></pre></div>
 
 <p><strong>Step 2</strong> Create a Deployment object for gowebapp</p>
@@ -816,15 +945,15 @@ Upgrade strategy called <code>RollingUpdate</code>.</p>
 </code></pre></div>
 
 <p><strong>Step 2</strong> Trigger rolling upgrade using <code>kubectl set</code> command</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl set image deployments/gowebapp gowebapp=gcr.io/${PROJECT_ID}/gowebapp:v2
 </code></pre></div>
 
 <p><strong>Step 3</strong> Verify rollout history</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl rollout history deployment/gowebapp
 </code></pre></div>
 
 <p><strong>Step 4</strong> Perform Rollback to v1</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl rollout undo deployment/gowebapp --to-revision=1
 </code></pre></div>
 
 <h2 id="28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.8 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
@@ -856,6 +985,39 @@ git commit -m &quot;k8s manifests&quot;
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ass3/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Assignment3
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ass4/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment4
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
