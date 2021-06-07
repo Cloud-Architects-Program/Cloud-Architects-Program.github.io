@@ -363,8 +363,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#33-create-configmap-and-probes-to-mysql" class="md-nav__link">
-    3.3 Create ConfigMap and Probes to MySQL
+  <a href="#33-create-configmap-and-probes-for-gowebapp" class="md-nav__link">
+    3.3 Create ConfigMap and Probes for gowebapp
   </a>
   
 </li>
@@ -506,6 +506,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lab_8_Kubernetes_Features/" class="md-nav__link">
+        Lab 9 Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -594,8 +606,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#33-create-configmap-and-probes-to-mysql" class="md-nav__link">
-    3.3 Create ConfigMap and Probes to MySQL
+  <a href="#33-create-configmap-and-probes-for-gowebapp" class="md-nav__link">
+    3.3 Create ConfigMap and Probes for gowebapp
   </a>
   
 </li>
@@ -903,7 +915,7 @@ application locally.</p>
 <h2 id="32-create-a-secret">3.2 Create a Secret<a class="headerlink" href="#32-create-a-secret" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> <code>Base64</code> Encode MySQL password <code>rootpasswd</code>. See Lab 8 for more details.</p>
 <p><strong>Step 2</strong> Edit a secret for the MySQL password in <code>dev</code> namespaces.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy4a
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a4
 vim secret-mysql.yaml
 </code></pre></div>
 
@@ -919,8 +931,8 @@ kubectl describe secret mysql
 </code></pre></div>
 
 <p><strong>Step 2</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> under
-<code>~/$MY_REPO/deploy4a</code></p>
-<div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/deploy4a/gowebapp-mysql-deployment.yaml
+<code>~/$MY_REPO/deploy_a4</code></p>
+<div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/deploy_a4/gowebapp-mysql-deployment.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
@@ -946,10 +958,10 @@ spec:
       - env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
-          #TODO: replace value: `rootpasswd` with secretKeyRef
+          #TODO: replace value: rootpasswd with secretKeyRef
           #TODO: name is mysql
           #TODO: key is password
-        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        image: image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
         name: gowebapp-mysql
         ports:
         - containerPort: 3306
@@ -957,7 +969,7 @@ spec:
         #aginst port 3306 with an initial
         # deay of 30 seconds, and a timeout of 2 seconds
         #TODO add a readinessProbe for tcpSocket port 3306 with a 25 second 
-        #initial delay, and a timeout of 2 seconds   
+        #initial delay, and a timeout of 2 seconds     
 </code></pre></div>
 
 <p><strong>Step 2</strong>  Start the rolling upgrade and record the command used in the rollout history:</p>
@@ -972,7 +984,15 @@ spec:
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
-<h2 id="33-create-configmap-and-probes-to-mysql">3.3 Create ConfigMap and Probes to MySQL<a class="headerlink" href="#33-create-configmap-and-probes-to-mysql" title="Permanent link">&para;</a></h2>
+<p><strong>Step 5</strong> Create a Service object for MySQL</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-service.yaml --record
+</code></pre></div>
+
+<p><strong>Step 6</strong> Check to make sure it worked</p>
+<div class="codehilite"><pre><span></span><code>kubectl get service -l &quot;run=gowebapp-mysql&quot;
+</code></pre></div>
+
+<h2 id="33-create-configmap-and-probes-for-gowebapp">3.3 Create ConfigMap and Probes for <code>gowebapp</code><a class="headerlink" href="#33-create-configmap-and-probes-for-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
 <div class="codehilite"><pre><span></span><code>kubectl create configmap gowebapp --from-file=webapp-config-json=~/$MY_REPO/gowebapp/config/config.json
 kubectl describe configmap gowebapp
@@ -983,7 +1003,7 @@ kubectl describe configmap gowebapp
 <p>The entire file contents from config.json are stored under the key <code>webapp-config-json</code></p>
 </div>
 <h2 id="34-deploy-webapp-by-referencing-secret-configmap-and-define-probes">3.4 Deploy <code>webapp</code> by Referencing Secret, ConfigMap and define Probes<a class="headerlink" href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1:</strong> Update <code>gowebapp-deployment.yaml</code> under <code>~/$MY_REPO/deploy4a/</code></p>
+<p><strong>Step 1:</strong> Update <code>gowebapp-deployment.yaml</code> under <code>~/$MY_REPO/deploy_a4/</code></p>
 <p>In this exercise, we will add liveness/readiness probes to our deployments. For more information, see here:
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/</p>
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
@@ -1055,7 +1075,11 @@ spec:
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
-<p><strong>Step 7</strong> Access your application on Public IP via automatically created Loadbalancer 
+<p><strong>Step 7</strong> Create a Service object for gowebapp</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml --record
+</code></pre></div>
+
+<p><strong>Step 8</strong> Access your application on Public IP via automatically created Loadbalancer 
 created for <code>gowebapp</code> service.</p>
 <p>To get the value of <code>Loadbalancer</code> run following command:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get svc gowebapp -o wide
@@ -1067,7 +1091,7 @@ gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
 gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
 </code></pre></div>
 
-<p><strong>Step 8</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<p><strong>Step 9</strong> Access <code>Loadbalancer</code> IP via browser:</p>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Congrats!!! You've deployed you code to Kubernetes</p>
