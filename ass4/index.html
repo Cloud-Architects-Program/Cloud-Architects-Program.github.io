@@ -994,7 +994,8 @@ spec:
 
 <h2 id="33-create-configmap-and-probes-for-gowebapp">3.3 Create ConfigMap and Probes for <code>gowebapp</code><a class="headerlink" href="#33-create-configmap-and-probes-for-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
-<div class="codehilite"><pre><span></span><code>kubectl create configmap gowebapp --from-file=webapp-config-json=~/$MY_REPO/gowebapp/config/config.json
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
+kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
 kubectl describe configmap gowebapp
 </code></pre></div>
 
@@ -1004,6 +1005,10 @@ kubectl describe configmap gowebapp
 </div>
 <h2 id="34-deploy-webapp-by-referencing-secret-configmap-and-define-probes">3.4 Deploy <code>webapp</code> by Referencing Secret, ConfigMap and define Probes<a class="headerlink" href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Update <code>gowebapp-deployment.yaml</code> under <code>~/$MY_REPO/deploy_a4/</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a4/
+vim gowebapp-deployment.yaml
+</code></pre></div>
+
 <p>In this exercise, we will add liveness/readiness probes to our deployments. For more information, see here:
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/</p>
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
@@ -1091,7 +1096,7 @@ gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
 gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
 </code></pre></div>
 
-<p><strong>Step 9</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<p><strong>Step </strong> Access <code>Loadbalancer</code> IP via browser:</p>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Congrats!!! You've deployed you code to Kubernetes</p>
