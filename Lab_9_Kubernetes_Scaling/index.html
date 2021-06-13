@@ -287,6 +287,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ass5/" class="md-nav__link">
+        Assignment5
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -294,14 +309,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
       
-      <label class="md-nav__link" for="__nav_9">
+      <label class="md-nav__link" for="__nav_10">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_9">
+        <label class="md-nav__title" for="__nav_10">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -456,6 +471,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#17-cleaning-up" class="md-nav__link">
+    1.7 Cleaning Up
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -519,6 +541,13 @@
         <li class="md-nav__item">
   <a href="#13-scale-size-of-pods-with-vertical-pod-autoscaling" class="md-nav__link">
     1.3 Scale size of pods with Vertical Pod Autoscaling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-cleaning-up" class="md-nav__link">
+    1.7 Cleaning Up
   </a>
   
 </li>
@@ -831,7 +860,7 @@ status:
 
 <p><strong>Step 9</strong> Observe autoscaling
 In the other terminal you will start noticing that the deployment is being scaled up.</p>
-<p><strong>Step 10</strong> Terminate bothe sessions by pressing <code>Ctrl+c</code></p>
+<p><strong>Step 10</strong> Terminate both sessions by pressing <code>Ctrl+c</code></p>
 <h2 id="13-scale-size-of-pods-with-vertical-pod-autoscaling">1.3 Scale size of pods with Vertical Pod Autoscaling<a class="headerlink" href="#13-scale-size-of-pods-with-vertical-pod-autoscaling" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Verify that Vertical Pod Autoscaling has already been enabled on the cluster. We enabled VPA when we created the cluster, by using <code>--enable-vertical-pod-autoscaling</code>. This command can be handy if you want to check VPA on an existing cluster.</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters describe k8s-scaling --zone us-central1-c | grep ^verticalPodAutoscaling -A 1
@@ -906,11 +935,13 @@ EOF
 <div class="codehilite"><pre><span></span><code>kubectl describe vpa hello-server-vpa
 </code></pre></div>
 
-<p><strong>Step 9</strong> Locate the "Container Recommendations" at the end of the output from the <code>describe</code> command. If you don't see it, wait a little longer and try the previous command again. When it appears, you'll see several different recommendation types, each with values for CPU and memory:
-* Lower Bound: this is the lower bound number VPA looks at for triggering a resize. If your pod utilization goes below this, VPA will delete the pod and scale it down.
-* Target: this is the value VPA will use when resizing the pod.
-* Uncapped Target: if no minimum or maximum capacity is assigned to the VPA, this will be the target utilization for VPA.
-* Upper Bound: this is the upper bound number VPA looks at for triggering a resize. If your pod utilization goes above this, VPA will delete the pod and scale it up.</p>
+<p><strong>Step 9</strong> Locate the "Container Recommendations" at the end of the output from the <code>describe</code> command. If you don't see it, wait a little longer and try the previous command again. When it appears, you'll see several different recommendation types, each with values for CPU and memory:</p>
+<ul>
+<li>Lower Bound: this is the lower bound number VPA looks at for triggering a resize. If your pod utilization goes below this, VPA will delete the pod and scale it down.</li>
+<li>Target: this is the value VPA will use when resizing the pod.</li>
+<li>Uncapped Target: if no minimum or maximum capacity is assigned to the VPA, this will be the target utilization for VPA.</li>
+<li>Upper Bound: this is the upper bound number VPA looks at for triggering a resize. If your pod utilization goes above this, VPA will delete the pod and scale it up.</li>
+</ul>
 <p>Notice that the VPA is recommending new values for CPU instead of what we set, and also giving you a suggested number for how much memory should be requested. We can at this point manually apply these suggestions, or allow VPA to apply them.</p>
 <p><strong>Step 10</strong> Update the manifest to set the policy to Auto and apply the configuration</p>
 <div class="codehilite"><pre><span></span><code>sed -i &#39;s/Off/Auto/g&#39; hello-vpa.yaml
@@ -928,6 +959,11 @@ kubectl apply -f hello-vpa.yaml
 
 <p><strong>Step 13</strong> The VPA should have resized your pods in the hello-server deployment. Inspect your pods:</p>
 <div class="codehilite"><pre><span></span><code>kubectl describe pod hello-server | sed -n &quot;/Containers:$/,/Conditions:/p&quot;
+</code></pre></div>
+
+<h2 id="17-cleaning-up">1.7 Cleaning Up<a class="headerlink" href="#17-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-scaling
 </code></pre></div>
 
 <!-- ## 1.4 GKE Cluster Autoscaler (Demo)
