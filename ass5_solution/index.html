@@ -289,6 +289,21 @@
   
   
     <li class="md-nav__item">
+      <a href="../ass4_sol/" class="md-nav__link">
+        Assignment4 - Solution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ass5/" class="md-nav__link">
         Assignment5
       </a>
@@ -307,14 +322,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
       
-      <label class="md-nav__link" for="__nav_10">
+      <label class="md-nav__link" for="__nav_11">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_10">
+        <label class="md-nav__title" for="__nav_11">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -883,7 +898,6 @@ metadata:
   name: gowebapp-hpa
 spec:
   scaleTargetRef:
-  #TODO: Ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
   #TODO Create HPA based on CPU with minReplicas `1` and maxReplicas `5` with target 50.
     apiVersion: apps/v1
     kind: Deployment
@@ -917,21 +931,15 @@ vim limit-range.yaml
 kind: LimitRange
 metadata:
   name: gowebapp-system
-  #TODO Specify Namespace
+  namespace: dev
 spec:
-#TODO Ref: https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/
-#TODO If not specified the Container&#39;s `memory` limit is set to 256Mi, which is the default memory limit for the namespace.
-#TODO If not specified default limit `cpu` is 250m per container
-#TODO If not specified set the Container&#39;s Default memory requests to 256Mi
-#TODO If not specified set the Container&#39;s Default cpu requests to 250m
-#TODO Configure Minimum `20m` and Maximum `800m` CPU Constraints for a Namespace
   limits:
     - default:
         cpu: &quot;250m&quot;  # If not specified default limit is 500m per container     
-        memory: &quot;256Mi&quot; # If not specified the Container&#39;s memory limit is set to 512Mi, which is the default memory limit for the namespace.
+        memory: &quot;256Mi&quot; # If not specified the Container&#39;s memory limit is set to 512Mi
       defaultRequest:
         cpu: &quot;250m&quot; # If not specified default it will take from whatever specified in limits.default.cpu      
-        memory: &quot;256Mi&quot; # If not specified default it will take from whatever specified in limits.default.memory
+        memory: &quot;256Mi&quot; #If not specified default it will take from whatever specified in limits.default.memory
       max:
         cpu: 800m
       min:

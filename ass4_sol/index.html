@@ -14,7 +14,7 @@
     
     
       
-        <title>Assignment4 - YCIT019</title>
+        <title>Assignment4 - Solution - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assignment4
+              Assignment4 - Solution
             
           </span>
         </div>
@@ -272,6 +272,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ass4/" class="md-nav__link">
+        Assignment4
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -284,12 +299,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Assignment4
+          Assignment4 - Solution
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Assignment4
+        Assignment4 - Solution
       </a>
       
         
@@ -394,21 +409,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ass4_sol/" class="md-nav__link">
-        Assignment4 - Solution
-      </a>
     </li>
   
 
@@ -824,18 +824,15 @@ EXPOSE 80
 
 ENV GO111MODULE=auto
 ENV GOPATH=/go
-
-#TODO --- add an environment variable declaration for a default DB_PASSWORD of &quot;rootpasswd&quot;
-#https://docs.docker.com/engine/reference/builder/#env
+ENV PASSWORD=rootpasswd
 
 COPY /code $GOPATH/src/gowebapp/
+
 WORKDIR $GOPATH/src/gowebapp/
+
 RUN go get &amp;&amp; go install
 
-#TODO --- add a volume declaration for the container configuration path we
-# want to mount at runtime from the host file system:
-# $GOPATH/src/gowebapp/config
-#https://docs.docker.com/engine/reference/builder/#volume
+VOLUME $GOPATH/src/gowebapp/config
 
 ENTRYPOINT $GOPATH/bin/gowebapp
 </code></pre></div>
@@ -902,9 +899,37 @@ docker network rm gowebapp
 
 <div class="codehilite"><pre><span></span><code>vim docker-compose.yml
 
-#TODO Define gowebapp configuration as volume
-#Ref: https://docs.docker.com/compose/compose-file/compose-file-v2/#volumes
-#Path Hint: ./gowebapp/config:/go/src/gowebapp/config
+version: &#39;2.4&#39;
+
+services:
+  gowebapp-mysql:
+    container_name: gowebapp-mysql
+    build: ./gowebapp-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpasswd
+    healthcheck:
+      test: [ &quot;CMD&quot;, &quot;mysqladmin&quot; ,&quot;ping&quot;, &quot;-h&quot;, &quot;localhost&quot; ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - gowebapp    
+  gowebapp:
+    container_name: gowebapp
+    build: ./gowebapp
+    ports:
+      - 8080:80
+    depends_on:
+      gowebapp-mysql:
+        condition: service_healthy
+    volumes:
+      - ./gowebapp/config:/go/src/gowebapp/config
+    networks:
+      - gowebapp
+
+networks:
+  gowebapp1:
+    driver: bridge
 </code></pre></div>
 
 <p><strong>Step 3</strong> Test application</p>
@@ -951,9 +976,11 @@ vim secret-mysql.yaml
 
 <div class="codehilite"><pre><span></span><code>kind: Secret
 apiVersion: v1
-# TODO1 Create secret name: mysql
-# TODO2 Secret should be using arbitrary user defined type stringData: https://kubernetes.io/docs/concepts/configuration/secret/#secret-types
-# TODO3 Define Mysql Password in base64 encoded format
+metadata:
+  name: mysql
+type: Opaque
+data:
+  password: cm9vdHBhc3N3ZA==
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>kubectl apply -f secret-mysql.yaml
@@ -965,18 +992,14 @@ kubectl describe secret mysql
 <div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/deploy_a4/gowebapp-mysql-deployment.yaml
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
+<div class="codehilite"><pre><span></span><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: gowebapp-mysql
   labels:
     run: gowebapp-mysql
-    tier: backend
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      run: gowebapp-mysql
   strategy:
     type: Recreate
   template:
@@ -988,18 +1011,23 @@ spec:
       - env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
-          #TODO: replace value: rootpasswd with secretKeyRef
-          #TODO: name is mysql
-          #TODO: key is password
+            secretKeyRef:
+              name: mysql
+              key: password
         image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
         name: gowebapp-mysql
         ports:
         - containerPort: 3306
-        #TODO add a livenessProbe which performs tcpSocket probe
-        #aginst port 3306 with an initial
-        # deay of 30 seconds, and a timeout of 2 seconds
-        #TODO add a readinessProbe for tcpSocket port 3306 with a 25 second 
-        #initial delay, and a timeout of 2 seconds     
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 25
+          timeoutSeconds: 2     
 </code></pre></div>
 
 <p><strong>Step 2</strong>  Start the rolling upgrade and record the command used in the rollout history:</p>
@@ -1059,29 +1087,34 @@ spec:
     spec:
       containers:
       - env:
-      name: DB_PASSWORD
-          #TODO: replace value: `rootpasswd` with valueFrom:
+        - name: DB_PASSWORD
+          valueFrom:
             secretKeyRef:
-              #TODO: name is mysql
-              #TODO: key is password
-        image: gcr.io/${PROJECT_ID}/gowebapp:v3
+              name: mysql
+             key: password
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
         name: gowebapp
         ports:
           - containerPort: 80
         livenessProbe:
-        #TODO add a livenessProbe which performs httpGet
-        #aginst  the /register endpoint on port 80 with an initial
-        # deay of 15 seconds, and a timeout of 5 seconds
-        #TODO add a livenessProbe which performs httpGet 
-        # aginst the /register endpoint on port 80 with an initial
-        # deay of 25 seconds, and a timeout of 5 seconds
+          httpGet:
+            path: /register
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /register
+            port: 80
+          initialDelaySeconds: 25
+          timeoutSeconds: 5
         volumeMounts:
-          - #TODO: give the volume a name:config-volume
-            #TODO: specify the mountPath: /go/src/gowebapp/config
-      volumes: 
-      - #TODO: define volume name: config-volume
+          - name: config-volume
+            mountPath: /go/src/gowebapp/config
+      volumes:
+      - name: config-volume
         configMap:
-          #TODO: identify your ConfigMap name: gowebapp
+          name: gowebapp
           items:
           - key: webapp-config-json
             path: config.json
@@ -1163,7 +1196,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 4&quot;
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../ass3_solution/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../ass4/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1172,19 +1205,19 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 4&quot;
               <span class="md-footer__direction">
                 Previous
               </span>
-              Assignment3 - Solution
+              Assignment4
             </div>
           </div>
         </a>
       
       
-        <a href="../ass4_sol/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../ass5/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Assignment4 - Solution
+              Assignment5
             </div>
           </div>
           <div class="md-footer__button md-icon">
