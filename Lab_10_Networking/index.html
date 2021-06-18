@@ -1117,7 +1117,11 @@ EOF
 <p>It may take several minutes to download the necessary Docker images for this
 demo.</p>
 </div>
-<p><strong>Step 6</strong>  View the UI by visiting <code>http://&lt;k8s-node-ip&gt;:30002</code> in a browser.</p>
+<p><strong>Step 6</strong> Locate LoadBalancer IP:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc -n management-ui
+</code></pre></div>
+
+<p><strong>Step 9</strong> Open UI in you browser <code>http://EXTERNAL-IP:9001</code> in a browser.</p>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Once all the pods are started, they should have full connectivity. You can see
