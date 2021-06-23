@@ -560,6 +560,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lab_11_Storage/" class="md-nav__link">
+        Lab 11 Kubernetes Storage
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -871,7 +883,7 @@ spec:
       containers:
       - env:
          - name: # TODO add MYSQL_ROOT_PASSWORD env value
-         image: #TODO define MySQL image created at Ass1
+         image: #TODO define mysql image created in previous assignment, located in gcr registry
          name: gowebapp-mysql
          ports:
          #TODO: define containerPort: 3306
@@ -951,7 +963,7 @@ spec:
         - #TODO: define name as MYSQL_ROOT_PASSWORD
           #TODO: define value as cloudops
         #TODO: Replace &lt;user-name&gt; with value you Docker-Hub ID.
-        image: #TODO define gowebapp image created at Ass1
+        image: #TODO define gowebapp image created in previous assignment, located in gcr registry
         name: gowebapp
         ports:
         - #TODO: define the container port as 80
