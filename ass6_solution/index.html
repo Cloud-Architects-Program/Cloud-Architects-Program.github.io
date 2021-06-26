@@ -14,7 +14,7 @@
     
     
       
-        <title>Assignment6 - Solution - YCIT019</title>
+        <title>Deploy Applications on Kubernetes - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assignment6 - Solution
+              Deploy Applications on Kubernetes
             
           </span>
         </div>
@@ -317,121 +317,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Assignment6 - Solution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Assignment6 - Solution
+    <li class="md-nav__item">
+      <a href="../ass6/" class="md-nav__link">
+        Assignment6
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#0-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
-    0 Create GKE Cluster with Cluster Network Policy Support
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-locate-assignment-6" class="md-nav__link">
-    1.2 Locate Assignment 6
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#13-create-a-namespace-dev" class="md-nav__link">
-    1.3 Create a Namespace dev
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
-    2.1 Create Persistent Volume for gowebapp-mysql
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#22-create-mysql-deployment" class="md-nav__link">
-    2.2 Create Mysql deployment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#24-expose-gowebapp-with-ingress-resource" class="md-nav__link">
-    2.4 Expose gowebapp with Ingress resource
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#25-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
-    2.5 Configure deny-all Network Policy for dev Namespace
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#26-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
-    2.6 Configure Network Policy for gowebapp-mysql
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-configure-network-policy-for-gowebapp" class="md-nav__link">
-    2.7 Configure Network Policy for gowebapp
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    2.7 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#36-cleaning-up" class="md-nav__link">
-    3.6 Cleaning Up
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -612,78 +502,111 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
-    0 Create GKE Cluster with Cluster Network Policy Support
+  <a href="#1-prepare-environment" class="md-nav__link">
+    1. Prepare Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Prepare Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
+    1.1 Create GKE Cluster with Cluster Network Policy Support
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#12-locate-assignment-6" class="md-nav__link">
     1.2 Locate Assignment 6
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#13-create-a-namespace-dev" class="md-nav__link">
     1.3 Create a Namespace dev
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#2-configure-volumes-ingress-and-net-policy" class="md-nav__link">
+    2 Configure Volumes, Ingress and Net Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Configure Volumes, Ingress and Net Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
     2.1 Create Persistent Volume for gowebapp-mysql
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#22-create-mysql-deployment" class="md-nav__link">
     2.2 Create Mysql deployment
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#24-expose-gowebapp-with-ingress-resource" class="md-nav__link">
-    2.4 Expose gowebapp with Ingress resource
+        
+          <li class="md-nav__item">
+  <a href="#24-create-gowebapp-deployment" class="md-nav__link">
+    2.4 Create GoWebApp deployment
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-expose-gowebapp-with-ingress-resource" class="md-nav__link">
+    2.5 Expose gowebapp with Ingress resource
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
+    2.6 Configure deny-all Network Policy for dev Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
+    2.7 Configure Network Policy for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-configure-network-policy-for-gowebapp" class="md-nav__link">
+    2.8 Configure Network Policy for gowebapp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    2.9 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
-    2.5 Configure deny-all Network Policy for dev Namespace
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#26-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
-    2.6 Configure Network Policy for gowebapp-mysql
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-configure-network-policy-for-gowebapp" class="md-nav__link">
-    2.7 Configure Network Policy for gowebapp
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#27-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    2.7 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#36-cleaning-up" class="md-nav__link">
-    3.6 Cleaning Up
+  <a href="#3-cleaning-up" class="md-nav__link">
+    3 Cleaning Up
   </a>
   
 </li>
@@ -711,7 +634,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="0-create-gke-cluster-with-cluster-network-policy-support">0 Create GKE Cluster with Cluster Network Policy Support<a class="headerlink" href="#0-create-gke-cluster-with-cluster-network-policy-support" title="Permanent link">&para;</a></h2>
+<h2 id="1-prepare-environment">1. Prepare Environment<a class="headerlink" href="#1-prepare-environment" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-gke-cluster-with-cluster-network-policy-support">1.1 Create GKE Cluster with Cluster Network Policy Support<a class="headerlink" href="#11-create-gke-cluster-with-cluster-network-policy-support" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
 <div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
 </code></pre></div>
@@ -732,7 +656,7 @@ k8s-scaling  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9
 <div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-networking --zone us-central1-c
 </code></pre></div>
 
-<h2 id="12-locate-assignment-6">1.2 Locate Assignment 6<a class="headerlink" href="#12-locate-assignment-6" title="Permanent link">&para;</a></h2>
+<h3 id="12-locate-assignment-6">1.2 Locate Assignment 6<a class="headerlink" href="#12-locate-assignment-6" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Locate directory where Kubernetes manifests going to be stored.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/ycit019/
 git pull       # Pull latest assignement6
@@ -764,7 +688,7 @@ ls
 </code></pre></div>
 
 <p><strong>Step 3</strong> Copy Assignment 6 <code>deploy_a6</code> folder to your repo:</p>
-<div class="codehilite"><pre><span></span><code>cp -r ~/ycit019/Assignment5/deploy_a6 .
+<div class="codehilite"><pre><span></span><code>cp -r ~/ycit019/Assignment6/deploy_a6 .
 </code></pre></div>
 
 <p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
@@ -777,7 +701,7 @@ git commit -m &quot;adding K8s manifests for assignment 6&quot;
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<h2 id="13-create-a-namespace-dev">1.3 Create a Namespace <code>dev</code><a class="headerlink" href="#13-create-a-namespace-dev" title="Permanent link">&para;</a></h2>
+<h3 id="13-create-a-namespace-dev">1.3 Create a Namespace <code>dev</code><a class="headerlink" href="#13-create-a-namespace-dev" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
 <div class="codehilite"><pre><span></span><code>kubectl create ns dev
 </code></pre></div>
@@ -794,8 +718,9 @@ git commit -m &quot;adding K8s manifests for assignment 6&quot;
 <p class="admonition-title">Result</p>
 <p><code>dev</code></p>
 </div>
-<h2 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) manifest for<code>gowebapp-mysql-pvc</code> resource:</p>
+<h2 id="2-configure-volumes-ingress-and-net-policy">2 Configure Volumes, Ingress and Net Policy<a class="headerlink" href="#2-configure-volumes-ingress-and-net-policy" title="Permanent link">&para;</a></h2>
+<h3 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) <code>gowebapp-mysql-pvc.yaml</code> manifest so that it will Dynamically creates 5G GCP PD Persistent Volume (PV), using  <code>balanced</code> persistent disk Provisioner with Access Mode <code>ReadWriteOnce</code>.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
 vim gowebapp-mysql-pvc.yaml
 </code></pre></div>
@@ -807,12 +732,16 @@ metadata:
   labels:
     run: gowebapp-mysql
 spec:
-#TODO
+#TODO Access Mode `ReadWriteOnce`
+#TODO Request 5G GCP PD Persistent Storage
+#TODO Balanced PD CSI Storage Class 
+#TODO GKE CSI Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver
+  storageClassName: standard-rwo
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
 </code></pre></div>
 
 <p>Please see reference for PVC creation here:
@@ -838,7 +767,7 @@ mongodb-pvc   Pending                                      standard-rwo   5s
 <div class="codehilite"><pre><span></span><code>gcloud compute disks list
 </code></pre></div>
 
-<h2 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h2>
+<h3 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h3>
 <p>Create Mysql deployment using created Persistent Volume (PV)</p>
 <p><strong>Step 1</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> and add Volume</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
@@ -892,7 +821,19 @@ spec:
           limits:
             cpu: 1000m
             memory: 2G
-          #TODO Add Volume
+        #TODO add the definition for volumeMounts:
+        volumeMounts:
+        - #TODO: add mountPath as /var/lib/mysql
+        - mountPath: /var/lib/mysql
+          name: mysql
+      #TODO Configure Pods access to storage by using the claim as a volume
+      #TODO: define persistentVolumeClaim
+      #TODO: claimName is the name defined in gowebapp-mysql-pvc.yaml
+      #TODO Ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes
+      volumes:
+        - name: mysql
+          persistentVolumeClaim:
+            claimName: gowebapp-mysql-pvc
 </code></pre></div>
 
 <p><strong>Step 2</strong> Deploy <code>gowebapp-mysql</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
@@ -902,18 +843,73 @@ kubectl apply -f gowebapp-mysql-service.yaml    #Create Service
 kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>kubectl get deploy
+<p>Check Status of the <code>mysql</code> Pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
+<p>Check Events from the <code>mysql</code> Pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get describe $POD
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice the sequence of events:</p>
+<ul>
+<li>Scheduler selects node</li>
+<li>Volume mounted to Pod</li>
+<li><code>kubelet</code> pulls image</li>
+<li><code>kubelet</code> creates and starts container</li>
+</ul>
+</div>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Our Mysql Deployment is up and running with Volume mounted</p>
 </div>
-<h2 id="24-expose-gowebapp-with-ingress-resource">2.4 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#24-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h2>
-<h2 id="25-configure-deny-all-network-policy-for-dev-namespace">2.5 Configure <code>deny-all</code> Network Policy for dev Namespace<a class="headerlink" href="#25-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h2>
-<h2 id="26-configure-network-policy-for-gowebapp-mysql">2.6 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#26-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h2>
-<h2 id="27-configure-network-policy-for-gowebapp">2.7 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#27-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h2>
-<h2 id="27-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.7 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#27-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<h3 id="24-create-gowebapp-deployment">2.4 Create GoWebApp deployment<a class="headerlink" href="#24-create-gowebapp-deployment" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
+kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
+kubectl describe configmap gowebapp
+</code></pre></div>
+
+<p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_a5/</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+kubectl apply -f gowebapp-service.yaml    #Create Service
+kubectl apply -f gowebapp-deployment.yaml #Create Deployment
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 3</strong> Access your application on Public IP via automatically created Loadbalancer 
+created for <code>gowebapp</code> service.</p>
+<p>To get the value of <code>Loadbalancer</code> run following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc gowebapp -o wide
+</code></pre></div>
+
+<p>Expected output:</p>
+<div class="codehilite"><pre><span></span><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
+gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
+</code></pre></div>
+
+<p><strong>Step 5</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<div class="codehilite"><pre><span></span><code>EXTERNAL-IP:9000
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Congrats!!! You've deployed you code to Kubernetes</p>
+</div>
+<h3 id="25-expose-gowebapp-with-ingress-resource">2.5 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#25-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="26-configure-deny-all-network-policy-for-dev-namespace">2.6 Configure <code>deny-all</code> Network Policy for dev Namespace<a class="headerlink" href="#26-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="27-configure-network-policy-for-gowebapp-mysql">2.7 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#27-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="28-configure-network-policy-for-gowebapp">2.8 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#28-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h3>
+<p>TODO</p>
+<h3 id="29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.9 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .
 git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
@@ -923,7 +919,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<h2 id="36-cleaning-up">3.6 Cleaning Up<a class="headerlink" href="#36-cleaning-up" title="Permanent link">&para;</a></h2>
+<h2 id="3-cleaning-up">3 Cleaning Up<a class="headerlink" href="#3-cleaning-up" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Delete the cluster</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-scaling
 </code></pre></div>
@@ -942,39 +938,6 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../ass5/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Assignment5
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../Lab_2_Docker_basics/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Lab 2 Docker Basics
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

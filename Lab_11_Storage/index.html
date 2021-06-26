@@ -319,8 +319,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../ass6_solution/" class="md-nav__link">
-        Assignment6 - Solution
+      <a href="../ass6/" class="md-nav__link">
+        Assignment6
       </a>
     </li>
   
@@ -912,7 +912,7 @@ EOF
 <p class="admonition-title">Result</p>
 <p>We've created a new <code>StorageClass</code> that uses GCP PD csi provisioner to create Regional Disks in GCP.</p>
 </div>
-<p><strong>Step 3</strong> Create a Persistent Volume Claim (PVC) <code>pvc-demo-ssd.yaml</code> file that will Dynamically creates 30G GCP PD Persistent Volume (PV), using  <code>balanced</code> GCP SSD disk Provisioner.</p>
+<p><strong>Step 3</strong> Create a Persistent Volume Claim (PVC) <code>pvc-demo-ssd.yaml</code> file that will Dynamically creates 30G GCP PD Persistent Volume (PV),  using SSD persistent disk Provisioner.</p>
 <div class="codehilite"><pre><span></span><code>cat &gt; pvc-demo-ssd.yaml &lt;&lt; EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -1961,11 +1961,11 @@ data-mysql-2   Bound     pvc-8ad69a6d-b103-11e6-93fa-42010a800002   10Gi       R
 </code></pre></div>
 
 <p>If you don't intend to reuse the extra PVCs, you can delete them:</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete pvc data-mysql-1
+<div class="codehilite"><pre><span></span><code>kubectl delete pvc data-mysql-0
+kubectl delete pvc data-mysql-1
 kubectl delete pvc data-mysql-2
 kubectl delete pvc data-mysql-3
 kubectl delete pvc data-mysql-4
-kubectl delete pvc data-mysql-5
 </code></pre></div>
 
 <p><strong>Step 5</strong> Cancel the <code>SELECT @@server_id</code> loop by pressing <strong>Ctrl+C</strong> in its terminal,

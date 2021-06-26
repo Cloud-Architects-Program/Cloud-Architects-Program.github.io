@@ -319,8 +319,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../ass6_solution/" class="md-nav__link">
-        Assignment6 - Solution
+      <a href="../ass6/" class="md-nav__link">
+        Assignment6
       </a>
     </li>
   
@@ -756,53 +756,53 @@ and Persistent Volume.</p>
 <div class="codehilite"><pre><span></span><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-   name: gowebapp-mysql
-   labels:
-     run: gowebapp-mysql
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
 spec:
-   replicas: 1
-   strategy:
-     type: Recreate
-   template:
-     metadata:
-       labels:
-         run: gowebapp-mysql
-     spec:
-       containers:
-       - env:
-         - name: MYSQL_ROOT_PASSWORD
-           valueFrom:
-             secretKeyRef:
-               name: mysql
-               key: password
-         image: archyufa/gowebapp-mysql:v1
-         name: gowebapp-mysql
-         ports:
-         - containerPort: 3306
-         livenessProbe:
-           tcpSocket:
-             port: 3306
-           initialDelaySeconds: 30
-           timeoutSeconds: 2
-         readinessProbe:
-           tcpSocket:
-             port: 3306
-           initialDelaySeconds: 25
-           timeoutSeconds: 2
-         resources:
-           requests:
-             cpu: 256m
-             memory: 256Mi
-           limits:
-             cpu: 512m
-             memory: 512Mi
-         volumeMounts:
-         - mountPath: /var/lib/mysql
-           name: mysql
-       volumes:
-         - name: mysql
-           persistentVolumeClaim:
-             claimName: mysqlpvc
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: gowebapp-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql
+              key: password
+        image: archyufa/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+        readinessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 25
+          timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: 256m
+            memory: 256Mi
+          limits:
+            cpu: 512m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql
+      volumes:
+        - name: mysql
+          persistentVolumeClaim:
+            claimName: mysqlpvc
 </code></pre></div>
 
 <p><strong>Step 2</strong>  Start the rolling upgrade and record the command used in the rollout history:</p>
