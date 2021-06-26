@@ -317,6 +317,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ass6_solution/" class="md-nav__link">
+        Assignment6 - Solution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -324,14 +339,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" checked>
       
-      <label class="md-nav__link" for="__nav_11">
+      <label class="md-nav__link" for="__nav_12">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_11">
+        <label class="md-nav__title" for="__nav_12">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -483,8 +498,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0-create-gke-cluster" class="md-nav__link">
-    0 Create GKE Cluster
+  <a href="#0-create-regional-gke-cluster" class="md-nav__link">
+    0 Create Regional GKE Cluster
   </a>
   
 </li>
@@ -507,6 +522,33 @@
   <a href="#3-deploying-highly-available-postgresql-with-gke" class="md-nav__link">
     3 Deploying highly available PostgreSQL with GKE
   </a>
+  
+    <nav class="md-nav" aria-label="3 Deploying highly available PostgreSQL with GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploying-postgresql" class="md-nav__link">
+    3.1 Deploying PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-creating-a-test-dataset" class="md-nav__link">
+    3.2 Creating a test dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-simulating-database-instance-failover" class="md-nav__link">
+    3.3 Simulating database instance failover
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -598,8 +640,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0-create-gke-cluster" class="md-nav__link">
-    0 Create GKE Cluster
+  <a href="#0-create-regional-gke-cluster" class="md-nav__link">
+    0 Create Regional GKE Cluster
   </a>
   
 </li>
@@ -622,6 +664,33 @@
   <a href="#3-deploying-highly-available-postgresql-with-gke" class="md-nav__link">
     3 Deploying highly available PostgreSQL with GKE
   </a>
+  
+    <nav class="md-nav" aria-label="3 Deploying highly available PostgreSQL with GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploying-postgresql" class="md-nav__link">
+    3.1 Deploying PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-creating-a-test-dataset" class="md-nav__link">
+    3.2 Creating a test dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-simulating-database-instance-failover" class="md-nav__link">
+    3.3 Simulating database instance failover
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -694,25 +763,31 @@
 <li>Create a Single MySQL <code>Deployment</code> based on the <code>Volume Claim</code></li>
 <li>Deploy a Replicated MySQL (Master/Slaves) with a <code>StatefulSet</code> controller.</li>
 </ul>
-<h2 id="0-create-gke-cluster">0 Create GKE Cluster<a class="headerlink" href="#0-create-gke-cluster" title="Permanent link">&para;</a></h2>
+<h2 id="0-create-regional-gke-cluster">0 Create Regional GKE Cluster<a class="headerlink" href="#0-create-regional-gke-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
 <div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
 </code></pre></div>
 
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-storage \
---zone us-central1-c \
+--region us-central1 \
 --enable-network-policy \
---num-nodes 2
+--num-nodes 1 \
+--machine-type &quot;e2-standard-2&quot; \
+ --node-locations &quot;us-central1-b&quot;,&quot;us-central1-c&quot;
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We created a Regional cluster with Nodes deployed in  "us-central1-b" and "us-central1-c" zones.</p>
+</div>
 <p><strong>Output:</strong></p>
 <div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
 k8s-storage  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
 </code></pre></div>
 
 <p><strong>Step 3</strong> Authenticate to the cluster.</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-storage --zone us-central1-c
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-storage --region us-central1 --project jfrog2021
 </code></pre></div>
 
 <h2 id="1-dynamically-provision-volume">1 Dynamically Provision Volume<a class="headerlink" href="#1-dynamically-provision-volume" title="Permanent link">&para;</a></h2>
@@ -1007,7 +1082,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: general
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
@@ -1128,6 +1203,12 @@ mysql-63082529-2z3ki   1/1       Running   0          3m
  Events:       &lt;none&gt;
 </code></pre></div>
 
+<p><strong>Step 5</strong> Inspect created PersistentVolume:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+kubectl describe pv
+gcloud compute disks list
+</code></pre></div>
+
 <p><strong>Step 6</strong>  Access the MySQL instance</p>
 <p>The Service option <code>clusterIP: None</code> lets the Service DNS name resolve directly
 to the Pod's IP address. This is optimal when you have only one Pod behind a
@@ -1172,7 +1253,7 @@ with the <code>kubectl apply</code> command.</p>
   first pod before creating a new one with the updated configuration.</li>
 </ul>
 </div>
-<p><strong>Step 7</strong> Delete the MySQL instance</p>
+<p><strong>Step 8</strong> Delete the MySQL instance</p>
 <p>Delete the deployed objects by name:</p>
 <div class="codehilite"><pre><span></span><code>kubectl delete deployment,svc mysql
 kubectl delete pvc mysql-pv-claim
@@ -1180,13 +1261,237 @@ kubectl delete pvc mysql-pv-claim
 
 <p>Since we used a dynamic provisioner, it automatically deletes the
 PersistentVolume when it sees that you deleted the PersistentVolumeClaim.</p>
+<p><strong>Step 9</strong> Check that GCP Volume has been deleted:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If PersistentVolume was manually provisioned, it is requrire to manually
 delete it, as well as release the underlying resource.</p>
 </div>
 <h2 id="3-deploying-highly-available-postgresql-with-gke">3 Deploying highly available PostgreSQL with GKE<a class="headerlink" href="#3-deploying-highly-available-postgresql-with-gke" title="Permanent link">&para;</a></h2>
+<h3 id="31-deploying-postgresql">3.1 Deploying PostgreSQL<a class="headerlink" href="#31-deploying-postgresql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Create <code>regional persistent disk</code> StorageClass</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: regionalpd-storageclass
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  replication-type: regional-pd
+allowedTopologies:
+  - matchLabelExpressions:
+      - key: failure-domain.beta.kubernetes.io/zone
+        values:
+          - us-central1-b
+          - us-central1-c
+EOF
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Create PersistentVolumeClaim based on a <code>regional persistent disk</code> StorageClass</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql-pv
+spec:
+  storageClassName: regionalpd-storageclass
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 300Gi
+EOF
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Create a PostgreSQL deployment:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: postgres
+spec:
+ strategy:
+   rollingUpdate:
+     maxSurge: 1
+     maxUnavailable: 1
+   type: RollingUpdate
+ replicas: 1
+ selector:
+   matchLabels:
+     app: postgres
+ template:
+   metadata:
+     labels:
+       app: postgres
+   spec:
+     containers:
+       - name: postgres
+         image: postgres:10
+         resources:
+           limits:
+             cpu: &quot;1&quot;
+             memory: &quot;3Gi&quot;
+           requests:
+             cpu: &quot;1&quot;
+             memory: &quot;2Gi&quot;
+         ports:
+           - containerPort: 5432
+         env:
+           - name: POSTGRES_PASSWORD
+             value: password
+           - name: PGDATA
+             value: /var/lib/postgresql/data/pgdata
+         volumeMounts:
+           - mountPath: /var/lib/postgresql/data
+             name: postgredb
+     volumes:
+       - name: postgredb
+         persistentVolumeClaim:
+           claimName: postgresql-pv
+EOF
+</code></pre></div>
+
+<p><strong>Step 4</strong> Create PostgreSQL service:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
+  clusterIP: None
+EOF
+</code></pre></div>
+
+<p><strong>Step 5</strong> Check Regional PVs has been Provisioned based on PVC request</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc,pv
+</code></pre></div>
+
+<p><strong>Step 6</strong> Check that Postgres is up and <code>Running</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl get deploy,pods
+</code></pre></div>
+
+<h3 id="32-creating-a-test-dataset">3.2 Creating a test dataset<a class="headerlink" href="#32-creating-a-test-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Connect to your PostgreSQL instance:</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl exec -it $POD -- psql -U postgres
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Create a database and a table, and then insert some test rows:</p>
+<div class="codehilite"><pre><span></span><code>create database gke_test_regional;
+
+\c gke_test_regional;
+
+CREATE TABLE test(
+   data VARCHAR (255) NULL
+);
+
+insert into test values
+  (&#39;Learning GKE is fun&#39;),
+  (&#39;Databases on GKE are easy&#39;);
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Verify that the test rows were inserted, select all rows:</p>
+<div class="codehilite"><pre><span></span><code>select * from test;
+</code></pre></div>
+
+<p><strong>Step 4</strong> Exit the PostgreSQL shell:</p>
+<div class="codehilite"><pre><span></span><code>\q
+</code></pre></div>
+
+<h3 id="33-simulating-database-instance-failover">3.3 Simulating database instance failover<a class="headerlink" href="#33-simulating-database-instance-failover" title="Permanent link">&para;</a></h3>
+<p><strong>Step 0</strong>  Identify the node that is currently hosting PostgreSQL</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l app=postgres -o wide
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Take a note on which of the nodes Pod is <code>Running</code></p>
+</div>
+<p><strong>Step 1</strong> Prepare that node to be CORDONED in other words Disabled for  scheduling:</p>
+<div class="codehilite"><pre><span></span><code>CORDONED_NODE=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $7}&#39;`
+
+echo ${CORDONED_NODE}
+
+gcloud compute instances list --filter=&quot;name=${CORDONED_NODE}&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Disable scheduling of any new pods on this node:</p>
+<div class="codehilite"><pre><span></span><code>kubectl cordon ${CORDONED_NODE}
+
+kubectl get nodes
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The node is cordoned, so scheduling is disabled on the node that the database instance resides on.</p>
+</div>
+<p><strong>Step 3</strong>  Delete the existing PostgreSQL pod</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl delete pod ${POD}
+</code></pre></div>
+
+<p><strong>Step 4</strong>  Verify that a new pod is created on the other node.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l app=postgres -o wide
+</code></pre></div>
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It might take a while for the new pod to be ready (usually around 30 seconds).</p>
+</div>
+<p><strong>Step 5</strong>  Verify the node's zone</p>
+<div class="codehilite"><pre><span></span><code>NODE=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $7}&#39;`
+
+echo ${NODE}
+
+gcloud compute instances list --filter=&quot;name=${NODE}&quot;
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Notice that the pod is deployed in a different zone from where the node was created at the beginning of this procedure.</p>
+</div>
+<p><strong>Step 6</strong> Connect to the database instance</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl exec -it $POD -- psql -U postgres
+</code></pre></div>
+
+<p><strong>Step 7</strong> Verify that the test dataset exists </p>
+<div class="codehilite"><pre><span></span><code>\c gke_test_regional;
+
+select * from test;
+
+\q
+</code></pre></div>
+
+<p><strong>Step 8</strong> Re-enable scheduling for the node for which scheduling was disabled:</p>
+<div class="codehilite"><pre><span></span><code>kubectl uncordon $CORDONED_NODE
+</code></pre></div>
+
+<p><strong>Step 9</strong> Check that the node is ready again:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<p><strong>Step 10</strong> Cleanup Postgres <code>Deployment</code> and <code>PVC</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pvc postgresql-pv
+kubectl delete deploy postgres
+</code></pre></div>
+
 <h2 id="4-deploy-statefulset">4 Deploy StatefulSet<a class="headerlink" href="#4-deploy-statefulset" title="Permanent link">&para;</a></h2>
+<p>Scale up our GKE cluster to <code>4</code> nodes:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters resize  k8s-storage --node-pool=default-pool --num-nodes=2 --region us-central1
+</code></pre></div>
+
 <h3 id="41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset">4.1 Deploy Replicated MySQL (Master/Slaves) Cluster using StatefulSet.<a class="headerlink" href="#41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset" title="Permanent link">&para;</a></h3>
 <p>Our Replicated MySQL deployment going to consists of:</p>
 <ul>
@@ -1203,12 +1508,12 @@ metadata:
   labels:
     app: mysql
 data:
-  master.cnf: |
-    # Apply this config only on the master.
+  primary.cnf: |
+    # Apply this config only on the primary.
     [mysqld]
     log-bin
-  slave.cnf: |
-    # Apply this config only on slaves.
+  replica.cnf: |
+    # Apply this config only on replicas.
     [mysqld]
     super-read-only
 EOF
@@ -1230,6 +1535,7 @@ controller.</p>
 <p><strong>Step 2</strong> Create 2 Services (just copy paste below):</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
 # Headless service for stable DNS entries of StatefulSet members.
+# Headless service for stable DNS entries of StatefulSet members.
 apiVersion: v1
 kind: Service
 metadata:
@@ -1245,7 +1551,7 @@ spec:
     app: mysql
 ---
 # Client service for connecting to any MySQL instance for reads.
-# For writes, you must instead connect to the master: mysql-0.mysql.
+# For writes, you must instead connect to the primary: mysql-0.mysql.
 apiVersion: v1
 kind: Service
 metadata:
@@ -1278,67 +1584,70 @@ all slaves.</p>
 only one MySQL master, clients should connect directly to the MySQL master
 Pod (through its DNS entry within the Headless Service) to execute writes.</p>
 </div>
-<p><strong>Step 3</strong> Create the StatefulSet from <code>mysql-statefulset.yaml</code>  manifest:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
-apiVersion: apps/v1beta1
+<p><strong>Step 3</strong> Create StatefulSet  <code>mysql-statefulset.yaml</code>  manifest:</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
 spec:
+  selector:
+    matchLabels:
+      app: mysql
   serviceName: mysql
   replicas: 3
   template:
     metadata:
       labels:
         app: mysql
-      annotations:
-        pod.beta.kubernetes.io/init-containers: &#39;[
-          {
-            &quot;name&quot;: &quot;init-mysql&quot;,
-            &quot;image&quot;: &quot;mysql:5.7&quot;,
-            &quot;command&quot;: [&quot;bash&quot;, &quot;-c&quot;, &quot;
-              set -ex\n
-              # Generate mysql server-id from pod ordinal index.\n
-              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1\n
-              ordinal=${BASH_REMATCH[1]}\n
-              echo [mysqld] &gt; /mnt/conf.d/server-id.cnf\n
-              # Add an offset to avoid reserved server-id=0 value.\n
-              echo server-id=$((100 + $ordinal)) &gt;&gt; /mnt/conf.d/server-id.cnf\n
-              # Copy appropriate conf.d files from config-map to emptyDir.\n
-              if [[ $ordinal -eq 0 ]]; then\n
-                cp /mnt/config-map/master.cnf /mnt/conf.d/\n
-              else\n
-                cp /mnt/config-map/slave.cnf /mnt/conf.d/\n
-              fi\n
-            &quot;],
-            &quot;volumeMounts&quot;: [
-              {&quot;name&quot;: &quot;conf&quot;, &quot;mountPath&quot;: &quot;/mnt/conf.d&quot;},
-              {&quot;name&quot;: &quot;config-map&quot;, &quot;mountPath&quot;: &quot;/mnt/config-map&quot;}
-            ]
-          },
-          {
-            &quot;name&quot;: &quot;clone-mysql&quot;,
-            &quot;image&quot;: &quot;gcr.io/google-samples/xtrabackup:1.0&quot;,
-            &quot;command&quot;: [&quot;bash&quot;, &quot;-c&quot;, &quot;
-              set -ex\n
-              # Skip the clone if data already exists.\n
-              [[ -d /var/lib/mysql/mysql ]] &amp;&amp; exit 0\n
-              # Skip the clone on master (ordinal index 0).\n
-              [[ `hostname` =~ -([0-9]+)$ ]] || exit 1\n
-              ordinal=${BASH_REMATCH[1]}\n
-              [[ $ordinal -eq 0 ]] &amp;&amp; exit 0\n
-              # Clone data from previous peer.\n
-              ncat --recv-only mysql-$(($ordinal-1)).mysql 3307 | xbstream -x -C /var/lib/mysql\n
-              # Prepare the backup.\n
-              xtrabackup --prepare --target-dir=/var/lib/mysql\n
-            &quot;],
-            &quot;volumeMounts&quot;: [
-              {&quot;name&quot;: &quot;data&quot;, &quot;mountPath&quot;: &quot;/var/lib/mysql&quot;, &quot;subPath&quot;: &quot;mysql&quot;},
-              {&quot;name&quot;: &quot;conf&quot;, &quot;mountPath&quot;: &quot;/etc/mysql/conf.d&quot;}
-            ]
-          }
-        ]&#39;
     spec:
+      initContainers:
+      - name: init-mysql
+        image: mysql:5.7
+        command:
+        - bash
+        - &quot;-c&quot;
+        - |
+          set -ex
+          # Generate mysql server-id from pod ordinal index.
+          [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+          ordinal=${BASH_REMATCH[1]}
+          echo [mysqld] &gt; /mnt/conf.d/server-id.cnf
+          # Add an offset to avoid reserved server-id=0 value.
+          echo server-id=$((100 + $ordinal)) &gt;&gt; /mnt/conf.d/server-id.cnf
+          # Copy appropriate conf.d files from config-map to emptyDir.
+          if [[ $ordinal -eq 0 ]]; then
+            cp /mnt/config-map/primary.cnf /mnt/conf.d/
+          else
+            cp /mnt/config-map/replica.cnf /mnt/conf.d/
+          fi
+        volumeMounts:
+        - name: conf
+          mountPath: /mnt/conf.d
+        - name: config-map
+          mountPath: /mnt/config-map
+      - name: clone-mysql
+        image: gcr.io/google-samples/xtrabackup:1.0
+        command:
+        - bash
+        - &quot;-c&quot;
+        - |
+          set -ex
+          # Skip the clone if data already exists.
+          [[ -d /var/lib/mysql/mysql ]] &amp;&amp; exit 0
+          # Skip the clone on primary (ordinal index 0).
+          [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+          ordinal=${BASH_REMATCH[1]}
+          [[ $ordinal -eq 0 ]] &amp;&amp; exit 0
+          # Clone data from previous peer.
+          ncat --recv-only mysql-$(($ordinal-1)).mysql 3307 | xbstream -x -C /var/lib/mysql
+          # Prepare the backup.
+          xtrabackup --prepare --target-dir=/var/lib/mysql
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        - name: conf
+          mountPath: /etc/mysql/conf.d
       containers:
       - name: mysql
         image: mysql:5.7
@@ -1356,18 +1665,20 @@ spec:
           mountPath: /etc/mysql/conf.d
         resources:
           requests:
-            cpu: 400m
-            memory: 500Mi
+            cpu: 500m
+            memory: 1Gi
         livenessProbe:
           exec:
             command: [&quot;mysqladmin&quot;, &quot;ping&quot;]
           initialDelaySeconds: 30
+          periodSeconds: 10
           timeoutSeconds: 5
         readinessProbe:
           exec:
             # Check we can execute queries over TCP (skip-networking is off).
             command: [&quot;mysql&quot;, &quot;-h&quot;, &quot;127.0.0.1&quot;, &quot;-e&quot;, &quot;SELECT 1&quot;]
           initialDelaySeconds: 5
+          periodSeconds: 2
           timeoutSeconds: 1
       - name: xtrabackup
         image: gcr.io/google-samples/xtrabackup:1.0
@@ -1382,16 +1693,16 @@ spec:
           cd /var/lib/mysql
 
           # Determine binlog position of cloned data, if any.
-          if [[ -f xtrabackup_slave_info ]]; then
+          if [[ -f xtrabackup_slave_info &amp;&amp; &quot;x$(&lt;xtrabackup_slave_info)&quot; != &quot;x&quot; ]]; then
             # XtraBackup already generated a partial &quot;CHANGE MASTER TO&quot; query
-            # because we&#39;re cloning from an existing slave.
-            mv xtrabackup_slave_info change_master_to.sql.in
+            # because we&#39;re cloning from an existing replica. (Need to remove the tailing semicolon!)
+            cat xtrabackup_slave_info | sed -E &#39;s/;$//g&#39; &gt; change_master_to.sql.in
             # Ignore xtrabackup_binlog_info in this case (it&#39;s useless).
-            rm -f xtrabackup_binlog_info
+            rm -f xtrabackup_slave_info xtrabackup_binlog_info
           elif [[ -f xtrabackup_binlog_info ]]; then
-            # We&#39;re cloning directly from master. Parse binlog position.
+            # We&#39;re cloning directly from primary. Parse binlog position.
             [[ `cat xtrabackup_binlog_info` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
-            rm xtrabackup_binlog_info
+            rm -f xtrabackup_binlog_info xtrabackup_slave_info
             echo &quot;CHANGE MASTER TO MASTER_LOG_FILE=&#39;${BASH_REMATCH[1]}&#39;,\
                   MASTER_LOG_POS=${BASH_REMATCH[2]}&quot; &gt; change_master_to.sql.in
           fi
@@ -1402,16 +1713,15 @@ spec:
             until mysql -h 127.0.0.1 -e &quot;SELECT 1&quot;; do sleep 1; done
 
             echo &quot;Initializing replication from clone position&quot;
+            mysql -h 127.0.0.1 \
+                  -e &quot;$(&lt;change_master_to.sql.in), \
+                          MASTER_HOST=&#39;mysql-0.mysql&#39;, \
+                          MASTER_USER=&#39;root&#39;, \
+                          MASTER_PASSWORD=&#39;&#39;, \
+                          MASTER_CONNECT_RETRY=10; \
+                        START SLAVE;&quot; || exit 1
             # In case of container restart, attempt this at-most-once.
             mv change_master_to.sql.in change_master_to.sql.orig
-            mysql -h 127.0.0.1 &lt;&lt;EOF
-          $(&lt;change_master_to.sql.orig),
-            MASTER_HOST=&#39;mysql-0.mysql&#39;,
-            MASTER_USER=&#39;root&#39;,
-            MASTER_PASSWORD=&#39;&#39;,
-            MASTER_CONNECT_RETRY=10;
-          START SLAVE;
-          EOF
           fi
 
           # Start a server to send backups when requested by peers.
@@ -1436,14 +1746,16 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: data
-      annotations:
-        volume.beta.kubernetes.io/storage-class: general
     spec:
       accessModes: [&quot;ReadWriteOnce&quot;]
+      storageClassName: &quot;standard-rwo&quot;
       resources:
         requests:
-          storage: 5Gi
-EOF
+          storage: 10Gi
+</code></pre></div>
+
+<p>Deploy <code>StatefulSet</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f https://k8s.io/examples/application/mysql/mysql-statefulset.yaml
 </code></pre></div>
 
 <p><strong>Step 4</strong> Monitor Deployment Process/Sequence</p>
@@ -1451,6 +1763,15 @@ EOF
 </code></pre></div>
 
 <p>Press <code>Ctrl+C</code> to cancel the watch when all pods, pvc and statefulset provisioned.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get  pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME      READY   STATUS     RESTARTS   AGE
+mysql-0   2/2     Running    0          2m6s
+mysql-1   2/2     Running    0          77s
+</code></pre></div>
+
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>The StatefulSet controller started Pods one at a time, in order by their
@@ -1578,11 +1899,11 @@ it running in another window so you can see the effects of the following steps.<
 <h3 id="43-delete-pods">4.3 Delete Pods<a class="headerlink" href="#43-delete-pods" title="Permanent link">&para;</a></h3>
 <p>The StatefulSet recreates Pods if they're deleted, similar to what a
 ReplicaSet does for stateless Pods.</p>
-<p><strong>Step 1</strong> Try to fail Mysql cluster by deleting <code>mysql-2</code> pod:</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete pod mysql-2
+<p><strong>Step 1</strong> Try to fail Mysql cluster by deleting <code>mysql-1</code> pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod mysql-1
 </code></pre></div>
 
-<p>The StatefulSet controller notices that no <code>mysql-2</code> Pod exists anymore,
+<p>The StatefulSet controller notices that no <code>mysql-1</code> Pod exists anymore,
 and creates a new one with the same name and linked to the same
 PersistentVolumeClaim.</p>
 <p><strong>Step 5</strong> Monitor Deployment Process/Sequence</p>
@@ -1605,10 +1926,6 @@ With StatefulSet, you can do this with a single command:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>mysql --watch
 </code></pre></div>
 
-<p>Once they're up, you should see server IDs <code>103</code> and <code>104</code> start appearing in
-the <code>SELECT @@server_id</code> loop output.</p>
-<p>You can also verify that these new servers have the data you added before they
-existed:</p>
 <p><strong>Step 3</strong> Watch the new Pods come up by running:</p>
 <div class="codehilite"><pre><span></span><code>kubectl run mysql-client --image<span class="o">=</span>mysql:5.7 -i -t --rm --restart<span class="o">=</span>Never --<span class="se">\</span>
   mysql -h mysql-3.mysql -e <span class="s2">&quot;SELECT * FROM test.messages&quot;</span>
@@ -1635,19 +1952,20 @@ scaling back up quicker, or to extract data before deleting them.</p>
 <div class="codehilite"><pre><span></span><code>kubectl get pvc -l <span class="nv">app</span><span class="o">=</span>mysql
 </code></pre></div>
 
-<p>Which shows that all 5 PVCs still exist, despite having scaled the
-StatefulSet down to 3:</p>
+<p>Which shows that all 3 PVCs still exist, despite having scaled the
+StatefulSet down to 1:</p>
 <div class="codehilite"><pre><span></span><code>NAME           STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
 data-mysql-0   Bound     pvc-8acbf5dc-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
 data-mysql-1   Bound     pvc-8ad39820-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
 data-mysql-2   Bound     pvc-8ad69a6d-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
-data-mysql-3   Bound     pvc-50043c45-b1c5-11e6-93fa-42010a800002   10Gi       RWO           2m
-data-mysql-4   Bound     pvc-500a9957-b1c5-11e6-93fa-42010a800002   10Gi       RWO           2m
 </code></pre></div>
 
 <p>If you don't intend to reuse the extra PVCs, you can delete them:</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete pvc data-mysql-3
+<div class="codehilite"><pre><span></span><code>kubectl delete pvc data-mysql-1
+kubectl delete pvc data-mysql-2
+kubectl delete pvc data-mysql-3
 kubectl delete pvc data-mysql-4
+kubectl delete pvc data-mysql-5
 </code></pre></div>
 
 <p><strong>Step 5</strong> Cancel the <code>SELECT @@server_id</code> loop by pressing <strong>Ctrl+C</strong> in its terminal,
