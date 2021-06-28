@@ -317,6 +317,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ass5_solution/" class="md-nav__link">
+        Assignment5 - Solution
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -480,14 +495,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" >
       
-      <label class="md-nav__link" for="__nav_12">
+      <label class="md-nav__link" for="__nav_13">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_12">
+        <label class="md-nav__title" for="__nav_13">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -865,7 +880,7 @@ git commit -m &quot;adding K8s manifests for assignment 6&quot;
 <h3 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) <code>gowebapp-mysql-pvc.yaml</code> manifest so that it will Dynamically creates 5G GCP PD Persistent Volume (PV), using  <code>balanced</code> persistent disk Provisioner with Access Mode <code>ReadWriteOnce</code>.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
-vim gowebapp-mysql-pvc.yaml
+edit gowebapp-mysql-pvc.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: v1
@@ -908,7 +923,7 @@ mongodb-pvc   Pending                                      standard-rwo   5s
 <p>Create Mysql deployment using created Persistent Volume (PV)</p>
 <p><strong>Step 1</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> and add Volume</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
-vim gowebapp-mysql-deployment.yaml
+edit gowebapp-mysql-deployment.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
@@ -1003,7 +1018,7 @@ kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
 kubectl describe configmap gowebapp
 </code></pre></div>
 
-<p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_a5/</code></p>
+<p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 kubectl apply -f gowebapp-service.yaml    #Create Service
 kubectl apply -f gowebapp-deployment.yaml #Create Deployment
@@ -1033,13 +1048,148 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 <p>Congrats!!! You've deployed you code to Kubernetes</p>
 </div>
 <h3 id="25-expose-gowebapp-with-ingress-resource">2.5 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#25-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p><strong>Step 1</strong> Delete the LoadBalancer gowebapp service.</p>
+<div class="codehilite"><pre><span></span><code>#TODO delete the gowebapp service
+</code></pre></div>
+
+<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a ClusterIP service instead of LoadBalancer service.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+edit gowebapp-service.yaml
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Cloud Shell Editor opens. Make sure update service and save it!</p>
+</div>
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: Service
+metadata:
+  name: gowebapp
+  labels:
+    run: gowebapp
+spec:
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  #TODO add the NodePort type
+</code></pre></div>
+
+<p>Go back to  Cloud Shell Terminal.</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml   #Re-Create Service with ClusterIP
+</code></pre></div>
+
+<p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path /*</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; gowebapp-ingress.yaml &lt;&lt; EOF
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gowebapp-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: #TODO add the correct path
+        pathType: #TODO add the pathType appropriate for a GKE Ingress
+        backend:
+          service:
+            name: #TODO add the appropriate service name
+            port:
+              number: #TODO add the appropriate service port
+EOF
+</code></pre></div>
+
+<p><strong>Step 4</strong> Deploy <code>gowebapp-ingress</code> app under ~/$MY_REPO/deploy_a6/</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-ingress.yaml   #Create Ingress
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify the Ingress</p>
+<p>After you have deployed a workload, grouped its Pods into a Service, and created an Ingress for the Service, you should verify that the Ingress has provisioned the container-native load balancer successfully.</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe ingress gowebapp-ingress
+</code></pre></div>
+
+<p><strong>Step 6</strong>  Test load balancer functionality</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait several minutes for the HTTP(S) load balancer to be configured.</p>
+</div>
+<p>Get the Ingress IP address, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ing gowebapp-ingress
+</code></pre></div>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$ADDRESS
+</code></pre></div>
+
 <h3 id="26-configure-deny-all-network-policy-for-dev-namespace">2.6 Configure <code>deny-all</code> Network Policy for dev Namespace<a class="headerlink" href="#26-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f - &lt;&lt;EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels: #TODO add the appropriate match labels to block all traffic
+EOF
+</code></pre></div>
+
 <h3 id="27-configure-network-policy-for-gowebapp-mysql">2.7 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#27-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p><strong>Step 1</strong> create a network policy to allow access from the gowebapp service</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f - &lt;&lt;EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: gowebapp-allow
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels:
+      #TODO add the appropriate match labels
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            #TODO add the appropriate match labels
+EOF
+</code></pre></div>
+
 <h3 id="28-configure-network-policy-for-gowebapp">2.8 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#28-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p><strong>Step 1</strong> create a network policy to allow access from the gowebapp-mysql service</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f - &lt;&lt;EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: mysql-allow
+  namespace: dev
+spec:
+  podSelector:
+    matchLabels:
+      #TODO add the appropriate match labels
+  ingress:
+    #TODO add the appropriate rules to allow traffic from gowebapp pods
+EOF
+</code></pre></div>
+
+<p><strong>Step 2</strong> Configure a Network Policy to allow acess for the Healthcheck IP ranges needed for the Ingress Loadbalancer, and hence allow access through the Ingress Loadbalancer. The IP rangers you need to enable access from are <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f - &lt;&lt;EOF
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: healthchecks-allow
+  namespace: dev
+spec:
+  podSelector: 
+    matchLabels:
+      run: gowebapp
+  ingress:
+  #TODO add the appropriate rules to enable access from IP ranges
+  policyTypes:
+  - Ingress
+EOF
+</code></pre></div>
+
 <h3 id="29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.9 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#29-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .
@@ -1072,7 +1222,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../ass5/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../ass5_solution/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1081,7 +1231,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
               <span class="md-footer__direction">
                 Previous
               </span>
-              Assignment5
+              Assignment5 - Solution
             </div>
           </div>
         </a>

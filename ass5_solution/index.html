@@ -14,7 +14,7 @@
     
     
       
-        <title>Deploy Applications on Kubernetes - YCIT019</title>
+        <title>Assignment5 - Solution - YCIT019</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy Applications on Kubernetes
+              Assignment5 - Solution
             
           </span>
         </div>
@@ -317,6 +317,138 @@
 
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Assignment5 - Solution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Assignment5 - Solution
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-gke-cluster-with-cluster-and-vertical-autoscaling-support" class="md-nav__link">
+    0 Create GKE Cluster with Cluster and Vertical Autoscaling Support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-locate-assignment-5" class="md-nav__link">
+    1.2 Locate Assignment 5
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-create-a-namespace-dev" class="md-nav__link">
+    1.3 Create a Namespace dev
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-configure-vpa-for-gowebapp-mysql-to-find-optimal-resource-request-and-limits-values" class="md-nav__link">
+    2.1 Configure VPA for gowebapp-mysql to find optimal Resource Request and Limits values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-set-recommended-request-and-limits-values-to-gowebapp-mysql" class="md-nav__link">
+    2.2 Set Recommended Request and Limits values to gowebapp-mysql
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-configure-vpa-for-gowebapp-to-find-optimal-resource-request-and-limits-values" class="md-nav__link">
+    2.3 Configure VPA for gowebapp to find optimal Resource Request and Limits values
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-set-recommended-request-and-limits-values-to-gowebapp" class="md-nav__link">
+    2.4 Set Recommended Request and Limits values to gowebapp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-configure-hpa-for-gowebapp" class="md-nav__link">
+    2.5 Configure HPA for gowebapp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-configure-limitranges-for-namespace-dev" class="md-nav__link">
+    2.6 Configure LimitRanges for Namespace dev
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-viewing-cluster-autoscaler-events" class="md-nav__link">
+    2.7 Viewing cluster autoscaler events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    2.7 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-cleaning-up" class="md-nav__link">
+    3.6 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../ass6/" class="md-nav__link">
@@ -337,14 +469,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_12" type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_13" type="checkbox" id="__nav_13" >
       
-      <label class="md-nav__link" for="__nav_12">
+      <label class="md-nav__link" for="__nav_13">
         Labs
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Labs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_12">
+        <label class="md-nav__title" for="__nav_13">
           <span class="md-nav__icon md-icon"></span>
           Labs
         </label>
@@ -1041,6 +1173,39 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 5&quot;
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ass5/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Assignment5
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ass6/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment6
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
