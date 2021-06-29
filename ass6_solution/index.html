@@ -1192,6 +1192,16 @@ EOF
 <p class="admonition-title">Result</p>
 <p><code>run=gowebapp</code>   Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
 </div>
+<p><strong>Step 4</strong>  Test that application is reachable via <code>Ingress</code> after all Network Policy has been applied.</p>
+<p>Get the Ingress IP address, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ing gowebapp-ingress
+</code></pre></div>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$ADDRESS/*
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify that <code>NotePad</code> application is functional (e.g can login and create new entries)</p>
 <h2 id="5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .

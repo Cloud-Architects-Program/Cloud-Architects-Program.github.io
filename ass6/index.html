@@ -1119,14 +1119,14 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 <div class="codehilite"><pre><span></span><code>#TODO delete the gowebapp service
 </code></pre></div>
 
-<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a ClusterIP service instead of LoadBalancer service.</p>
+<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a NodePort service instead of LoadBalancer service.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 edit gowebapp-service.yaml
 </code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>Cloud Shell Editor opens. Make sure update service and save it!</p>
+<p>Cloud Shell Editor opens. Make sure to update the service and save it!</p>
 </div>
 <div class="codehilite"><pre><span></span><code>apiVersion: v1
 kind: Service
@@ -1134,17 +1134,19 @@ metadata:
   name: gowebapp
   labels:
     run: gowebapp
+  annotations:
+    cloud.google.com/neg: &#39;{&quot;ingress&quot;: true}&#39;
 spec:
   ports:
   - port: 9000
     targetPort: 80
   selector:
     run: gowebapp
-  #TODO add the NodePort type
+  #TODO add the appropriate type
 </code></pre></div>
 
 <p>Go back to  Cloud Shell Terminal.</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml   #Re-Create Service with ClusterIP
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml   #Re-Create the service
 </code></pre></div>
 
 <p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path /*</p>
@@ -1176,7 +1178,7 @@ EOF
 <div class="codehilite"><pre><span></span><code>kubectl describe ingress gowebapp-ingress
 </code></pre></div>
 
-<p><strong>Step 6</strong>  Test load balancer functionality</p>
+<p><strong>Step 6</strong>  Test that application is reachable via <code>Ingress</code></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Wait several minutes for the HTTP(S) load balancer to be configured.</p>
@@ -1186,23 +1188,21 @@ EOF
 </code></pre></div>
 
 <p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
-<div class="codehilite"><pre><span></span><code>$ADDRESS
+<div class="codehilite"><pre><span></span><code>$ADDRESS/*
 </code></pre></div>
 
 <h2 id="4-kubernetes-network-policy">4 Kubernetes Network Policy<a class="headerlink" href="#4-kubernetes-network-policy" title="Permanent link">&para;</a></h2>
 <p>Let's secure our 2 tier application using Kubernetes Network Policy!</p>
-<p><strong>Task:</strong> We need to ensure following is configured</p>
+<p><strong>Task:</strong> We need to ensure the following is configured</p>
 <ul>
-<li><code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from Outside Internet, With In Namespace, and inside of Cluster</li>
+<li><code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from outside the cluster (Internet), With-in the namespace, and from inside the Cluster</li>
 <li><code>mysql</code> pod can be accessed from the <code>gowebapp</code> pod</li>
 <li><code>gowebapp</code> pod can be accessed from the Internet, in our case GKE Ingress (HTTPs Loadbalancer) and it must be configure to allow the appropriate HTTP(S) load balancer health check IP ranges FROM CIDR: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code> or
   to make it less secure From any Endpoint CIDR: <code>0.0.0.0/0</code></li>
 </ul>
 <h3 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h3>
-<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI
-supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support
-network Policy.</p>
-<p>Our GKE cluster already deployed using Calico CNI. To check that you calico installed you cluster run:</p>
+<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support network Policy.</p>
+<p>Our GKE cluster is already deployed using Calico CNI. To check that calico is installed in your cluster, run:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system | grep calico
 </code></pre></div>
 
@@ -1220,7 +1220,7 @@ calico-typha-vertical-autoscaler-7595df8859-zxzmp           1/1     Running   0 
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 </code></pre></div>
 
-<p><strong>Step 1</strong> Create Policy so that  <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from Outside Internet, With In Namespace, and inside of Cluster</p>
+<p><strong>Step 1</strong> Create a policy so that <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from the Internet, with-in the namespace, and from inside the Cluster</p>
 <div class="codehilite"><pre><span></span><code>cat &gt; default-deny-dev.yaml &lt;&lt; EOF
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -1248,19 +1248,19 @@ EOF
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p><none> - Allowing the specific traffic to all pods in this namespace</p>
+<p><none> - blocking the specific traffic to all pods in this namespace</p>
 </div>
-<p><strong>Step 3</strong> Verify that you can't access application from Ingress anymore:</p>
+<p><strong>Step 3</strong> Verify that you can't access the application through Ingress anymore:</p>
 <p>Visit the IP address in a web browser</p>
 <div class="codehilite"><pre><span></span><code>$Ingress IP
 </code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>can't access Ingress host anymore.</p>
+<p>can't access the app through ingress loadbalancer anymore.</p>
 </div>
 <h3 id="42-configure-network-policy-for-gowebapp-mysql">4.2 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#42-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
-<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pod</p>
+<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pods</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 </code></pre></div>
 
@@ -1344,8 +1344,18 @@ EOF
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p><code>run=gowebapp</code>   Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
+<p><code>run=gowebapp</code> Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
 </div>
+<p><strong>Step 4</strong>  Test that application is reachable via <code>Ingress</code> after all Network Policy has been applied.</p>
+<p>Get the Ingress IP address, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ing gowebapp-ingress
+</code></pre></div>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$ADDRESS/*
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify that <code>NotePad</code> application is functional (e.g can login and create new entries)</p>
 <h2 id="5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git add .
