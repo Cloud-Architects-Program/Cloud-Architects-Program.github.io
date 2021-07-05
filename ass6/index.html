@@ -867,6 +867,9 @@
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-networking \
 --zone us-central1-c \
+--enable-ip-alias \
+--create-subnetwork=&quot;&quot; \
+--network=default \
 --enable-network-policy \
 --num-nodes 2
 </code></pre></div>
