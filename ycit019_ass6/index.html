@@ -1,0 +1,1621 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Assignment6 - YCIT020</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploy-applications-on-kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="YCIT020" class="md-header__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            YCIT020
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Assignment6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="YCIT020" class="md-nav__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    YCIT020
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        YCIT020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_2_Terraform_Fundamentals/" class="md-nav__link">
+        Lab 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1.md" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1_sol.md" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        YCIT019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_2_Docker_basics/" class="md-nav__link">
+        Lab 2 Docker Basics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_3_Advanced_Docker/" class="md-nav__link">
+        Lab 3 Advanced Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_4_Docker_Images/" class="md-nav__link">
+        Lab 4 Managing Docker Images
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_5_Docker_Compose/" class="md-nav__link">
+        Lab 5 Docker Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_6_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Lab 6 Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_7_Kubernetes_Concepts/" class="md-nav__link">
+        Lab 7 Kubernetes Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_8_Kubernetes_Features/" class="md-nav__link">
+        Lab 8 Kubernetes Features
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_9_Kubernetes_Scaling/" class="md-nav__link">
+        Lab 9 Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Lab 10 Kubernetes Networking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Lab 11 Kubernetes Storage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Assignment2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Assignment2 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Assignment3 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4/" class="md-nav__link">
+        Assignment4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Assignment4 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        Assignment5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5_solution/" class="md-nav__link">
+        Assignment5 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Assignment6
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Assignment6
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-prepare-environment" class="md-nav__link">
+    1. Prepare Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Prepare Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
+    1.1 Create GKE Cluster with Cluster Network Policy Support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-locate-assignment-6" class="md-nav__link">
+    1.2 Locate Assignment 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-create-a-namespace-dev" class="md-nav__link">
+    1.3 Create a Namespace dev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-volumes" class="md-nav__link">
+    2 Configure Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Configure Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
+    2.1 Create Persistent Volume for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-create-gowebapp-deployment" class="md-nav__link">
+    2.4 Create GoWebApp deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-ingress" class="md-nav__link">
+    3.1 Ingress
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Ingress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-expose-gowebapp-with-ingress-resource" class="md-nav__link">
+    3.1 Expose gowebapp with Ingress resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kubernetes-network-policy" class="md-nav__link">
+    4 Kubernetes Network Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Kubernetes Network Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
+    4.1 Configure deny-all Network Policy for dev Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
+    4.2 Configure Network Policy for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-configure-network-policy-for-gowebapp" class="md-nav__link">
+    4.3 Configure Network Policy for gowebapp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    5 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleaning-up" class="md-nav__link">
+    6 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Assignment6 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-prepare-environment" class="md-nav__link">
+    1. Prepare Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Prepare Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
+    1.1 Create GKE Cluster with Cluster Network Policy Support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-locate-assignment-6" class="md-nav__link">
+    1.2 Locate Assignment 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-create-a-namespace-dev" class="md-nav__link">
+    1.3 Create a Namespace dev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-volumes" class="md-nav__link">
+    2 Configure Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Configure Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
+    2.1 Create Persistent Volume for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-create-gowebapp-deployment" class="md-nav__link">
+    2.4 Create GoWebApp deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-ingress" class="md-nav__link">
+    3.1 Ingress
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Ingress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-expose-gowebapp-with-ingress-resource" class="md-nav__link">
+    3.1 Expose gowebapp with Ingress resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kubernetes-network-policy" class="md-nav__link">
+    4 Kubernetes Network Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Kubernetes Network Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
+    4.1 Configure deny-all Network Policy for dev Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
+    4.2 Configure Network Policy for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-configure-network-policy-for-gowebapp" class="md-nav__link">
+    4.3 Configure Network Policy for gowebapp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    5 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleaning-up" class="md-nav__link">
+    6 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="deploy-applications-on-kubernetes">Deploy Applications on Kubernetes<a class="headerlink" href="#deploy-applications-on-kubernetes" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Review process of creating K8s:<ul>
+<li>Network Policy</li>
+<li>Ingress</li>
+<li>PVC, PV</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-prepare-environment">1. Prepare Environment<a class="headerlink" href="#1-prepare-environment" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-gke-cluster-with-cluster-network-policy-support">1.1 Create GKE Cluster with Cluster Network Policy Support<a class="headerlink" href="#11-create-gke-cluster-with-cluster-network-policy-support" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-networking \
+--zone us-central1-c \
+--enable-ip-alias \
+--create-subnetwork=&quot;&quot; \
+--network=default \
+--enable-network-policy \
+--num-nodes 2
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+k8s-scaling  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
+</code></pre></div>
+
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-networking --zone us-central1-c
+</code></pre></div>
+
+<h3 id="12-locate-assignment-6">1.2 Locate Assignment 6<a class="headerlink" href="#12-locate-assignment-6" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Locate directory where Kubernetes manifests going to be stored.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/ycit019/
+git pull       # Pull latest assignement6
+</code></pre></div>
+
+<p>In case you don't have this folder clone it as following:</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Assignment6/
+ls
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You can see Kubernetes manifests with Assignment tasks.</p>
+</div>
+<p><strong>Step 2</strong> Go into your personal Google Cloud Source Repository:</p>
+<div class="codehilite"><pre><span></span><code>MY_REPO=your_student_id-notepad
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace $student_id with your ID</p>
+</div>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
+</code></pre></div>
+
+<p><strong>Step 3</strong> Copy Assignment 6 <code>deploy_a6</code> folder to your repo:</p>
+<div class="codehilite"><pre><span></span><code>cp -r ~/ycit019/Assignment6/deploy_a6 .
+</code></pre></div>
+
+<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>git status 
+git add .
+git commit -m &quot;adding K8s manifests for assignment 6&quot;
+</code></pre></div>
+
+<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h3 id="13-create-a-namespace-dev">1.3 Create a Namespace <code>dev</code><a class="headerlink" href="#13-create-a-namespace-dev" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns dev
+</code></pre></div>
+
+<p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
+</code></pre></div>
+
+<p><strong>Step 4</strong> Verify current context:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>dev</code></p>
+</div>
+<h2 id="2-configure-volumes">2 Configure Volumes<a class="headerlink" href="#2-configure-volumes" title="Permanent link">&para;</a></h2>
+<h3 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) <code>gowebapp-mysql-pvc.yaml</code> manifest so that it will Dynamically creates 5G GCP PD Persistent Volume (PV), using  <code>balanced</code> persistent disk Provisioner with Access Mode <code>ReadWriteOnce</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-pvc.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gowebapp-mysql-pvc
+  labels:
+    run: gowebapp-mysql
+spec:
+#TODO Access Mode `ReadWriteOnce`
+#TODO Request 5G GCP PD Persistent Storage
+#TODO Balanced PD CSI Storage Class 
+#TODO GKE CSI Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver
+</code></pre></div>
+
+<p>Please see reference for PVC creation here:
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims</p>
+<p><strong>Step 2</strong> Apply the manifest for <code>gowebapp-mysql-pvc</code> to Dynamically provision Persistent Volume:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-pvc.yaml
+</code></pre></div>
+
+<p><strong>Step 3</strong> Verify  <code>STATUS</code> of PVC</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mongodb-pvc   Pending                                      standard-rwo   5s
+</code></pre></div>
+
+<p>List PVs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+</code></pre></div>
+
+<p>List GCP Disks:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
+<h3 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h3>
+<p>Create Mysql deployment using created Persistent Volume (PV)</p>
+<p><strong>Step 1</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> and add Volume</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-deployment.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: gowebapp-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: gowebapp-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql
+              key: password
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
+        livenessProbe:
+          tcpSocket: 
+            port: 3306
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+        readinessProbe: 
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 25
+          timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: 20m
+            memory: 252M
+          limits:
+            cpu: 1000m
+            memory: 2G
+        #TODO add the definition for volumeMounts:
+        - #TODO: add mountPath as /var/lib/mysql
+          name: mysql
+      #TODO Configure Pods access to storage by using the claim as a volume
+      #TODO: define persistentVolumeClaim
+      #TODO: claimName is the name defined in gowebapp-mysql-pvc.yaml
+      #TODO Ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes
+</code></pre></div>
+
+<p><strong>Step 2</strong> Deploy <code>gowebapp-mysql</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+kubectl apply -f secret-mysql.yaml              #Create Secret
+kubectl apply -f gowebapp-mysql-service.yaml    #Create Service
+kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
+</code></pre></div>
+
+<p>Check Status of the <code>mysql</code> Pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p>Check Events from the <code>mysql</code> Pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get describe $POD
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice the sequence of events:</p>
+<ul>
+<li>Scheduler selects node</li>
+<li>Volume mounted to Pod</li>
+<li><code>kubelet</code> pulls image</li>
+<li><code>kubelet</code> creates and starts container</li>
+</ul>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our Mysql Deployment is up and running with Volume mounted</p>
+</div>
+<h3 id="24-create-gowebapp-deployment">2.4 Create GoWebApp deployment<a class="headerlink" href="#24-create-gowebapp-deployment" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
+kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
+kubectl describe configmap gowebapp
+</code></pre></div>
+
+<p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+kubectl apply -f gowebapp-service.yaml    #Create Service
+kubectl apply -f gowebapp-deployment.yaml #Create Deployment
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 3</strong> Access your application on Public IP via automatically created Loadbalancer 
+created for <code>gowebapp</code> service.</p>
+<p>To get the value of <code>Loadbalancer</code> run following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc gowebapp -o wide
+</code></pre></div>
+
+<p>Expected output:</p>
+<div class="codehilite"><pre><span></span><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
+gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
+</code></pre></div>
+
+<p><strong>Step 4</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<div class="codehilite"><pre><span></span><code>EXTERNAL-IP:9000
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Congrats!!! You've deployed you code to Kubernetes</p>
+</div>
+<h2 id="31-ingress">3.1 Ingress<a class="headerlink" href="#31-ingress" title="Permanent link">&para;</a></h2>
+<h3 id="31-expose-gowebapp-with-ingress-resource">3.1 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#31-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Delete the LoadBalancer gowebapp service.</p>
+<div class="codehilite"><pre><span></span><code>#TODO delete the gowebapp service
+</code></pre></div>
+
+<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a NodePort service instead of LoadBalancer service.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+edit gowebapp-service.yaml
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Cloud Shell Editor opens. Make sure to update the service and save it!</p>
+</div>
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: Service
+metadata:
+  name: gowebapp
+  labels:
+    run: gowebapp
+  annotations:
+    cloud.google.com/neg: &#39;{&quot;ingress&quot;: true}&#39;
+spec:
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  #TODO add the appropriate type
+</code></pre></div>
+
+<p>Go back to  Cloud Shell Terminal.</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml   #Re-Create the service
+</code></pre></div>
+
+<p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path /*</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; gowebapp-ingress.yaml &lt;&lt; EOF
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gowebapp-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: #TODO add the correct path
+        pathType: #TODO add the pathType appropriate for a GKE Ingress
+        backend:
+          service:
+            name: #TODO add the appropriate service name
+            port:
+              number: #TODO add the appropriate service port
+EOF
+</code></pre></div>
+
+<p><strong>Step 4</strong> Deploy <code>gowebapp-ingress</code> app under ~/$MY_REPO/deploy_a6/</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-ingress.yaml   #Create Ingress
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify the Ingress</p>
+<p>After you have deployed a workload, grouped its Pods into a Service, and created an Ingress for the Service, you should verify that the Ingress has provisioned the container-native load balancer successfully.</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe ingress gowebapp-ingress
+</code></pre></div>
+
+<p><strong>Step 6</strong>  Test that application is reachable via <code>Ingress</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait several minutes for the HTTP(S) load balancer to be configured.</p>
+</div>
+<p>Get the Ingress IP address, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ing gowebapp-ingress
+</code></pre></div>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$ADDRESS/*
+</code></pre></div>
+
+<h2 id="4-kubernetes-network-policy">4 Kubernetes Network Policy<a class="headerlink" href="#4-kubernetes-network-policy" title="Permanent link">&para;</a></h2>
+<p>Let's secure our 2 tier application using Kubernetes Network Policy!</p>
+<p><strong>Task:</strong> We need to ensure the following is configured</p>
+<ul>
+<li><code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from outside the cluster (Internet), With-in the namespace, and from inside the Cluster</li>
+<li><code>mysql</code> pod can be accessed from the <code>gowebapp</code> pod</li>
+<li><code>gowebapp</code> pod can be accessed from the Internet, in our case GKE Ingress (HTTPs Loadbalancer) and it must be configure to allow the appropriate HTTP(S) load balancer health check IP ranges FROM CIDR: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code> or
+  to make it less secure From any Endpoint CIDR: <code>0.0.0.0/0</code></li>
+</ul>
+<h3 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h3>
+<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support network Policy.</p>
+<p>Our GKE cluster is already deployed using Calico CNI. To check that calico is installed in your cluster, run:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system | grep calico
+</code></pre></div>
+
+<p><strong>Output</strong> </p>
+<div class="codehilite"><pre><span></span><code>calico-node-2n65c                                           1/1     Running   0          20h
+calico-node-prhgk                                           1/1     Running   0          20h
+calico-node-vertical-autoscaler-57bfddcfd8-85ltc            1/1     Running   0          20h
+calico-typha-67c885c7b7-7vf6d                               1/1     Running   0          20h
+calico-typha-67c885c7b7-zwkll                               1/1     Running   0          20h
+calico-typha-horizontal-autoscaler-58b8486cd4-pnt7c         1/1     Running   0          20h
+calico-typha-vertical-autoscaler-7595df8859-zxzmp           1/1     Running   0          20h
+</code></pre></div>
+
+<h3 id="41-configure-deny-all-network-policy-for-dev-namespace">4.1 Configure <code>deny-all</code> Network Policy for <code>dev</code> Namespace<a class="headerlink" href="#41-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre></div>
+
+<p><strong>Step 1</strong> Create a policy so that <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from the Internet, with-in the namespace, and from inside the Cluster</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; default-deny-dev.yaml &lt;&lt; EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny
+spec:
+  podSelector:
+    matchLabels: #TODO add the appropriate match labels to block all traffic
+  policyTypes:
+    #TODO Default deny all ingress traffic https://kubernetes.io/docs/concepts/services-networking/network-policies/#default-deny-all-ingress-traffic
+EOF
+</code></pre></div>
+
+<p>Edit the required fields and save:</p>
+<div class="codehilite"><pre><span></span><code>edit default-deny-dev.yaml 
+</code></pre></div>
+
+<p><strong>Step 2</strong> Deploy <code>default-deny-dev</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f default-deny-dev.yaml   # deny-all Ingress Traffic to dev Namespace
+</code></pre></div>
+
+<p>Verify Policy:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe netpol default-deny
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><none> - blocking the specific traffic to all pods in this namespace</p>
+</div>
+<p><strong>Step 3</strong> Verify that you can't access the application through Ingress anymore:</p>
+<p>Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$Ingress IP
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>can't access the app through ingress loadbalancer anymore.</p>
+</div>
+<h3 id="42-configure-network-policy-for-gowebapp-mysql">4.2 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#42-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pods</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>cat &gt; gowebapp-mysql-netpol.yaml &lt;&lt; EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: backend-policy
+spec:
+  podSelector:
+    matchLabels:
+      #TODO add the appropriate match labels
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            #TODO add the appropriate match labels
+EOF
+</code></pre></div>
+
+<p>Edit the required fields and save:</p>
+<div class="codehilite"><pre><span></span><code>edit gowebapp-mysql-netpol.yaml
+</code></pre></div>
+
+<p><strong>Step 2</strong> Using <a href="https://editor.cilium.io/">Cilium Editor</a> test you Policy for Ingress traffic only</p>
+<p>Open Browser, Upload created Policy YAML. </p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>mysql</code> pod can only communicate with <code>gowebapp</code> pod</p>
+</div>
+<p><strong>Step 3</strong> Deploy <code>gowebapp-mysql-netpol</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-netpol.yaml   # `mysql` pod can be accessed from the `gowebapp` pod
+</code></pre></div>
+
+<p>Verify Policy:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe netpol backend-policy
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>run=gowebapp-mysql</code> Allowing ingress traffic only From PodSelector: <code>run=gowebapp</code> pod</p>
+</div>
+<h3 id="43-configure-network-policy-for-gowebapp">4.3 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#43-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Configure a Network Policy to allow access for the Healthcheck IP ranges needed for the Ingress Loadbalancer, and hence allow access through the Ingress Loadbalancer. The IP rangers you need to enable access from are <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>cat &gt; gowebapp-netpol.yaml &lt;&lt; EOF
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-policy
+spec:
+  podSelector: 
+    matchLabels:
+      run: gowebapp
+  ingress:
+  #TODO add the appropriate rules to enable access from IP ranges
+  policyTypes:
+  - Ingress
+EOF
+</code></pre></div>
+
+<p>Edit the required fields and save:</p>
+<div class="codehilite"><pre><span></span><code>edit gowebapp-netpol.yaml
+</code></pre></div>
+
+<p><strong>Step 2</strong> Using <a href="https://editor.cilium.io/">Cilium Editor</a> test you Policy for Ingress traffic only</p>
+<p>Open Browser, Upload created Policy YAML. </p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>gowebapp</code> pod can only get ingress traffic from CIDRs: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+</div>
+<p><strong>Step 3</strong> Deploy <code>gowebapp-netpol</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-netpol.yaml  # `gowebapp` pod from Internet on CIDR: `35.191.0.0/16` and `130.211.0.0/22`
+</code></pre></div>
+
+<p>Verify Policy:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe netpol frontend-policy
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>run=gowebapp</code> Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
+</div>
+<p><strong>Step 4</strong>  Test that application is reachable via <code>Ingress</code> after all Network Policy has been applied.</p>
+<p>Get the Ingress IP address, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ing gowebapp-ingress
+</code></pre></div>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<div class="codehilite"><pre><span></span><code>$ADDRESS/*
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify that <code>NotePad</code> application is functional (e.g can login and create new entries)</p>
+<h2 id="5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h2 id="6-cleaning-up">6 Cleaning Up<a class="headerlink" href="#6-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-scaling
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_ass5_solution/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Assignment5 - Solution
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_ass6_solution/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment6 - Solution
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

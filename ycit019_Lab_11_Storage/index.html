@@ -1,0 +1,2242 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Lab 11 Kubernetes Storage - YCIT020</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes-storage-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="YCIT020" class="md-header__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            YCIT020
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 11 Kubernetes Storage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="YCIT020" class="md-nav__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    YCIT020
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        YCIT020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_2_Terraform_Fundamentals/" class="md-nav__link">
+        Lab 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1.md" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1_sol.md" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        YCIT019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_2_Docker_basics/" class="md-nav__link">
+        Lab 2 Docker Basics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_3_Advanced_Docker/" class="md-nav__link">
+        Lab 3 Advanced Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_4_Docker_Images/" class="md-nav__link">
+        Lab 4 Managing Docker Images
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_5_Docker_Compose/" class="md-nav__link">
+        Lab 5 Docker Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_6_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Lab 6 Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_7_Kubernetes_Concepts/" class="md-nav__link">
+        Lab 7 Kubernetes Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_8_Kubernetes_Features/" class="md-nav__link">
+        Lab 8 Kubernetes Features
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_9_Kubernetes_Scaling/" class="md-nav__link">
+        Lab 9 Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Lab 10 Kubernetes Networking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 11 Kubernetes Storage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lab 11 Kubernetes Storage
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster" class="md-nav__link">
+    0 Create Regional GKE Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-dynamically-provision-volume" class="md-nav__link">
+    1 Dynamically Provision Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deploy-single-mysql-database-with-volume" class="md-nav__link">
+    2 Deploy Single MySQL Database with Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deploying-highly-available-postgresql-with-gke" class="md-nav__link">
+    3 Deploying highly available PostgreSQL with GKE
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Deploying highly available PostgreSQL with GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploying-postgresql" class="md-nav__link">
+    3.1 Deploying PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-creating-a-test-dataset" class="md-nav__link">
+    3.2 Creating a test dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-simulating-database-instance-failover" class="md-nav__link">
+    3.3 Simulating database instance failover
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deploy-statefulset" class="md-nav__link">
+    4 Deploy StatefulSet
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Deploy StatefulSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset" class="md-nav__link">
+    4.1 Deploy Replicated MySQL (Master/Slaves) Cluster using StatefulSet.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-test-the-mysql-cluster-app-and-running" class="md-nav__link">
+    4.2 Test the MySQL cluster app and running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-delete-pods" class="md-nav__link">
+    4.3 Delete Pods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-scaling-the-number-of-slaves" class="md-nav__link">
+    4.4 Scaling the number of slaves
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleaning-up" class="md-nav__link">
+    5 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Assignment2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Assignment2 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Assignment3 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4/" class="md-nav__link">
+        Assignment4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Assignment4 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        Assignment5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5_solution/" class="md-nav__link">
+        Assignment5 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6/" class="md-nav__link">
+        Assignment6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Assignment6 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster" class="md-nav__link">
+    0 Create Regional GKE Cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-dynamically-provision-volume" class="md-nav__link">
+    1 Dynamically Provision Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deploy-single-mysql-database-with-volume" class="md-nav__link">
+    2 Deploy Single MySQL Database with Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deploying-highly-available-postgresql-with-gke" class="md-nav__link">
+    3 Deploying highly available PostgreSQL with GKE
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Deploying highly available PostgreSQL with GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploying-postgresql" class="md-nav__link">
+    3.1 Deploying PostgreSQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-creating-a-test-dataset" class="md-nav__link">
+    3.2 Creating a test dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-simulating-database-instance-failover" class="md-nav__link">
+    3.3 Simulating database instance failover
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deploy-statefulset" class="md-nav__link">
+    4 Deploy StatefulSet
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Deploy StatefulSet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset" class="md-nav__link">
+    4.1 Deploy Replicated MySQL (Master/Slaves) Cluster using StatefulSet.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-test-the-mysql-cluster-app-and-running" class="md-nav__link">
+    4.2 Test the MySQL cluster app and running
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-delete-pods" class="md-nav__link">
+    4.3 Delete Pods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-scaling-the-number-of-slaves" class="md-nav__link">
+    4.4 Scaling the number of slaves
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleaning-up" class="md-nav__link">
+    5 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="kubernetes-storage-concepts">Kubernetes Storage Concepts<a class="headerlink" href="#kubernetes-storage-concepts" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Create a PersistentVolume (PV) referencing a disk in your environment.</li>
+<li>Learn how to <code>dynamically provision</code> volumes.</li>
+<li>Create a Single MySQL <code>Deployment</code> based on the <code>Volume Claim</code></li>
+<li>Deploy a Replicated MySQL (Master/Slaves) with a <code>StatefulSet</code> controller.</li>
+</ul>
+<h2 id="0-create-regional-gke-cluster">0 Create Regional GKE Cluster<a class="headerlink" href="#0-create-regional-gke-cluster" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-storage \
+--region us-central1 \
+--enable-network-policy \
+--num-nodes 2 \
+--machine-type &quot;e2-standard-2&quot; \
+ --node-locations &quot;us-central1-b&quot;,&quot;us-central1-c&quot;
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We created a Regional cluster with Nodes deployed in  "us-central1-b" and "us-central1-c" zones.</p>
+</div>
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+k8s-storage  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
+</code></pre></div>
+
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-storage --region us-central1 --project jfrog2021
+</code></pre></div>
+
+<h2 id="1-dynamically-provision-volume">1 Dynamically Provision Volume<a class="headerlink" href="#1-dynamically-provision-volume" title="Permanent link">&para;</a></h2>
+<p>Our Lab already has provisioned Default Storageclass created by Cluster Administrator.</p>
+<p><strong>Step 1</strong> Verify what storage class is used in our lab:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get sc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+premium-rwo          pd.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   5m2s
+standard (default)   kubernetes.io/gce-pd    Delete          Immediate              true                   5m2s
+standard-rwo         pd.csi.storage.gke.io   Delete          WaitForFirstConsumer   true                   5m2s
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <strong>PROVISIONER</strong> field determines what volume plugin is used for provisioning PVs.</p>
+<ul>
+<li><code>standard</code> provisions  <code>standard</code> GCP PDs  (In-tree volume plugin)</li>
+<li><code>standard-rwo</code>  provisions <code>balanced</code> GCP persistent disk (CSI based)</li>
+<li><code>premium-rwo</code> provisions GCP SSD PDs (CSI based)</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <strong>RECLAIMPOLICY</strong> field tells the cluster what to do with the volume after it has been released of its claim. Currently, volumes can either be <em>Retained</em>, <em>Recycled</em>, or <em>Deleted</em></p>
+<ul>
+<li><code>Delete</code> reclaim policy, deletion removes both the PersistentVolume object from Kubernetes, as well as the associated storage asset in the external infrastructure, such as an AWS EBS, GCE PD, Azure Disk</li>
+<li><code>Retain</code> reclaim policy allows for manual reclamation of the resource. When the persistent volume is released (this happens when you delete the claim that’s bound to it), Kubernetes retains the volume. The cluster administrator must manually reclaim the volume. This is the default policy for manually created persistent volumes aka Static Provisioners</li>
+<li><code>Recycle</code> - This option is deprecated and shouldn’t be used as it may not be supported by the underlying volume plugin. This policy typically causes all files on the volume to be deleted and makes the persistent volume available again without the need to delete and recreate it.</li>
+</ul>
+<p>If no <code>reclaimPolicy</code> is specified when a <code>StorageClass</code> object is created, it will default to Delete.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <strong>VOLUMEBINDINGMODE</strong> field controls when volume binding and dynamic provisioning should occur. When unset, "Immediate" mode is used by default. </p>
+<ul>
+<li>Immediate</li>
+</ul>
+<p>The <code>Immediate</code> mode indicates that volume binding and dynamic provisioning occurs once the <code>PersistentVolumeClaim</code> is created. For storage backends that are topology-constrained and not globally accessible from all Nodes in the cluster, PersistentVolumes will be bound or provisioned without knowledge of the Pod's scheduling requirements. This may result in unschedulable Pods.</p>
+<ul>
+<li><code>WaitForFirstConsumer</code> The volume is provisioned and bound to the claim when the first pod that uses this claim is created. This mode is used for topology-constrained volume types. </li>
+</ul>
+<p>The following plugins support <code>WaitForFirstConsumer</code> with dynamic provisioning:</p>
+<ul>
+<li>AWSElasticBlockStore</li>
+<li>GCEPersistentDisk</li>
+<li>AzureDisk</li>
+</ul>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl  describe sc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Name:                  premium-rwo
+IsDefaultClass:        No
+Annotations:           components.gke.io/component-name=pdcsi,components.gke.io/component-version=0.9.6,components.gke.io/layer=addon
+Provisioner:           pd.csi.storage.gke.io
+Parameters:            type=pd-ssd
+AllowVolumeExpansion:  True
+MountOptions:          &lt;none&gt;
+ReclaimPolicy:         Delete
+VolumeBindingMode:     WaitForFirstConsumer
+Events:                &lt;none&gt;
+
+
+Name:                  standard
+IsDefaultClass:        Yes
+Annotations:           storageclass.kubernetes.io/is-default-class=true
+Provisioner:           kubernetes.io/gce-pd
+Parameters:            type=pd-standard
+AllowVolumeExpansion:  True
+MountOptions:          &lt;none&gt;
+ReclaimPolicy:         Delete
+VolumeBindingMode:     Immediate
+Events:                &lt;none&gt;
+
+
+Name:                  standard-rwo
+IsDefaultClass:        No
+Annotations:           components.gke.io/layer=addon,storageclass.kubernetes.io/is-default-class=false
+Provisioner:           pd.csi.storage.gke.io
+Parameters:            type=pd-balanced
+AllowVolumeExpansion:  True
+MountOptions:          &lt;none&gt;
+ReclaimPolicy:         Delete
+VolumeBindingMode:     WaitForFirstConsumer
+Events:                &lt;none&gt;
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>The StorageClass resource specifies which provisioner should be used for provisioning the persistent volume when a persistent volume claim requests this storage class. The parameters defined in the storage class definition are passed to the provisioner and are specific to each provisioner plugin.</p>
+</div>
+<p>Step 2 Let's create a new <code>StorageClass</code> for Regional PDs:</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; regionalpd-sc.yaml &lt;&lt; EOF
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: regionalpd-storageclass
+provisioner: pd.csi.storage.gke.io
+parameters:
+  type: pd-standard
+  replication-type: regional-pd
+allowedTopologies:
+  - matchLabelExpressions:
+      - key: failure-domain.beta.kubernetes.io/zone
+        values:
+          - us-central1-b
+          - us-central1-c
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl apply  -f regionalpd-sc.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl  describe sc regionalpd-storageclass
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We've created a new <code>StorageClass</code> that uses GCP PD csi provisioner to create Regional Disks in GCP.</p>
+</div>
+<p><strong>Step 3</strong> Create a Persistent Volume Claim (PVC) <code>pvc-demo-ssd.yaml</code> file that will Dynamically creates 30G GCP PD Persistent Volume (PV),  using SSD persistent disk Provisioner.</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; pvc-demo-ssd.yaml &lt;&lt; EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hello-web-disk
+spec:
+  storageClassName: premium-rwo
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30G
+EOF
+</code></pre></div>
+
+<p><strong>Step 3</strong> Create a PVC:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f pvc-demo-ssd.yaml
+</code></pre></div>
+
+<p><strong>Step 4</strong> Verify  <code>STATUS</code> of PVC</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mongodb-pvc   Pending                                      standard-rwo   5s
+</code></pre></div>
+
+<p>List PVs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+</code></pre></div>
+
+<p>List GCP Disks:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>What we see is that:</p>
+<ul>
+<li><code>PVC</code> is in <code>Pending</code> </li>
+<li><code>PV</code> is not created</li>
+<li>GCP <code>PD</code> is not created</li>
+</ul>
+</div>
+<p><code>Question</code>: why PVC is in Pending State ?</p>
+<p><strong>Step 5</strong> Let's review <code>VolumeBindingMode</code> of <code>premium-rwo</code> Storage Class:</p>
+<div class="codehilite"><pre><span></span><code>kubectl  describe sc premium-rwo | grep VolumeBindingMode
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This StorageClass using VolumeBindingMode -  <code>WaitForFirstConsumer</code> that creates PV only, when the first pod that uses this claim is created. </p>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Ok so if we want PV created we actually need to create a <code>Pod</code> first. This mode is especially important in the Cloud, as <code>Pods</code> can be created in different zones and so <code>PV</code> needs to be created in the correct zone as well.</p>
+</div>
+<p><strong>Step 6</strong> Create a <code>pod-volume-demo.yaml</code> manifest that will create a <code>Pod</code> and mount <code>Persistent Volume</code> from <code>hello-web-disk</code> <code>PVC</code>.</p>
+<div class="codehilite"><pre><span></span><code>cat &gt; pod-volume-demo.yaml &lt;&lt; EOF
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pvc-demo-pod
+spec:
+  containers:
+    - name: frontend
+      image: nginx
+      volumeMounts:
+      - mountPath: &quot;/var/www/html&quot;
+        name: pvc-demo-volume
+  volumes:
+    - name: pvc-demo-volume
+      persistentVolumeClaim:
+        claimName: hello-web-disk
+EOF
+</code></pre></div>
+
+<p><strong>Step 3</strong> Create a Pod</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f pod-volume-demo.yaml
+</code></pre></div>
+
+<p><strong>Step 4</strong> Verify  <code>STATUS</code> of PVC now</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+hello-web-disk   Bound    pvc-4c006173-284e-4786-b752-028bdae768e9   28Gi       RWO            premium-rwo    15m
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>PVC <code>STATUS</code> shows as Claim <code>hello-web-disk</code> as <code>Bound</code>, and that Claim has been attached to   VOLUME <code>pvc-4c006173-284e-4786-b752-028bdae768e9</code> with <code>CAPACITY</code> 28Gi and <code>ACCESS MODES</code> RWO via <code>STORAGECLASS</code> premium-rwo using SSD.</p>
+</div>
+<p>List PVs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>PV <code>STATUS</code> shows as <code>Bound</code> to the  <code>CLAIM</code> default/hello-web-disk, with <code>RECLAIM POLICY</code> Delete, 
+meaning that SSD Disk will be deleted after PVC is deleted from Kubernetes.</p>
+</div>
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE
+persistentvolume/pvc-4c006173-284e-4786-b752-028bdae768e9   28Gi       RWO            Delete           Bound    default/hello-web-disk   premium-rwo             14m
+</code></pre></div>
+
+<p>List GCP Disks:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>pvc-4c006173-284e-4786-b752-028bdae768e9    us-central1-c  zone            28       pd-ssd       READ
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We can see that CSI Provisioner created SSD disk on GCP infrastructure.</p>
+</div>
+<p><strong>Step 5</strong> Verify  <code>STATUS</code> of Pod</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pod
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME           READY   STATUS    RESTARTS   AGE
+pvc-demo-pod   1/1     Running   0          21m
+</code></pre></div>
+
+<p><strong>Step 6</strong> Delete PVC</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod pvc-demo-pod
+kubeclt delete pvc hello-web-disk
+</code></pre></div>
+
+<p><strong>Step 6</strong> Verify resources has been released:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv,pvc,pods
+</code></pre></div>
+
+<h2 id="2-deploy-single-mysql-database-with-volume">2 Deploy Single MySQL Database with Volume<a class="headerlink" href="#2-deploy-single-mysql-database-with-volume" title="Permanent link">&para;</a></h2>
+<p>You can run a stateful application by creating a Kubernetes Deployment
+and connecting it to an existing PersistentVolume using a PersistentVolumeClaim.</p>
+<p><strong>Step 1</strong> Below Manifest file going to creates 3 Kubernetes resources:</p>
+<ul>
+<li><code>PersistentVolumeClaim</code> that looks for a 2G volume. This claim will be
+  satisfied by dynamic provisioner <code>general</code> and appropriate PV going to be created</li>
+<li><code>Deployment</code> that runs MySQL and references the PersistentVolumeClaim that is
+  mounted in /var/lib/mysql.</li>
+<li><code>Service</code> that depoyed as <code>ClusterIP:None</code> that lets the Service DNS name
+  resolve directly to the Pod’s IP</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>kubectl create -f - &lt;&lt;EOF
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.6.37
+        name: mysql
+        env:
+          # Use secret in real use case
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        ports:
+        - containerPort: 3306
+          name: mysql
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The password is defined inside of the Manifest as environment,
+which is not insecure. See <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Kubernetes Secrets</a>
+for a secure solution.</p>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Single node MySQL database has been deployed with a Volume</p>
+</div>
+<p><strong>Step 3</strong> Display information about the Deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe deployment mysql
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code> Name:                 mysql
+ Namespace:            default
+ CreationTimestamp:    Tue, 01 Nov 2016 11:18:45 -0700
+ Labels:               app=mysql
+ Annotations:          deployment.kubernetes.io/revision=1
+ Selector:             app=mysql
+ Replicas:             1 desired | 1 updated | 1 total | 0 available | 1 unavailable
+ StrategyType:         Recreate
+ MinReadySeconds:      0
+ Pod Template:
+   Labels:       app=mysql
+   Containers:
+    mysql:
+     Image:      mysql:5.6
+     Port:       3306/TCP
+     Environment:
+       MYSQL_ROOT_PASSWORD:      password
+     Mounts:
+       /var/lib/mysql from mysql-persistent-storage (rw)
+   Volumes:
+    mysql-persistent-storage:
+     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+     ClaimName:  mysql-pv-claim
+     ReadOnly:   false
+ Conditions:
+   Type          Status  Reason
+   ----          ------  ------
+   Available     False   MinimumReplicasUnavailable
+   Progressing   True    ReplicaSetUpdated
+ OldReplicaSets:       &lt;none&gt;
+ NewReplicaSet:        mysql-63082529 (1/1 replicas created)
+ Events:
+   FirstSeen    LastSeen    Count    From                SubobjectPath    Type        Reason            Message
+   ---------    --------    -----    ----                -------------    --------    ------            -------
+   33s          33s         1        {deployment-controller }             Normal      ScalingReplicaSet Scaled up replica set mysql-63082529 to 1
+</code></pre></div>
+
+<p><strong>Step 4</strong> List the pods created by the Deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l app=mysql
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                   READY     STATUS    RESTARTS   AGE
+mysql-63082529-2z3ki   1/1       Running   0          3m
+</code></pre></div>
+
+<p><strong>Step 5</strong> Inspect the PersistentVolumeClaim:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe pvc mysql-pv-claim
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code> Name:         mysql-pv-claim
+ Namespace:    default
+ StorageClass:
+ Status:       Bound
+ Volume:       mysql-pv
+ Labels:       &lt;none&gt;
+ Annotations:    pv.kubernetes.io/bind-completed=yes
+                 pv.kubernetes.io/bound-by-controller=yes
+ Capacity:     20Gi
+ Access Modes: RWO
+ Events:       &lt;none&gt;
+</code></pre></div>
+
+<p><strong>Step 5</strong> Inspect created PersistentVolume:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+kubectl describe pv
+gcloud compute disks list
+</code></pre></div>
+
+<p><strong>Step 6</strong>  Access the MySQL instance</p>
+<p>The Service option <code>clusterIP: None</code> lets the Service DNS name resolve directly
+to the Pod's IP address. This is optimal when you have only one Pod behind a
+Service and you don't intend to increase the number of Pods.</p>
+<p>Run a MySQL client to connect to the server:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run -it --rm --image=mysql:5.6 mysql-client -- mysql -h mysql -ppassword
+</code></pre></div>
+
+<p>This command creates a new Pod in the cluster running a MySQL client
+and connects it to the server through the Service. If it connects, you
+know your stateful MySQL database is up and running.</p>
+<div class="codehilite"><pre><span></span><code>Waiting for pod default/mysql-client-274442439-zyp6i to be running, status is Pending, pod ready: false
+If you don&#39;t see a command prompt, try pressing enter.
+
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql&gt; exit
+</code></pre></div>
+
+<p><strong>Step 7</strong>  Update the MySQL instance</p>
+<p>The image or any other part of the Deployment can be updated as usual
+with the <code>kubectl apply</code> command.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul>
+<li>Don't scale the app. This setup is for single-instance apps
+  only. The underlying PersistentVolume can only be mounted to one
+  Pod. For clustered stateful apps, see the
+  <a href="/docs/concepts/workloads/controllers/statefulset/">StatefulSet documentation</a>.</li>
+<li>Use <code>strategy:</code> <code>type: Recreate</code> in the Deployment configuration
+  YAML file. This instructs Kubernetes to <em>not</em> use rolling
+  updates. Rolling updates will not work, as you cannot have more than
+  one Pod running at a time. The <code>Recreate</code> strategy will stop the
+  first pod before creating a new one with the updated configuration.</li>
+</ul>
+</div>
+<p><strong>Step 8</strong> Delete the MySQL instance</p>
+<p>Delete the deployed objects by name:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete deployment,svc mysql
+kubectl delete pvc mysql-pv-claim
+</code></pre></div>
+
+<p>Since we used a dynamic provisioner, it automatically deletes the
+PersistentVolume when it sees that you deleted the PersistentVolumeClaim.</p>
+<p><strong>Step 9</strong> Check that GCP Volume has been deleted:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If PersistentVolume was manually provisioned, it is requrire to manually
+delete it, as well as release the underlying resource.</p>
+</div>
+<h2 id="3-deploying-highly-available-postgresql-with-gke">3 Deploying highly available PostgreSQL with GKE<a class="headerlink" href="#3-deploying-highly-available-postgresql-with-gke" title="Permanent link">&para;</a></h2>
+<h3 id="31-deploying-postgresql">3.1 Deploying PostgreSQL<a class="headerlink" href="#31-deploying-postgresql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Create <code>regional persistent disk</code> StorageClass</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: regionalpd-storageclass
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-standard
+  replication-type: regional-pd
+allowedTopologies:
+  - matchLabelExpressions:
+      - key: failure-domain.beta.kubernetes.io/zone
+        values:
+          - us-central1-b
+          - us-central1-c
+EOF
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Create PersistentVolumeClaim based on a <code>regional persistent disk</code> StorageClass</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql-pv
+spec:
+  storageClassName: regionalpd-storageclass
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 300Gi
+EOF
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Create a PostgreSQL deployment:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: postgres
+spec:
+ strategy:
+   rollingUpdate:
+     maxSurge: 1
+     maxUnavailable: 1
+   type: RollingUpdate
+ replicas: 1
+ selector:
+   matchLabels:
+     app: postgres
+ template:
+   metadata:
+     labels:
+       app: postgres
+   spec:
+     containers:
+       - name: postgres
+         image: postgres:10
+         resources:
+           limits:
+             cpu: &quot;1&quot;
+             memory: &quot;3Gi&quot;
+           requests:
+             cpu: &quot;1&quot;
+             memory: &quot;2Gi&quot;
+         ports:
+           - containerPort: 5432
+         env:
+           - name: POSTGRES_PASSWORD
+             value: password
+           - name: PGDATA
+             value: /var/lib/postgresql/data/pgdata
+         volumeMounts:
+           - mountPath: /var/lib/postgresql/data
+             name: postgredb
+     volumes:
+       - name: postgredb
+         persistentVolumeClaim:
+           claimName: postgresql-pv
+EOF
+</code></pre></div>
+
+<p><strong>Step 4</strong> Create PostgreSQL service:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
+  clusterIP: None
+EOF
+</code></pre></div>
+
+<p><strong>Step 5</strong> Check Regional PVs has been Provisioned based on PVC request</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc,pv
+</code></pre></div>
+
+<p><strong>Step 6</strong> Check that Postgres is up and <code>Running</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl get deploy,pods
+</code></pre></div>
+
+<h3 id="32-creating-a-test-dataset">3.2 Creating a test dataset<a class="headerlink" href="#32-creating-a-test-dataset" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Connect to your PostgreSQL instance:</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl exec -it $POD -- psql -U postgres
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Create a database and a table, and then insert some test rows:</p>
+<div class="codehilite"><pre><span></span><code>create database gke_test_regional;
+
+\c gke_test_regional;
+
+CREATE TABLE test(
+   data VARCHAR (255) NULL
+);
+
+insert into test values
+  (&#39;Learning GKE is fun&#39;),
+  (&#39;Databases on GKE are easy&#39;);
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Verify that the test rows were inserted, select all rows:</p>
+<div class="codehilite"><pre><span></span><code>select * from test;
+</code></pre></div>
+
+<p><strong>Step 4</strong> Exit the PostgreSQL shell:</p>
+<div class="codehilite"><pre><span></span><code>\q
+</code></pre></div>
+
+<h3 id="33-simulating-database-instance-failover">3.3 Simulating database instance failover<a class="headerlink" href="#33-simulating-database-instance-failover" title="Permanent link">&para;</a></h3>
+<p><strong>Step 0</strong>  Identify the node that is currently hosting PostgreSQL</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l app=postgres -o wide
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Take a note on which of the nodes Pod is <code>Running</code></p>
+</div>
+<p><strong>Step 1</strong> Prepare that node to be CORDONED in other words Disabled for  scheduling:</p>
+<div class="codehilite"><pre><span></span><code>CORDONED_NODE=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $7}&#39;`
+
+echo ${CORDONED_NODE}
+
+gcloud compute instances list --filter=&quot;name=${CORDONED_NODE}&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Disable scheduling of any new pods on this node:</p>
+<div class="codehilite"><pre><span></span><code>kubectl cordon ${CORDONED_NODE}
+
+kubectl get nodes
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The node is cordoned, so scheduling is disabled on the node that the database instance resides on.</p>
+</div>
+<p><strong>Step 3</strong>  Delete the existing PostgreSQL pod</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl delete pod ${POD}
+</code></pre></div>
+
+<p><strong>Step 4</strong>  Verify that a new pod is created on the other node.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l app=postgres -o wide
+</code></pre></div>
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It might take a while for the new pod to be ready (usually around 30 seconds).</p>
+</div>
+<p><strong>Step 5</strong>  Verify the node's zone</p>
+<div class="codehilite"><pre><span></span><code>NODE=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $7}&#39;`
+
+echo ${NODE}
+
+gcloud compute instances list --filter=&quot;name=${NODE}&quot;
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Notice that the pod is deployed in a different zone from where the node was created at the beginning of this procedure.</p>
+</div>
+<p><strong>Step 6</strong> Connect to the database instance</p>
+<div class="codehilite"><pre><span></span><code>POD=`kubectl get pods -l app=postgres -o wide | grep -v NAME | awk &#39;{print $1}&#39;`
+
+kubectl exec -it $POD -- psql -U postgres
+</code></pre></div>
+
+<p><strong>Step 7</strong> Verify that the test dataset exists </p>
+<div class="codehilite"><pre><span></span><code>\c gke_test_regional;
+
+select * from test;
+
+\q
+</code></pre></div>
+
+<p><strong>Step 8</strong> Re-enable scheduling for the node for which scheduling was disabled:</p>
+<div class="codehilite"><pre><span></span><code>kubectl uncordon $CORDONED_NODE
+</code></pre></div>
+
+<p><strong>Step 9</strong> Check that the node is ready again:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<p><strong>Step 10</strong> Cleanup Postgres <code>Deployment</code> and <code>PVC</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pvc postgresql-pv
+kubectl delete deploy postgres
+</code></pre></div>
+
+<h2 id="4-deploy-statefulset">4 Deploy StatefulSet<a class="headerlink" href="#4-deploy-statefulset" title="Permanent link">&para;</a></h2>
+<p>Scale up our GKE cluster to <code>4</code> nodes:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters resize  k8s-storage --node-pool=default-pool --num-nodes=2 --region us-central1
+</code></pre></div>
+
+<h3 id="41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset">4.1 Deploy Replicated MySQL (Master/Slaves) Cluster using StatefulSet.<a class="headerlink" href="#41-deploy-replicated-mysql-masterslaves-cluster-using-statefulset" title="Permanent link">&para;</a></h3>
+<p>Our Replicated MySQL deployment going to consists of:</p>
+<ul>
+<li>1 ConfigMap</li>
+<li>2 Services</li>
+<li>1 StatefulSet</li>
+</ul>
+<p><strong>Step 1</strong> Create the ConfigMap (just copy paste below):</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+data:
+  primary.cnf: |
+    # Apply this config only on the primary.
+    [mysqld]
+    log-bin
+  replica.cnf: |
+    # Apply this config only on replicas.
+    [mysqld]
+    super-read-only
+EOF
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>This ConfigMap provides overrides that let you independently control
+configuration on the MySQL master and slaves. In this case:</p>
+<ul>
+<li>master going to be able to serve replication logs to slaves</li>
+<li>slaves to reject any writes that don't come via replication.</li>
+</ul>
+<p>There's nothing special about the ConfigMap itself that causes different
+portions to apply to different Pods. Each Pod decides which portion to look
+at as it's initializing, based on information provided by the StatefulSet
+controller.</p>
+</div>
+<p><strong>Step 2</strong> Create 2 Services (just copy paste below):</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+# Headless service for stable DNS entries of StatefulSet members.
+# Headless service for stable DNS entries of StatefulSet members.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  ports:
+  - name: mysql
+    port: 3306
+  clusterIP: None
+  selector:
+    app: mysql
+---
+# Client service for connecting to any MySQL instance for reads.
+# For writes, you must instead connect to the primary: mysql-0.mysql.
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-read
+  labels:
+    app: mysql
+spec:
+  ports:
+  - name: mysql
+    port: 3306
+  selector:
+    app: mysql
+EOF
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The Headless Service provides a home for the DNS entries that the StatefulSet
+controller creates for each Pod that's part of the set. Because the Headless
+Service is named mysql, the Pods are accessible by resolving <pod-name>.mysql
+from within any other Pod in the same Kubernetes cluster and namespace.</p>
+<p>The Client Service, called mysql-read, is a normal Service with its own
+cluster IP that distributes connections across all MySQL Pods that report
+being Ready. The set of potential endpoints includes the MySQL master and
+all slaves.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only read queries can use the load-balanced Client Service. Because there is
+only one MySQL master, clients should connect directly to the MySQL master
+Pod (through its DNS entry within the Headless Service) to execute writes.</p>
+</div>
+<p><strong>Step 3</strong> Create StatefulSet  <code>mysql-statefulset.yaml</code>  manifest:</p>
+<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mysql
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      initContainers:
+      - name: init-mysql
+        image: mysql:5.7
+        command:
+        - bash
+        - &quot;-c&quot;
+        - |
+          set -ex
+          # Generate mysql server-id from pod ordinal index.
+          [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+          ordinal=${BASH_REMATCH[1]}
+          echo [mysqld] &gt; /mnt/conf.d/server-id.cnf
+          # Add an offset to avoid reserved server-id=0 value.
+          echo server-id=$((100 + $ordinal)) &gt;&gt; /mnt/conf.d/server-id.cnf
+          # Copy appropriate conf.d files from config-map to emptyDir.
+          if [[ $ordinal -eq 0 ]]; then
+            cp /mnt/config-map/primary.cnf /mnt/conf.d/
+          else
+            cp /mnt/config-map/replica.cnf /mnt/conf.d/
+          fi
+        volumeMounts:
+        - name: conf
+          mountPath: /mnt/conf.d
+        - name: config-map
+          mountPath: /mnt/config-map
+      - name: clone-mysql
+        image: gcr.io/google-samples/xtrabackup:1.0
+        command:
+        - bash
+        - &quot;-c&quot;
+        - |
+          set -ex
+          # Skip the clone if data already exists.
+          [[ -d /var/lib/mysql/mysql ]] &amp;&amp; exit 0
+          # Skip the clone on primary (ordinal index 0).
+          [[ `hostname` =~ -([0-9]+)$ ]] || exit 1
+          ordinal=${BASH_REMATCH[1]}
+          [[ $ordinal -eq 0 ]] &amp;&amp; exit 0
+          # Clone data from previous peer.
+          ncat --recv-only mysql-$(($ordinal-1)).mysql 3307 | xbstream -x -C /var/lib/mysql
+          # Prepare the backup.
+          xtrabackup --prepare --target-dir=/var/lib/mysql
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        - name: conf
+          mountPath: /etc/mysql/conf.d
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        env:
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: &quot;1&quot;
+        ports:
+        - name: mysql
+          containerPort: 3306
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        - name: conf
+          mountPath: /etc/mysql/conf.d
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        livenessProbe:
+          exec:
+            command: [&quot;mysqladmin&quot;, &quot;ping&quot;]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            # Check we can execute queries over TCP (skip-networking is off).
+            command: [&quot;mysql&quot;, &quot;-h&quot;, &quot;127.0.0.1&quot;, &quot;-e&quot;, &quot;SELECT 1&quot;]
+          initialDelaySeconds: 5
+          periodSeconds: 2
+          timeoutSeconds: 1
+      - name: xtrabackup
+        image: gcr.io/google-samples/xtrabackup:1.0
+        ports:
+        - name: xtrabackup
+          containerPort: 3307
+        command:
+        - bash
+        - &quot;-c&quot;
+        - |
+          set -ex
+          cd /var/lib/mysql
+
+          # Determine binlog position of cloned data, if any.
+          if [[ -f xtrabackup_slave_info &amp;&amp; &quot;x$(&lt;xtrabackup_slave_info)&quot; != &quot;x&quot; ]]; then
+            # XtraBackup already generated a partial &quot;CHANGE MASTER TO&quot; query
+            # because we&#39;re cloning from an existing replica. (Need to remove the tailing semicolon!)
+            cat xtrabackup_slave_info | sed -E &#39;s/;$//g&#39; &gt; change_master_to.sql.in
+            # Ignore xtrabackup_binlog_info in this case (it&#39;s useless).
+            rm -f xtrabackup_slave_info xtrabackup_binlog_info
+          elif [[ -f xtrabackup_binlog_info ]]; then
+            # We&#39;re cloning directly from primary. Parse binlog position.
+            [[ `cat xtrabackup_binlog_info` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
+            rm -f xtrabackup_binlog_info xtrabackup_slave_info
+            echo &quot;CHANGE MASTER TO MASTER_LOG_FILE=&#39;${BASH_REMATCH[1]}&#39;,\
+                  MASTER_LOG_POS=${BASH_REMATCH[2]}&quot; &gt; change_master_to.sql.in
+          fi
+
+          # Check if we need to complete a clone by starting replication.
+          if [[ -f change_master_to.sql.in ]]; then
+            echo &quot;Waiting for mysqld to be ready (accepting connections)&quot;
+            until mysql -h 127.0.0.1 -e &quot;SELECT 1&quot;; do sleep 1; done
+
+            echo &quot;Initializing replication from clone position&quot;
+            mysql -h 127.0.0.1 \
+                  -e &quot;$(&lt;change_master_to.sql.in), \
+                          MASTER_HOST=&#39;mysql-0.mysql&#39;, \
+                          MASTER_USER=&#39;root&#39;, \
+                          MASTER_PASSWORD=&#39;&#39;, \
+                          MASTER_CONNECT_RETRY=10; \
+                        START SLAVE;&quot; || exit 1
+            # In case of container restart, attempt this at-most-once.
+            mv change_master_to.sql.in change_master_to.sql.orig
+          fi
+
+          # Start a server to send backups when requested by peers.
+          exec ncat --listen --keep-open --send-only --max-conns=1 3307 -c \
+            &quot;xtrabackup --backup --slave-info --stream=xbstream --host=127.0.0.1 --user=root&quot;
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        - name: conf
+          mountPath: /etc/mysql/conf.d
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+      volumes:
+      - name: conf
+        emptyDir: {}
+      - name: config-map
+        configMap:
+          name: mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [&quot;ReadWriteOnce&quot;]
+      storageClassName: &quot;standard-rwo&quot;
+      resources:
+        requests:
+          storage: 10Gi
+</code></pre></div>
+
+<p>Deploy <code>StatefulSet</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f https://k8s.io/examples/application/mysql/mysql-statefulset.yaml
+</code></pre></div>
+
+<p><strong>Step 4</strong> Monitor Deployment Process/Sequence</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get statefulset,pvc,pv,pods -l app=mysql
+</code></pre></div>
+
+<p>Press <code>Ctrl+C</code> to cancel the watch when all pods, pvc and statefulset provisioned.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get  pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME      READY   STATUS     RESTARTS   AGE
+mysql-0   2/2     Running    0          2m6s
+mysql-1   2/2     Running    0          77s
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The StatefulSet controller started Pods one at a time, in order by their
+<em>ordinal index</em>. It waits until each Pod reports being Ready before starting
+the next one.</p>
+<p>In addition, the controller assigned each Pod a <em>unique</em>, stable name of the
+form <code>&lt;statefulset-name&gt;-&lt;ordinal-index&gt;</code>. In this case, that results in Pods
+named <code>mysql-0</code>, <code>mysql-1</code>, and <code>mysql-2</code>.</p>
+<p>The Pod template in the above StatefulSet manifest takes advantage of these
+properties to perform orderly startup of MySQL replication.</p>
+<p><strong>Generating configuration</strong>
+Before starting any of the containers in the Pod spec, the Pod first runs any
+[Init Containers] in the order defined.</p>
+<p>The first Init Container, named <code>init-mysql</code>, generates special MySQL config
+files based on the ordinal index.</p>
+<p>The script determines its own ordinal index by extracting it from the end of
+the Pod name, which is returned by the <code>hostname</code> command.
+Then it saves the ordinal (with a numeric offset to avoid reserved values)
+into a file called <code>server-id.cnf</code> in the MySQL <code>conf.d</code> directory.
+This translates the unique, stable identity provided by the StatefulSet
+controller into the domain of MySQL server IDs, which require the same
+properties.</p>
+<p>The script in the <code>init-mysql</code> container also applies either <code>master.cnf</code> or
+<code>slave.cnf</code> from the ConfigMap by copying the contents into <code>conf.d</code>.
+Because the example topology consists of a single MySQL master and any number of
+slaves, the script simply assigns ordinal <code>0</code> to be the master, and everyone
+else to be slaves.
+Combined with the StatefulSet controller's <code>deployment order guarantee</code>
+ensures the MySQL master is Ready before creating slaves, so they can begin
+replicating.</p>
+<p><strong>Cloning existing data</strong>
+In general, when a new Pod joins the set as a slave, it must assume the MySQL
+master might already have data on it. It also must assume that the replication
+logs might not go all the way back to the beginning of time.
+These conservative assumptions are the key to allow a running StatefulSet
+to scale up and down over time, rather than being fixed at its initial size.</p>
+<p>The second Init Container, named <code>clone-mysql</code>, performs a clone operation on
+a slave Pod the first time it starts up on an empty PersistentVolume.
+That means it copies all existing data from another running Pod,
+so its local state is consistent enough to begin replicating from the master.</p>
+<p>MySQL itself does not provide a mechanism to do this, so the example uses a
+popular open-source tool called Percona XtraBackup.
+During the clone, the source MySQL server might suffer reduced performance.
+To minimize impact on the MySQL master, the script instructs each Pod to clone
+from the Pod whose ordinal index is one lower.
+This works because the StatefulSet controller always ensures Pod <code>N</code> is
+Ready before starting Pod <code>N+1</code>.</p>
+<p><strong>Starting replication</strong>
+After the Init Containers complete successfully, the regular containers run.
+The MySQL Pods consist of a <code>mysql</code> container that runs the actual <code>mysqld</code>
+server, and an <code>xtrabackup</code> container that acts as a
+<a href="http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns.html">sidecar</a>.</p>
+<p>The <code>xtrabackup</code> sidecar looks at the cloned data files and determines if
+it's necessary to initialize MySQL replication on the slave.
+If so, it waits for <code>mysqld</code> to be ready and then executes the
+<code>CHANGE MASTER TO</code> and <code>START SLAVE</code> commands with replication parameters
+extracted from the XtraBackup clone files.</p>
+<p>Once a slave begins replication, it remembers its MySQL master and
+reconnects automatically if the server restarts or the connection dies.
+Also, because slaves look for the master at its stable DNS name
+(<code>mysql-0.mysql</code>), they automatically find the master even if it gets a new
+Pod IP due to being rescheduled.</p>
+<p>Lastly, after starting replication, the <code>xtrabackup</code> container listens for
+connections from other Pods requesting a data clone.
+This server remains up indefinitely in case the StatefulSet scales up, or in
+case the next Pod loses its PersistentVolumeClaim and needs to redo the clone.</p>
+</div>
+<h3 id="42-test-the-mysql-cluster-app-and-running">4.2 Test the MySQL cluster app and running<a class="headerlink" href="#42-test-the-mysql-cluster-app-and-running" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create Database, Table and message on Master MySQL database</p>
+<p>Send test queries to the MySQL master (hostname <code>mysql-0.mysql</code>)
+by running a temporary container with the <code>mysql:5.7</code> image and running the
+<code>mysql</code> client binary.</p>
+<div class="codehilite"><pre><span></span><code>kubectl run mysql-client --image<span class="o">=</span>mysql:5.7 -i --rm --restart<span class="o">=</span>Never --<span class="se">\</span>
+  mysql -h mysql-0.mysql <span class="s">&lt;&lt;EOF</span>
+<span class="s">CREATE DATABASE test;</span>
+<span class="s">CREATE TABLE test.messages (message VARCHAR(250));</span>
+<span class="s">INSERT INTO test.messages VALUES (&#39;hello&#39;);</span>
+<span class="s">EOF</span>
+</code></pre></div>
+
+<p><strong>Step 2</strong> Verify that recorded data has been replicated to the slaves:</p>
+<p>Use the hostname <code>mysql-read</code> to send test queries to any server that reports
+being Ready:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run mysql-client --image<span class="o">=</span>mysql:5.7 -i -t --rm --restart<span class="o">=</span>Never --<span class="se">\</span>
+  mysql -h mysql-read -e <span class="s2">&quot;SELECT * FROM test.messages&quot;</span>
+</code></pre></div>
+
+<p>You should get output like this:</p>
+<div class="codehilite"><pre><span></span><code>Waiting for pod default/mysql-client to be running, status is Pending, pod ready: false
++---------+
+| message |
++---------+
+| hello   |
++---------+
+pod &quot;mysql-client&quot; deleted
+</code></pre></div>
+
+<p><strong>Step 3</strong> Demonstrate that the <code>mysql-read</code> Service distributes connections across
+servers, you can run <code>SELECT @@hostname</code> in a loop:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run mysql-client-loop --image<span class="o">=</span>mysql:5.7 -i -t --rm --restart<span class="o">=</span>Never --<span class="se">\</span>
+  bash -ic <span class="s2">&quot;while sleep 1; do mysql -h mysql-read -e &#39;SELECT @@hostname,NOW()&#39;; done&quot;</span>
+</code></pre></div>
+
+<p>You should see the reported <code>@@hostname</code> change randomly, because a different
+endpoint might be selected upon each connection attempt:</p>
+<div class="codehilite"><pre><span></span><code>+-------------+---------------------+
+| @@hostname  | NOW()               |
++-------------+---------------------+
+|         100 | 2006-01-02 15:04:05 |
++-------------+---------------------+
++-------------+---------------------+
+| @@hostname  | NOW()               |
++-------------+---------------------+
+|         102 | 2006-01-02 15:04:06 |
++-------------+---------------------+
++-------------+---------------------+
+| @@hostname  | NOW()               |
++-------------+---------------------+
+|         101 | 2006-01-02 15:04:07 |
++-------------+---------------------+
+</code></pre></div>
+
+<p>You can press <strong>Ctrl+C</strong> when you want to stop the loop, but it's useful to keep
+it running in another window so you can see the effects of the following steps.</p>
+<h3 id="43-delete-pods">4.3 Delete Pods<a class="headerlink" href="#43-delete-pods" title="Permanent link">&para;</a></h3>
+<p>The StatefulSet recreates Pods if they're deleted, similar to what a
+ReplicaSet does for stateless Pods.</p>
+<p><strong>Step 1</strong> Try to fail Mysql cluster by deleting <code>mysql-1</code> pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod mysql-1
+</code></pre></div>
+
+<p>The StatefulSet controller notices that no <code>mysql-1</code> Pod exists anymore,
+and creates a new one with the same name and linked to the same
+PersistentVolumeClaim.</p>
+<p><strong>Step 5</strong> Monitor Deployment Process/Sequence</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get statefulset,pvc,pv,pods -l app=mysql
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You should see server ID <code>102</code> disappear from the loop output for a while
+and then return on its own.</p>
+</div>
+<h3 id="44-scaling-the-number-of-slaves">4.4 Scaling the number of slaves<a class="headerlink" href="#44-scaling-the-number-of-slaves" title="Permanent link">&para;</a></h3>
+<p>With MySQL replication, you can scale your read query capacity by adding slaves.
+With StatefulSet, you can do this with a single command:</p>
+<p><strong>Step 1</strong> Scale up statefulset:</p>
+<div class="codehilite"><pre><span></span><code>kubectl scale statefulset mysql  --replicas<span class="o">=</span><span class="m">5</span>
+</code></pre></div>
+
+<p><strong>Step 2</strong> Watch the new Pods come up by running:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>mysql --watch
+</code></pre></div>
+
+<p><strong>Step 3</strong> Watch the new Pods come up by running:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run mysql-client --image<span class="o">=</span>mysql:5.7 -i -t --rm --restart<span class="o">=</span>Never --<span class="se">\</span>
+  mysql -h mysql-3.mysql -e <span class="s2">&quot;SELECT * FROM test.messages&quot;</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Waiting for pod default/mysql-client to be running, status is Pending, pod ready: false
++---------+
+| message |
++---------+
+| hello   |
++---------+
+pod &quot;mysql-client&quot; deleted
+</code></pre></div>
+
+<p><strong>Step 4</strong> Scaling back down is also seamless:</p>
+<div class="codehilite"><pre><span></span><code>kubectl scale statefulset mysql --replicas<span class="o">=</span><span class="m">3</span>
+</code></pre></div>
+
+<p>Note, however, that while scaling up creates new PersistentVolumeClaims
+automatically, scaling down does not automatically delete these PVCs.
+This gives you the choice to keep those initialized PVCs around to make
+scaling back up quicker, or to extract data before deleting them.</p>
+<p>You can see this by running:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc -l <span class="nv">app</span><span class="o">=</span>mysql
+</code></pre></div>
+
+<p>Which shows that all 3 PVCs still exist, despite having scaled the
+StatefulSet down to 1:</p>
+<div class="codehilite"><pre><span></span><code>NAME           STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+data-mysql-0   Bound     pvc-8acbf5dc-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
+data-mysql-1   Bound     pvc-8ad39820-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
+data-mysql-2   Bound     pvc-8ad69a6d-b103-11e6-93fa-42010a800002   10Gi       RWO           20m
+</code></pre></div>
+
+<p>If you don't intend to reuse the extra PVCs, you can delete them:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pvc data-mysql-0
+kubectl delete pvc data-mysql-1
+kubectl delete pvc data-mysql-2
+kubectl delete pvc data-mysql-3
+kubectl delete pvc data-mysql-4
+</code></pre></div>
+
+<p><strong>Step 5</strong> Cancel the <code>SELECT @@server_id</code> loop by pressing <strong>Ctrl+C</strong> in its terminal,
+   or running the following from another terminal:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod mysql-client-loop --now
+</code></pre></div>
+
+<p><strong>Step 6</strong> Delete the StatefulSet. This also begins terminating the Pods.</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete statefulset mysql
+</code></pre></div>
+
+<h2 id="5-cleaning-up">5 Cleaning Up<a class="headerlink" href="#5-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-storage
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_Lab_10_Networking/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lab 10 Kubernetes Networking
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_ass1/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment1
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>

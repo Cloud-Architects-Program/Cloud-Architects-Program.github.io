@@ -1,0 +1,1431 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Lab 6 Deploy Kubernetes Cluster with Kubeadm - YCIT020</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploy-kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="YCIT020" class="md-header__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            YCIT020
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 6 Deploy Kubernetes Cluster with Kubeadm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="YCIT020" class="md-nav__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    YCIT020
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        YCIT020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_2_Terraform_Fundamentals/" class="md-nav__link">
+        Lab 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1.md" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_ass1_sol.md" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        YCIT019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_2_Docker_basics/" class="md-nav__link">
+        Lab 2 Docker Basics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_3_Advanced_Docker/" class="md-nav__link">
+        Lab 3 Advanced Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_4_Docker_Images/" class="md-nav__link">
+        Lab 4 Managing Docker Images
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_5_Docker_Compose/" class="md-nav__link">
+        Lab 5 Docker Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 6 Deploy Kubernetes Cluster with Kubeadm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lab 6 Deploy Kubernetes Cluster with Kubeadm
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-deploy-kubernetes-and-calico-with-kubeadm" class="md-nav__link">
+    1. Deploy Kubernetes and Calico with Kubeadm
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Deploy Kubernetes and Calico with Kubeadm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-vm-and-ssh-into-it" class="md-nav__link">
+    1.1 Create a VM, and ssh into it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-let-iptables-see-bridged-traffic" class="md-nav__link">
+    1.2 Let iptables see bridged traffic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-install-docker" class="md-nav__link">
+    1.3 Install Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-install-kubeadm-and-prerequisite-packages-on-each-node" class="md-nav__link">
+    1.4 Install kubeadm and prerequisite packages on each node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-kubeadm-init-the-master" class="md-nav__link">
+    1.5 'Kubeadm init' the Master
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-deploy-calico-networking-via-self-hosted-as-a-daemon-set" class="md-nav__link">
+    1.6 Deploy Calico Networking (via self-hosted, as a daemon set)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-join-worker-node" class="md-nav__link">
+    1.7 Join worker node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-now-lets-create-a-test-deployment-with-2-replicas" class="md-nav__link">
+    1.8 Now lets create a test deployment with 2 replicas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-verify-kubernetes-components-deployed-by-kubeadm" class="md-nav__link">
+    2.1 Verify Kubernetes components deployed by kubeadm
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Verify Kubernetes components deployed by kubeadm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-check-kubernetes-version" class="md-nav__link">
+    2.1.1 Check Kubernetes version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-verify-cluster-default-namespaces" class="md-nav__link">
+    2.1.2 Verify Cluster default namespaces.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-verify-kubelet" class="md-nav__link">
+    2.1.3 Verify kubelet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-verify-etcd-database-deployment" class="md-nav__link">
+    2.1.4 Verify etcd database deployment.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-verify-api-server-deployment-on-the-k8s-cluster" class="md-nav__link">
+    2.1.5 Verify api-server deployment on the K8s cluster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216-verify-controller-manager-and-scheduler-deployment" class="md-nav__link">
+    2.1.6 Verify Controller-manager and scheduler deployment.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_7_Kubernetes_Concepts/" class="md-nav__link">
+        Lab 7 Kubernetes Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_8_Kubernetes_Features/" class="md-nav__link">
+        Lab 8 Kubernetes Features
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_9_Kubernetes_Scaling/" class="md-nav__link">
+        Lab 9 Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Lab 10 Kubernetes Networking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Lab 11 Kubernetes Storage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Assignment2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Assignment2 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Assignment3 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4/" class="md-nav__link">
+        Assignment4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Assignment4 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        Assignment5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5_solution/" class="md-nav__link">
+        Assignment5 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6/" class="md-nav__link">
+        Assignment6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Assignment6 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-deploy-kubernetes-and-calico-with-kubeadm" class="md-nav__link">
+    1. Deploy Kubernetes and Calico with Kubeadm
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Deploy Kubernetes and Calico with Kubeadm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-vm-and-ssh-into-it" class="md-nav__link">
+    1.1 Create a VM, and ssh into it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-let-iptables-see-bridged-traffic" class="md-nav__link">
+    1.2 Let iptables see bridged traffic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-install-docker" class="md-nav__link">
+    1.3 Install Docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-install-kubeadm-and-prerequisite-packages-on-each-node" class="md-nav__link">
+    1.4 Install kubeadm and prerequisite packages on each node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-kubeadm-init-the-master" class="md-nav__link">
+    1.5 'Kubeadm init' the Master
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-deploy-calico-networking-via-self-hosted-as-a-daemon-set" class="md-nav__link">
+    1.6 Deploy Calico Networking (via self-hosted, as a daemon set)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-join-worker-node" class="md-nav__link">
+    1.7 Join worker node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-now-lets-create-a-test-deployment-with-2-replicas" class="md-nav__link">
+    1.8 Now lets create a test deployment with 2 replicas
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-verify-kubernetes-components-deployed-by-kubeadm" class="md-nav__link">
+    2.1 Verify Kubernetes components deployed by kubeadm
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Verify Kubernetes components deployed by kubeadm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-check-kubernetes-version" class="md-nav__link">
+    2.1.1 Check Kubernetes version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-verify-cluster-default-namespaces" class="md-nav__link">
+    2.1.2 Verify Cluster default namespaces.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-verify-kubelet" class="md-nav__link">
+    2.1.3 Verify kubelet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-verify-etcd-database-deployment" class="md-nav__link">
+    2.1.4 Verify etcd database deployment.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-verify-api-server-deployment-on-the-k8s-cluster" class="md-nav__link">
+    2.1.5 Verify api-server deployment on the K8s cluster.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216-verify-controller-manager-and-scheduler-deployment" class="md-nav__link">
+    2.1.6 Verify Controller-manager and scheduler deployment.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="deploy-kubernetes">Deploy Kubernetes<a class="headerlink" href="#deploy-kubernetes" title="Permanent link">&para;</a></h1>
+<p>In this Lab, we are going to:</p>
+<ul>
+<li>Deploy Single Node Kubernetes cluster using <strong>kubeadm</strong> on a Google Compute Engine node</li>
+<li>Deploy an application to  Kubernetes</li>
+</ul>
+<h2 id="1-deploy-kubernetes-and-calico-with-kubeadm">1. Deploy Kubernetes and Calico with Kubeadm<a class="headerlink" href="#1-deploy-kubernetes-and-calico-with-kubeadm" title="Permanent link">&para;</a></h2>
+<p>In general to deploy Kubernetes with <code>kubeadm</code> it is required to use following official Kubernetes <a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/">documentation</a>.</p>
+<h3 id="11-create-a-vm-and-ssh-into-it">1.1 Create a VM, and ssh into it<a class="headerlink" href="#11-create-a-vm-and-ssh-into-it" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create the instance</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute instances create k8s-cluster \
+--zone us-central1-c \
+--machine-type=e2-standard-4 \
+--image=ubuntu-1804-bionic-v20210514 \
+--image-project=ubuntu-os-cloud 
+</code></pre></div>
+
+<p><strong>Step 2</strong> Capture the private IP address of the VM
+Record the IP address of the node, as we will need later.</p>
+<p><strong>Step 3</strong> Once the vm is created, you can ssh into it</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute ssh k8s-cluster --zone us-central1-c
+</code></pre></div>
+
+<p>You can also ssh into the node through the console if you prefer that.</p>
+<p><strong>Step 4</strong> Define the NODE_IP as an environment variable.</p>
+<div class="codehilite"><pre><span></span><code>export NODE_IP=&lt;REPLACE_WITH_NODE_PRIVATE_IP&gt;
+</code></pre></div>
+
+<h3 id="12-let-iptables-see-bridged-traffic">1.2 Let iptables see bridged traffic<a class="headerlink" href="#12-let-iptables-see-bridged-traffic" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+</code></pre></div>
+
+<h3 id="13-install-docker">1.3 Install Docker<a class="headerlink" href="#13-install-docker" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Update the apt package index and install packages:</p>
+<div class="codehilite"><pre><span></span><code>sudo su
+apt-get update
+
+apt-get install -y \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg \
+  lsb-release
+</code></pre></div>
+
+<p><strong>Step 2</strong> Add Docker's official GPG key:</p>
+<div class="codehilite"><pre><span></span><code>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre></div>
+
+<p><strong>Step 3</strong> Setup the stable repository</p>
+<div class="codehilite"><pre><span></span><code>echo \
+  &quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre></div>
+
+<p><strong>Step 4</strong> Install Docker Engine and containerd</p>
+<div class="codehilite"><pre><span></span><code>apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre></div>
+
+<p><strong>Step 5</strong> Configure the Docker daemon to use systemd for the management of the container's cgroups.</p>
+<div class="codehilite"><pre><span></span><code>mkdir /etc/docker
+cat &lt;&lt;EOF | sudo tee /etc/docker/daemon.json
+{
+  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;],
+  &quot;log-driver&quot;: &quot;json-file&quot;,
+  &quot;log-opts&quot;: {
+    &quot;max-size&quot;: &quot;100m&quot;
+  },
+  &quot;storage-driver&quot;: &quot;overlay2&quot;
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 6</strong> Restart Docker and enable on boot:</p>
+<div class="codehilite"><pre><span></span><code>systemctl enable docker
+systemctl daemon-reload
+systemctl restart docker
+</code></pre></div>
+
+<h3 id="14-install-kubeadm-and-prerequisite-packages-on-each-node">1.4 Install kubeadm and prerequisite packages on each node<a class="headerlink" href="#14-install-kubeadm-and-prerequisite-packages-on-each-node" title="Permanent link">&para;</a></h3>
+<p>The next step is to install <code>kubeadm</code> and prerequisite packages as showed <a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl">here.</a></p>
+<p><strong>Step 1</strong> Deploy <code>kubeadm</code> and prerequisite packages</p>
+<div class="codehilite"><pre><span></span><code>apt-get update &amp;&amp; apt-get install -y apt-transport-https ca-certificates curl
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+echo &quot;deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main&quot; | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+
+apt-get update &amp;&amp; apt-get install -y kubelet=1.20.6-00 kubeadm=1.20.6-00 kubectl=1.20.6-00
+apt-mark hold kubelet kubeadm kubectl
+</code></pre></div>
+
+<p><strong>Step 2</strong> Verify <code>kubeadm</code> version</p>
+<div class="codehilite"><pre><span></span><code>kubeadm version
+</code></pre></div>
+
+<p>Output:</p>
+<div class="codehilite"><pre><span></span><code>kubeadm version: &amp;version.Info{Major:&quot;1&quot;, Minor:&quot;20&quot;, GitVersion:&quot;v1.20.6&quot;, GitCommit:&quot;8a62859e515889f07e3e3be6a1080413f17cf2c3&quot;, GitTreeState:&quot;clean&quot;, BuildDate:&quot;2021-04-15T03:26:21Z&quot;, GoVersion:&quot;go1.15.10&quot;, Compiler:&quot;gc&quot;, Platform:&quot;linux/amd64&quot;}
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result<p>Latest available version of Kubernetes/kubeadm has been installed from (GitHub Kubernetes repo release page.)[https://github.com/kubernetes/kubernetes/releases]</p>
+</p>
+</div>
+<h3 id="15-kubeadm-init-the-master">1.5 'Kubeadm init' the Master<a class="headerlink" href="#15-kubeadm-init-the-master" title="Permanent link">&para;</a></h3>
+<p><strong>Run On the Master node only:</strong></p>
+<p><strong>Step 1:</strong> Build kubeadm Custom Config</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; kubeadm.conf
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta2
+apiServer:
+  extraArgs:
+    advertise-address: $NODE_IP
+kubernetesVersion: v1.20.6
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+EOF
+</code></pre></div>
+
+<p>Make sure the IP address was updated:</p>
+<div class="codehilite"><pre><span></span><code>cat kubeadm.conf
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To expose custom Config you can create a  kubeadm.conf and specify
+    during <code>kubecadm init</code> execution. For instance:</p>
+<div class="codehilite"><pre><span></span><code>    * ControllerManager configs
+    * Custom Subnet
+    * Custom version
+    * Apiserver configs such as authentication, authorization and etc.
+</code></pre></div>
+
+</div>
+<p><strong>Step 2:</strong> Create a cluster</p>
+<div class="codehilite"><pre><span></span><code>kubeadm init --config=kubeadm.conf
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result<p>Once the command completes, configure the KUBECONFIG env variable with the path to admin.conf (recommend adding it to your .bashrc):</p>
+</p>
+</div>
+<div class="codehilite"><pre><span></span><code>  mkdir -p $HOME/.kube
+  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  chown $(id -u):$(id -g) $HOME/.kube/config
+  export KUBECONFIG=$HOME/.kube/config
+</code></pre></div>
+
+<p>Let's validate that the installation was successful. You should now be able to run kubectl commands and see that all cluster Pods
+are running (except DNS one):</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get pods --all-namespaces -o wide
+</code></pre></div>
+
+<p>To exit back to the terminal, press ctrl+c</p>
+<h3 id="16-deploy-calico-networking-via-self-hosted-as-a-daemon-set">1.6 Deploy Calico Networking (via self-hosted, as a daemon set)<a class="headerlink" href="#16-deploy-calico-networking-via-self-hosted-as-a-daemon-set" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Lets download the Calico manifest:</p>
+<div class="codehilite"><pre><span></span><code>curl https://docs.projectcalico.org/manifests/calico.yaml -O
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note<p>You can customize Calico deployments based on you needs. For instance by changing:</p>
+<p><code>(Optional) In the manifest, change CALICO_IPV4POOL_IPIP from "always" to "cross-subnet".
+(Optional) In the manifest, change FELIX_IPINIPMTU to match your ethernet interface mtu
+(Optional) If you want a different address range for containers, change CALICO_IPV4POOL_CIDR to the same cidr range used in kubeadm init, for e.g., "10.6.0.0/16"</code></p>
+</p>
+</div>
+<p>This time we are not going to modify defaults Calico values.</p>
+<p><strong>Step 2</strong>  Now lets deploy Calico as a daemon set.</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f calico.yaml
+</code></pre></div>
+
+<p>Watch the Calico/node pod for the master get created (hopefully successfully)</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get pods --all-namespaces -o wide
+</code></pre></div>
+
+<h3 id="17-join-worker-node">1.7 Join worker node<a class="headerlink" href="#17-join-worker-node" title="Permanent link">&para;</a></h3>
+<p>If you have other nodes around you can run the 'kubeadm join ...' command from
+the output of kubeadm init on each worker node (incl token).
+Watch the calico/node pods get created for each worker node automatically.</p>
+<div class="codehilite"><pre><span></span><code>e.g. kubeadm join --token ****
+</code></pre></div>
+
+<p>For this lab, we are creating a one node kubernetes clusters, so in order to be able to deploy applications on the same node as the control plane, we need to remove the taint that prevent such deployment.</p>
+<div class="codehilite"><pre><span></span><code>kubectl taint nodes --all node-role.kubernetes.io/master-
+</code></pre></div>
+
+<h3 id="18-now-lets-create-a-test-deployment-with-2-replicas">1.8 Now lets create a test deployment with 2 replicas<a class="headerlink" href="#18-now-lets-create-a-test-deployment-with-2-replicas" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>kubectl create deployment nginx --replicas=2 --image=nginx --port=8080
+</code></pre></div>
+
+<p>Lets get some more detail about the deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe deployment nginx
+kubectl get deployment nginx
+</code></pre></div>
+
+<p>And pods that has been created by <code>nginx</code> deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Congrats. Now you have a working Kubernetes+Calico cluster.</strong></p>
+<h3 id="21-verify-kubernetes-components-deployed-by-kubeadm">2.1 Verify Kubernetes components deployed by kubeadm<a class="headerlink" href="#21-verify-kubernetes-components-deployed-by-kubeadm" title="Permanent link">&para;</a></h3>
+<h4 id="211-check-kubernetes-version">2.1.1 Check Kubernetes version<a class="headerlink" href="#211-check-kubernetes-version" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Verify that Kubernetes is deployed and working.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<ul>
+<li>Kubernetes has single node for workload scheduling.</li>
+<li>Kubernetes running version 1.20.6</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note<p>At Kubernetes community, we define 3 types of Kubernetes releases:</p>
+<ul>
+<li>Major (x.0.0)</li>
+<li>Minor (x.x.0)</li>
+<li>Patch (x.x.x)</li>
+</ul>
+</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note<p>At a single point of time, we develop the new "Major"/"Minor" version of Kubernetes (today - Kubernetes 1.21), and we support three existing releases as the "Patch" releases (today - 1.19.x, 1.20.x and 1.21.x).</p>
+</p>
+</div>
+<h4 id="212-verify-cluster-default-namespaces">2.1.2 Verify Cluster default namespaces.<a class="headerlink" href="#212-verify-cluster-default-namespaces" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Verify namespaces created in K8s systems</p>
+<div class="codehilite"><pre><span></span><code>$ kubectl get ns
+NAME              STATUS   AGE
+default           Active   5h50m
+kube-node-lease   Active   5h50m
+kube-public       Active   5h50m
+kube-system       Active   5h50m
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Namespaces are intendent to isolate groups/teams and give them access to
+a set of resources. They avoid name collisions between resources. Namespaces
+provides with a soft Multitenancy, meaning they not provide full isolation.</p>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>By default Kubernetes deployed by <code>kubeadm</code> starts with 4 namespaces:</p>
+<ul>
+<li><code>default</code> The default namespace for objects with no other namespace. When
+listing resources with the kubectl get command, we’ve never specified the
+namespace explicitly, so kubectl always defaulted to the default namespace,
+showing us just the objects inside that namespace.</li>
+<li><code>kube-system</code> The namespace for objects created by the Kubernetes system</li>
+<li><code>kube-public</code> Readable by all users, and mostly reserved for cluster usage.</li>
+<li><code>kube-node-lease</code> This namespace for the lease objects associated with each node which improves the performance of the node heartbeats as the cluster scales.</li>
+</ul>
+</div>
+<h4 id="213-verify-kubelet">2.1.3 Verify kubelet<a class="headerlink" href="#213-verify-kubelet" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Verify that <code>kubelet</code> installed in K8s Cluster:</p>
+<div class="codehilite"><pre><span></span><code>systemctl -l | grep kubelet
+systemctl status kubelet
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Service and its config file can be found in <code>/etc/systemd/system/kubelet.service.d/10-kubeadm.conf</code></p>
+</div>
+<p><strong>Step 2</strong> Find manifests file for other master Node components:</p>
+<p>Once <code>kubelet</code> is deployed, all the rest master node components are
+deployed as a <code>static pods</code> on Kubernetes Master node. Setting <code>--pod-manifest-path=</code>
+specifies from where to read Static Pod manifests used for spinning up the
+control plane.</p>
+<p><strong>Step 3</strong> List K8s components manifest files that is going to be used for cluster deployment
+and run as <code>Static Pods</code> by <code>kubelet</code>:</p>
+<div class="codehilite"><pre><span></span><code>sudo ls /etc/kubernetes/manifests
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yaml
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We see etcd, api-server, controller-manager and scheduler that has been
+used to deploy on this cluster and managed by <code>kubelet</code>.</p>
+</div>
+<p><strong>Step 4</strong> Verify K8s Components deployed as containers on K8s:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>NAME                                       READY   STATUS    RESTARTS   AGE
+calico-kube-controllers-6d7b4db76c-h242g   1/1     Running   0          27m
+calico-node-gwnng                          1/1     Running   0          27m
+coredns-74ff55c5b-5s7rp                    1/1     Running   0          5h59m
+coredns-74ff55c5b-l6hd4                    1/1     Running   0          5h59m
+etcd-k8s-cluster                           1/1     Running   0          5h59m
+kube-apiserver-k8s-cluster                 1/1     Running   0          5h59m
+kube-controller-manager-k8s-cluster        1/1     Running   0          5h59m
+kube-proxy-f8647                           1/1     Running   0          5h59m
+kube-scheduler-k8s-cluster                 1/1     Running   0          5h59m
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<ul>
+<li>We can see that Kubernetes components: etcd, api-server, controller-manager
+ and scheduler deployed on K8s cluster via kubelet.</li>
+<li>Calico Networking including calico-etcd, calico-node, calico-policy-controller
+has been deployed as a last step of kubeadm installation</li>
+</ul>
+</div>
+<h4 id="214-verify-etcd-database-deployment">2.1.4 Verify etcd database deployment.<a class="headerlink" href="#214-verify-etcd-database-deployment" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Verify <code>etcd</code> config file</p>
+<div class="codehilite"><pre><span></span><code>sudo cat /etc/kubernetes/manifests/etcd.yaml
+</code></pre></div>
+
+<p><strong>Step 2</strong>  Overview <code>etcd</code> pod deployed on K8s cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system | grep etcd
+kubectl describe pods/etcd-k8s-cluste -n kube-system
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<ul>
+<li><code>etcd</code> has been deployed as a static pod.</li>
+<li>Annotation <code>Priority Class Name:  system-node-critical</code> tells to K8s that this
+Pod is  critical and will have highest <code>QOS</code>.</li>
+</ul>
+</div>
+<p><strong>Step 3</strong> Check the location of etcd db and snapshot dumps.</p>
+<div class="codehilite"><pre><span></span><code>sudo ls /var/lib/etcd/member
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The data directory has two sub-directories in it:</p>
+<ul>
+<li>wal: write ahead log files are stored here.</li>
+<li>snap: log snapshots are stored here.</li>
+</ul>
+<p>When first started, etcd stores its configuration into a data directory specified by the data-dir configuration parameter. Configuration is stored in the write ahead log and includes: the local member ID, cluster ID, and initial cluster configuration. The write ahead log and snapshot files are used during member operation and to recover after a restart.</p>
+</div>
+<h4 id="215-verify-api-server-deployment-on-the-k8s-cluster">2.1.5 Verify <code>api-server</code> deployment on the K8s cluster.<a class="headerlink" href="#215-verify-api-server-deployment-on-the-k8s-cluster" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Review configuration file:</p>
+<div class="codehilite"><pre><span></span><code>sudo cat /etc/kubernetes/manifests/kube-apiserver.yaml
+</code></pre></div>
+
+<p><strong>Step 2</strong> Overview <code>api-server</code> pod and its parameters.</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe pods/kube-apiserver-k8s-cluster -n kube-system
+</code></pre></div>
+
+<h4 id="216-verify-controller-manager-and-scheduler-deployment">2.1.6 Verify <code>Controller-manager</code> and <code>scheduler</code> deployment.<a class="headerlink" href="#216-verify-controller-manager-and-scheduler-deployment" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> <code>Controller-manager</code> and <code>scheduler</code> deployed on K8s cluster via kubelet
+the same way <code>api-server</code>. Verify both configuration files and pods running on K8s Cluster.</p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<ul>
+<li>K8s is an orchestration system for containers. Since most of the k8s
+components are the <code>go</code> binaries that can be containerized, K8s has been
+designed to run itself. This makes system  itself HA, easily deployable,
+scaleable and upgradable.</li>
+</ul>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_Lab_5_Docker_Compose/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lab 5 Docker Compose
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_Lab_7_Kubernetes_Concepts/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Lab 7 Kubernetes Concepts
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
