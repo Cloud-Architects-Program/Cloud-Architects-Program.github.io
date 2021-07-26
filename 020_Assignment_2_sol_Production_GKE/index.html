@@ -774,8 +774,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#35-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
-    3.5 Configure Node auto-repair and Node auto-upgrades
+  <a href="#33-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
+    3.3 Configure Node auto-repair and Node auto-upgrades
   </a>
   
 </li>
@@ -838,6 +838,11 @@ ls
 <div class="codehilite"><pre><span></span><code>cp -r ~/ycit020/Assignment2/deploy_a2 deploy_ycit020_a2
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case you lost <code>MY_REPO</code> Cloud Source Repositories that we've used in previous,
+class you can copy all the source code from <a href="https://github.com/Cloud-Architects-Program/ycit020">ycit020</a> repo.</p>
+</div>
 <p><strong>Step 4</strong> Create <code>Document</code> for <code>Assignment 2</code>, that will be used for grading:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 mkdir docs
@@ -857,12 +862,16 @@ git commit -m &quot;adding K8s manifests for ycit020 assignment 2&quot;
 </code></pre></div>
 
 <h3 id="12-creating-a-gcp-project">1.2 Creating a GCP project<a class="headerlink" href="#12-creating-a-gcp-project" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We going to create a temporarily project for this assignment.
+While you going to store code in existing project that we've used so far in class.</p>
+</div>
 <p>Set variables:</p>
 <div class="codehilite"><pre><span></span><code>export ORG=&lt;student-name&gt;
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
-export PRODUCT=notepad
 export ENV=dev
 export PROJECT_PREFIX=1   # Project has to be unique
 export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
@@ -926,6 +935,14 @@ for many companies will not be acceptable practice (e.g. GDPR)</p>
 default  AUTO         REGIONAL
 </code></pre></div>
 
+<p>Review existing firewall rules for <code>default</code> vpc:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
+
 <p>Delete firewall rules associated with <code>default</code> vpc network:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules delete default-allow-internal
 gcloud compute firewall-rules delete default-allow-ssh
@@ -937,12 +954,19 @@ gcloud compute firewall-rules delete default-allow-icmp
 <div class="codehilite"><pre><span></span><code>gcloud compute networks delete default
 </code></pre></div>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If doesn't work delete with UI</p>
-</div>
 <h3 id="13-creating-a-custom-mode-network">1.3 Creating a custom mode network<a class="headerlink" href="#13-creating-a-custom-mode-network" title="Permanent link">&para;</a></h3>
-<p>Create a new custom mode network using the following gcloud command. After you have created your network, add subnets to it by following the adding subnets directions.</p>
+<p><strong>Task N1:</strong> Using reference doc: <a href="https://cloud.google.com/vpc/docs/using-vpc#create-custom-network">Creating a custom mode network</a>. Create a new custom mode VPC network using gcloud command with following parameters:</p>
+<ul>
+<li>Network name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
+<li>Subnet mode: <code>custom</code></li>
+<li>Bgp routing mode: <code>regional</code></li>
+<li>MTUs: <code>default</code></li>
+</ul>
+<p>Document a command to create <code>vpc</code> network in <code>docs/production_gke.md</code> doc under <code>step 1</code>.</p>
+<p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
+<p>with name <code>ORG-$PRODUCT-$ENV-vpc</code>, with subnet mode <code>custom</code>,
+and <code>regional</code>.</p>
+<p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
 <p>Set variables:</p>
 <div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
 export ENV=dev
@@ -954,25 +978,71 @@ export ENV=dev
     --mtu=1460
 </code></pre></div>
 
-<p>Create firewall rules <code>default-allow-internal</code> and <code>default-allow-ssh</code>:</p>
+<p>Review created network:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Create firewall rules <code>default-allow-internal</code> and <code>default-allow-ssh</code>:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules create $ORG-$PRODUCT-$ENV-allow-tcp-ssh-icmp --network $ORG-$PRODUCT-$ENV-vpc --allow tcp:22,tcp:3389,icmp
 gcloud compute firewall-rules create allow-internal --network $ORG-$PRODUCT-$ENV-vpc --allow tcp,udp,icmp --source-ranges 10.128.0.0/22
 </code></pre></div>
 
 <p>Reference: https://cloud.google.com/kubernetes-engine/docs/concepts/firewall-rules</p>
-<p>Viewing networks:</p>
-<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+<p>Review created firewall rules:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
 </code></pre></div>
 
 <h3 id="14-creating-a-user-managed-subnet">1.4 Creating a <code>user-managed</code> subnet<a class="headerlink" href="#14-creating-a-user-managed-subnet" title="Permanent link">&para;</a></h3>
-<p>We assume that our Cluster will have maximum 62 Nodes with max 110 Pods per node and
-2,048 Service per cluster.</p>
+<p>After you've created VPC network, it is require to add subnet to it.</p>
+<p><strong>Task N2:</strong> In order to ensure that GKE clusters in you organization doesn't overlap each other,
+design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code> VPC-native GKE clusters, where</p>
+<ul>
+<li>Nodes <em>primary range</em> belongs to Class A (10.0.0.0/x)</li>
+<li>Pods  <em>secondary ranges</em>  belongs to Class B (172.20.0.0/x) </li>
+<li>Services  <em>secondary ranges</em>   belongs to Class B (172.100.0.0/x)</li>
+<li>CIDR range for master-ipv4-cidr (k8s api range) belongs to Class B (172.16.0.0/x)</li>
+</ul>
+<p>In your design assume that each cluster will have maximum of 59 Nodes with max 110 Pods per node and 1700 Service per cluster.</p>
+<p>Use following reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
+<li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
+</ol>
+<p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>docs/creating_gke.md</code>:</p>
 <div class="codehilite"><pre><span></span><code>env |   subnet      | pod range        | srv range      | kubectl api range
 dev | 10.128.1.0/26 | 172.10.0.0/18    | 10.10.0.0/21   | 172.16.0.0/28
 stg | 10.128.2.0/26 | 172.11.0.0/18    | 10.11.0.0/21   | 172.16.0.16/28
 prd | 10.128.3.0/26 | 172.12.0.0/18    | 10.12.0.0/21   | 172.16.0.32/28
 </code></pre></div>
 
+<p>Document a subnet VPC design in <code>docs/production_gke.md</code> doc under <code>step 2</code>.</p>
+<p><strong>Task N3:</strong> Create a <code>user-managed</code> subnet.</p>
+<p>Create a subnet for <code>dev</code> cluster, taking in consideration VPC subnet ranges created in above table, where:</p>
+<ul>
+<li>Subnet name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
+<li>Node Range: See column <code>subnet</code> in above table for <code>dev</code> cluster</li>
+<li>Secondary service range with name: <code>services</code></li>
+<li>Secondary Ranges:<ul>
+<li>Service range name: <code>services</code></li>
+<li>Service range CIDR: See column <code>srv range</code> in above table for <code>dev</code> cluster</li>
+<li>Pods range name: <code>pods</code></li>
+<li>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev</code> cluster</li>
+</ul>
+</li>
+<li>Features:<ul>
+<li>Flow Logs</li>
+<li>Private IP Google Access</li>
+</ul>
+</li>
+</ul>
 <div class="codehilite"><pre><span></span><code>gcloud compute networks subnets create gke-priv-cluster-subnet \
 --network $ORG-$PRODUCT-$ENV-vpc \
 --range 10.128.0.0/26 \
@@ -981,9 +1051,41 @@ prd | 10.128.3.0/26 | 172.12.0.0/18    | 10.12.0.0/21   | 172.16.0.32/28
 --secondary-range services=10.10.0.0/21,pods=172.10.0.0/18
 </code></pre></div>
 
+<p>Reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#custom_subnet">Creating a private cluster with custom subnet</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
+<li>Use <code>gcloud subnets create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/create">reference</a> for all available options.</li>
+</ol>
+<p>Review created subnet:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks -&gt; Click VPC network and check `Subnet` tab
+</code></pre></div>
+
+<p>Document a subnet VPC creation command in <code>docs/production_gke.md</code> doc under <code>step 3</code>.</p>
 <h3 id="15-creating-a-private-regional-and-vpc-native-gke-cluster">1.5 Creating a Private, Regional and VPC Native GKE Cluster<a class="headerlink" href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" title="Permanent link">&para;</a></h3>
-<p><strong>Step 1:</strong> Create GKE Clusters that will take in account secondary pod and service,
-as well as k8s api ranges. Make sure cluster is private, regional</p>
+<p><strong>Task N4:</strong> Create <code>dev</code> <em>Private</em> GKE Cluster with no client access to the public endpoint and following values:</p>
+<ul>
+<li>Cluster name: <code>$ORG-$PRODUCT-$ENV-cluster</code></li>
+<li>Secondary pod range with name: <code>pods</code></li>
+<li>Secondary service range with name: <code>services</code></li>
+<li>VM size: <code>e2-small</code></li>
+<li>Node count: 1 per zone</li>
+<li>GKE Control plane is replicated across three zones of a region: <code>us-central1</code></li>
+<li>GKE version: "1.20.8-gke.700"</li>
+<li>Cluster Node Communication: <code>VPC Native</code></li>
+<li>Cluster Nodes access: <em>Private</em> Node GKE Cluster with <em>Public API</em> endpoint</li>
+<li>Cluster K8s API access: <em>with limited access to the public endpoint via authorized network</em></li>
+</ul>
+<p>Use following reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters">Creating a private cluster</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#channels">GKE Release Channels</a></li>
+<li>Use <code>gcloud container clusters create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/container/clusters/create">reference</a> for all available options.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters create  $ORG-$PRODUCT-$ENV-cluster \
     --region us-central1 \
     --num-nodes 1 \
@@ -1000,16 +1102,10 @@ as well as k8s api ranges. Make sure cluster is private, regional</p>
     --master-ipv4-cidr 172.16.0.0/28
 </code></pre></div>
 
-<!-- --no-enable-master-authorized-networks \ -->
-
-<!-- Enable and configure OS Login in GKE:
-
-
-gcloud compute project-info add-metadata --metadata enable-oslogin=TRUE -->
-
+<p>Document a GKE cluster creation command in <code>docs/production_gke.md</code> doc under <code>step 4</code>.</p>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>The private cluster is now created.</p>
+<p>The private cluster is now created. <code>gcloud</code> has set up <code>kubectl</code> to authenticate with the private cluster but the cluster's K8s API server will only accept connections from the primary range of your subnetwork, and the secondary range of your subnetwork that is used for pods. That means nobody can access K8s API at this point of time, until we specify allowed ranges.</p>
 </div>
 <p><strong>Step 3</strong> Authenticate to the cluster.</p>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials $ORG-$PRODUCT-$ENV-cluster --region us-central1 
@@ -1390,7 +1486,9 @@ gke-ayrat-notepad-dev-cluste-new-pool-f47e9e43-6qzb   Ready                     
 </code></pre></div>
 
 <p>Next, we want to evict the Pods already scheduled on each node. To do this, we will construct another loop, this time using the kubectl drain command:</p>
-<div class="codehilite"><pre><span></span><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do kubectl drain --force --ignore-daemonsets --delete-emptydir-data &quot;$node&quot;; done
+<div class="codehilite"><pre><span></span><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do
+  kubectl drain --force --ignore-daemonsets --delete-emptydir-data --grace-period=10 &quot;$node&quot;;
+done
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
@@ -1413,6 +1511,10 @@ node/gke-ayrat-notepad-dev-cl-default-pool-4d5f96ee-nnv9 cordoned
 node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 cordoned
 </code></pre></div>
 
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>GKE cluster can be in reparing mode for some time. Please wait ~10 minutes before procceed forward.</p>
+</div>
 <p>You can now delete the original node pool:</p>
 <div class="codehilite"><pre><span></span><code>gcloud container node-pools delete default-pool --cluster $ORG-$PRODUCT-$ENV-cluster
 </code></pre></div>
@@ -1671,7 +1773,7 @@ As you can see, because of the NodeSelector, none of the pods are running. Now, 
     * Taints and Tolerations
     * Scheduling pods to Preemtible nodes -->
 
-<h3 id="35-configure-node-auto-repair-and-node-auto-upgrades">3.5 Configure Node auto-repair and Node auto-upgrades<a class="headerlink" href="#35-configure-node-auto-repair-and-node-auto-upgrades" title="Permanent link">&para;</a></h3>
+<h3 id="33-configure-node-auto-repair-and-node-auto-upgrades">3.3 Configure Node auto-repair and Node auto-upgrades<a class="headerlink" href="#33-configure-node-auto-repair-and-node-auto-upgrades" title="Permanent link">&para;</a></h3>
 <p>Kubernetes Engine's node auto-repair feature helps you keep the nodes in your cluster in a healthy, running state. When enabled, Kubernetes Engine makes periodic checks on the health state of each node in your cluster. If a node fails consecutive health checks over an extended time period (approximately 10 minutes), Kubernetes Engine initiates a repair process for that node.</p>
 <div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
 </code></pre></div>
@@ -1679,12 +1781,16 @@ As you can see, because of the NodeSelector, none of the pods are running. Now, 
 <p>This will enable the autorepair feature for nodes. Please see
 https://cloud.google.com/kubernetes-engine/docs/node-auto-repair for more
 information on node autorepairs.</p>
-<p>Now, for some fun: let's break a VM!</p>
+<p>First, Enable and configure OS Login in GKE:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute project-info add-metadata --metadata enable-oslogin=TRUE
+</code></pre></div>
+
+<p>Next, for some fun: let's break a VM!</p>
 <p>This gcloud command will find the VM in your regional node pool which is in the default zone, and SSH into it. If you are asked to generate an SSH key just answer 'Y' at the prompt and hit enter to not set a passphrase.</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute ssh $(gcloud compute instances list | \
-                      grep -m 1 gke-workshop-new | \
-                      grep $(gcloud config get-value compute/zone) | \
-                      awk &#39;{ print $1 }&#39;)
+                      grep -m 1 notepad-dev | \
+                      awk &#39;{ print $1 }&#39;) \
+                      --zone us-central1-a
 </code></pre></div>
 
 <p>You can simulate a node failure by removing the kubelet binary, which is responsible for running Pods on every Kubernetes node:</p>

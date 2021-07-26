@@ -415,6 +415,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
+    3.3 Configure Node auto-repair and Node auto-upgrades
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -936,6 +943,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#33-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
+    3.3 Configure Node auto-repair and Node auto-upgrades
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1033,7 +1047,6 @@ git commit -m &quot;adding K8s manifests for ycit020 assignment 2&quot;
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
-export PRODUCT=notepad
 export ENV=dev
 export PROJECT_PREFIX=1   # Project has to be unique
 export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
@@ -1097,6 +1110,14 @@ for many companies will not be acceptable practice (e.g. GDPR)</p>
 default  AUTO         REGIONAL
 </code></pre></div>
 
+<p>Review existing firewall rules for <code>default</code> vpc:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
+
 <p>Delete firewall rules associated with <code>default</code> vpc network:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules delete default-allow-internal
 gcloud compute firewall-rules delete default-allow-ssh
@@ -1108,10 +1129,6 @@ gcloud compute firewall-rules delete default-allow-icmp
 <div class="codehilite"><pre><span></span><code>gcloud compute networks delete default
 </code></pre></div>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If doesn't work delete with UI</p>
-</div>
 <h3 id="13-creating-a-custom-mode-network-vpc">1.3 Creating a custom mode network (VPC)<a class="headerlink" href="#13-creating-a-custom-mode-network-vpc" title="Permanent link">&para;</a></h3>
 <p><strong>Task N1:</strong> Using reference doc: <a href="https://cloud.google.com/vpc/docs/using-vpc#create-custom-network">Creating a custom mode network</a>. Create a new custom mode VPC network using gcloud command with following parameters:</p>
 <ul>
@@ -1147,6 +1164,14 @@ gcloud compute firewall-rules create allow-internal --network $ORG-$PRODUCT-$ENV
 </code></pre></div>
 
 <p>Reference: https://cloud.google.com/kubernetes-engine/docs/concepts/firewall-rules</p>
+<p>Review created firewall rules:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
+
 <h3 id="14-design-and-create-a-user-managed-subnet">1.4 Design and create a <code>user-managed</code> subnet<a class="headerlink" href="#14-design-and-create-a-user-managed-subnet" title="Permanent link">&para;</a></h3>
 <p>After you've created VPC network, it is require to add subnet to it.</p>
 <p><strong>Task N2:</strong> In order to ensure that GKE clusters in you organization doesn't overlap each other,
@@ -1177,7 +1202,6 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <li>Subnet name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
 <li>Node Range: See column <code>subnet</code> in above table for <code>dev</code> cluster</li>
 <li>Secondary service range with name: <code>services</code></li>
-<li>VM size: <code>e2-small</code></li>
 <li>Secondary Ranges:<ul>
 <li>Service range name: <code>services</code></li>
 <li>Service range CIDR: See column <code>srv range</code> in above table for <code>dev</code> cluster</li>
@@ -1194,6 +1218,12 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <div class="codehilite"><pre><span></span><code>TODO: gcloud subnet create 
 </code></pre></div>
 
+<p>Reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#custom_subnet">Creating a private cluster with custom subnet</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
+<li>Use <code>gcloud subnets create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/create">reference</a> for all available options.</li>
+</ol>
 <p>Review created subnet:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute networks subnets list
 </code></pre></div>
@@ -1221,6 +1251,7 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <ol>
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters">Creating a private cluster</a></li>
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#channels">GKE Release Channels</a></li>
+<li>Use <code>gcloud container clusters create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/container/clusters/create">reference</a> for all available options.</li>
 </ol>
 <div class="codehilite"><pre><span></span><code>#TODO gcloud clusters create $ORG-$PRODUCT-$ENV-cluster
 </code></pre></div>
@@ -1651,6 +1682,80 @@ node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 cordoned
 <p class="admonition-title">Result</p>
 <p>GKE cluster running only on <code>new-pool</code> Node pool.</p>
 </div>
+<h3 id="33-configure-node-auto-repair-and-node-auto-upgrades">3.3 Configure Node auto-repair and Node auto-upgrades<a class="headerlink" href="#33-configure-node-auto-repair-and-node-auto-upgrades" title="Permanent link">&para;</a></h3>
+<p>Kubernetes Engine's node auto-repair feature helps you keep the nodes in your cluster in a healthy, running state. When enabled, Kubernetes Engine makes periodic checks on the health state of each node in your cluster. If a node fails consecutive health checks over an extended time period (approximately 10 minutes), Kubernetes Engine initiates a repair process for that node.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
+</code></pre></div>
+
+<p>This will enable the autorepair feature for nodes. Please see
+https://cloud.google.com/kubernetes-engine/docs/node-auto-repair for more
+information on node autorepairs.</p>
+<p>First, Enable and configure OS Login in GKE:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute project-info add-metadata --metadata enable-oslogin=TRUE
+</code></pre></div>
+
+<p>Next, for some fun: let's break a VM!</p>
+<p>This gcloud command will find the VM in your regional node pool which is in the default zone, and SSH into it. If you are asked to generate an SSH key just answer 'Y' at the prompt and hit enter to not set a passphrase.</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute ssh $(gcloud compute instances list | \
+                      grep -m 1 notepad-dev | \
+                      awk &#39;{ print $1 }&#39;) \
+                      --zone us-central1-a
+</code></pre></div>
+
+<p>You can simulate a node failure by removing the kubelet binary, which is responsible for running Pods on every Kubernetes node:</p>
+<div class="codehilite"><pre><span></span><code>sudo rm /home/kubernetes/bin/kubelet &amp;&amp; sudo systemctl restart kubelet
+logout
+</code></pre></div>
+
+<p>Now when we check the node status we see the node is NotReady.</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>NAME                                          STATUS     ROLES     AGE       VERSION
+gke-gke-workshop-new-pool-42b33f8c-9grf   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
+gke-gke-workshop-new-pool-847e18a1-f1bp   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
+gke-gke-workshop-new-pool-8c4b26e9-fq8p   NotReady   &lt;none&gt;    6m        v1.9.6-gke.1
+</code></pre></div>
+
+<p>The Kubernetes Engine node repair agent will wait a few minutes in case the problem is intermittent. We'll come back to this in a minute.</p>
+<p>Define a maintenance window
+You can configure a maintenance window to have more control over when automatic upgrades are applied to Kubernetes on your cluster.</p>
+<p>Creating a maintenance window instructs Kubernetes Engine to automatically trigger any automated tasks in your clusters, such as master upgrades, node pool upgrades, and maintenance of internal components, during a specific timeframe.</p>
+<p>The times are specified in UTC, so select an appropriate time and set up a maintenance window for your cluster.</p>
+<p>Open the cloud console and navigate to Kubernetes Engine. Click on the gke-workshop cluster and click the edit button at the top. Find the Maintenance Window option and select 3AM. Finally, click Save to update the cluster.</p>
+<p>Enable node auto-upgrades
+Whenever a new version of Kubernetes is released, Google upgrades your master to that version. You can then choose to upgrade your nodes to that version, bringing functionality and security updates to both the OS and the Kubernetes components.</p>
+<p>Node Auto-Upgrades use the same update mechanism as manual node upgrades, but does the scheduled upgrades during your maintenance window.</p>
+<p>Auto-upgrades are enabled per node pool.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster   --enable-autoupgrade
+</code></pre></div>
+
+<p>This will enable the autoupgrade feature for nodes. Please see
+https://cloud.google.com/kubernetes-engine/docs/node-management for more
+information on node autoupgrades.</p>
+<div class="codehilite"><pre><span></span><code>ERROR: (gcloud.container.node-pools.update) ResponseError: code=400, message=Operation operation-1511896056410-dbda7f9f is currently operating on cluster gke-workshop. Please wait and try again once it&#39;s done.
+</code></pre></div>
+
+<p>That's good - that means our broken node is being repaired! Try again in a few minutes.</p>
+<p>Check your node repair
+How is that node repair coming?</p>
+<p>After a few minutes, you will see that the master drained the node, and then removed it.</p>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>NotReady,SchedulingDisabled
+</code></pre></div>
+
+<p>A few minutes after that, a new node was turned on in its place:</p>
+<div class="codehilite"><pre><span></span><code>Ready
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl delete deployment hello-web
+</code></pre></div>
+
 <h2 id="4-cleanup">4 Cleanup<a class="headerlink" href="#4-cleanup" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-cluster
 </code></pre></div>
