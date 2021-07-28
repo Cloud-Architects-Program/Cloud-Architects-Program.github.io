@@ -428,8 +428,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-cleanup" class="md-nav__link">
-    4 Cleanup
+  <a href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    4 Commit Readme doc to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleanup" class="md-nav__link">
+    5 Cleanup
   </a>
   
 </li>
@@ -956,8 +963,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-cleanup" class="md-nav__link">
-    4 Cleanup
+  <a href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    4 Commit Readme doc to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleanup" class="md-nav__link">
+    5 Cleanup
   </a>
   
 </li>
@@ -1034,7 +1048,7 @@ EOF
 <p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git status 
 git add .
-git commit -m &quot;adding K8s manifests for ycit020 assignment 2&quot;
+git commit -m &quot;adding documentation for ycit020 assignment 2&quot;
 </code></pre></div>
 
 <p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
@@ -1042,6 +1056,11 @@ git commit -m &quot;adding K8s manifests for ycit020 assignment 2&quot;
 </code></pre></div>
 
 <h3 id="12-creating-a-gcp-project">1.2 Creating a GCP project<a class="headerlink" href="#12-creating-a-gcp-project" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We going to create a temporarily project for this assignment.
+While you going to store code in existing project that we've used so far in class</p>
+</div>
 <p>Set variables:</p>
 <div class="codehilite"><pre><span></span><code>export ORG=&lt;student-name&gt;
 </code></pre></div>
@@ -1141,8 +1160,8 @@ gcloud compute firewall-rules delete default-allow-icmp
 <p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
 <p>with name <code>ORG-$PRODUCT-$ENV-vpc</code>, with subnet mode <code>custom</code>,
 and <code>regional</code>.</p>
-<p><strong>Step 1:</strong> Create a new custom mode VPC network:
-Set variables:</p>
+<p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
+<p>Set variables:</p>
 <div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
 export ENV=dev
 </code></pre></div>
@@ -1756,10 +1775,28 @@ How is that node repair coming?</p>
 <div class="codehilite"><pre><span></span><code>kubectl delete deployment hello-web
 </code></pre></div>
 
-<h2 id="4-cleanup">4 Cleanup<a class="headerlink" href="#4-cleanup" title="Permanent link">&para;</a></h2>
+<h2 id="4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">4 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Commit <code>docs</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;Readme doc for Production GKE Creation using gcloud&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h2 id="5-cleanup">5 Cleanup<a class="headerlink" href="#5-cleanup" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-cluster
 </code></pre></div>
 
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We going to delete the <code>$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX</code> only,
+please do not delete your project with Source Code Repo.</p>
+</div>
 <div class="codehilite"><pre><span></span><code>gcloud projects delete  $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
 </code></pre></div>
 
