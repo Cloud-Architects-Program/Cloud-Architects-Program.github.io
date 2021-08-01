@@ -449,6 +449,30 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_2_sol_Production_GKE/" class="md-nav__link">
+        Assignment2 Sol
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_3_Terraform_GCP_Foundation/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1045,13 +1069,13 @@ cat &gt; docs/production_gke.md &lt;&lt; EOF
 EOF
 </code></pre></div>
 
-<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<p><strong>Step 5</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git status 
 git add .
 git commit -m &quot;adding documentation for ycit020 assignment 2&quot;
 </code></pre></div>
 
-<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
@@ -1207,7 +1231,7 @@ design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
 <li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
 </ol>
-<p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>docs/creating_gke.md</code>:</p>
+<p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>docs/production_gke.md</code>:</p>
 <div class="codehilite"><pre><span></span><code>env |     subnet    |    pod range     |    srv range   | kubectl api range
 dev |     IP range  |     IP range     |     IP range   |     IP range    
 stg |     IP range  |     IP range     |     IP range   |     IP range     
@@ -2219,13 +2243,13 @@ kubectl delete deployment hello-web
         </a>
       
       
-        <a href="../ycit019_Lab_2_Docker_basics/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../020_Assignment_2_sol_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Lab 2 Docker Basics
+              Assignment2 Sol
             </div>
           </div>
           <div class="md-footer__button md-icon">
