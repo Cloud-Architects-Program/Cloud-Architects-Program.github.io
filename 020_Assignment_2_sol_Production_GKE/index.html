@@ -1048,34 +1048,13 @@ ls
 <div class="codehilite"><pre><span></span><code>cp -r ~/ycit020/Assignment2/deploy_a2 deploy_ycit020_a2
 </code></pre></div>
 
-<p><strong>Step 4</strong> Create <code>Document</code> for <code>Assignment 2</code>, that will be used for grading:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
-mkdir docs
-cat &gt; docs/production_gke.md &lt;&lt; EOF
-# Creating Production GKE Cluster
-
-**Step 1** Create a vpc network:
-
-**Step 2** Create a subnet VPC design:
-
-**Step 3** Create a subnet with primary and secondary ranges:
-
-**Step 4** Create a Private GKE Cluster:
-
-**Step 5** Create a Cloud Router:
-
-**Step 6** Create a Cloud Nat Gateway:
-
-EOF
-</code></pre></div>
-
-<p><strong>Step 5</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git status 
 git add .
 git commit -m &quot;adding documentation for ycit020 assignment 2&quot;
 </code></pre></div>
 
-<p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
@@ -1235,12 +1214,16 @@ design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code
 <li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
 </ol>
 <p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>docs/creating_gke.md</code>:</p>
-<div class="codehilite"><pre><span></span><code>env |   subnet      | pod range        | srv range      | kubectl api range
+<div class="codehilite"><pre><span></span><code>env |   subnet      | pod range        | srv range        | kubectl api range
 dev | 10.128.1.0/26 | 172.20.0.0/18    | 172.100.0.0/21   | 172.16.0.0/28
-stg | 10.128.2.0/26 | 172.21.0.0/18    | 172.100.0.0/21   | 172.16.0.16/28
-prd | 10.128.3.0/26 | 172.22.0.0/18    | 10.12.0.0/21   | 172.16.0.32/28
+stg | 10.128.2.0/26 | 172.21.0.0/18    | 172.101.0.0/21   | 172.16.0.16/28
+prd | 10.128.3.0/26 | 172.22.0.0/18    | 172.102.0.0/21   | 172.16.0.32/28
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ranges must be with in Private (RFC1918) <a href="https://en.wikipedia.org/wiki/Private_network">Address Space</a></p>
+</div>
 <p>Document a subnet VPC design in <code>docs/production_gke.md</code> doc under <code>step 2</code>.</p>
 <p><strong>Task N3:</strong> Create a <code>user-managed</code> subnet.</p>
 <p>Create a subnet for <code>dev</code> cluster, taking in consideration VPC subnet ranges created in above table, where:</p>
