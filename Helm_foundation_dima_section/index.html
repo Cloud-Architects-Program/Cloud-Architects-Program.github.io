@@ -14,7 +14,7 @@
     
     
       
-        <title>Lab 3 Terraform Fundamentals - YCIT020</title>
+        <title>Helm foundation dima section - YCIT020</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-what-is-terraform" class="md-skip">
+        <a href="#4-building-a-notepad-chart" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lab 3 Terraform Fundamentals
+              Helm foundation dima section
             
           </span>
         </div>
@@ -182,14 +182,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -205,14 +203,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -228,51 +224,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Lab 3 Terraform Fundamentals
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
         Lab 3 Terraform Fundamentals
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#12-key-features" class="md-nav__link">
-    1.2 Key features
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -740,8 +696,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -750,9 +704,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#12-key-features" class="md-nav__link">
-    1.2 Key features
+  <a href="#4-building-a-notepad-chart" class="md-nav__link">
+    4 Building a NotePad Chart
   </a>
+  
+    <nav class="md-nav" aria-label="4 Building a NotePad Chart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-template-the-deployment" class="md-nav__link">
+    4.1 Template the Deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-template-the-service" class="md-nav__link">
+    4.1 Template the Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-service-account-template" class="md-nav__link">
+    4.3 Service Account Template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -769,24 +750,51 @@
               
                 
                 
-                <p>Lab 2 Terraform Fundamentals</p>
-<p><strong>Objective:</strong></p>
-<ul>
-<li>Automating through code the configuration and provisioning of resources</li>
-</ul>
-<h1 id="1-what-is-terraform">1 What is Terraform?<a class="headerlink" href="#1-what-is-terraform" title="Permanent link">&para;</a></h1>
-<p>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing, popular service providers and custom in-house solutions.</p>
-<p>Configuration files describe to Terraform the components needed to run a single application or your entire data center. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform can determine what changed and create incremental execution plans that can be applied.</p>
-<p>The infrastructure Terraform can manage includes both low-level components such as compute instances, storage, and networking, and high-level components such as DNS entries and SaaS features.</p>
-<h2 id="12-key-features">1.2 Key features<a class="headerlink" href="#12-key-features" title="Permanent link">&para;</a></h2>
-<p><strong>Infrastructure as code</strong>
-Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your data center to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used.</p>
-<p><strong>Execution plans</strong>
-Terraform has a planning step in which it generates an execution plan. The execution plan shows what Terraform will do when you execute the apply command. This lets you avoid any surprises when Terraform manipulates infrastructure.</p>
-<p><strong>Resource graph</strong>
-Terraform builds a graph of all your resources and parallelizes the creation and modification of any non-dependent resources. Because of this, Terraform builds infrastructure as efficiently as possible, and operators get insight into dependencies in their infrastructure.</p>
-<p><strong>Change automation</strong>
-Complex changesets can be applied to your infrastructure with minimal human interaction. With the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order, which helps you avoid many possible human errors.</p>
+                  <h1>Helm foundation dima section</h1>
+                
+                <h2 id="4-building-a-notepad-chart">4 Building a NotePad Chart<a class="headerlink" href="#4-building-a-notepad-chart" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Create a new chart</p>
+<div class="codehilite"><pre><span></span><code>helm create gowebapp
+</code></pre></div>
+
+<h3 id="41-template-the-deployment">4.1 Template the Deployment<a class="headerlink" href="#41-template-the-deployment" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Update the replicaCount value to 2 in the Values.yaml file.
+<strong>Step 2</strong> Update the repository and tag section to point to your goweb image.
+<strong>Step 3</strong> Update the livness and readiness sections to match what you have in the gowebapp deployment
+<strong>Step 4</strong> Include an entry in the Values.yaml file for containerPort and set it to 80
+<strong>Step 5</strong> Update the resorues section in the Values.yaml file to include the resource requests and limits the gowebapp application needs.</p>
+<p><strong>Step 6</strong> Notice that the deployment.yaml file does not have an environment variable section for secrets, so let's add one. For this chart we will assume that this section is optional based on whether or not a secrets section exist in the Values.yaml file.</p>
+<p><strong>Step 6-a</strong> Include the following in the deployment template:</p>
+<div class="codehilite"><pre><span></span><code>{{- if .Values.secrets }}
+- env:
+  - name: {{.Values.secrets.name}}
+    valueFrom:
+      secretKeyRef:
+        name: {{.Values.secrets.secretReference.name}}
+        key: {{.Values.secrets.secretReference.key}}
+{{- end}}
+</code></pre></div>
+
+<p><strong>Step 6-b</strong> Inculde a section in the values file:</p>
+<div class="codehilite"><pre><span></span><code>secrets:
+  enabled: true
+  name: DB_PASSWORD
+  secretReference:
+    name: mysql
+    key: password
+</code></pre></div>
+
+<p><strong>Step 7</strong> For this lab, we will include the "volumes" and "volumeMounts" sections without templating, so just copy these sections to the appropriate location in the deployment template.</p>
+<h3 id="41-template-the-service">4.1 Template the Service<a class="headerlink" href="#41-template-the-service" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> The <code>Service</code> Template doesn't have an annotation section, so modify the template to include an "annotation" section. Check the deployment file for an example on how to accomplish this task.</p>
+<div class="codehilite"><pre><span></span><code>#TODO:  Use &quot;with&quot;, &quot;toYaml&quot; and &quot;nindent&quot; to include a section for annotations
+#TODO: Modify the Values.yaml file to allow chart users to add annotations for the service. Make sure to use the right section in the values file, based on how you modified your template file.
+</code></pre></div>
+
+<p><strong>Step 2</strong> Under the "service" section in the Values.yaml file, update the service port to 9000.</p>
+<p><strong>Step 3</strong> In the Values.yaml file, update the service type to "NodePort"</p>
+<h3 id="43-service-account-template">4.3 Service Account Template<a class="headerlink" href="#43-service-account-template" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Update the Values.yaml file to not create a service account for the gowebapp deployment.</p>
                 
               
               
@@ -802,39 +810,6 @@ Complex changesets can be applied to your infrastructure with minimal human inte
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Home
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../020_Assignment_2_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Assignment2
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
