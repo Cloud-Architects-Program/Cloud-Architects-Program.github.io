@@ -2668,7 +2668,7 @@ Helm Charts that available on GCP based Helm Repository. To achieve such task we
 <p>Helm includes the <code>helm create</code> command to make it easy for you to create a chart of your own, and it’s a great way to get started.</p>
 <p>The create command creates a chart for you, with all the required chart structure and files. These files are documented to help you understand what is needed, and the templates it provides 
 showcase multiple Kubernetes manifests working together to deploy an application. In addition, you can install and test this chart right out of the box.</p>
-<p><strong>Step 1</strong> Create a new chart:</p>
+<p><strong>Step 1:</strong> Create a new chart:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm
 </code></pre></div>
 
@@ -2708,20 +2708,36 @@ tree
 </ul>
 </div>
 <p>Here we going to show a quick way to create a Helm chart without adding any templating.</p>
-<p><strong>Step 2</strong> Delete <code>templates</code> folder and create empty one:</p>
+<p><strong>Step 2:</strong> Delete <code>templates</code> folder and create empty one:</p>
 <div class="codehilite"><pre><span></span><code>rm -rf templates
 mkdir templates
 cd templates
 </code></pre></div>
 
-<p><strong>Step 3</strong> Copy existing <code>gowebapp-mysql</code> manifests to <code>templates</code> folder:</p>
+<p><strong>Step 3:</strong> Copy existing <code>gowebapp-mysql</code> manifests to <code>templates</code> folder:</p>
 <div class="codehilite"><pre><span></span><code>cp -r ~/$MY_REPO/deploy_ycit020_a4/k8s-manifests/gowebapp-mysql-pvc.yaml  .         # PVC
 cp -r ~/$MY_REPO/deploy_ycit020_a4/k8s-manifests/secret-mysql.yaml   .              # Secret
 cp -r ~/$MY_REPO/deploy_ycit020_a4/k8s-manifests/gowebapp-mysql-service.yaml .      # Service
 cp -r ~/$MY_REPO/deploy_ycit020_a4/k8s-manifests/gowebapp-mysql-deployment.yaml .   # Deployment
 </code></pre></div>
 
-<p><strong>Step 4</strong>  Install Helm Chart locally:</p>
+<p><strong>Step 4:</strong> Lint Helm Chart:</p>
+<p>When developing charts, especially when working with YAML templates, it can be easy to make a mistake or miss something. 
+To help you catch errors, bugs, style issues, and other suspicious elements, the Helm client includes a linter. 
+This linter can be used during chart development and as part of any testing processes.</p>
+<p>To use the linter, use the <code>lint</code> command on a chart as a directory or a packaged archive:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm/
+helm lint gowebapp-mysql
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>==&gt; Linting gowebapp-mysql
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+</code></pre></div>
+
+<p><strong>Step 5:</strong>  Install Helm Chart locally:</p>
 <p>Create <code>dev</code> namespace:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm/gowebapp-mysql
 kubectl create ns dev
@@ -3016,9 +3032,15 @@ EOF
 </code></pre></div>
 
 <h4 id="426-deploy-gowebapp">4.2.6 Deploy <code>gowebapp</code><a class="headerlink" href="#426-deploy-gowebapp" title="Permanent link">&para;</a></h4>
-<p>Before deployment make sure test chart with <code>dry-run</code> and <code>template</code>.</p>
+<p>Before deployment make sure test chart with <code>dry-run</code>, <code>template</code> and <code>lint</code> the chart</p>
+<p>Lint: </p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm/
+helm lint gowebapp
+</code></pre></div>
+
+<p>Install:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm/gowebapp
-helm install gowebapp
+helm install gowebapp .
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
