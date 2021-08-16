@@ -1227,11 +1227,6 @@ Generated Static IP for Ingress:
 EOF
 </code></pre></div>
 
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-</div>
-<p>Add information about your static_ip_address in column 3 under your name in this spreadsheet:
-https://docs.google.com/spreadsheets/d/1XV-wW9Z8KvfWo4io11V_ax2__OImF27Rmlfbyj03T0I/edit?usp=sharing</p>
 <p><strong>Step 6</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 git status
@@ -1599,7 +1594,7 @@ ingress-nginx/ingress-nginx     3.33.0          0.47.0          Ingress controll
 <h3 id="322-download-and-inspect-chart-locally">3.2.2 Download and inspect Chart locally<a class="headerlink" href="#322-download-and-inspect-chart-locally" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Pull <code>ingress-nginx</code> Helm Chart of specific version to Local filesystem:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure/helm
-helm pull ingress-nginx --version 3.35.0
+helm pull ingress-nginx/ingress-nginx --version 3.35.0
 tar -xvzf  ingress-nginx-3.35.0.tgz
 </code></pre></div>
 
