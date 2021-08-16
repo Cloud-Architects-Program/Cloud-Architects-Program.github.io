@@ -1673,7 +1673,8 @@ $ ./get_helm.sh
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
 </code></pre></div>
 
-<p><strong>Step 2:</strong> Initialize Terraform Providers</p>
+<p><strong>Step 2:</strong> Initialize Terraform Providers
+s</p>
 <div class="codehilite"><pre><span></span><code>terraform init
 </code></pre></div>
 
@@ -1681,12 +1682,12 @@ $ ./get_helm.sh
 <div class="codehilite"><pre><span></span><code>edit terraform.tfvars
 </code></pre></div>
 
-<p>Update <code>gke_pool_machine_type</code> from <code>e2-small</code> to <code>e2-highcpu-4</code>.</p>
-<p><strong>Step 3:</strong> Review TF Plan:</p>
+<p>Update <code>gke_pool_machine_type</code> from <code>e2-small</code> to <code>e2-highcpu-4</code>, to support larger workloads.</p>
+<p><strong>Step 4:</strong> Review TF Plan:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
 
-<p><strong>Step 4:</strong> Create GKE Cluster and Node Pool:</p>
+<p><strong>Step 5:</strong> Create GKE Cluster and Node Pool:</p>
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
@@ -1967,7 +1968,7 @@ ingress-nginx/ingress-nginx     3.33.0          0.47.0          Ingress controll
 <h3 id="322-download-and-inspect-chart-locally">3.2.2 Download and inspect Chart locally<a class="headerlink" href="#322-download-and-inspect-chart-locally" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Pull <code>ingress-nginx</code> Helm Chart of specific version to Local filesystem:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure/helm
-helm pull ingress-nginx --version 3.35.0
+helm pull ingress-nginx/ingress-nginx --version 3.35.0
 tar -xvzf  ingress-nginx-3.35.0.tgz
 </code></pre></div>
 
