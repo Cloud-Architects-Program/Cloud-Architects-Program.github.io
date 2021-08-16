@@ -1677,6 +1677,11 @@ $ ./get_helm.sh
 <div class="codehilite"><pre><span></span><code>terraform init
 </code></pre></div>
 
+<p><strong>Step 3:</strong>  Increase GKE Node Pool VM size</p>
+<div class="codehilite"><pre><span></span><code>edit terraform.tfvars
+</code></pre></div>
+
+<p>Update <code>gke_pool_machine_type</code> from <code>e2-small</code> to <code>e2-highcpu-4</code>.</p>
 <p><strong>Step 3:</strong> Review TF Plan:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
