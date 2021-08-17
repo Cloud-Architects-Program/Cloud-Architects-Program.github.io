@@ -655,9 +655,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-deploy-istio-operator" class="md-nav__link">
-    7 Deploy Istio Operator
+  <a href="#7-install-istio-on-gke" class="md-nav__link">
+    7 Install Istio on GKE
   </a>
+  
+    <nav class="md-nav" aria-label="7 Install Istio on GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#70-prerequisite" class="md-nav__link">
+    7.0 Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-deploy-istio-using-custom-resources" class="md-nav__link">
+    7.1 Deploy Istio using Custom Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-deploy-istio-using-istio-operator" class="md-nav__link">
+    7.2 Deploy Istio using Istio Operator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1381,9 +1408,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-deploy-istio-operator" class="md-nav__link">
-    7 Deploy Istio Operator
+  <a href="#7-install-istio-on-gke" class="md-nav__link">
+    7 Install Istio on GKE
   </a>
+  
+    <nav class="md-nav" aria-label="7 Install Istio on GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#70-prerequisite" class="md-nav__link">
+    7.0 Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-deploy-istio-using-custom-resources" class="md-nav__link">
+    7.1 Deploy Istio using Custom Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-deploy-istio-using-istio-operator" class="md-nav__link">
+    7.2 Deploy Istio using Istio Operator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3113,7 +3167,384 @@ helm uninstall gowebapp-mysql
 <h1 id="part-2-wip">Part 2 WIP<a class="headerlink" href="#part-2-wip" title="Permanent link">&para;</a></h1>
 <h2 id="5-chart-repositories">5 Chart Repositories<a class="headerlink" href="#5-chart-repositories" title="Permanent link">&para;</a></h2>
 <h2 id="6-helmfile">6 HelmFile<a class="headerlink" href="#6-helmfile" title="Permanent link">&para;</a></h2>
-<h2 id="7-deploy-istio-operator">7 Deploy Istio Operator<a class="headerlink" href="#7-deploy-istio-operator" title="Permanent link">&para;</a></h2>
+<h2 id="7-install-istio-on-gke">7 Install Istio on GKE<a class="headerlink" href="#7-install-istio-on-gke" title="Permanent link">&para;</a></h2>
+<p>Currently Istio community developing following options of Istio deployment on Kubernetes Clusters:</p>
+<ul>
+<li><strong>Install with Istioctl</strong> installation via <code>istioctl</code> command line tool used to showcase Istio functionality. Using the CLI, we generate a YAML file with all Istio resources and then deploy it to the Kubernetes cluster</li>
+<li><strong>Istio Operator Install</strong> Takes installation of Istio to the next level as it's managing not only Istio installation but overall lifecicle of the Istio deployment including Upgrades and configurations.</li>
+<li><strong>Install with Helm (alpha)</strong> Allows to farther simplify Istio deployment and it's customization.  </li>
+</ul>
+<h3 id="70-prerequisite">7.0 Prerequisite<a class="headerlink" href="#70-prerequisite" title="Permanent link">&para;</a></h3>
+<p>Scaleup cluster back to 3 nodes and Update VPC firewall rules to enable <code>auto-injection</code> and the <code>istioctl version</code> and <code>istioctl ps</code> commands.</p>
+<p>References:</p>
+<ol>
+<li><a href="https://cloud.google.com/service-mesh/v1.7/docs/private-cluster-open-port">Opening ports on a private cluster</a></li>
+<li>Istio deployment on <a href="https://istio.io/latest/docs/setup/platform-setup/gke/">GKE Private Clusters</a></li>
+</ol>
+<p><strong>Step 1:</strong> Locate Terraform Configuration directory.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>edit terraform.tfvars
+</code></pre></div>
+
+<p>And set <code>gke_pool_node_count</code>   = "0"</p>
+<p><strong>Step 2:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; istio_firewall.tf
+resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
+  name =   format(&quot;allow-istio-in-privategke-%s-%s-%s&quot;, var.org, var.product, var.environment)
+  network = google_compute_network.vpc_network.self_link
+  source_ranges = [&quot;172.16.0.0/28&quot;]
+  allow {
+    protocol = &quot;tcp&quot;
+    ports = [&quot;10250&quot;, &quot;443&quot;, &quot;15017&quot;, &quot;15014&quot;, &quot;8080&quot;]
+  }
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p><strong>Step 4:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>GKE Clusters has been scalled to 3 nodes and has firewall rules opened</p>
+</div>
+<p><strong>Step 5:</strong> Verify firewall rule:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list --filter=&quot;name~allow-istio-in-privategke*&quot;
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                            NETWORK                   DIRECTION  PRIORITY  ALLOW                                           DENY  DISABLED
+allow-istio-in-privategke-$student-notepad-dev  vpc-$student-notepad-dev  INGRESS    1000      tcp:10250,tcp:443,tcp:15017,tcp:15014,tcp:8080        False
+</code></pre></div>
+
+<h3 id="71-deploy-istio-using-custom-resources">7.1 Deploy Istio using Custom Resources<a class="headerlink" href="#71-deploy-istio-using-custom-resources" title="Permanent link">&para;</a></h3>
+<p>This installation guide uses the istioctl command line tool to provide rich customization of the Istio control plane and of the sidecars for the Istio data plane.</p>
+<p>Download and extract the latest release:</p>
+<div class="codehilite"><pre><span></span><code>curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.11.0
+export PATH=$PWD/bin:$PATH
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The above command will fetch Istio packages and untar them in the same folder.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>tree -L 1
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>.
+├── LICENSE
+├── README.md
+├── bin
+├── manifest.yaml
+├── manifests
+├── samples
+└── tools
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Istio installation directory contains:</p>
+<ul>
+<li><code>bin</code> directory contains <code>istioctl</code> client binary</li>
+<li><code>manifests</code> Installation Profiles, configurations and Helm Charts</li>
+<li><code>samples</code> directory contains sample applications deployment</li>
+<li><code>tools</code>  directory contains auto-completion tooling and etc.</li>
+</ul>
+</div>
+<p><strong>Step 2</strong> Deploy Istio Custom Resource Definitions (CRDs)</p>
+<p>Istio extends Kubernetes using Custom Resource Definitions (CRDs). 
+CRDs allow registration of new/non-default Kubernetes resources. When Istio CRDs are deployed, Istio’s objects are registered as Kubernetes objects, providing a highly integrated experience with 
+Kubernetes as a deployment platform and thus allowing Kubernetes to store configuration of Istio features such as routing, security and telemetry and etc.</p>
+<p>We going to install using using <code>demo</code> configuration profile. The <code>demo</code> configuration profile allows to experiment with most of Istio features with modest resource requirements. 
+Since it enables high levels of tracing and access logging, it is not suitable for production use cases.</p>
+<div class="codehilite"><pre><span></span><code>istioctl install --set profile=demo -y
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>✔ Istio core installed
+✔ Istiod installed
+✔ Egress gateways installed
+✔ Ingress gateways installed
+✔ Installation complete
+Thank you for installing Istio 1.11.  Please take a few minutes to tell us about your install/upgrade experience!  
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait a few seconds for the CRDs to be committed in the Kubernetes API-server.</p>
+</div>
+<p><strong>Step 3</strong> Verify Istio CRDs successfully applied to Kubernetes Cluster.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get crds | grep istio
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>authorizationpolicies.security.istio.io          2021-08-16T19:38:16Z
+destinationrules.networking.istio.io             2021-08-16T19:38:16Z
+envoyfilters.networking.istio.io                 2021-08-16T19:38:16Z
+gateways.networking.istio.io                     2021-08-16T19:38:17Z
+istiooperators.install.istio.io                  2021-08-16T19:38:17Z
+peerauthentications.security.istio.io            2021-08-16T19:38:17Z
+requestauthentications.security.istio.io         2021-08-16T19:38:17Z
+serviceentries.networking.istio.io               2021-08-16T19:38:17Z
+sidecars.networking.istio.io                     2021-08-16T19:38:17Z
+telemetries.telemetry.istio.io                   2021-08-16T19:38:18Z
+virtualservices.networking.istio.io              2021-08-16T19:38:18Z
+workloadentries.networking.istio.io              2021-08-16T19:38:18Z
+workloadgroups.networking.istio.io               2021-08-16T19:38:19Z
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Above CRDs will be avaialable as a new Kubernetes Resources and stored in Kubernetes ETCD database. The Kubernetes API will represent these new resources as endpoints that 
+can be used as other native Kubernetes object (such as Pod, Services) levereging  kubectl, RBAC and other features and  admission controllers of Kubernetes.</p>
+</div>
+<p><strong>Step 4</strong> Count total number of Installed CRDs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get crds | grep istio | wc -l
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CRDs count will vary based on Istio version and profile deployed.</p>
+</div>
+<p><strong>Step 5</strong> Verify that Istio control plane has been installed successfully.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>istio-egressgateway-9dc6cbc49-5wkqt     1/1     Running   0          2m54s
+istio-ingressgateway-7975cdb749-xjc5g   1/1     Running   0          2m54s
+istiod-77b4d7b55d-j6kb5                 1/1     Running   0          3m9s
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Istio control-plane include following components:</p>
+<ul>
+<li><code>istiod</code> - contains components such as <code>Citadel</code> and <code>Pilot</code></li>
+<li><code>istio-ingressgateway</code> Istio Ingress Gateway</li>
+<li><code>istio-ingressgateway</code> Istio Egress Gateway</li>
+</ul>
+</div>
+<p><strong>Step 6</strong> Verify installation with <code>istioctl</code> CLI:</p>
+<div class="codehilite"><pre><span></span><code>istioctl version
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>istioctl verify-install
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Checked 13 custom resource definitions
+Checked 3 Istio Deployments
+✔ Istio is installed and verified successfully
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Deploy  <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-cjj5b       1/1     Running   0          12s
+productpage-v1-6b746f74dc-sxdxz   1/1     Running   0          10s
+ratings-v1-b6994bb9-jd985         1/1     Running   0          11s
+reviews-v1-545db77b95-5kjr4       1/1     Running   0          11s
+reviews-v2-7bf8c9648f-5v2s9       1/1     Running   0          11s
+reviews-v3-84779c7bbc-5khlt       1/1     Running   0          11s
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a typical Kubernetes deployment, and has nothing specific to Istio. Each Pod has 1 container.</p>
+</div>
+<p><strong>Step 6</strong> Remove <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 7</strong> Enable automatic Envoy sidecar injection.</p>
+<p>Currently there are 2 method to inject <code>Envoy</code> sidecar inside Istio Mesh:</p>
+<ul>
+<li>Manual sidecar injection - modifies the controller configuration, e.g. deployment. It does this by modifying the pod template spec such that all pods for that deployment are created with the injected sidecar. Adding/Updating/Removing the sidecar requires modifying the entire deployment.</li>
+<li>Automatic sidecar injection via a Mutating Admission Webhook - The Deployment resource is unmodified. Sidecars can be updated selectively by manually deleting a pods or systematically with a deployment rolling update.</li>
+</ul>
+<p>Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:</p>
+<div class="codehilite"><pre><span></span><code>kubectl label namespace default istio-injection=enabled
+</code></pre></div>
+
+<p><strong>Step 8</strong> Deploy  <code>Bookinfo</code> sample application on Istio with Auto Sidecar Injection</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 8</strong> Verify deployed application:</p>
+<p>The application will start. As each pod becomes ready, the Istio sidecar will be deployed along with it.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-zqjbg       2/2     Running   0          13m
+productpage-v1-6b746f74dc-dj959   2/2     Running   0          12m
+ratings-v1-b6994bb9-29n4w         2/2     Running   0          12m
+reviews-v1-545db77b95-p9pgf       2/2     Running   0          12m
+reviews-v2-7bf8c9648f-4ltkg       2/2     Running   0          12m
+reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each Pod  has now 2 containers. One application container and another is <code>istio-proxy</code> sidecar container.</p>
+</div>
+<p><strong>Step 9</strong> Access UI <code>productpage</code> via console:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get services
+</code></pre></div>
+
+<p>In Gcloud console execute <code>kubectl port-forward</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl port-forward --namespace default svc/productpage 8080:9080
+</code></pre></div>
+
+<p>Click <code>Web-Preview</code> button in Gcloud, and select preview on port <code>8080</code>
+Click <code>Normal user</code> URL.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>We can access <code>Bookinfo</code> application configured with Istio and Envoy sidecar using private IP via tunnel</p>
+</div>
+<p><strong>Step 10</strong> Remove <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 11</strong> Uninstall Istio</p>
+<div class="codehilite"><pre><span></span><code>istioctl manifest generate --set profile=demo | kubectl delete --ignore-not-found=true -f -
+kubectl delete namespace istio-system
+kubectl label namespace default istio-injection-
+</code></pre></div>
+
+<h3 id="72-deploy-istio-using-istio-operator">7.2 Deploy Istio using Istio Operator<a class="headerlink" href="#72-deploy-istio-using-istio-operator" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1:</strong> Deploy the Istio operator:</p>
+<div class="codehilite"><pre><span></span><code>istioctl operator init
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command runs the operator by creating the following resources in the <code>istio-operator</code> namespace:</p>
+<ul>
+<li>The operator custom resource definition</li>
+<li>The operator controller deployment</li>
+<li>A service to access operator metrics</li>
+<li>Necessary Istio operator RBAC rules</li>
+</ul>
+</div>
+<p><strong>Step 2:</strong> To install the Istio demo configuration profile using the operator, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f - &lt;&lt;EOF
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: example-istiocontrolplane
+spec:
+  profile: demo
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Istio operator controller begins the process of installing Istio within 90 seconds of the creation of the IstioOperator resource. The Istio installation completes within 120 seconds.</p>
+</div>
+<p><strong>Step 3</strong> Verify Operator resource status on Kubernetes Cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get istiooperators  -n istio-system 
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAMESPACE      NAME                        REVISION   STATUS    AGE
+istio-system   example-istiocontrolplane              HEALTHY   25m
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe istiooperators example-istiocontrolplane -n istio-system
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Spec:
+  Profile:  demo
+Status:
+  Component Status:
+    Base:
+      Status:  HEALTHY
+    Egress Gateways:
+      Status:  HEALTHY
+    Ingress Gateways:
+      Status:  HEALTHY
+    Pilot:
+      Status:  HEALTHY
+  Status:      HEALTHY
+Events:        &lt;none&gt;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>istio-egressgateway-9dc6cbc49-5wkqt     1/1     Running   0          2m54s
+istio-ingressgateway-7975cdb749-xjc5g   1/1     Running   0          2m54s
+istiod-77b4d7b55d-j6kb5                 1/1     Running   0          3m9s
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Istio control-plane include following components:</p>
+<ul>
+<li><code>istiod</code> - contains components such as <code>Citadel</code> and <code>Pilot</code></li>
+<li><code>istio-ingressgateway</code> Istio Ingress Gateway</li>
+<li><code>istio-ingressgateway</code> Istio Egress Gateway</li>
+</ul>
+</div>
+<p>Verify installation with <code>istioctl</code> CLI:</p>
+<div class="codehilite"><pre><span></span><code>istioctl verify-install
+</code></pre></div>
+
+<p><strong>Step 5</strong> Enable automatic Envoy sidecar injection.</p>
+<p>Currently there are 2 method to inject <code>Envoy</code> sidecar inside Istio Mesh:</p>
+<ul>
+<li>Manual sidecar injection - modifies the controller configuration, e.g. deployment. It does this by modifying the pod template spec such that all pods for that deployment are created with the injected sidecar. Adding/Updating/Removing the sidecar requires modifying the entire deployment.</li>
+<li>Automatic sidecar injection via a Mutating Admission Webhook - The Deployment resource is unmodified. Sidecars can be updated selectively by manually deleting a pods or systematically with a deployment rolling update.</li>
+</ul>
+<p>Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:</p>
+<div class="codehilite"><pre><span></span><code>kubectl label namespace default istio-injection=enabled
+</code></pre></div>
+
+<p><strong>Step 8</strong> Deploy  <code>Bookinfo</code> sample application on Istio with Auto Sidecar Injection</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 8</strong> Verify deployed application:</p>
+<p>The application will start. As each pod becomes ready, the Istio sidecar will be deployed along with it.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-zqjbg       2/2     Running   0          13m
+productpage-v1-6b746f74dc-dj959   2/2     Running   0          12m
+ratings-v1-b6994bb9-29n4w         2/2     Running   0          12m
+reviews-v1-545db77b95-p9pgf       2/2     Running   0          12m
+reviews-v2-7bf8c9648f-4ltkg       2/2     Running   0          12m
+reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>We've leaned to deploy Istio Control plane using <code>istioctl</code> cli and using Istio Operator. We also deployed regular k8s application on the namespace marked with auto injection!</p>
+</div>
+<p><strong>Step 9</strong> Cleanup and Uninstall Istio Operator</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml   
+</code></pre></div>
+
 <h2 id="8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">8 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy_ycit020_a4/helm</code> and <code>notepad-infrastructure/helm</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO

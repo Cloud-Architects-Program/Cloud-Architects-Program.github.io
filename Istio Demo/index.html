@@ -1,0 +1,1274 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
+    
+    
+      
+        <title>Istio Demo - YCIT020</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7-install-istio-on-gke" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="YCIT020" class="md-header__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            YCIT020
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Istio Demo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="YCIT020" class="md-nav__button md-logo" aria-label="YCIT020" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    YCIT020
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        YCIT020
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      <label class="md-nav__link" for="__nav_2_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
+        Lab 3 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_2_Production_GKE/" class="md-nav__link">
+        Assignment2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_2_sol_Production_GKE/" class="md-nav__link">
+        Assignment2 Sol
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_3_Terraform_GCP_Foundation/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_3_sol_Terraform_GCP_Foundation/" class="md-nav__link">
+        Assignment3 Sol
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Assignment_4_Helm_Foundation/" class="md-nav__link">
+        Assignmen4
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        YCIT019
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Labs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_2_Docker_basics/" class="md-nav__link">
+        Lab 2 Docker Basics
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_3_Advanced_Docker/" class="md-nav__link">
+        Lab 3 Advanced Docker
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_4_Docker_Images/" class="md-nav__link">
+        Lab 4 Managing Docker Images
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_5_Docker_Compose/" class="md-nav__link">
+        Lab 5 Docker Compose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_6_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Lab 6 Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_7_Kubernetes_Concepts/" class="md-nav__link">
+        Lab 7 Kubernetes Concepts
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_8_Kubernetes_Features/" class="md-nav__link">
+        Lab 8 Kubernetes Features
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_9_Kubernetes_Scaling/" class="md-nav__link">
+        Lab 9 Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Lab 10 Kubernetes Networking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Lab 11 Kubernetes Storage
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Assignments
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Assignment1
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Assignment1 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Assignment2
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Assignment2 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Assignment3
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Assignment3 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4/" class="md-nav__link">
+        Assignment4
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Assignment4 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        Assignment5
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5_solution/" class="md-nav__link">
+        Assignment5 - Solution
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6/" class="md-nav__link">
+        Assignment6
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Assignment6 - Solution
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7-install-istio-on-gke" class="md-nav__link">
+    7 Install Istio on GKE
+  </a>
+  
+    <nav class="md-nav" aria-label="7 Install Istio on GKE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#70-prerequisite" class="md-nav__link">
+    7.0 Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-deploy-istio-using-custom-resources" class="md-nav__link">
+    7.1 Deploy Istio using Custom Resources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-deploy-istio-using-istio-operator" class="md-nav__link">
+    7.2 Deploy Istio using Istio Operator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Istio Demo</h1>
+                
+                <p>Lab 4 Learning Istio</p>
+<h2 id="7-install-istio-on-gke">7 Install Istio on GKE<a class="headerlink" href="#7-install-istio-on-gke" title="Permanent link">&para;</a></h2>
+<p>Currently Istio community developing following options of Istio deployment on Kubernetes Clusters:</p>
+<ul>
+<li><strong>Install with Istioctl</strong> installation via <code>istioctl</code> command line tool used to showcase Istio functionality. Using the CLI, we generate a YAML file with all Istio resources and then deploy it to the Kubernetes cluster</li>
+<li><strong>Istio Operator Install</strong> Takes installation of Istio to the next level as it's managing not only Istio installation but overall lifecicle of the Istio deployment including Upgrades and configurations.</li>
+<li><strong>Install with Helm (alpha)</strong> Allows to farther simplify Istio deployment and it's customization.  </li>
+</ul>
+<h3 id="70-prerequisite">7.0 Prerequisite<a class="headerlink" href="#70-prerequisite" title="Permanent link">&para;</a></h3>
+<p>Scaleup cluster back to 3 nodes and Update VPC firewall rules to enable <code>auto-injection</code> and the <code>istioctl version</code> and <code>istioctl ps</code> commands.</p>
+<p>References:</p>
+<ol>
+<li><a href="https://cloud.google.com/service-mesh/v1.7/docs/private-cluster-open-port">Opening ports on a private cluster</a></li>
+<li>Istio deployment on <a href="https://istio.io/latest/docs/setup/platform-setup/gke/">GKE Private Clusters</a></li>
+</ol>
+<p><strong>Step 1:</strong> Locate Terraform Configuration directory.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>edit terraform.tfvars
+</code></pre></div>
+
+<p>And set <code>gke_pool_node_count</code>   = "0"</p>
+<p><strong>Step 2:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; istio_firewall.tf
+resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
+  name =   format(&quot;allow-istio-in-privategke-%s-%s-%s&quot;, var.org, var.product, var.environment)
+  network = google_compute_network.vpc_network.self_link
+  source_ranges = [&quot;172.16.0.0/28&quot;]
+  allow {
+    protocol = &quot;tcp&quot;
+    ports = [&quot;10250&quot;, &quot;443&quot;, &quot;15017&quot;, &quot;15014&quot;, &quot;8080&quot;]
+  }
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p><strong>Step 4:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>GKE Clusters has been scalled to 3 nodes and has firewall rules opened</p>
+</div>
+<p><strong>Step 5:</strong> Verify firewall rule:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list --filter=&quot;name~allow-istio-in-privategke*&quot;
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                            NETWORK                   DIRECTION  PRIORITY  ALLOW                                           DENY  DISABLED
+allow-istio-in-privategke-$student-notepad-dev  vpc-$student-notepad-dev  INGRESS    1000      tcp:10250,tcp:443,tcp:15017,tcp:15014,tcp:8080        False
+</code></pre></div>
+
+<h3 id="71-deploy-istio-using-custom-resources">7.1 Deploy Istio using Custom Resources<a class="headerlink" href="#71-deploy-istio-using-custom-resources" title="Permanent link">&para;</a></h3>
+<p>This installation guide uses the istioctl command line tool to provide rich customization of the Istio control plane and of the sidecars for the Istio data plane.</p>
+<p>Download and extract the latest release:</p>
+<div class="codehilite"><pre><span></span><code>curl -L https://istio.io/downloadIstio | sh -
+cd istio-1.11.0
+export PATH=$PWD/bin:$PATH
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The above command will fetch Istio packages and untar them in the same folder.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>tree -L 1
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>.
+├── LICENSE
+├── README.md
+├── bin
+├── manifest.yaml
+├── manifests
+├── samples
+└── tools
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Istio installation directory contains:</p>
+<ul>
+<li><code>bin</code> directory contains <code>istioctl</code> client binary</li>
+<li><code>manifests</code> Installation Profiles, configurations and Helm Charts</li>
+<li><code>samples</code> directory contains sample applications deployment</li>
+<li><code>tools</code>  directory contains auto-completion tooling and etc.</li>
+</ul>
+</div>
+<p><strong>Step 2</strong> Deploy Istio Custom Resource Definitions (CRDs)</p>
+<p>Istio extends Kubernetes using Custom Resource Definitions (CRDs). 
+CRDs allow registration of new/non-default Kubernetes resources. When Istio CRDs are deployed, Istio’s objects are registered as Kubernetes objects, providing a highly integrated experience with 
+Kubernetes as a deployment platform and thus allowing Kubernetes to store configuration of Istio features such as routing, security and telemetry and etc.</p>
+<p>We going to install using using <code>demo</code> configuration profile. The <code>demo</code> configuration profile allows to experiment with most of Istio features with modest resource requirements. 
+Since it enables high levels of tracing and access logging, it is not suitable for production use cases.</p>
+<div class="codehilite"><pre><span></span><code>istioctl install --set profile=demo -y
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>✔ Istio core installed
+✔ Istiod installed
+✔ Egress gateways installed
+✔ Ingress gateways installed
+✔ Installation complete
+Thank you for installing Istio 1.11.  Please take a few minutes to tell us about your install/upgrade experience!  
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait a few seconds for the CRDs to be committed in the Kubernetes API-server.</p>
+</div>
+<p><strong>Step 3</strong> Verify Istio CRDs successfully applied to Kubernetes Cluster.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get crds | grep istio
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>authorizationpolicies.security.istio.io          2021-08-16T19:38:16Z
+destinationrules.networking.istio.io             2021-08-16T19:38:16Z
+envoyfilters.networking.istio.io                 2021-08-16T19:38:16Z
+gateways.networking.istio.io                     2021-08-16T19:38:17Z
+istiooperators.install.istio.io                  2021-08-16T19:38:17Z
+peerauthentications.security.istio.io            2021-08-16T19:38:17Z
+requestauthentications.security.istio.io         2021-08-16T19:38:17Z
+serviceentries.networking.istio.io               2021-08-16T19:38:17Z
+sidecars.networking.istio.io                     2021-08-16T19:38:17Z
+telemetries.telemetry.istio.io                   2021-08-16T19:38:18Z
+virtualservices.networking.istio.io              2021-08-16T19:38:18Z
+workloadentries.networking.istio.io              2021-08-16T19:38:18Z
+workloadgroups.networking.istio.io               2021-08-16T19:38:19Z
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Above CRDs will be avaialable as a new Kubernetes Resources and stored in Kubernetes ETCD database. The Kubernetes API will represent these new resources as endpoints that 
+can be used as other native Kubernetes object (such as Pod, Services) levereging  kubectl, RBAC and other features and  admission controllers of Kubernetes.</p>
+</div>
+<p><strong>Step 4</strong> Count total number of Installed CRDs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get crds | grep istio | wc -l
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CRDs count will vary based on Istio version and profile deployed.</p>
+</div>
+<p><strong>Step 5</strong> Verify that Istio control plane has been installed successfully.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>istio-egressgateway-9dc6cbc49-5wkqt     1/1     Running   0          2m54s
+istio-ingressgateway-7975cdb749-xjc5g   1/1     Running   0          2m54s
+istiod-77b4d7b55d-j6kb5                 1/1     Running   0          3m9s
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Istio control-plane include following components:</p>
+<ul>
+<li><code>istiod</code> - contains components such as <code>Citadel</code> and <code>Pilot</code></li>
+<li><code>istio-ingressgateway</code> Istio Ingress Gateway</li>
+<li><code>istio-ingressgateway</code> Istio Egress Gateway</li>
+</ul>
+</div>
+<p><strong>Step 6</strong> Verify installation with <code>istioctl</code> CLI:</p>
+<div class="codehilite"><pre><span></span><code>istioctl version
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>istioctl verify-install
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Checked 13 custom resource definitions
+Checked 3 Istio Deployments
+✔ Istio is installed and verified successfully
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Deploy  <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-cjj5b       1/1     Running   0          12s
+productpage-v1-6b746f74dc-sxdxz   1/1     Running   0          10s
+ratings-v1-b6994bb9-jd985         1/1     Running   0          11s
+reviews-v1-545db77b95-5kjr4       1/1     Running   0          11s
+reviews-v2-7bf8c9648f-5v2s9       1/1     Running   0          11s
+reviews-v3-84779c7bbc-5khlt       1/1     Running   0          11s
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a typical Kubernetes deployment, and has nothing specific to Istio. Each Pod has 1 container.</p>
+</div>
+<p><strong>Step 6</strong> Remove <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step X:</strong> Manual Sidecar injection:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; go-web-app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webk8sbirthday-v2
+  labels:
+    run: webk8sbirthday-v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: webk8sbirthday-v2
+  template:
+    metadata:
+      labels:
+        run: webk8sbirthday-v2
+    spec:
+      containers:
+      - name: k8s-demo
+        image: archyufa/webk8sbirthday:v2
+        ports:
+        - name: port
+          containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webk8sbirthday-v2
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    run: webk8sbirthday-v2
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl apply -f go-web-app-deployment.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl port-forward --namespace default svc/webk8sbirthday-v2 8080:80
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl delete -f go-web-app-deployment.yaml
+</code></pre></div>
+
+<p><strong>Step 7</strong> Enable manual Envoy sidecar injection.</p>
+<p>Using <code>istioctl kube-inject</code> manually inject Envoy containers in your application pods before deploying them.</p>
+<div class="codehilite"><pre><span></span><code>istioctl kube-inject -f go-web-app-deployment.yaml | kubectl apply -f -
+</code></pre></div>
+
+<p>Alternatively, injection can be done using local copies of the configuration.</p>
+<div class="codehilite"><pre><span></span><code>kubectl -n istio-system get configmap istio-sidecar-injector -o=jsonpath=&#39;{.data.config}&#39; &gt; inject-config.yaml
+kubectl -n istio-system get configmap istio-sidecar-injector -o=jsonpath=&#39;{.data.values}&#39; &gt; inject-values.yaml
+kubectl -n istio-system get configmap istio -o=jsonpath=&#39;{.data.mesh}&#39; &gt; mesh-config.yaml
+</code></pre></div>
+
+<p>Run kube-inject over the input file and deploy.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Optionally manual injection can also load configuration from local custom files. See example below:</p>
+<p><code>$ istioctl kube-inject
+--injectConfigFile inject-config.yaml
+--meshConfigFile mesh-config.yaml
+--filename go-web-app-deployment.yaml
+--valuesFile inject-values.yaml
+--output go-web-app-deployment-injected.yaml</code></p>
+</div>
+<div class="codehilite"><pre><span></span><code>grep &quot;image:&quot; -A1 go-web-app-deployment-injected.yaml
+</code></pre></div>
+
+<p><strong>Step 7</strong> Enable automatic Envoy sidecar injection.</p>
+<p>Currently there are 2 method to inject <code>Envoy</code> sidecar inside Istio Mesh:</p>
+<ul>
+<li>Manual sidecar injection - modifies the controller configuration, e.g. deployment. It does this by modifying the pod template spec such that all pods for that deployment are created with the injected sidecar. Adding/Updating/Removing the sidecar requires modifying the entire deployment.</li>
+<li>Automatic sidecar injection via a Mutating Admission Webhook - The Deployment resource is unmodified. Sidecars can be updated selectively by manually deleting a pods or systematically with a deployment rolling update.</li>
+</ul>
+<p>Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:</p>
+<div class="codehilite"><pre><span></span><code>kubectl label namespace default istio-injection=enabled
+</code></pre></div>
+
+<p><strong>Step 8</strong> Deploy  <code>Bookinfo</code> sample application on Istio with Auto Sidecar Injection</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 8</strong> Verify deployed application:</p>
+<p>The application will start. As each pod becomes ready, the Istio sidecar will be deployed along with it.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-zqjbg       2/2     Running   0          13m
+productpage-v1-6b746f74dc-dj959   2/2     Running   0          12m
+ratings-v1-b6994bb9-29n4w         2/2     Running   0          12m
+reviews-v1-545db77b95-p9pgf       2/2     Running   0          12m
+reviews-v2-7bf8c9648f-4ltkg       2/2     Running   0          12m
+reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each Pod  has now 2 containers. One application container and another is <code>istio-proxy</code> sidecar container.</p>
+</div>
+<p><strong>Step 9</strong> Access UI <code>productpage</code> via console:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get services
+</code></pre></div>
+
+<p>In Gcloud console execute <code>kubectl port-forward</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl port-forward --namespace default svc/productpage 8080:9080
+</code></pre></div>
+
+<p>Click <code>Web-Preview</code> button in Gcloud, and select preview on port <code>8080</code>
+Click <code>Normal user</code> URL.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>We can access <code>Bookinfo</code> application configured with Istio and Envoy sidecar using private IP via tunnel</p>
+</div>
+<p><strong>Step 10</strong> Remove <code>Bookinfo</code> sample application:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 11</strong> Uninstall Istio</p>
+<div class="codehilite"><pre><span></span><code>istioctl manifest generate --set profile=demo | kubectl delete --ignore-not-found=true -f -
+kubectl delete namespace istio-system
+kubectl label namespace default istio-injection-
+</code></pre></div>
+
+<h3 id="72-deploy-istio-using-istio-operator">7.2 Deploy Istio using Istio Operator<a class="headerlink" href="#72-deploy-istio-using-istio-operator" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1:</strong> Deploy the Istio operator:</p>
+<div class="codehilite"><pre><span></span><code>istioctl operator init
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command runs the operator by creating the following resources in the <code>istio-operator</code> namespace:</p>
+<ul>
+<li>The operator custom resource definition</li>
+<li>The operator controller deployment</li>
+<li>A service to access operator metrics</li>
+<li>Necessary Istio operator RBAC rules</li>
+</ul>
+</div>
+<p><strong>Step 2:</strong> To install the Istio demo configuration profile using the operator, run the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f - &lt;&lt;EOF
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: example-istiocontrolplane
+spec:
+  profile: demo
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Istio operator controller begins the process of installing Istio within 90 seconds of the creation of the IstioOperator resource. The Istio installation completes within 120 seconds.</p>
+</div>
+<p><strong>Step 3</strong> Verify Operator resource status on Kubernetes Cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get istiooperators  -n istio-system 
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAMESPACE      NAME                        REVISION   STATUS    AGE
+istio-system   example-istiocontrolplane              HEALTHY   25m
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe istiooperators example-istiocontrolplane -n istio-system
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Spec:
+  Profile:  demo
+Status:
+  Component Status:
+    Base:
+      Status:  HEALTHY
+    Egress Gateways:
+      Status:  HEALTHY
+    Ingress Gateways:
+      Status:  HEALTHY
+    Pilot:
+      Status:  HEALTHY
+  Status:      HEALTHY
+Events:        &lt;none&gt;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>istio-egressgateway-9dc6cbc49-5wkqt     1/1     Running   0          2m54s
+istio-ingressgateway-7975cdb749-xjc5g   1/1     Running   0          2m54s
+istiod-77b4d7b55d-j6kb5                 1/1     Running   0          3m9s
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Istio control-plane include following components:</p>
+<ul>
+<li><code>istiod</code> - contains components such as <code>Citadel</code> and <code>Pilot</code></li>
+<li><code>istio-ingressgateway</code> Istio Ingress Gateway</li>
+<li><code>istio-ingressgateway</code> Istio Egress Gateway</li>
+</ul>
+</div>
+<p>Verify installation with <code>istioctl</code> CLI:</p>
+<div class="codehilite"><pre><span></span><code>istioctl verify-install
+</code></pre></div>
+
+<p><strong>Step 5</strong> Enable automatic Envoy sidecar injection.</p>
+<p>Currently there are 2 method to inject <code>Envoy</code> sidecar inside Istio Mesh:</p>
+<ul>
+<li>Manual sidecar injection - modifies the controller configuration, e.g. deployment. It does this by modifying the pod template spec such that all pods for that deployment are created with the injected sidecar. Adding/Updating/Removing the sidecar requires modifying the entire deployment.</li>
+<li>Automatic sidecar injection via a Mutating Admission Webhook - The Deployment resource is unmodified. Sidecars can be updated selectively by manually deleting a pods or systematically with a deployment rolling update.</li>
+</ul>
+<p>Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:</p>
+<div class="codehilite"><pre><span></span><code>kubectl label namespace default istio-injection=enabled
+</code></pre></div>
+
+<p><strong>Step 8</strong> Deploy  <code>Bookinfo</code> sample application on Istio with Auto Sidecar Injection</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 8</strong> Verify deployed application:</p>
+<p>The application will start. As each pod becomes ready, the Istio sidecar will be deployed along with it.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS    RESTARTS   AGE
+details-v1-79f774bdb9-zqjbg       2/2     Running   0          13m
+productpage-v1-6b746f74dc-dj959   2/2     Running   0          12m
+ratings-v1-b6994bb9-29n4w         2/2     Running   0          12m
+reviews-v1-545db77b95-p9pgf       2/2     Running   0          12m
+reviews-v2-7bf8c9648f-4ltkg       2/2     Running   0          12m
+reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>We've leaned to deploy Istio Control plane using <code>istioctl</code> cli and using Istio Operator. We also deployed regular k8s application on the namespace marked with auto injection!</p>
+</div>
+<p><strong>Step 9</strong> Cleanup and Uninstall Istio Operator</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl delete istiooperators.install.istio.io -n istio-system example-istiocontrolplane
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait until Istio is uninstalled - this may take some time.</p>
+</div>
+<p>Then you can remove the Istio operator for the old revision by running the following command:</p>
+<div class="codehilite"><pre><span></span><code>istioctl operator remove
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
