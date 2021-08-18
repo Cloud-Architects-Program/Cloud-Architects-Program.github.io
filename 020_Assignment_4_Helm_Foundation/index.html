@@ -235,6 +235,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Traffic_control/" class="md-nav__link">
+        Lab 4 Traffic Management
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -3542,8 +3554,14 @@ reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
 <p class="admonition-title">Summary</p>
 <p>We've leaned to deploy Istio Control plane using <code>istioctl</code> cli and using Istio Operator. We also deployed regular k8s application on the namespace marked with auto injection!</p>
 </div>
-<p><strong>Step 9</strong> Cleanup and Uninstall Istio Operator</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml   
+<p><strong>Step 9</strong> Cleanup  Uninstall Istio Operator</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Step 10</strong>  Uninstall Istio Operator</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete istiooperators.install.istio.io -n istio-system example-istiocontrolplane
+istioctl operator remove
+kubectl delete ns istio-system --grace-period=0 --force
 </code></pre></div>
 
 <h2 id="8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">8 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
