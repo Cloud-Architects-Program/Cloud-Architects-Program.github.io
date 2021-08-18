@@ -3185,11 +3185,12 @@ helm uninstall gowebapp-mysql
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
 </code></pre></div>
 
+<p><strong>Step 2:</strong> Configure GKE Cluster to Scale back to <code>1</code> node per zone in a region.</p>
 <div class="codehilite"><pre><span></span><code>edit terraform.tfvars
 </code></pre></div>
 
-<p>And set <code>gke_pool_node_count</code>   = "0"</p>
-<p><strong>Step 2:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
+<p>And set <code>gke_pool_node_count</code>   = "1"</p>
+<p><strong>Step 3:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; istio_firewall.tf
 resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
   name =   format(&quot;allow-istio-in-privategke-%s-%s-%s&quot;, var.org, var.product, var.environment)
@@ -3203,11 +3204,11 @@ resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
 EOF
 </code></pre></div>
 
-<p><strong>Step 3:</strong> Review TF Plan:</p>
+<p><strong>Step 4:</strong> Review TF Plan:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
 
-<p><strong>Step 4:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
+<p><strong>Step 5:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
@@ -3215,7 +3216,7 @@ EOF
 <p class="admonition-title">Result</p>
 <p>GKE Clusters has been scalled to 3 nodes and has firewall rules opened</p>
 </div>
-<p><strong>Step 5:</strong> Verify firewall rule:</p>
+<p><strong>Step 6:</strong> Verify firewall rule:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list --filter=&quot;name~allow-istio-in-privategke*&quot;
 </code></pre></div>
 

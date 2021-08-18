@@ -2734,7 +2734,7 @@ EOF
 <p>Before deployment make sure test chart with <code>dry-run</code> and <code>template</code>.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a4/helm/gowebapp
 
-helm install gowebapp
+helm install gowebapp .
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
@@ -2812,11 +2812,12 @@ helm uninstall gowebapp-mysql
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
 </code></pre></div>
 
+<p><strong>Step 2:</strong> Configure GKE Cluster to Scale back to <code>1</code> node per zone in a region.</p>
 <div class="codehilite"><pre><span></span><code>edit terraform.tfvars
 </code></pre></div>
 
-<p>And set <code>gke_pool_node_count</code>   = "0"</p>
-<p><strong>Step 2:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
+<p>And set <code>gke_pool_node_count</code>   = "1"</p>
+<p><strong>Step 3:</strong>  Create new firewall rule for source range (master-ipv4-cidr) of the cluster, that will open required ports for Istio installation:</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; istio_firewall.tf
 resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
   name =   format(&quot;allow-istio-in-privategke-%s-%s-%s&quot;, var.org, var.product, var.environment)
@@ -2830,11 +2831,11 @@ resource &quot;google_compute_firewall&quot; &quot;istio_specific&quot; {
 EOF
 </code></pre></div>
 
-<p><strong>Step 3:</strong> Review TF Plan:</p>
+<p><strong>Step 4:</strong> Review TF Plan:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
 
-<p><strong>Step 4:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
+<p><strong>Step 5:</strong> Scale up GKE Cluster Node Pool and update firewall rules for required range:</p>
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
@@ -2842,7 +2843,7 @@ EOF
 <p class="admonition-title">Result</p>
 <p>GKE Clusters has been scalled to 3 nodes and has firewall rules opened</p>
 </div>
-<p><strong>Step 5:</strong> Verify firewall rule:</p>
+<p><strong>Step 6:</strong> Verify firewall rule:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list --filter=&quot;name~allow-istio-in-privategke*&quot;
 </code></pre></div>
 
@@ -3085,7 +3086,34 @@ EOF
 <p class="admonition-title">Note</p>
 <p>The Istio operator controller begins the process of installing Istio within 90 seconds of the creation of the IstioOperator resource. The Istio installation completes within 120 seconds.</p>
 </div>
-<p><strong>Step 3</strong> Verify that Istio control plane has been installed successfully.</p>
+<p><strong>Step 3</strong> Verify Operator resource status on Kubernetes Cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get istiooperators  -n istio-system 
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAMESPACE      NAME                        REVISION   STATUS    AGE
+istio-system   example-istiocontrolplane              HEALTHY   25m
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe istiooperators example-istiocontrolplane -n istio-system
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Spec:
+  Profile:  demo
+Status:
+  Component Status:
+    Base:
+      Status:  HEALTHY
+    Egress Gateways:
+      Status:  HEALTHY
+    Ingress Gateways:
+      Status:  HEALTHY
+    Pilot:
+      Status:  HEALTHY
+  Status:      HEALTHY
+Events:        &lt;none&gt;
+</code></pre></div>
+
 <div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
 </code></pre></div>
 
@@ -3104,7 +3132,7 @@ istiod-77b4d7b55d-j6kb5                 1/1     Running   0          3m9s
 <li><code>istio-ingressgateway</code> Istio Egress Gateway</li>
 </ul>
 </div>
-<p><strong>Step 4</strong> Verify installation with <code>istioctl</code> CLI:</p>
+<p>Verify installation with <code>istioctl</code> CLI:</p>
 <div class="codehilite"><pre><span></span><code>istioctl verify-install
 </code></pre></div>
 
@@ -3139,8 +3167,12 @@ reviews-v3-84779c7bbc-vhsmw       2/2     Running   0          12m
 
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
-<p>We've deployed Istio Control plane using <code>istioctl</code> cli and using Istio Operator</p>
+<p>We've leaned to deploy Istio Control plane using <code>istioctl</code> cli and using Istio Operator. We also deployed regular k8s application on the namespace marked with auto injection!</p>
 </div>
+<p><strong>Step 9</strong> Cleanup and Uninstall Istio Operator</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml   
+</code></pre></div>
+
 <h2 id="8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">8 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#8-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy_ycit020_a4/helm</code> and <code>notepad-infrastructure/helm</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
