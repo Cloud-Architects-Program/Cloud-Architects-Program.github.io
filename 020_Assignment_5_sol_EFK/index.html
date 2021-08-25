@@ -14,7 +14,7 @@
     
     
       
-        <title>1 Containerize Applications - YCIT020</title>
+        <title>020 Assignment 5 sol EFK - YCIT020</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-containerize-applications" class="md-skip">
+        <a href="#1-install-elasticsearch-and-kibana" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1 Containerize Applications
+              020 Assignment 5 sol EFK
             
           </span>
         </div>
@@ -742,43 +742,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
+  <a href="#11-elasticsearch-installation" class="md-nav__link">
+    1.1 Elasticsearch Installation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-overview-of-the-sample-application" class="md-nav__link">
-    1.1 Overview of the Sample Application
+  <a href="#12-kibana-installation" class="md-nav__link">
+    1.2 Kibana installation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-build-dockers-image-for-frontend-application" class="md-nav__link">
-    1.1 Build Dockers image for frontend application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-build-docker-image-for-backend-application" class="md-nav__link">
-    1.2 Build Docker image for backend application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#13-test-application-by-running-with-docker-engine" class="md-nav__link">
-    1.3 Test application by running with Docker Engine.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#15-cleanup-running-applications-and-unused-networks" class="md-nav__link">
-    1.5 Cleanup running applications and unused networks
+  <a href="#13-fluentd-installation" class="md-nav__link">
+    1.3 Fluentd installation
   </a>
   
 </li>
@@ -796,208 +775,229 @@
               
                 
                 
-                <h1 id="1-containerize-applications">1 Containerize Applications<a class="headerlink" href="#1-containerize-applications" title="Permanent link">&para;</a></h1>
+                <p>Lab 5 - Logging with EFK Stack</p>
+<p>In a complicated distributed system such as Kubernetes, we will have different logs for different components, and extracting insights from logs can be a daunting task. The EFK stack (ElasticSearch, FluentD, Kibana) can help make this task easier.
+In this Lab, we are going to deploy EFK stack.
+Deploy robot-shop app that emits logs to stdout in JSON format.
+We will then deploy Cloud Native FluentD logging agent and configure <strong>Input Plugin</strong> /var/log/containers folder
+(location used by docker daemon on a Kubernetes node to store stdout from running containers)
+and <code>tail</code> <a href="https://docs.fluentd.org/v0.12/articles/in_tail">Input Plugin</a>.
+And configure FluentD <strong>Output Plugin</strong> <code>host</code> and <code>logstash_prefix</code> to  send to logs to ElastackSearch,
+under <code>logstash-*</code> prefix.</p>
 <p><strong>Objective:</strong></p>
 <ul>
-<li>Review process of containerizing of applications</li>
-<li>Review creation of Docker Images</li>
-<li>Review build image process</li>
+<li>Install Elasticsearch and Kibanna</li>
+<li>Deploy online boutique Application</li>
+<li>Install and Configure FluentD</li>
+<li>Configure ElasticSearch with FluentD</li>
 </ul>
-<h2 id="prepare-lab-environment">Prepare Lab Environment<a class="headerlink" href="#prepare-lab-environment" title="Permanent link">&para;</a></h2>
-<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
-<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
-<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
-<p>Once opened, you can use it to run the instructions for this lab.</p>
-<h2 id="11-overview-of-the-sample-application">1.1 Overview of the Sample Application<a class="headerlink" href="#11-overview-of-the-sample-application" title="Permanent link">&para;</a></h2>
-<p>This package contains two application components which will be used
-throughout the course to demonstrate features of Kubernetes:</p>
-<ul>
-<li>gowebapp</li>
-</ul>
-<p>This directory contains a simple Go-based note-taking web application. It
-includes a home page, registration page, login page, about page, and note
-management page.</p>
-<p>Configuration for this application is stored in code/config/config.json. This
-file is used to configure the backing data store for the application, which in
-this course is MySQL.</p>
-<p>Later in the course, we will externalize this configuration in order to take
-advantage of Kubernetes Secrets and ConfigMaps. This will include some minor
-modifications to the Go source code. Go programming experience is not required
-to complete the exercises.</p>
-<p>For more details about the internal design and implementation of the Go web
-application, see code/README.md.</p>
-<ul>
-<li>gowebapp-mysql</li>
-</ul>
-<p>This directory contains the schema file used to setup the backing MySQL database
-for the Go web application.</p>
-<h2 id="11-build-dockers-image-for-frontend-application">1.1 Build Dockers image for frontend application<a class="headerlink" href="#11-build-dockers-image-for-frontend-application" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Locate and review the go source code:</p>
-<div class="codehilite"><pre><span></span><code>cd ~
-git clone https://github.com/Cloud-Architects-Program/ycit019
-cd ~/ycit019/Assignment1/
+<h1 id="1-install-elasticsearch-and-kibana">1 Install Elasticsearch and Kibana<a class="headerlink" href="#1-install-elasticsearch-and-kibana" title="Permanent link">&para;</a></h1>
+<h2 id="11-elasticsearch-installation">1.1 Elasticsearch Installation<a class="headerlink" href="#11-elasticsearch-installation" title="Permanent link">&para;</a></h2>
+<p>Create a Kubernetes Cluster in your lab environment. Make sure cluster has nodes with 4 cores each. </p>
+<p>Create a new namespace for EFK stack:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns efk
 </code></pre></div>
 
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p>Two folders with go app and mysql config has been reviewed.</p>
-</div>
-<p><strong>Step 2</strong> Setup vim editor with appropriate color schema</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Skip this step if you use another editor.</p>
-</div>
-<div class="codehilite"><pre><span></span><code>echo &quot;colo elflord&quot; &gt; ~/.vimrc
+<p>Install Elasticsearch using Helm:</p>
+<div class="codehilite"><pre><span></span><code>helm repo add elastic https://helm.elastic.co
+helm install elasticsearch elastic/elasticsearch -n efk
 </code></pre></div>
 
-<p><strong>Step 3</strong> Write Dockerfile for your frontend application</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Assignment1/gowebapp
+<p>Check the status of deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods --namespace=efk -l app=elasticsearch-master -w
 </code></pre></div>
 
-<p>Create a file named <code>Dockerfile</code> in this directory for the frontend Go app.
-Use vi or any preferred text editor.</p>
-<div class="codehilite"><pre><span></span><code>vim Dockerfile
+<h2 id="12-kibana-installation">1.2 Kibana installation<a class="headerlink" href="#12-kibana-installation" title="Permanent link">&para;</a></h2>
+<p>Deploy Kibana with Helm:</p>
+<div class="codehilite"><pre><span></span><code>helm install kibana elastic/kibana -n efk
 </code></pre></div>
 
-<p>The template below provides a starting point for defining the contents of this
-file. Replace TODO comments with the appropriate commands:</p>
-<div class="codehilite"><pre><span></span><code>#TODO --- Define this image to inherit from the &quot;golang&quot; base image. Use version `1.15.11` or lower for `golang`
-#https://hub.docker.com/_/golang/
-#https://docs.docker.com/engine/reference/builder/#from
-
-
-#TODO Set a label corresponding to the MAINTAINER field you could use, so that it wil be visible from docker inspect with the other labels.
-#MAINTAINER should be you student e-mail.
-
-#TODO --- Define a version label for this image
-#https://docs.docker.com/engine/reference/builder/#label
-
-EXPOSE 80
-
-ENV GOPATH=/go
-
-#TODO --- Copy source code in the local /code directory into $GOPATH/src/gowebapp
-#https://docs.docker.com/engine/reference/builder/#copy
-
-WORKDIR $GOPATH/src/gowebapp/
-
-RUN go get &amp;&amp; go install
-
-#TODO --- Define an entrypoint for this image which executes the compiled application in $GOPATH/bin/gowebapp when the container starts
-#https://docs.docker.com/engine/reference/builder/#entrypoint
+<p>Set up port forwarding for temporary access to Kibanna:</p>
+<div class="codehilite"><pre><span></span><code>kubectl -n efk port-forward deployment/kibana-kibana 5601
 </code></pre></div>
 
-<p><strong>Step 4</strong>  Build gowebapp Docker image locally</p>
-<p>Build the  image locally. Make sure to include "." at the end. Make sure the
-build runs to completion without errors. You should get a success message.</p>
-<div class="codehilite"><pre><span></span><code>#TODO  Build image `&lt;your-github-user&gt;/gowebapp:v1
+<p>Access Kibana from your browser at <code>http://localhost:5601</code> or from cloud shell <code>Web Preview</code> (Make sure the port number matches)</p>
+<p>For permanant access to Kibana, modify the service type form <code>ClusterIP</code> to <code>LoadBalancer</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl -n efk patch svc kibana-kibana -p &#39;{&quot;spec&quot;: {&quot;type&quot;: &quot;LoadBalancer&quot;}}&#39;
 </code></pre></div>
 
-<h2 id="12-build-docker-image-for-backend-application">1.2 Build Docker image for backend application<a class="headerlink" href="#12-build-docker-image-for-backend-application" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Locate folder with mysql config</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Assignment1/gowebapp-mysql
+<h2 id="13-fluentd-installation">1.3 Fluentd installation<a class="headerlink" href="#13-fluentd-installation" title="Permanent link">&para;</a></h2>
+<p>Deploy Fluentd with Helm:</p>
+<div class="codehilite"><pre><span></span><code>helm repo add fluent https://fluent.github.io/helm-charts
+helm repo update
+helm install fluentd fluent/fluentd -n efk
 </code></pre></div>
 
-<p><strong>Step 2</strong> Write Dockerfile for your backend application</p>
-<p>Create a file named <code>Dockerfile</code> in this directory for the backend MySQL database
-application. Use vi or any preferred text editor.</p>
-<div class="codehilite"><pre><span></span><code>vim Dockerfile
+<h1 id="2-view-logs-from-kibana">2 View Logs from Kibana<a class="headerlink" href="#2-view-logs-from-kibana" title="Permanent link">&para;</a></h1>
+<p>Locate Kibana Public IP </p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc  -n efk | grep kibana
 </code></pre></div>
 
-<p>The template below provides a starting point for defining the contents of this
-file. Replace TODO comments with the appropriate commands:</p>
-<div class="codehilite"><pre><span></span><code>#TODO --- Define this image to inherit from the &quot;mysql&quot; version 8.0 base image
-#https://hub.docker.com/_/mysql/
-#https://docs.docker.com/engine/reference/builder/#from
-
-#TODO Set a label corresponding to the MAINTAINER field you could use, so that it wil be visible from docker inspect with the other labels.
-#MAINTAINER should be you student e-mail.
-
-LABEL gowebapp-mysql &quot;v1&quot;
-
-#TODO --- Investigate the &quot;Initializing a Fresh Instance&quot; instructions for the mysql parent image, and copy the local gowebapp.sql file to the proper container directory to be automatically executed when the container starts up
-#https://hub.docker.com/_/mysql/
-#https://docs.docker.com/engine/reference/builder/#copy
+<p>Launch the Kibana web interface</p>
+<div class="codehilite"><pre><span></span><code>http://&lt;Public_IP&gt;:5601
 </code></pre></div>
 
-<p><strong>Step 2</strong> Build gowebapp-mysql Docker image locally</p>
-<div class="codehilite"><pre><span></span><code>#TODO  Build image  &lt;your-github-user&gt;/gowebapp-mysql:v1
+<p>You should see your Kibana interface
+<img alt="alt text" src="../images/kibana_validation.png" /></p>
+<p>Click on Discover in the left-hand navigation menu.
+<img alt="alt text" src="../images/kibana_discover.png" /></p>
+<p>Create an index pattern. Use <code>fluentd*</code> as the index pattern name. More documentation can be found <a href="https://www.elastic.co/guide/en/kibana/7.14/index-patterns.html">here</a>
+<img alt="alt text" src="../images/kibana_index.png" /></p>
+<p>Next, configure which field Kibana will use to filter log data by time. In the dropdown, select the <code>@timestamp</code> field, and hit <code>Create index pattern</code>.</p>
+<p>Now, Click on Discover again, you should see logs from your Kubernetes cluster. 
+Try different filters, see how you can navigate logs and find valuable information about the cluster. </p>
+<h1 id="3-deploy-a-sample-application">3 Deploy a sample application<a class="headerlink" href="#3-deploy-a-sample-application" title="Permanent link">&para;</a></h1>
+<p>Deploy microservices application <code>online boutique</code>. </p>
+<p>Create Namespace <code>onlineboutique</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns onlineboutique
 </code></pre></div>
 
-<p>Build the  image locally. Make sure to include "." at the end. Make sure the
-build runs to completion without errors. You should get a success message.
-Run and test Docker images locally</p>
-<h2 id="13-test-application-by-running-with-docker-engine">1.3 Test application by running with Docker Engine.<a class="headerlink" href="#13-test-application-by-running-with-docker-engine" title="Permanent link">&para;</a></h2>
-<p>Before putting our app in production let's run the Docker images locally, to ensure that the frontend and backend containers run and integrate properly.</p>
-<p><strong>Step 1</strong> Create Docker user-defined network</p>
-<p>To facilitate cross-container communication, let's first define a user-defined
-network named <code>gowebapp</code> with <code>subnet</code> range  172.19.0.0/16 in which to run the frontend and backend containers:</p>
-<div class="codehilite"><pre><span></span><code>#TODO docker xxx
+<p>Deploy Microservice application</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/Cloud-Architects-Program/microservices-demo/main/release/kubernetes-manifests.yaml -n onlineboutique
 </code></pre></div>
 
-<p><strong>Step 2</strong>  Launch <code>backend</code> container</p>
-<p>Next, let's launch a frontend and backend container using the Docker CLI.
-First, we launch the database container, as it will take a bit longer to
-startup, and the frontend container depends on it. Notice how we are injecting
-the database password into the MySQL configuration as an environment variable:</p>
-<div class="codehilite"><pre><span></span><code>#TODO Launch `backend` container in background
-#TODO Use this settings: `--name gowebapp-mysql` `--hostname gowebapp-mysql` 
-#TODO Container needs to run on network: `gowebapp`
-#TODO Include following Env Variable in the command: `MYSQL_ROOT_PASSWORD=rootpasswd`
+<p>Verify Deployment</p>
+<div class="codehilite"><pre><span></span><code>kubectl get all -n onlineboutique
 </code></pre></div>
 
-<p><strong>Step 3</strong>  Launch <code>frontend</code> container</p>
-<p>Now launch a frontend container, mapping the container port 80 - where the web application is exposed - to port 8080 on the host machine:</p>
-<div class="codehilite"><pre><span></span><code>#TODO Launch `frontend` container in background
-#TODO Use this settings: `--name gowebapp` `--hostname gowebapp` 
-#TODO Map the container port 80  - to port 8080 on the host machine
-#TODO Container needs to run on network: `gowebapp`
+<h1 id="4-configure-fluentd-for-specific-logs">4 Configure Fluentd for specific logs<a class="headerlink" href="#4-configure-fluentd-for-specific-logs" title="Permanent link">&para;</a></h1>
+<p>In many cases, you only need your applications' logs being sent to your logging stack. To achieve this, Fluentd should be configured to only intake specific logs so that no resources are wasted.</p>
+<p>Review <code>sources</code> configuration</p>
+<div class="codehilite"><pre><span></span><code>kubectl get configmap -n efk fluentd-config -oyaml | grep -v &quot;#&quot; |  grep -A20 01_sources.conf
 </code></pre></div>
 
-<p><strong>Step 4</strong>  Test the application locally</p>
-<p>Now that we've launched the application containers, let's try to test the web
-application locally.</p>
-<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
-<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
-</div>
-<p>Once you can see the application loaded. Create an account and login.
-Write something on your Notepad and save it. This will verify that the application is working and properly integrates with
-the backend database container.</p>
-<div class="admonition task">
-<p class="admonition-title">Task</p>
-<p>Take a screenshot of running application. </p>
-</div>
-<p><strong>Step 5</strong> Inspect the MySQL database</p>
-<p>Let's connect to the backend MySQL database container and run some queries to
-ensure that application persistence is working properly:</p>
-<div class="codehilite"><pre><span></span><code>#TODO docker xxx
-</code></pre></div>
-
-<p><strong>Step 6</strong> Once inside the container, connect to MySQL database:</p>
-<div class="codehilite"><pre><span></span><code>mysql -u root -p
-password:
+<div class="codehilite"><pre><span></span><code>  01_sources.conf: |-
+    &lt;source&gt;
+      @type tail
+      @id in_tail_container_logs
+      @label @KUBERNETES
+      path /var/log/containers/*.log
+      pos_file /var/log/fluentd-containers.log.pos
+      tag kubernetes.*
+      read_from_head true
+      &lt;parse&gt;
+        @type multi_format
+        &lt;pattern&gt;
+          format json
+          time_key time
+          time_type string
+          time_format &quot;%Y-%m-%dT%H:%M:%S.%NZ&quot;
+          keep_time_key false
+        &lt;/pattern&gt;
+        &lt;pattern&gt;
+          format regexp
+          expression /^(?&lt;time&gt;.+) (?&lt;stream&gt;stdout|stderr)( (.))? (?&lt;log&gt;.*)$/
 </code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Use password that has beed used in <code>MYSQL_ROOT_PASSWORD</code> env variable.</p>
+<p><code>id</code>: A unique identifier to reference this source. This can be used for further filtering and routing of structured log data</p>
+<p><code>type</code>: Inbuilt directive understood by fluentd. In this case, “tail” instructs fluentd to gather data by tailing logs from a given location. Another example is “http” which instructs fluentd to collect data by using GET on http endpoint. </p>
+<p><code>path</code>: Specific to type “tail”. Instructs fluentd to collect all logs under /var/log/containers directory. This is the location used by docker daemon on a Kubernetes node to store stdout from running containers</p>
+<p><code>pos_file</code>: Used as a checkpoint. In case the fluentd process restarts, it uses the position from this file to resume log data collection</p>
+<p><code>tag</code>: A custom string for matching source to destination/filters. fluentd matches source/destination tags to route log data</p>
 </div>
-<p><strong>Step 7</strong> Once connected, run some simple SQL commands to inspect the database tables
-and persistence:</p>
-<div class="codehilite"><pre><span></span><code>#Simple SQL to navigate
-SHOW DATABASES;
-USE gowebapp;
-SHOW TABLES;
-SELECT * FROM &lt;table_name&gt;;
-exit;
+<p><strong>Step 2</strong> Review <code>Filter</code> configuration</p>
+<div class="codehilite"><pre><span></span><code>kubectl get configmap  -n efk fluentd-config -oyaml | grep -v &quot;#&quot; |  grep -A20 03_dispatch.conf
 </code></pre></div>
 
-<h2 id="15-cleanup-running-applications-and-unused-networks">1.5 Cleanup running applications and unused networks<a class="headerlink" href="#15-cleanup-running-applications-and-unused-networks" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>### TODO docker xxx
+<div class="codehilite"><pre><span></span><code>  02_filters.conf: |-
+    &lt;label @KUBERNETES&gt;
+      &lt;match kubernetes.var.log.containers.fluentd**&gt;
+        @type relabel
+        @label @FLUENT_LOG
+      &lt;/match&gt;
+
+
+      &lt;filter kubernetes.**&gt;
+        @type kubernetes_metadata
+        @id filter_kube_metadata
+        skip_labels false
+        skip_container_metadata false
+        skip_namespace_metadata true
+        skip_master_url true
+      &lt;/filter&gt;
+
+      &lt;match **&gt;
+        @type relabel
+        @label @DISPATCH
+      &lt;/match&gt;
 </code></pre></div>
+
+<p><strong>Step 3</strong> Review <code>Dispatch</code> configuration</p>
+<div class="codehilite"><pre><span></span><code>kubectl get configmap  -n efk fluentd-config -oyaml | grep -v &quot;#&quot; |  grep -A20 03_dispatch.conf
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>  03_dispatch.conf: |-
+    &lt;label @DISPATCH&gt;
+      &lt;filter **&gt;
+        @type prometheus
+        &lt;metric&gt;
+          name fluentd_input_status_num_records_total
+          type counter
+          desc The total number of incoming records
+          &lt;labels&gt;
+            tag ${tag}
+            hostname ${hostname}
+          &lt;/labels&gt;
+        &lt;/metric&gt;
+      &lt;/filter&gt;
+
+      &lt;match **&gt;
+        @type relabel
+        @label @OUTPUT
+      &lt;/match&gt;
+    &lt;/label&gt;
+</code></pre></div>
+
+<p><strong>Step 4</strong> Review <code>Output Plugin</code> configuration</p>
+<div class="codehilite"><pre><span></span><code>kubectl get configmap  -n efk fluentd-config -oyaml | grep -v &quot;#&quot; |  grep -A10 04_outputs.conf
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>  04_outputs.conf: |-
+    &lt;label @OUTPUT&gt;
+      &lt;match **&gt;
+        @type elasticsearch
+        host &quot;elasticsearch-master&quot;
+        port 9200
+        path &quot;&quot;
+        user elastic
+        password changeme
+      &lt;/match&gt;
+    &lt;/label&gt;
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>match</code>: tag indicates a destination. It is followed by a regular expression for matching the source. In this case, we want to capture all logs and send them to Elasticsearch, so simply use **</p>
+<p><code>type</code>: Supported output plugin identifier. In this case, we are using ElasticSearch which is a built-in plugin of fluentd.</p>
+<p><code>host/port</code>: ElasticSearch host/port. Credentials can be configured as well, but not shown here.</p>
+</div>
+<p>To configure Fluentd to only send one namespace's logs to elasticsearch, modify <code>03_dispatch.conf</code> so that only log files that matches <code>onlineboutique</code> namespace is labeled to be sent:</p>
+<div class="codehilite"><pre><span></span><code>  03_dispatch.conf: |-
+    &lt;label @DISPATCH&gt;
+      &lt;filter **&gt;
+        @type prometheus
+        &lt;metric&gt;
+          name fluentd_input_status_num_records_total
+          type counter
+          desc The total number of incoming records
+          &lt;labels&gt;
+            tag ${tag}
+            hostname ${hostname}
+          &lt;/labels&gt;
+        &lt;/metric&gt;
+      &lt;/filter&gt;
+
+      &lt;match kubernetes.var.log.containers.**_onlineboutique_**&gt;
+        @type relabel
+        @label @OUTPUT
+      &lt;/match&gt;
+    &lt;/label&gt;
+</code></pre></div>
+
+<p><code>&lt;match kubernetes.var.log.containers.**_onlineboutique_**&gt;</code> will filter out logs with <code>_onlineboutique_</code>. This configuration will only relabel the logs that matches the configuration as <code>@OUTPUT</code>. As specified in <code>04_outputs.conf</code>, only logs labelled as <code>@OUTPUT</code> will be sent to elasticsearch. </p>
+<p>Note that this is not the only way to configure fluentd to send one namespace's logs. </p>
                 
               
               
