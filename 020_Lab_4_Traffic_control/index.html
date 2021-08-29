@@ -969,6 +969,12 @@
 </code></pre></div>
 
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks create default \
+    --subnet-mode=auto \
+    --bgp-routing-mode=regional \
+    --mtu=1460
+</code></pre></div>
+
 <div class="codehilite"><pre><span></span><code>gcloud container clusters create istio-traffic-lab \
 --region us-central1 \
 --enable-ip-alias \
@@ -1043,9 +1049,31 @@ Thank you for installing Istio 1.11.  Please take a few minutes to tell us about
 </code></pre></div>
 
 <p><strong>Step 3</strong> Verify that Istio Ingressgateway is setup using STATIC_IP Load Balancer:</p>
+<p>List <code>STATIC_IP</code> Load Balancer</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute addresses list
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME              ADDRESS/RANGE  TYPE      PURPOSE  NETWORK  REGION       SUBNET  STATUS
+static-ingres-ip  35.192.101.76  EXTERNAL                    us-central1          IN_USE
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our static IP showed as in use</p>
+</div>
+<p>Verify that Istio Ingressgateway using STATIC_IP:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get svc istio-ingressgateway -n istio-system
 </code></pre></div>
 
+<div class="codehilite"><pre><span></span><code>NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     Ports
+istio-ingressgateway   LoadBalancer   10.32.1.153   35.192.101.76   15021:32714/TCP,80:30042/TCP,443:31889/TCP,...  62s
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Istio Gateway using </p>
+</div>
 <h2 id="2-deploy-an-micorservices-application">2 Deploy an Micorservices Application<a class="headerlink" href="#2-deploy-an-micorservices-application" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Get the source code for a sample application. For this lab, we will use the Online Boutique sample app.</p>
 <div class="codehilite"><pre><span></span><code>cd ~
