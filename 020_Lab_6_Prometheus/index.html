@@ -14,7 +14,7 @@
     
     
       
-        <title>Assignment1 - Solution - YCIT020</title>
+        <title>Lab 6 Monitoring with Prometheus - YCIT020</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-containerize-applications" class="md-skip">
+        <a href="#lab-6-monitoring-with-prometheus-operator" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Assignment1 - Solution
+              Lab 6 Monitoring with Prometheus
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -203,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -260,11 +264,99 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../020_Lab_6_Prometheus/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 6 Monitoring with Prometheus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Lab 6 Monitoring with Prometheus
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster-on-gcp" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-prometheus-operator-and-grafana-helm-charts" class="md-nav__link">
+    1 Install Prometheus Operator and Grafana Helm Charts
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Install Prometheus Operator and Grafana Helm Charts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-install-kube-prometheus-stack-helm-chart" class="md-nav__link">
+    1.1 Install kube-prometheus-stack helm chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-observe-grafana-dashboards" class="md-nav__link">
+    4 Observe Grafana Dashboards
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deploy-onlineboutique-application" class="md-nav__link">
+    3 Deploy onlineboutique application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-import-dashboard" class="md-nav__link">
+    4 Import dashboard
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cleanup" class="md-nav__link">
+    7 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -398,14 +490,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       <label class="md-nav__link" for="__nav_3">
         YCIT019
@@ -568,14 +658,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       <label class="md-nav__link" for="__nav_3_2">
         Assignments
@@ -603,93 +691,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Assignment1 - Solution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
         Assignment1 - Solution
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-overview-of-the-sample-application" class="md-nav__link">
-    1.1 Overview of the Sample Application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#11-build-dockers-image-for-frontend-application" class="md-nav__link">
-    1.1 Build Dockers image for frontend application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#12-build-docker-image-for-backend-application" class="md-nav__link">
-    1.2 Build Docker image for backend application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#13-store-images-in-the-dockerhub" class="md-nav__link">
-    1.3 Store images in the Dockerhub
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#14-test-application-by-running-with-docker-engine" class="md-nav__link">
-    1.4 Test application by running with Docker Engine.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#15-cleanup-running-applications-and-unused-networks" class="md-nav__link">
-    1.5 Cleanup running applications and unused networks
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -852,50 +858,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
+  <a href="#0-create-regional-gke-cluster-on-gcp" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-overview-of-the-sample-application" class="md-nav__link">
-    1.1 Overview of the Sample Application
+  <a href="#1-install-prometheus-operator-and-grafana-helm-charts" class="md-nav__link">
+    1 Install Prometheus Operator and Grafana Helm Charts
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Install Prometheus Operator and Grafana Helm Charts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-install-kube-prometheus-stack-helm-chart" class="md-nav__link">
+    1.1 Install kube-prometheus-stack helm chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-observe-grafana-dashboards" class="md-nav__link">
+    4 Observe Grafana Dashboards
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#11-build-dockers-image-for-frontend-application" class="md-nav__link">
-    1.1 Build Dockers image for frontend application
+  <a href="#3-deploy-onlineboutique-application" class="md-nav__link">
+    3 Deploy onlineboutique application
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#12-build-docker-image-for-backend-application" class="md-nav__link">
-    1.2 Build Docker image for backend application
+  <a href="#4-import-dashboard" class="md-nav__link">
+    4 Import dashboard
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#13-store-images-in-the-dockerhub" class="md-nav__link">
-    1.3 Store images in the Dockerhub
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#14-test-application-by-running-with-docker-engine" class="md-nav__link">
-    1.4 Test application by running with Docker Engine.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#15-cleanup-running-applications-and-unused-networks" class="md-nav__link">
-    1.5 Cleanup running applications and unused networks
+  <a href="#7-cleanup" class="md-nav__link">
+    7 Cleanup
   </a>
   
 </li>
@@ -913,169 +925,270 @@
               
                 
                 
-                <h1 id="1-containerize-applications">1 Containerize Applications<a class="headerlink" href="#1-containerize-applications" title="Permanent link">&para;</a></h1>
+                <h1 id="lab-6-monitoring-with-prometheus-operator">Lab 6 Monitoring with Prometheus Operator<a class="headerlink" href="#lab-6-monitoring-with-prometheus-operator" title="Permanent link">&para;</a></h1>
+<p>The <code>Prometheus</code> Operator is a tool developed and opnesourced by CoreOS that aims to automate manual operations of Prometheus and Alertmanager on Kubernetes using Kubernetes Custom Resource Definitions (CRDs).</p>
+<p>The <code>Prometheus</code> Operator provides easy monitoring definitions for Kubernetes services and deployment and management of Prometheus instances.</p>
+<p>Once installed, the Prometheus Operator provides the following features:</p>
+<ul>
+<li><strong>Kubernetes Custom Resources:</strong> Use <code>Kubernetes</code> custom resources to deploy and manage <code>Prometheus</code>, <code>Alertmanager</code>, and related components.</li>
+<li><strong>Simplified Deployment Configuration:</strong> Configure the fundamentals of Prometheus like versions, persistence, retention policies, and replicas from a native Kubernetes resource.</li>
+<li><strong>Target Services via Labels:</strong> Automatically generate monitoring target configurations based on familiar Kubernetes label queries; no need to learn a Prometheus specific configuration language.</li>
+</ul>
 <p><strong>Objective:</strong></p>
 <ul>
-<li>Review process of containerizing of applications</li>
-<li>Review creation of Docker Images</li>
-<li>Review build image process</li>
+<li>Explore the operators' deployment setup</li>
+<li>Configure <code>ServiceMonitor</code>, which declaratively specifies how groups of Kubernetes services should be monitored. The Operator automatically generates Prometheus scrape configuration based on the current state of the objects in the API server.</li>
+<li>Configure <code>PrometheusRule</code> and <code>AlertmanagerConfig</code> to be able to send Slack alerts</li>
 </ul>
-<h2 id="prepare-lab-environment">Prepare Lab Environment<a class="headerlink" href="#prepare-lab-environment" title="Permanent link">&para;</a></h2>
-<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
-<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
-<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
-<p>Once opened, you can use it to run the instructions for this lab.</p>
-<h2 id="11-overview-of-the-sample-application">1.1 Overview of the Sample Application<a class="headerlink" href="#11-overview-of-the-sample-application" title="Permanent link">&para;</a></h2>
-<p>This package contains two application components which will be used
-throughout the course to demonstrate features of Kubernetes:</p>
-<ul>
-<li>gowebapp</li>
-</ul>
-<p>This directory contains a simple Go-based note-taking web application. It includes a home page, registration page, login page, about page, and note management page.</p>
-<p>Configuration for this application is stored in code/config/config.json. This file is used to configure the backing data store for the application, which in this course is MySQL.</p>
-<p>Later in the course, we will externalize this configuration in order to take advantage of Kubernetes Secrets and ConfigMaps. This will include some minor modifications to the Go source code. Go programming experience is not required to complete the exercises.</p>
-<p>For more details about the internal design and implementation of the Go web application, see code/README.md.</p>
-<ul>
-<li>gowebapp-mysql</li>
-</ul>
-<p>This directory contains the schema file used to setup the backing MySQL database for the Go web application.</p>
-<h2 id="11-build-dockers-image-for-frontend-application">1.1 Build Dockers image for frontend application<a class="headerlink" href="#11-build-dockers-image-for-frontend-application" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Locate and review the go source code folders:</p>
-<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/k8s
-cd ~/ycit019/Assignment1/
+<h2 id="0-create-regional-gke-cluster-on-gcp">0 Create Regional GKE Cluster on GCP<a class="headerlink" href="#0-create-regional-gke-cluster-on-gcp" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-prometheus-lab \
+--region us-central1 \
+--enable-ip-alias \
+--enable-network-policy \
+--num-nodes 1 \
+--machine-type &quot;e2-standard-4&quot; \
+--release-channel stable
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-prometheus-lab --region us-central1
+</code></pre></div>
+
+<p><strong>Step 3: (Optional)</strong> Setup kubectx</p>
+<div class="codehilite"><pre><span></span><code>sudo apt install kubectx
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>we've installed <code>kubectx</code> + <code>kubens</code>: Power tools for <code>kubectl</code>:
+- <code>kubectx</code> helps you switch between clusters back and forth
+- <code>kubens</code> helps you switch between Kubernetes namespaces smoothly</p>
+</div>
+<h2 id="1-install-prometheus-operator-and-grafana-helm-charts">1 Install Prometheus Operator and Grafana Helm Charts<a class="headerlink" href="#1-install-prometheus-operator-and-grafana-helm-charts" title="Permanent link">&para;</a></h2>
+<h3 id="11-install-kube-prometheus-stack-helm-chart">1.1 Install <code>kube-prometheus-stack</code> helm chart<a class="headerlink" href="#11-install-kube-prometheus-stack-helm-chart" title="Permanent link">&para;</a></h3>
+<p><strong>kube-prometheus</strong>
+<a href="https://github.com/prometheus-operator/kube-prometheus">kube-prometheus</a> provides example configurations for a complete cluster monitoring
+stack based on Prometheus and the Prometheus Operator.  This includes deployment of multiple Prometheus and Alertmanager instances,
+metrics exporters such as the node_exporter for gathering node metrics, scrape target configuration linking Prometheus to various
+metrics endpoints, and example alerting rules for notification of potential issues in the cluster.</p>
+<p><strong>helm chart</strong>
+The <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">prometheus-community/kube-prometheus-stack</a>
+helm chart provides a similar feature set to kube-prometheus. For more information, please see the <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack#kube-prometheus-stack">chart's readme</a></p>
+<p><strong>Step 1</strong> Configure <code>Helm</code> repository</p>
+<div class="codehilite"><pre><span></span><code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+</code></pre></div>
+
+<p><strong>Step 2</strong> Fetch  <code>Helm</code> repository to local filesystem</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure/helm
+helm pull prometheus-community/kube-prometheus-stack
+tar -xvzf kube-prometheus-stack-18.0.5.tgz
+cd kube-prometheus-stack
+tree -L 2
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>── charts
+│   ├── grafana
+│   ├── kube-state-metrics
+│   └── prometheus-node-exporter
+├── crds
+│   ├── crd-alertmanagerconfigs.yaml
+│   ├── crd-alertmanagers.yaml
+│   ├── crd-podmonitors.yaml
+│   ├── crd-probes.yaml
+│   ├── crd-prometheuses.yaml
+│   ├── crd-prometheusrules.yaml
+│   ├── crd-servicemonitors.yaml
+│   └── crd-thanosrulers.yaml
+├── templates
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── alertmanager
+│   ├── exporters
+│   │   ├── core-dns
+│   │   ├── kube-api-server
+│   │   ├── kube-controller-manager
+│   │   ├── kube-dns
+│   │   ├── kube-etcd
+│   │   ├── kube-proxy
+│   │   ├── kube-scheduler
+│   │   ├── kube-state-metrics
+│   │   ├── kubelet
+│   │   └── node-exporter
+│   ├── grafana
+│   ├── prometheus
+│   └── prometheus-operator
+└── values.yaml
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>This chart is maintained by the Prometheus community and contains everything you need to get started including:
+* <code>prometheus operator</code>
+* <code>alertmanager</code>
+* <code>grafana</code> with predefined dashboards
+* <code>prometheus-node-exporter</code> - Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors
+*  Kubernetes Control and Data plane  <code>exporters</code> such as <code>kube-api-server</code>, <code>core-dns</code>, <code>kube-controller-manager</code>, <code>kube-etcd</code>, <code>kube-scheduler</code>, <code>kubelet</code>
+* <code>kube-state-metrics</code> - is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects</p>
+</div>
+<p><strong>Step 3</strong> Create custom Kibana configuration, that will allow to expose Kibana Dashboard:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; grafana_values.yaml
+service:
+  type: LoadBalancer
+adminPassword: admin
+EOF
+</code></pre></div>
+
+<p><strong>Step 4</strong> Install Helm Chart to <code>monitoring</code> namespace</p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns monitoring
+helm install prometheus-stack prometheus-community/kube-prometheus-stack -n monitoring --values grafana_values.yaml
+kubens monitoring
+</code></pre></div>
+
+<h2 id="4-observe-grafana-dashboards">4 Observe Grafana Dashboards<a class="headerlink" href="#4-observe-grafana-dashboards" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1:</strong> Locate Grafana Dashboard URL:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc prometheus-stack-grafana
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Launch the Grafana Dashboard and see Predefined Dashboards:</p>
+<div class="codehilite"><pre><span></span><code>loadbalancer_ip
+</code></pre></div>
+
+<p>We've setup <code>admin</code> user password as: <code>admin</code>. So we will use this values to login to Grafana dashboard:</p>
+<div class="codehilite"><pre><span></span><code>admin/admin
 </code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>Two folders with go app and mysql config has been reviewed.</p>
+<p>You should see your Grafana interface</p>
 </div>
-<p><strong>Step 2</strong> Write Dockerfile for your frontend application</p>
-<p>Create a file named <code>Dockerfile</code> in this directory for the frontend Go application. Use vi or any preferred text editor. The template below provides a starting point for defining the contents of this file. Replace TODO comments with the appropriate commands:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Assignment1/gowebapp
+<p><strong>Step 2</strong> Access Grafana Dashboard and see Predefined Dashboards:</p>
+<p><img alt="alt text" src="../images/grafana_dashboard.png" /></p>
+<p><strong>Step 3</strong> Observe following Dashboards:</p>
+<div class="codehilite"><pre><span></span><code>General /Kubernetes / Compute Resources / Cluster
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>vim Dockerfile
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Observe Usage, Totals, Quotas, Requests for Memory and CPU per namespace
+This values could be good input for Pods <code>requests</code> and <code>limits</code> measurements</p>
+</div>
+<div class="codehilite"><pre><span></span><code>General /Kubernetes / Compute Resources / Nodes (Pods)
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>FROM golang:1.15.11
-
-LABEL maintainer &quot;student@mcgill.ca&quot;
-LABEL gowebapp &quot;v1&quot;
-
-EXPOSE 80
-
-ENV GOPATH=/go
-
-COPY /code $GOPATH/src/gowebapp/
-
-WORKDIR $GOPATH/src/gowebapp/
-
-RUN go get &amp;&amp; go install
-
-ENTRYPOINT $GOPATH/bin/gowebapp
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Observe CPU and Memory per Node</p>
+</div>
+<div class="codehilite"><pre><span></span><code>General /Kubernetes / Compute Resources / Namespace (Pods)
 </code></pre></div>
 
-<p><strong>Step 3</strong>  Build gowebapp Docker image locally</p>
-<p>Build the  image locally. Make sure to include "." at the end. Make sure the
-build runs to completion without errors. You should get a success message.</p>
-<div class="codehilite"><pre><span></span><code>docker build -t &lt;user-name&gt;/gowebapp:v1 .
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Observe CPU and Memory per Pods</p>
+</div>
+<p>Observe Dashboards for Control Plane monitoring:</p>
+<div class="codehilite"><pre><span></span><code>General / Kubernetes / API server
+General / Kubernetes / Kubelet
+General / Kubernetes / Scheduler
+General / Kubernetes / Controller Manager
+General / etcd
 </code></pre></div>
 
-<h2 id="12-build-docker-image-for-backend-application">1.2 Build Docker image for backend application<a class="headerlink" href="#12-build-docker-image-for-backend-application" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Locate folder with mysql config</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Assignment1//gowebapp-mysql
-</code></pre></div>
-
-<p><strong>Step 2</strong> Write Dockerfile for your backend application</p>
-<p>Create a file named <code>Dockerfile</code> in this directory for the backend MySQL database application. Use vi or any preferred text editor. The template below provides a starting point for defining the contents of this file. Replace TODO comments with the appropriate commands:</p>
-<div class="codehilite"><pre><span></span><code>FROM mysql:8.0
-
-LABEL maintainer &quot;student@mcgill.ca&quot;
-LABEL gowebapp-sql &quot;v1&quot;
-
-COPY gowebapp.sql /docker-entrypoint-initdb.d/
-</code></pre></div>
-
-<p><strong>Step 2</strong> Build gowebapp-mysql Docker image locally</p>
-<div class="codehilite"><pre><span></span><code>docker build -t &lt;user-name&gt;/gowebapp-mysql:v1 .
-</code></pre></div>
-
-<p>Build the image locally. Make sure to include "." at the end. Make sure the
-build runs to completion without errors. You should get a success message.
-Run and test Docker images locally</p>
-<h2 id="13-store-images-in-the-dockerhub">1.3 Store images in the Dockerhub<a class="headerlink" href="#13-store-images-in-the-dockerhub" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>docker login
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>docker push &lt;user-name&gt;/gowebapp-mysql
-docker push &lt;user-name&gt;/gowebapp
-</code></pre></div>
-
-<h2 id="14-test-application-by-running-with-docker-engine">1.4 Test application by running with Docker Engine.<a class="headerlink" href="#14-test-application-by-running-with-docker-engine" title="Permanent link">&para;</a></h2>
-<p>Before putting our app in production let's run the Docker images locally, to ensure that the frontend and backend containers run and integrate properly.</p>
-<p><strong>Step 1</strong> Create Docker user-defined network</p>
-<p>To facilitate cross-container communication, let's first define a user-defined
-network in which to run the frontend and backend containers:</p>
-<div class="codehilite"><pre><span></span><code>docker network create gowebapp \
--d bridge \
---subnet 172.19.0.0/16
-</code></pre></div>
-
-<p><strong>Step 2</strong>  Launch backend container</p>
-<p>Next, let's launch a frontend and backend container using the Docker CLI.
-First, we launch the database container, as it will take a bit longer to
-startup, and the frontend container depends on it. Notice how we are injecting
-the database password into the MySQL configuration as an environment variable:</p>
-<div class="codehilite"><pre><span></span><code>docker run --net gowebapp --name gowebapp-mysql --hostname gowebapp-mysql \
--d -e MYSQL_ROOT_PASSWORD=rootpasswd &lt;user-name&gt;/gowebapp-mysql:v1
-</code></pre></div>
-
-<p><strong>Step 3</strong>  Launch frontend container</p>
-<p>Now launch a frontend container, mapping the container port 80 - where the web application is exposed - to port 8080
- on the host machine:</p>
-<div class="codehilite"><pre><span></span><code>docker run -p 8080:80 --net gowebapp -d --name gowebapp \
---hostname gowebapp &lt;user-name&gt;/gowebapp:v1
-</code></pre></div>
-
-<p><strong>Step 4</strong>  Test the application locally</p>
-<p>Now that we've launched the application containers, let's try to test the web
-application locally.</p>
-<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
-<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+<p>some of the Dashboards (etcd, Scheduler, Controller Manager) are empty, this is because GKE is Managed Kubernetes so some metrics are not available for scraping.</p>
 </div>
-<p>Once you can see the application loaded. Create an account and login.
-Write something on your Notepad and save it. This will verify that the application is working and properly integrates with
-the backend database container.</p>
-<div class="admonition task">
-<p class="admonition-title">Task</p>
-<p>Take a screenshot of running application. </p>
+<h2 id="3-deploy-onlineboutique-application">3 Deploy onlineboutique application<a class="headerlink" href="#3-deploy-onlineboutique-application" title="Permanent link">&para;</a></h2>
+<p>Deploy microservices application <code>onlineboutique</code>:</p>
+<p><strong>Step 1</strong> Create Namespace <code>onlineboutique</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns onlineboutique
+</code></pre></div>
+
+<p><strong>Step 2</strong> Deploy Microservice application</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+cd microservices-demo
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubens onlineboutique
+kubectl apply -f ./release/kubernetes-manifests.yaml
+</code></pre></div>
+
+<p><strong>Step 5</strong> Verify Deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 3</strong> Observe following Dashboards:</p>
+<div class="codehilite"><pre><span></span><code>General /Kubernetes / Compute Resources / Namespace (Pods)
+General /Kubernetes / Compute Resources / Namespace (Workloads)
+</code></pre></div>
+
+<p>Choose:
+  * Relative time ranges: <code>Last 15 minutes</code>
+  * Namespace: <code>onlineboutique</code></p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Observe CPU and Memory per Pods</p>
 </div>
-<p><strong>Step 5</strong> Inspect the MySQL database</p>
-<p>Let's connect to the backend MySQL database container and run some queries to
-ensure that application persistence is working properly:</p>
-<div class="codehilite"><pre><span></span><code>docker exec -it gowebapp-mysql  bash
+<h2 id="4-import-dashboard">4 Import dashboard<a class="headerlink" href="#4-import-dashboard" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Search Kubernetes related Dashboards:</p>
+<div class="codehilite"><pre><span></span><code>https://grafana.com/grafana/dashboards
 </code></pre></div>
 
-<p><strong>Step 6</strong> Once inside the container, connect to MySQL database:</p>
-<div class="codehilite"><pre><span></span><code>mysql -u root -p
-password:
+<p>Filter by:  <code>Name / Description</code> - </p>
+<div class="codehilite"><pre><span></span><code>Kubernetes Deployment Statefulset Daemonset metrics
 </code></pre></div>
 
-<p><strong>Step 7</strong> Once connected, run some simple SQL commands to inspect the database tables
-and persistence:</p>
-<div class="codehilite"><pre><span></span><code>#Simple SQL to navigate
-SHOW DATABASES;
-USE gowebapp;
-SHOW TABLES;
-SELECT * FROM &lt;table_name&gt;;
-exit;
+<p>This will give you several outputs, we will use following Dashboards:</p>
+<div class="codehilite"><pre><span></span><code>https://grafana.com/grafana/dashboards/8588
 </code></pre></div>
 
-<h2 id="15-cleanup-running-applications-and-unused-networks">1.5 Cleanup running applications and unused networks<a class="headerlink" href="#15-cleanup-running-applications-and-unused-networks" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>docker rm -f $(docker ps -q)
+<div class="codehilite"><pre><span></span><code>Get this dashboard:
+8588
+Copy ID to Clipboard
+</code></pre></div>
+
+<p><strong>Step 2</strong> To import a dashboard we will start by creating a new <code>Folder</code>, click the + icon in the side menu, and then click Folder</p>
+<p>Name folder:</p>
+<div class="codehilite"><pre><span></span><code>Custom
+</code></pre></div>
+
+<p><strong>Step 3</strong> To import a dashboard click the + icon in the side menu, and then click Import.</p>
+<p>In Import via grafana.com prompt Paste Grafana URL</p>
+<div class="codehilite"><pre><span></span><code>8588
+</code></pre></div>
+
+<p>Choose:</p>
+<ul>
+<li>Folder: <code>Custom</code></li>
+<li>Select Prometheus data source: <code>Prometheus (default)</code> </li>
+</ul>
+<div class="admonition extra">
+<p class="admonition-title">Extra</p>
+<p>Experiments with different dashboards, e.g. ElasticSearch, Nginx, Cert-Manager, Istio</p>
+</div>
+<h2 id="7-cleanup">7 Cleanup<a class="headerlink" href="#7-cleanup" title="Permanent link">&para;</a></h2>
+<p>Uninstall Helm Charts:</p>
+<div class="codehilite"><pre><span></span><code>helm uninstall prometheus-stack -n monitoring
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl delete crd alertmanagerconfigs.monitoring.coreos.com
+kubectl delete crd alertmanagers.monitoring.coreos.com
+kubectl delete crd podmonitors.monitoring.coreos.com
+kubectl delete crd probes.monitoring.coreos.com
+kubectl delete crd prometheuses.monitoring.coreos.com
+kubectl delete crd prometheusrules.monitoring.coreos.com
+kubectl delete crd servicemonitors.monitoring.coreos.com
+kubectl delete crd thanosrulers.monitoring.coreos.com
+</code></pre></div>
+
+<p>Delete GKE cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-prometheus-lab --region us-central1
 </code></pre></div>
                 
               
@@ -1095,7 +1208,7 @@ exit;
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../ycit019_ass1/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../020_Lab_5_EFK/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1104,19 +1217,19 @@ exit;
               <span class="md-footer__direction">
                 Previous
               </span>
-              Assignment1
+              Lab 5 EFK Stack
             </div>
           </div>
         </a>
       
       
-        <a href="../ycit019_ass2/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../020_Lab_9_GitOps/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Assignment2
+              Lab 9 GitOps with Flux
             </div>
           </div>
           <div class="md-footer__button md-icon">

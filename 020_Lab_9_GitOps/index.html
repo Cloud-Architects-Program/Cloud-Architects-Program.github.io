@@ -14,7 +14,7 @@
     
     
       
-        <title>Helmfile - YCIT020</title>
+        <title>Lab 9 GitOps with Flux - YCIT020</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install-krew" class="md-skip">
+        <a href="#lab-6-gitops" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Helmfile
+              Lab 9 GitOps with Flux
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -203,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -272,11 +276,106 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../020_Lab_9_GitOps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 9 GitOps with Flux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Lab 9 GitOps with Flux
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster-on-gcp" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-and-configure-flux-with-github-repository" class="md-nav__link">
+    1 Install and Configure Flux with GitHub Repository
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Install and Configure Flux with GitHub Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-install-the-flux-cli" class="md-nav__link">
+    1.1 Install the Flux CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configure-a-github-personal-access-token-with-repo-permissions" class="md-nav__link">
+    1.2 Configure a GitHub personal access token with repo permissions.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-export-your-credentials" class="md-nav__link">
+    1.3 Export your credentials
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-install-flux-into-gke-cluster" class="md-nav__link">
+    1.4 Install Flux into GKE cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" class="md-nav__link">
+    1.5 Deploy microservices applications with GitOps using Git Source Controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cleanup" class="md-nav__link">
+    7 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -759,6 +858,76 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster-on-gcp" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-and-configure-flux-with-github-repository" class="md-nav__link">
+    1 Install and Configure Flux with GitHub Repository
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Install and Configure Flux with GitHub Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-install-the-flux-cli" class="md-nav__link">
+    1.1 Install the Flux CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configure-a-github-personal-access-token-with-repo-permissions" class="md-nav__link">
+    1.2 Configure a GitHub personal access token with repo permissions.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-export-your-credentials" class="md-nav__link">
+    1.3 Export your credentials
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-install-flux-into-gke-cluster" class="md-nav__link">
+    1.4 Install Flux into GKE cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" class="md-nav__link">
+    1.5 Deploy microservices applications with GitOps using Git Source Controller
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cleanup" class="md-nav__link">
+    7 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -770,57 +939,229 @@
               
                 
                 
-                <h1 id="install-krew">Install krew<a class="headerlink" href="#install-krew" title="Permanent link">&para;</a></h1>
-<div class="codehilite"><pre><span></span><code>(
-  set -x; cd &quot;$(mktemp -d)&quot; &amp;&amp;
-  OS=&quot;$(uname | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39;)&quot; &amp;&amp;
-  ARCH=&quot;$(uname -m | sed -e &#39;s/x86_64/amd64/&#39; -e &#39;s/\(arm\)\(64\)\?.*/\1\2/&#39; -e &#39;s/aarch64$/arm64/&#39;)&quot; &amp;&amp;
-  curl -fsSLO &quot;https://github.com/kubernetes-sigs/krew/releases/latest/download/krew.tar.gz&quot; &amp;&amp;
-  tar zxvf krew.tar.gz &amp;&amp;
-  KREW=./krew-&quot;${OS}_${ARCH}&quot; &amp;&amp;
-  &quot;$KREW&quot; install krew
-)
+                <h1 id="lab-6-gitops">Lab 6 GitOps<a class="headerlink" href="#lab-6-gitops" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Install <code>Flux</code></li>
+<li>Bootstrap <code>Flux</code> with a new <code>flux-infra</code> repository</li>
+<li>Add a <code>GitRepository</code> source type to track the <code>microservices-demo</code>Public application repository which also contains the deployment code. Flux should regularly sync the code from it.</li>
+<li>Use the <code>Kustomization</code> Controller to set up automated deployment to the Kubernetes environment. Any changes in the source should be automatically reconciled with the cluster.</li>
+</ul>
+<h2 id="0-create-regional-gke-cluster-on-gcp">0 Create Regional GKE Cluster on GCP<a class="headerlink" href="#0-create-regional-gke-cluster-on-gcp" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>export PATH=&quot;${KREW_ROOT:-$HOME/.krew}/bin:$PATH&quot;
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-gitops-lab \
+--region us-central1 \
+--enable-ip-alias \
+--enable-network-policy \
+--num-nodes 1 \
+--machine-type &quot;e2-standard-2&quot; \
+--release-channel stable
 </code></pre></div>
 
-<h1 id="install-kubens">Install kubens<a class="headerlink" href="#install-kubens" title="Permanent link">&para;</a></h1>
-<p>kubectl krew install ctx
-kubectl krew install ns</p>
-<h1 id="helmfile">HelmFile:<a class="headerlink" href="#helmfile" title="Permanent link">&para;</a></h1>
-<h1 id="install-helm">Install Helm<a class="headerlink" href="#install-helm" title="Permanent link">&para;</a></h1>
-<h1 id="install-helmfile-from-httpsgithubcomrobollhelmfileinstallation">Install <code>helmfile</code> from https://github.com/roboll/helmfile#installation<a class="headerlink" href="#install-helmfile-from-httpsgithubcomrobollhelmfileinstallation" title="Permanent link">&para;</a></h1>
-<p>wget https://github.com/roboll/helmfile/releases/download/v0.140.0/helmfile_linux_amd64
-chmod +x helmfile_linux_amd64
-sudo mv helmfile_linux_amd64 /usr/local/bin/helmfile</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;&gt; values.yaml
-alertmanager:
-  enabled: true
-EOF
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-gitops-lab --region us-central1
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;&gt; helmfile-prometheus.yaml
-repositories:
-- name: prometheus
-  url: https://prometheus-community.github.io/helm-charts
-releases:
-- name: prometheus
-  namespace: prometheus
-  chart: prometheus/prometheus
-  version: 14.5.0
-  values:
-    - values.yaml
-EOF
+<p><strong>Step 3: (Optional)</strong> Setup kubectx</p>
+<div class="codehilite"><pre><span></span><code>sudo apt install kubectx
 </code></pre></div>
 
-<h6 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h6>
-<h1 id="defining-a-simple-helmfile">Defining a simple Helmfile<a class="headerlink" href="#defining-a-simple-helmfile" title="Permanent link">&para;</a></h1>
-<h6 id="_2"><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h6>
-<p>helmfile --file helmfile-prometheus.yaml apply --wait</p>
-<p>Test:
-kubens prometheus
-helm list</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>we've installed <code>kubectx</code> + <code>kubens</code>: Power tools for <code>kubectl</code>:
+- <code>kubectx</code> helps you switch between clusters back and forth
+- <code>kubens</code> helps you switch between Kubernetes namespaces smoothly</p>
+</div>
+<h2 id="1-install-and-configure-flux-with-github-repository">1 Install and Configure Flux with GitHub Repository<a class="headerlink" href="#1-install-and-configure-flux-with-github-repository" title="Permanent link">&para;</a></h2>
+<p>To Install Flux we going to perform following tasks:</p>
+<ul>
+<li>Create a Personal Access Token on GitHub.</li>
+<li>Set up environment variables.</li>
+<li>Install flux CLI.</li>
+<li>Run pre-flight checks.</li>
+<li>Bootstrap the Flux v2 infrastructure.</li>
+<li>Validate the Flux installation.</li>
+</ul>
+<h3 id="11-install-the-flux-cli">1.1 Install the Flux CLI<a class="headerlink" href="#11-install-the-flux-cli" title="Permanent link">&para;</a></h3>
+<p>With <code>Bash</code> for macOS and Linux:</p>
+<div class="codehilite"><pre><span></span><code>curl -s https://fluxcd.io/install.sh | sudo bash
+</code></pre></div>
+
+<p>Reference: <a href="https://fluxcd.io/docs/get-started/">Get Started with Flux</a></p>
+<h3 id="12-configure-a-github-personal-access-token-with-repo-permissions">1.2 Configure a GitHub personal access token with repo permissions.<a class="headerlink" href="#12-configure-a-github-personal-access-token-with-repo-permissions" title="Permanent link">&para;</a></h3>
+<p>Follow the GitHub documentation on <a href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line">creating a personal access token</a>.</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You've created <code>GITHUB_TOKEN</code> that will be used to boostrap the Flux</p>
+</div>
+<h3 id="13-export-your-credentials">1.3 Export your credentials<a class="headerlink" href="#13-export-your-credentials" title="Permanent link">&para;</a></h3>
+<p>Export your GitHub personal access token, generated in step 1.2 and <code>github</code> username:</p>
+<div class="codehilite"><pre><span></span><code>export GITHUB_TOKEN=&lt;your-token&gt;
+export GITHUB_USER=&lt;your-username&gt;
+</code></pre></div>
+
+<p>export GITHUB_TOKEN=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
+export GITHUB_USER=archyufa</p>
+<h3 id="14-install-flux-into-gke-cluster">1.4 Install Flux into GKE cluster<a class="headerlink" href="#14-install-flux-into-gke-cluster" title="Permanent link">&para;</a></h3>
+<p>Run the bootstrap command:</p>
+<div class="codehilite"><pre><span></span><code>flux bootstrap github \
+  --owner=$GITHUB_USER \
+  --repository=flux-infra \
+  --branch=main \
+  --path=./clusters/dev \
+  --personal \
+  --log-level=debug \
+  --components=source-controller,kustomize-controller,helm-controller
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>✔ repository &quot;https://github.com/archyufa/flux-infra&quot; created
+✔ cloned repository
+✔ generated component manifests
+✔ committed sync manifests to &quot;main&quot; (&quot;6cd871ba49834e8106884f3c8daad2f75c6b341f&quot;)
+✔ installed components
+✔ reconciled components
+✔ configured deploy key &quot;flux-system-main-flux-system-./clusters/dev&quot; for &quot;https://github.com/archyufa/flux-infra&quot;
+✔ reconciled source secret
+✔ generated sync manifests
+✔ committed sync manifests to &quot;main&quot; (&quot;7d0122f2e4e57ada4f88d7a968528879b07b56e8&quot;)
+✔ reconciled sync configuration
+✔ Kustomization reconciled successfully
+✔ helm-controller: deployment ready
+✔ kustomize-controller: deployment ready
+✔ source-controller: deployment ready
+✔ all components are healthy
+</code></pre></div>
+
+<p>Verify Install:</p>
+<div class="codehilite"><pre><span></span><code>flux check
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get crd | grep flux
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>buckets.source.toolkit.fluxcd.io                 2021-09-08T18:07:34Z
+gitrepositories.source.toolkit.fluxcd.io         2021-09-08T18:07:34Z
+helmcharts.source.toolkit.fluxcd.io              2021-09-08T18:07:34Z
+helmreleases.helm.toolkit.fluxcd.io              2021-09-08T18:07:34Z
+helmrepositories.source.toolkit.fluxcd.io        2021-09-08T18:07:35Z
+kustomizations.kustomize.toolkit.fluxcd.io       2021-09-08T18:07:35Z
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get gitrepositories -n flux-system
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>flux get all
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>We've <code>flux bootstrap</code> command we've achieved:</p>
+<ul>
+<li>flux agent components which includes (namespace, CRDs, Sources, Controllers, RBAC) on our cluster<ul>
+<li>3 Controllers:</li>
+<li>source</li>
+<li>kustomize</li>
+<li>helm</li>
+<li>6 CRDs: </li>
+<li>buckets.source</li>
+<li>gitrepositories.source</li>
+<li>helmcharts.source</li>
+<li>helmrepositories.source</li>
+<li>helmreleases.helm</li>
+<li>kustomizations.kustomize</li>
+</ul>
+</li>
+<li>Created <code>flux-infra</code> Private Github repo with Deploy key</li>
+<li><code>flux-infra</code> repo contains flux-infra/clusters/dev/flux-system/ folder</li>
+</ul>
+</div>
+<h3 id="15-deploy-microservices-applications-with-gitops-using-git-source-controller">1.5 Deploy <code>microservices</code> applications with GitOps using Git Source Controller<a class="headerlink" href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Fork Microservice application</p>
+<p>Browse to:</p>
+<div class="codehilite"><pre><span></span><code>https://github.com/GoogleCloudPlatform/microservices-demo
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Click: Fork button
+Select: Fork to a different account
+</code></pre></div>
+
+<p><strong>Step 2</strong> Clone Microservices application from you repo using SSH</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+git clone git@github.com:&lt;your_repo&gt;/microservices-demo.git
+cd microservices-demo
+</code></pre></div>
+
+<p><strong>Step 3</strong> Create Namespace <code>onlineboutique</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns onlineboutique
+</code></pre></div>
+
+<p><strong>Step 4</strong> Create a source from a public Git repository master branch:</p>
+<div class="codehilite"><pre><span></span><code>flux create source git -h
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>flux create source git microservices-demo \
+  --url=https://github.com/archyufa/microservices-demo-1 \
+  --branch=master \
+  --interval=30s
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>✚ generating GitRepository source
+► applying GitRepository source
+✔ GitRepository source created
+◎ waiting for GitRepository source reconciliation
+✔ GitRepository source reconciliation completed
+✔ fetched revision: master/2e55bc94d35d17aa6b690d63353c38718bc31253
+</code></pre></div>
+
+<p>Verify:</p>
+<div class="codehilite"><pre><span></span><code>flux get sources git microservices-demo
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Create a <code>Kustomization</code> resource from a source at a given path</p>
+<div class="codehilite"><pre><span></span><code>flux create kustomization -h
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>flux create kustomization microservices-demo-dev \
+  --source=GitRepository/microservices-demo \
+  --path=&quot;./release/&quot; \
+  --prune=true \
+  --interval=1m \
+  --validation=client \
+  --target-namespace=onlineboutique
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Store kustomize configuration:</p>
+<div class="codehilite"><pre><span></span><code>https://github.com/&lt;ypur-user&gt;/flux-infra
+cd flux-infra/clusters/dev/
+flux export source git  &gt;&gt;  source-microservices-demo.dev.yaml
+flux export kustonizations &gt;&gt; kustomization-microservices-demo.yaml
+</code></pre></div>
+
+<h2 id="7-cleanup">7 Cleanup<a class="headerlink" href="#7-cleanup" title="Permanent link">&para;</a></h2>
+<p>You can uninstall Flux with:</p>
+<div class="codehilite"><pre><span></span><code>flux delete kustomization microservices-demo-dev
+flux delete source git microservices-demo
+flux uninstall --namespace=flux-system
+</code></pre></div>
+
+<p>The above command performs the following operations:</p>
+<ul>
+<li>deletes Flux components (deployments and services)</li>
+<li>deletes Flux network policies</li>
+<li>deletes Flux RBAC (service accounts, cluster roles and cluster role bindings)</li>
+<li>removes the Kubernetes finalizers from Flux custom resources</li>
+<li>deletes Flux custom resource definitions and custom resources</li>
+<li>deletes the namespace where Flux was installed</li>
+</ul>
+<p>Delete GKE cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-gitops-lab --region us-central1
+</code></pre></div>
                 
               
               
@@ -836,6 +1177,39 @@ helm list</p>
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../020_Lab_6_Prometheus/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lab 6 Monitoring with Prometheus
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../020_Assignment_2_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
