@@ -14,7 +14,7 @@
     
     
       
-        <title>Istio Traffic Control - Canary Deployments - YCIT020</title>
+        <title>Lab 10 Serverless Cloud Run - YCIT020</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#istio-traffic-control-canary-deployments" class="md-skip">
+        <a href="#lab-5-cloudrun-for-anthos" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Istio Traffic Control - Canary Deployments
+              Lab 10 Serverless Cloud Run
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -203,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -284,11 +288,79 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../020_Lab_10_cloudrun/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 10 Serverless Cloud Run
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Lab 10 Serverless Cloud Run
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP and Enable CloudRun
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-deploy-a-knative-service" class="md-nav__link">
+    1 Deploy a Knative Service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-test-the-knative-service" class="md-nav__link">
+    2 Test the Knative Service
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-knative-serving-api" class="md-nav__link">
+    3 Knative Serving API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cleanup" class="md-nav__link">
+    4 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -778,29 +850,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#0-create-a-cluster-and-deploy-istio" class="md-nav__link">
-    0 Create a Cluster and Deploy Istio
+  <a href="#0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun" class="md-nav__link">
+    0 Create Regional GKE Cluster on GCP and Enable CloudRun
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-deploy-an-application" class="md-nav__link">
-    1 Deploy an Application
+  <a href="#1-deploy-a-knative-service" class="md-nav__link">
+    1 Deploy a Knative Service
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-allow-traffic-to-online-boutique-application" class="md-nav__link">
-    1 Allow Traffic to Online Boutique Application
+  <a href="#2-test-the-knative-service" class="md-nav__link">
+    2 Test the Knative Service
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-canary-deployments-with-istio" class="md-nav__link">
-    2 Canary Deployments with Istio
+  <a href="#3-knative-serving-api" class="md-nav__link">
+    3 Knative Serving API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cleanup" class="md-nav__link">
+    4 Cleanup
   </a>
   
 </li>
@@ -818,189 +897,103 @@
               
                 
                 
-                <h1 id="istio-traffic-control-canary-deployments">Istio Traffic Control - Canary Deployments<a class="headerlink" href="#istio-traffic-control-canary-deployments" title="Permanent link">&para;</a></h1>
+                <h1 id="lab-5-cloudrun-for-anthos">Lab 5 Cloudrun for Anthos<a class="headerlink" href="#lab-5-cloudrun-for-anthos" title="Permanent link">&para;</a></h1>
 <p><strong>Objective:</strong></p>
 <ul>
-<li>Install Istio</li>
-<li>Deploy an application and enable automatic sidecar injection</li>
-<li>Deploy a canary service and use Istio to route some traffic to the new service</li>
+<li>Enable CloudRun on a Kubernetes cluster</li>
+<li>Deploy a web application</li>
+<li>Autoscale applications from 0-to-1 and back to 0</li>
 </ul>
-<h2 id="0-create-a-cluster-and-deploy-istio">0 Create a Cluster and Deploy Istio<a class="headerlink" href="#0-create-a-cluster-and-deploy-istio" title="Permanent link">&para;</a></h2>
-<p>Follow the steps in the assignment to create a GKE cluster and deploy Istio</p>
-<h2 id="1-deploy-an-application">1 Deploy an Application<a class="headerlink" href="#1-deploy-an-application" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Get the source code for a sample application. For this lab, we will use the Online Boutique sample app.</p>
-<div class="codehilite"><pre><span></span><code>cd ~
-git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+<h2 id="0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun">0 Create Regional GKE Cluster on GCP and Enable CloudRun<a class="headerlink" href="#0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable \
+container.googleapis.com \
+containerregistry.googleapis.com
 </code></pre></div>
 
-<p><strong>Step 2</strong> Create a namespace <code>online-boutique</code> for example</p>
-<div class="codehilite"><pre><span></span><code>kubectl create namespace online-boutique
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node and enable CloudRun:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create cloudrun-demo \
+  --zone=us-central1-b \
+  --num-nodes=1 \
+  --machine-type=n1-standard-4 \
+  --enable-autoscaling --min-nodes=1 --max-nodes=5 \
+  --enable-ip-alias \
+  --addons=HttpLoadBalancing,CloudRun \
+  --enable-stackdriver-kubernetes \
+  --release-channel stable
 </code></pre></div>
 
-<p><strong>Step 3</strong> Enable automatic sidecar injection for the online-boutique namespace</p>
-<div class="codehilite"><pre><span></span><code>kubectl label namespace online-boutique istio-injection=enabled --overwrite
+<p>Enabling CloudRun will install Knative components on the cluster. As we discussed in class, Knative makes it possible to:</p>
+<ul>
+<li>Deploy and serve applications using Knative API. </li>
+<li>Allow applications automatically scale from zero-to-N, and back to zero, based on requests.</li>
+<li>Build and package the application code inside the cluster.</li>
+<li>Deliver events to your application; However, this feature is not enabled by CloudRun.</li>
+</ul>
+<p><strong>Step 3</strong> Verify the Knative components are properly installed.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods --namespace=knative-serving
 </code></pre></div>
 
-<p><strong>Step 4</strong> Deploy the application by creating the kubernetes manifests</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f ./release/kubernetes-manifests.yaml -n online-boutique
-</code></pre></div>
-
-<p><strong>Step 5</strong> Watch the pods and verify that all pods were started successfully with the sidecar injected</p>
-<div class="codehilite"><pre><span></span><code>watch kubectl get pods -n online-boutique
-</code></pre></div>
-
-<h2 id="1-allow-traffic-to-online-boutique-application">1 Allow Traffic to Online Boutique Application<a class="headerlink" href="#1-allow-traffic-to-online-boutique-application" title="Permanent link">&para;</a></h2>
-<p>In order for traffic to flow to the frontend of the application, we need to create an ingress gateway and a virtual service attached to it.</p>
-<p>In the istio-manifest directory, we already have the required resources to accomplish this:
-* frontend-gateway.yaml: configures the Ingressgateway and the virtualService to allow external traffic into the mesh and route it to the frontend serivce
-* frontend.yaml: defines another virtual service to be used by our load generator to make sure traffic directed to the frontend from within the mesh stays internal, and doesn't go through the gateway.
-*  Whitelist-egress-googleapis.yaml: Used to whitelist various google APIs used by services within the mesh.</p>
-<p><strong>Step 1</strong> Apply the istio manifests</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f ./istio-manifests -n online-boutique
-</code></pre></div>
-
-<p><strong>Step 2</strong> Get the external IP address of the ingress gateway and check the application</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -n istio-system service istio-ingressgateway
-</code></pre></div>
-
-<h2 id="2-canary-deployments-with-istio">2 Canary Deployments with Istio<a class="headerlink" href="#2-canary-deployments-with-istio" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Patch the Recommendation service deployment to give it a <code>production</code> label</p>
-<div class="codehilite"><pre><span></span><code>kubectl patch deployment -n online-boutique recommendationservice --type=&#39;json&#39; -p=&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/spec/template/metadata/labels/version&quot;, &quot;value&quot;: &quot;production&quot;}]&#39;
-</code></pre></div>
-
-<p><strong>Step 2</strong> Check the labels on the deployment</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pod -n online-boutique recommendationservice --show-labels
-</code></pre></div>
-
-<p><strong>Step 3</strong> Create a DestinationRule that defines two subsets <code>production</code> and <code>canary</code></p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
+<h2 id="1-deploy-a-knative-service">1 Deploy a Knative Service<a class="headerlink" href="#1-deploy-a-knative-service" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> deploy a Knatvie service to the cluster you just created. For this example, we will use <code>kubectl</code>; however, you can also use the CloudRun UI. To expose an application on Knative, we need to define a Service object, which is different than the Kubernetes Service type.</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; helloworld.yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
 metadata:
-  name: recommendationservice
-  namespace: online-boutique
+  name: helloworld-go
+  namespace: default
 spec:
-  host: recommendationservice
-  subsets:
-  - name: production
-    labels:
-      version: production
-  - name: canary
-    labels:
-      version: canary
-EOF
-</code></pre></div>
-
-<p><strong>Step 4</strong> Make a change to the Recommendation service</p>
-<div class="codehilite"><pre><span></span><code>cd ~/microservices-demo
-sed -i &#39;s/max_responses = 5/max_responses = 2/g&#39; \
-   src/recommendationservice/recommendation_server.py
-</code></pre></div>
-
-<p><strong>Step 5</strong> Build a new version of the image</p>
-<div class="codehilite"><pre><span></span><code>PROJECT_ID=$(gcloud config list --format &quot;value(core.project)&quot;)
-
-docker build -t \
-  gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary \
-  src/recommendationservice
-</code></pre></div>
-
-<p><strong>Step 6</strong> Push the image to GCR</p>
-<div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary
-</code></pre></div>
-
-<p><strong>Step 7</strong> Deploy the canary version of the Recommendation service</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: recommendationservice
-    version: canary
-  name: recommendationservice-canary
-  namespace: online-boutique
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: recommendationservice
-      version: canary
   template:
-    metadata:
-      labels:
-        app: recommendationservice
-        version: canary
     spec:
       containers:
-      - env:
-        - name: PORT
-          value: &quot;8080&quot;
-        - name: PRODUCT_CATALOG_SERVICE_ADDR
-          value: productcatalogservice:3550
-        - name: ENABLE_PROFILER
-          value: &quot;0&quot;
-        image: gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary
-        imagePullPolicy: Always
-        livenessProbe:
-          exec:
-            command:
-            - /bin/grpc_health_probe
-            - -addr=:8080
-          failureThreshold: 3
-          periodSeconds: 5
-          successThreshold: 1
-          timeoutSeconds: 1
-        name: server
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        readinessProbe:
-          exec:
-            command:
-            - /bin/grpc_health_probe
-            - -addr=:8080
-          failureThreshold: 3
-          periodSeconds: 5
-          successThreshold: 1
-          timeoutSeconds: 1
-        resources:
-          limits:
-            cpu: 200m
-            memory: 450Mi
-          requests:
-            cpu: 100m
-            memory: 220Mi
-EOF
+        - image: gcr.io/cloudrun/hello
+          env:
+            - name: TARGET
+              value: &quot;Go Sample v1&quot;
+EOF 
 </code></pre></div>
 
-<p><strong>Step 8</strong> Deploy a virtual service to direct 20% of the traffic to the canary version</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: recommendationservice
-  namespace: online-boutique
-spec:
-  hosts:
-  - recommendationservice
-  http:
-  - route:
-    - destination:
-        host: recommendationservice
-        port:
-          number: 8080
-        subset: production
-      weight: 80
-    - destination:
-        host: recommendationservice
-        port:
-          number: 8080
-        subset: canary 
-      weight: 20
-EOF
+<div class="codehilite"><pre><span></span><code>kubectl apply -f helloworld.yaml
 </code></pre></div>
 
-<p><strong>Step 9</strong> Refresh the page for one of the products where recommendations are shown multiple times, and notice how most of the time you get 5 recommendations while if 20% of the time you get only 2 recommendations.</p>
+<p><strong>Step 2</strong> Verify the service is deployed by querying "ksvc" (Knative Service) objects</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ksvc
+</code></pre></div>
+
+<p><strong>Step 3</strong> Although the Knative service is deployed, there are no Pod created yet, given that there are no requests on this service.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pod
+</code></pre></div>
+
+<h2 id="2-test-the-knative-service">2 Test the Knative Service<a class="headerlink" href="#2-test-the-knative-service" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Let's test the service by making a request using <code>curl</code>.</p>
+<p>To avoid having to set up DNS, we'll test the deployed service by sending a request to the Istio ingress gateway with the target host that should handle the request as an HTTP header. That hostname should be the URL listed in the previous deployment step and of the form: http://<em>service-name</em>.<em>namespace</em>.example.com</p>
+<p><strong>Step 2</strong> Obtain the IP address of the ingress gateway</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc -n gke-system istio-ingress
+</code></pre></div>
+
+<p><strong>Step 3</strong> From Cloud Shell, use curl to access the service. Use the URL we obtained in step 5, and replace [YOUR-IP] with the IP address you obtained in the previous step.</p>
+<div class="codehilite"><pre><span></span><code>curl -v -H &quot;Host: helloworld-go.default.example.com&quot; http://[YOUR-IP]
+</code></pre></div>
+
+<p><strong>Step 4</strong> Verify that a pod was created and that this pod will get termintated if there are no more requests on this service.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pod
+</code></pre></div>
+
+<h2 id="3-knative-serving-api">3 Knative Serving API<a class="headerlink" href="#3-knative-serving-api" title="Permanent link">&para;</a></h2>
+<p>When we deploy the helloworld Service to Knative, it creates three kinds of objects: Configuration, Route, and Revision.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get configuration,revision,route
+</code></pre></div>
+
+<ul>
+<li><strong>Service</strong> Describes an application on Knative.</li>
+<li><strong>Revision</strong> Read-only snapshot of an application's image and other settings</li>
+<li><strong>Configuration</strong> Created automatically by the service. It creates a new Revision when the revisionTemplate field changes.</li>
+<li><strong>Route</strong> Configures how the traffic coming to the Service should be split between Revisions.</li>
+</ul>
+<h2 id="4-cleanup">4 Cleanup<a class="headerlink" href="#4-cleanup" title="Permanent link">&para;</a></h2>
+<p>Delete the GKE cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete cloudrun-demo --region us-central1
+</code></pre></div>
                 
               
               
@@ -1016,6 +1009,39 @@ EOF
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../020_Lab_9_GitOps/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Lab 9 GitOps with Flux
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../020_Assignment_2_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Assignment2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
