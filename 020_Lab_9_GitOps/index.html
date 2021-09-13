@@ -354,8 +354,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" class="md-nav__link">
-    1.5 Deploy microservices applications with GitOps using Git Source Controller
+  <a href="#15-deploy-microservices-applications-with-gitops-using-kustomize-controller" class="md-nav__link">
+    1.5 Deploy microservices applications with GitOps using Kustomize Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-deploy-opa-gatekeeper-using-helm-controller" class="md-nav__link">
+    1.6 Deploy OPA Gatekeeper using Helm Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-deploy-opa-gatekeeper-with-gitops-using-helm-controller" class="md-nav__link">
+    1.7 Deploy OPA Gatekeeper with GitOps using Helm Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-deploy-and-test-allowedrepos-policy" class="md-nav__link">
+    1.8 Deploy and Test allowedrepos Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-extra-deploy-allowedrepos-with-gitops" class="md-nav__link">
+    1.8  (Extra) Deploy allowedrepos with Gitops
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-extra-deploy-notepad-app-helm-chart-with-gitops" class="md-nav__link">
+    1.9 (Extra) Deploy notepad app Helm chart with GitOps
   </a>
   
 </li>
@@ -366,8 +401,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-cleanup" class="md-nav__link">
-    7 Cleanup
+  <a href="#2-cleanup" class="md-nav__link">
+    2 Cleanup
   </a>
   
 </li>
@@ -908,8 +943,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" class="md-nav__link">
-    1.5 Deploy microservices applications with GitOps using Git Source Controller
+  <a href="#15-deploy-microservices-applications-with-gitops-using-kustomize-controller" class="md-nav__link">
+    1.5 Deploy microservices applications with GitOps using Kustomize Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-deploy-opa-gatekeeper-using-helm-controller" class="md-nav__link">
+    1.6 Deploy OPA Gatekeeper using Helm Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-deploy-opa-gatekeeper-with-gitops-using-helm-controller" class="md-nav__link">
+    1.7 Deploy OPA Gatekeeper with GitOps using Helm Controller
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-deploy-and-test-allowedrepos-policy" class="md-nav__link">
+    1.8 Deploy and Test allowedrepos Policy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-extra-deploy-allowedrepos-with-gitops" class="md-nav__link">
+    1.8  (Extra) Deploy allowedrepos with Gitops
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-extra-deploy-notepad-app-helm-chart-with-gitops" class="md-nav__link">
+    1.9 (Extra) Deploy notepad app Helm chart with GitOps
   </a>
   
 </li>
@@ -920,8 +990,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-cleanup" class="md-nav__link">
-    7 Cleanup
+  <a href="#2-cleanup" class="md-nav__link">
+    2 Cleanup
   </a>
   
 </li>
@@ -1078,7 +1148,7 @@ kustomizations.kustomize.toolkit.fluxcd.io       2021-09-08T18:07:35Z
 <li><code>flux-infra</code> repo contains flux-infra/clusters/dev/flux-system/ folder</li>
 </ul>
 </div>
-<h3 id="15-deploy-microservices-applications-with-gitops-using-git-source-controller">1.5 Deploy <code>microservices</code> applications with GitOps using Git Source Controller<a class="headerlink" href="#15-deploy-microservices-applications-with-gitops-using-git-source-controller" title="Permanent link">&para;</a></h3>
+<h3 id="15-deploy-microservices-applications-with-gitops-using-kustomize-controller">1.5 Deploy <code>microservices</code> applications with GitOps using Kustomize Controller<a class="headerlink" href="#15-deploy-microservices-applications-with-gitops-using-kustomize-controller" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Fork Microservice application</p>
 <p>Browse to:</p>
 <div class="codehilite"><pre><span></span><code>https://github.com/GoogleCloudPlatform/microservices-demo
@@ -1103,7 +1173,7 @@ cd microservices-demo
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>flux create source git microservices-demo \
-  --url=https://github.com/archyufa/microservices-demo-1 \
+  --url=https://github.com/&lt;your_repo&gt;/microservices-demo-1 \
   --branch=master \
   --interval=30s
 </code></pre></div>
@@ -1134,14 +1204,270 @@ cd microservices-demo
   --target-namespace=onlineboutique
 </code></pre></div>
 
-<p><strong>Step 5</strong>  Store kustomize configuration:</p>
-<div class="codehilite"><pre><span></span><code>https://github.com/&lt;ypur-user&gt;/flux-infra
-cd flux-infra/clusters/dev/
-flux export source git  &gt;&gt;  source-microservices-demo.dev.yaml
-flux export kustonizations &gt;&gt; kustomization-microservices-demo.yaml
+<h3 id="16-deploy-opa-gatekeeper-using-helm-controller">1.6 Deploy OPA Gatekeeper using Helm Controller<a class="headerlink" href="#16-deploy-opa-gatekeeper-using-helm-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Configure <code>Helm</code> repository</p>
+<div class="codehilite"><pre><span></span><code>helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
+helm repo update
 </code></pre></div>
 
-<h2 id="7-cleanup">7 Cleanup<a class="headerlink" href="#7-cleanup" title="Permanent link">&para;</a></h2>
+<p><strong>Step 2</strong> Install Helm Chart to <code>monitoring</code> namespace</p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns gatekeeper
+helm install gatekeeper gatekeeper/gatekeeper -n gatekeeper
+kubens gatekeeper
+kubectl get deploy
+</code></pre></div>
+
+<p><strong>Step 2</strong> Uninstall Gatekeeper</p>
+<div class="codehilite"><pre><span></span><code>helm delete gatekeeper
+kubectl delete crd -l gatekeeper.sh/system=yes
+</code></pre></div>
+
+<h3 id="17-deploy-opa-gatekeeper-with-gitops-using-helm-controller">1.7 Deploy OPA Gatekeeper with GitOps using Helm Controller<a class="headerlink" href="#17-deploy-opa-gatekeeper-with-gitops-using-helm-controller" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create a source for a public Helm repository:</p>
+<div class="codehilite"><pre><span></span><code>flux create source helm -h
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>flux create source helm gatekeeper \
+  --url=https://open-policy-agent.github.io/gatekeeper/charts \
+  --interval=1m
+</code></pre></div>
+
+<p>Verify:</p>
+<div class="codehilite"><pre><span></span><code>flux get sources helm gatekeeper
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Create a <code>HelmRelease</code> with a chart from a HelmRepository source</p>
+<div class="codehilite"><pre><span></span><code>flux create hr -h
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>flux create hr gatekeeper \
+  --interval=1m \
+  --source=HelmRepository/gatekeeper \
+  --chart=gatekeeper \
+  --target-namespace=gatekeeper \
+  --chart-version=&quot;v3.7.0-beta.1&quot;
+</code></pre></div>
+
+<p>Verify:</p>
+<div class="codehilite"><pre><span></span><code>flux get hr
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>gatekeeper      True    Release reconciliation succeeded        3.7.0-beta.1    False
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubens gatekeeper
+kubectl get deploy
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We've deployed Gatekeeper to our GKE cluster. It's time to add some policies!</p>
+</div>
+<p><strong>Step 5</strong>  Store Flux configurations:</p>
+<div class="codehilite"><pre><span></span><code>git clone git@github.com:&lt;your-user&gt;/flux-infra.git
+cd flux-infra/clusters/dev/
+flux export source git microservices-demo &gt;&gt;  source-microservices-demo.yaml
+flux export kustomization microservices-demo-dev &gt;&gt; kustomization-microservices-demo.yaml
+flux export source helm gatekeeper &gt;&gt; source-helm-gatekeeper.yaml
+flux export hr gatekeeper &gt;&gt; helmrelease-gatekeeper.yaml
+cat source-microservices-demo.yaml kustomization-microservices-demo.yaml source-helm-gatekeeper.yaml helmrelease-gatekeeper.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;dev cluster flux config&quot;
+git push
+</code></pre></div>
+
+<h3 id="18-deploy-and-test-allowedrepos-policy">1.8 Deploy and Test allowedrepos Policy<a class="headerlink" href="#18-deploy-and-test-allowedrepos-policy" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Let's create a <code>policy</code> folder where we going to store our cluster wide policies:</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+mkdir -p policy/templates
+mkdir -p policy/constraints
+</code></pre></div>
+
+<p><strong>Step 2</strong> Download OSS Gatekeeper libraries:</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+git clone https://github.com/open-policy-agent/gatekeeper-library
+</code></pre></div>
+
+<p><strong>Step 3</strong> Review <code>allowedrepos</code> constraint template:</p>
+<div class="codehilite"><pre><span></span><code>cd gatekeeper-library/library/general/allowedrepos
+cat template.yaml
+cp -r template.yaml ~/policy/templates
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>cd  ~/policy/templates
+kubens gatekeeper
+kubectl apply -f template.yaml
+</code></pre></div>
+
+<p>Review a <code>ConstraintTemplate</code> CRD and observe created resource:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get  ConstraintTemplate
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even if k8sallowedrepos <code>ConstraintTemplate</code> has been deployed in <code>gatekeeper</code> namespace in our case.
+The Policy will be applied Cluster Wide.</p>
+</div>
+<p><strong>Step 3</strong> Let's create a Gatekeeper constraint that will block all Pods, which images are non  <code>gcr.io</code> registries. We first going to test our constraint in a current system and so we going to run it in <code>dryrun</code> enforcementAction mode. We will </p>
+<div class="codehilite"><pre><span></span><code>cd  ~/policy/constraints
+cat &lt;&lt; EOF&gt;&gt; allowed-repos.yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: allowed-repos
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups: [&quot;&quot;]
+        kinds: [&quot;Pod&quot;]
+    excludedNamespaces: [&quot;onlineboutique&quot;]
+  parameters:
+    repos:
+      - &quot;gcr.io&quot;
+      - &quot;gke.gcr.io&quot;
+      - &quot;k8s.gcr.io&quot;
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We've added <code>excludedNamespaces</code> clause, as our microservices app has some redis image that is downloaded from dockerhub.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f allowed-repos.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe K8sAllowedRepos
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Total Violations:  12
+  Violations:
+    Enforcement Action:  dryrun
+    Kind:                Pod
+    Message:             container &lt;manager&gt; has an invalid image repo &lt;ghcr.io/fluxcd/helm-controller:v0.11.2&gt;, allowed repos are [&quot;gcr.io&quot;, &quot;gke.gcr.io&quot;]
+    Name:                helm-controller-5cbd57f468-cr7ht
+    Namespace:           flux-system
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can observe ~12 Violations in our cluster. However since our Enforcement Action is <code>dryrun</code>, non the policy will take effect. </p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl describe K8sAllowedRepos | grep Namespace
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>    Namespace:           flux-system
+    Namespace:           flux-system
+    Namespace:           flux-system
+    Namespace:           gatekeeper
+    Namespace:           gatekeeper
+    Namespace:           gatekeeper
+    Namespace:           gatekeeper
+    Namespace:           kube-system
+    Namespace:           kube-system
+    Namespace:           kube-system
+    Namespace:           kube-system
+    Namespace:           kube-system
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can observe that all violations are for <code>kube-system</code>, <code>flux-system</code> and <code>gatekeeper</code>.
+This is due to they using images from following repos <code>k8s.gcr.io</code>, <code>ghcr.io/fluxcd</code>, <code>openpolicyagent/gatekeeper</code> respectively. To workaround this issue we can add above repo's in trusted listed of repos.
+Another alternative is to <code>copy</code> required images to your personal <code>gcr</code> repo using tools like <a href="https://github.com/google/go-containerregistry/blob/main/cmd/gcrane/README.md">crane</a>.</p>
+</div>
+<p><strong>Step 4</strong> Update K8sAllowedRepos constraint to support trusted registries:</p>
+<div class="codehilite"><pre><span></span><code>rm allowed-repos.yaml
+cat &lt;&lt; EOF&gt;&gt; allowed-repos.yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: allowed-repos
+spec:
+  enforcementAction: dryrun
+  match:
+    kinds:
+      - apiGroups: [&quot;&quot;]
+        kinds: [&quot;Pod&quot;]
+    excludedNamespaces: [&quot;onlineboutique&quot;]
+  parameters:
+    repos:
+      - &quot;gcr.io&quot;
+      - &quot;gke.gcr.io&quot;
+      - &quot;k8s.gcr.io&quot;
+      - &quot;ghcr.io/fluxcd&quot;
+      - &quot;openpolicyagent/gatekeeper&quot;
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl apply -f allowed-repos.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe K8sAllowedRepos
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All violations has been resolved, however it may take some time until the messages will be cleared in the Events.</p>
+</div>
+<p><strong>Step 5</strong> Update K8sAllowedRepos constraint and set <code>enforcementAction</code> to <code>deny</code> in order to block all Pods with registry violations:</p>
+<div class="codehilite"><pre><span></span><code>rm allowed-repos.yaml
+cat &lt;&lt; EOF&gt;&gt; allowed-repos.yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sAllowedRepos
+metadata:
+  name: allowed-repos
+spec:
+  enforcementAction: deny
+  match:
+    kinds:
+      - apiGroups: [&quot;&quot;]
+        kinds: [&quot;Pod&quot;]
+    excludedNamespaces: [&quot;onlineboutique&quot;]
+  parameters:
+    repos:
+      - &quot;gcr.io&quot;
+      - &quot;gke.gcr.io&quot;
+      - &quot;k8s.gcr.io&quot;
+      - &quot;ghcr.io/fluxcd&quot;
+      - &quot;openpolicyagent/gatekeeper&quot;
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl apply -f allowed-repos.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl describe K8sAllowedRepos
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Total Violations is 0, as expected.</p>
+</div>
+<p><strong>Step 6</strong> Deploy <code>nginx</code> Pod from dockerhub in <code>default</code> namespace and thus violate our cluster Policy</p>
+<div class="codehilite"><pre><span></span><code>kubectl run nginx --image=nginx -n default
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Error from server ([allowed-repos] container &lt;nginx&gt; has an invalid image repo &lt;nginx&gt;, allowed repos are [&quot;gcr.io&quot;, &quot;gke.gcr.io&quot;, &quot;k8s.gcr.io&quot;, &quot;ghcr.io/fluxcd&quot;, &quot;openpolicyagent/gatekeeper&quot;]): admissionwebhook &quot;validation.gatekeeper.sh&quot; denied the request: [allowed-repos] container &lt;nginx&gt; has an invalid image repo &lt;nginx&gt;, allowed repos are [&quot;gcr.io&quot;, &quot;gke.gcr.io&quot;, &quot;k8s.gcr.io&quot;, &quot;ghcr.io/fluxcd&quot;, &quot;openpolicyagent/gatekeeper&quot;]
+</code></pre></div>
+
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>Gatekeeper Admission Controller blocked nginx Pod deployment due to it's violating the <code>allowedrepos</code> constraint.</p>
+</div>
+<div class="admonition sumary">
+<p class="admonition-title">Sumary</p>
+<p>We've secured our cluster from deployments of dangerous and unauthorized images</p>
+</div>
+<h3 id="18-extra-deploy-allowedrepos-with-gitops">1.8  (Extra) Deploy <code>allowedrepos</code> with Gitops<a class="headerlink" href="#18-extra-deploy-allowedrepos-with-gitops" title="Permanent link">&para;</a></h3>
+<h3 id="19-extra-deploy-notepad-app-helm-chart-with-gitops">1.9 (Extra) Deploy notepad app Helm chart with GitOps<a class="headerlink" href="#19-extra-deploy-notepad-app-helm-chart-with-gitops" title="Permanent link">&para;</a></h3>
+<h2 id="2-cleanup">2 Cleanup<a class="headerlink" href="#2-cleanup" title="Permanent link">&para;</a></h2>
 <p>You can uninstall Flux with:</p>
 <div class="codehilite"><pre><span></span><code>flux delete kustomization microservices-demo-dev
 flux delete source git microservices-demo
