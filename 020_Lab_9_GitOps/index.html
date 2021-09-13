@@ -1149,7 +1149,8 @@ kustomizations.kustomize.toolkit.fluxcd.io       2021-09-08T18:07:35Z
 </ul>
 </div>
 <h3 id="15-deploy-microservices-applications-with-gitops-using-kustomize-controller">1.5 Deploy <code>microservices</code> applications with GitOps using Kustomize Controller<a class="headerlink" href="#15-deploy-microservices-applications-with-gitops-using-kustomize-controller" title="Permanent link">&para;</a></h3>
-<p><strong>Step 1</strong> Fork Microservice application</p>
+<p>Create Dev Team Repo that will store Applications Code and Kubernetes Yaml manifests.</p>
+<p><strong>Step 1</strong> Fork microservice application</p>
 <p>Browse to:</p>
 <div class="codehilite"><pre><span></span><code>https://github.com/GoogleCloudPlatform/microservices-demo
 </code></pre></div>
@@ -1162,6 +1163,12 @@ Select: Fork to a different account
 <div class="codehilite"><pre><span></span><code>cd ~
 git clone git@github.com:&lt;your_repo&gt;/microservices-demo.git
 cd microservices-demo
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>rm release/istio-manifests.yaml
+git add .
+git commit -m &quot;removed istio manifests&quot;
+git push
 </code></pre></div>
 
 <p><strong>Step 3</strong> Create Namespace <code>onlineboutique</code></p>
@@ -1204,7 +1211,24 @@ cd microservices-demo
   --target-namespace=onlineboutique
 </code></pre></div>
 
+<div class="codehilite"><pre><span></span><code>kubens onlineboutique
+kubectl get pods
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Onlineboutique pods has been deployed with FluxCD via GitOps</p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl get svc
+</code></pre></div>
+
+<p>Access Onlineboutique <code>Frontend</code> via <code>LoadBalancer</code> IP</p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>We've deployed microservices onlineboutique application using GitOps</p>
+</div>
 <h3 id="16-deploy-opa-gatekeeper-using-helm-controller">1.6 Deploy OPA Gatekeeper using Helm Controller<a class="headerlink" href="#16-deploy-opa-gatekeeper-using-helm-controller" title="Permanent link">&para;</a></h3>
+<p>Now let's install OPA Gatekeeper using Helm so that we can apply different Kubernetes Policy and set the guardrails on what's allowed to do on our cluster.</p>
 <p><strong>Step 1</strong> Configure <code>Helm</code> repository</p>
 <div class="codehilite"><pre><span></span><code>helm repo add gatekeeper https://open-policy-agent.github.io/gatekeeper/charts
 helm repo update
@@ -1223,6 +1247,7 @@ kubectl delete crd -l gatekeeper.sh/system=yes
 </code></pre></div>
 
 <h3 id="17-deploy-opa-gatekeeper-with-gitops-using-helm-controller">1.7 Deploy OPA Gatekeeper with GitOps using Helm Controller<a class="headerlink" href="#17-deploy-opa-gatekeeper-with-gitops-using-helm-controller" title="Permanent link">&para;</a></h3>
+<p>Now let's install OPA Gatekeeper via GitOps so that we can apply different Kubernetes Policy and set the guardrails on what's allowed to do on our cluster.</p>
 <p><strong>Step 1</strong> Create a source for a public Helm repository:</p>
 <div class="codehilite"><pre><span></span><code>flux create source helm -h
 </code></pre></div>
@@ -1466,6 +1491,7 @@ EOF
 <p>We've secured our cluster from deployments of dangerous and unauthorized images</p>
 </div>
 <h3 id="18-extra-deploy-allowedrepos-with-gitops">1.8  (Extra) Deploy <code>allowedrepos</code> with Gitops<a class="headerlink" href="#18-extra-deploy-allowedrepos-with-gitops" title="Permanent link">&para;</a></h3>
+<p>Create Ops/Platform Repo that will store Gatekeeper Policies and Cluster Wide configurations.</p>
 <h3 id="19-extra-deploy-notepad-app-helm-chart-with-gitops">1.9 (Extra) Deploy notepad app Helm chart with GitOps<a class="headerlink" href="#19-extra-deploy-notepad-app-helm-chart-with-gitops" title="Permanent link">&para;</a></h3>
 <h2 id="2-cleanup">2 Cleanup<a class="headerlink" href="#2-cleanup" title="Permanent link">&para;</a></h2>
 <p>You can uninstall Flux with:</p>
