@@ -14,7 +14,7 @@
     
     
       
-        <title>ycit019 Lab 2 Docker basics - Cloud Architecture</title>
+        <title>Module 5 Lab - Docker Basics - Cloud Architecture</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prepare-lab-environment" class="md-skip">
+        <a href="#module-5-lab-docker-basics" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ycit019 Lab 2 Docker basics
+              Module 5 Lab - Docker Basics
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT019
@@ -203,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -224,11 +228,216 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 5 Lab - Docker Basics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Module 5 Lab - Docker Basics
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-setup-environment-and-install-docker" class="md-nav__link">
+    1 Setup Environment and Install Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Setup Environment and Install Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-an-instance-with-gcloud" class="md-nav__link">
+    1.1 Create an instance with gcloud
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-install-docker-engine" class="md-nav__link">
+    1.2 Install Docker Engine
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-working-with-docker-cli" class="md-nav__link">
+    2 Working with Docker CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Working with Docker CLI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-show-running-containers" class="md-nav__link">
+    2.1 Show running containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-specify-a-container-main-process" class="md-nav__link">
+    2.3 Specify a container main process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-specify-an-image-version" class="md-nav__link">
+    2.3 Specify an image version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-run-an-interactive-container" class="md-nav__link">
+    2.4 Run an interactive container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-run-a-container-in-a-background" class="md-nav__link">
+    2.5 Run a container in a background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-accessing-containers-from-the-internet" class="md-nav__link">
+    2.6 Accessing Containers from the Internet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-restart-a-container" class="md-nav__link">
+    2.7 Restart a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-ensuring-container-uptime" class="md-nav__link">
+    2.8 Ensuring Container Uptime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-inspect-a-container" class="md-nav__link">
+    2.9 Inspect a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-interacting-with-containers" class="md-nav__link">
+    2.10 Interacting with containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2101-detach-from-interactive-container" class="md-nav__link">
+    2.10.1 Detach from Interactive container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2112-attach-to-a-container" class="md-nav__link">
+    2.11.2 Attach to a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2113-execute-a-process-in-a-container" class="md-nav__link">
+    2.11.3 Execute a process in a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-copy-files-tofrom-container" class="md-nav__link">
+    2.12 Copy files to/from container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-remove-containers" class="md-nav__link">
+    2.12 Remove containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-building-images-with-dockerfile" class="md-nav__link">
+    3 Building Images with DockerFile
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Building Images with DockerFile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview-dockerfile-creation" class="md-nav__link">
+    3.1 Overview DOCKERFILE Creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-build-a-docker-image" class="md-nav__link">
+    3.2 Build a Docker image
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -300,6 +509,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -308,108 +519,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
+  <a href="#1-setup-environment-and-install-docker" class="md-nav__link">
+    1 Setup Environment and Install Docker
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-docker-basics" class="md-nav__link">
-    1 Docker basics
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Docker basics">
+    <nav class="md-nav" aria-label="1 Setup Environment and Install Docker">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-show-running-containers" class="md-nav__link">
-    1.1 Show running containers
+  <a href="#11-create-an-instance-with-gcloud" class="md-nav__link">
+    1.1 Create an instance with gcloud
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-specify-a-container-main-process" class="md-nav__link">
-    1.2 Specify a container main process
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-specify-an-image-version" class="md-nav__link">
-    1.3 Specify an image version
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-run-an-interactive-container" class="md-nav__link">
-    1.4 Run an interactive container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-run-a-container-in-a-background" class="md-nav__link">
-    1.5 Run a container in a background
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-accessing-containers-from-the-internet" class="md-nav__link">
-    1.6 Accessing Containers from the Internet
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#17-restart-a-container" class="md-nav__link">
-    1.7 Restart a container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#18-ensuring-container-uptime" class="md-nav__link">
-    1.8 Ensuring Container Uptime
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#19-inspect-a-container" class="md-nav__link">
-    1.9 Inspect a container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#110-interacting-with-containers" class="md-nav__link">
-    1.10 Interacting with containers
-  </a>
-  
-    <nav class="md-nav" aria-label="1.10 Interacting with containers">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1101-detach-from-interactive-container" class="md-nav__link">
-    1.10.1 Detach from Interactive container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1112-attach-to-a-container" class="md-nav__link">
-    1.11.2 Attach to a container
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#1113-execute-a-process-in-a-container" class="md-nav__link">
-    1.11.3 Execute a process in a container
+  <a href="#12-install-docker-engine" class="md-nav__link">
+    1.2 Install Docker Engine
   </a>
   
 </li>
@@ -418,17 +544,143 @@
     </nav>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#2-working-with-docker-cli" class="md-nav__link">
+    2 Working with Docker CLI
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Working with Docker CLI">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#112-copy-files-tofrom-container" class="md-nav__link">
-    1.12 Copy files to/from container
+  <a href="#21-show-running-containers" class="md-nav__link">
+    2.1 Show running containers
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#112-remove-containers" class="md-nav__link">
-    1.12 Remove containers
+  <a href="#23-specify-a-container-main-process" class="md-nav__link">
+    2.3 Specify a container main process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-specify-an-image-version" class="md-nav__link">
+    2.3 Specify an image version
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-run-an-interactive-container" class="md-nav__link">
+    2.4 Run an interactive container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-run-a-container-in-a-background" class="md-nav__link">
+    2.5 Run a container in a background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-accessing-containers-from-the-internet" class="md-nav__link">
+    2.6 Accessing Containers from the Internet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-restart-a-container" class="md-nav__link">
+    2.7 Restart a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-ensuring-container-uptime" class="md-nav__link">
+    2.8 Ensuring Container Uptime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-inspect-a-container" class="md-nav__link">
+    2.9 Inspect a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-interacting-with-containers" class="md-nav__link">
+    2.10 Interacting with containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2101-detach-from-interactive-container" class="md-nav__link">
+    2.10.1 Detach from Interactive container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2112-attach-to-a-container" class="md-nav__link">
+    2.11.2 Attach to a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2113-execute-a-process-in-a-container" class="md-nav__link">
+    2.11.3 Execute a process in a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-copy-files-tofrom-container" class="md-nav__link">
+    2.12 Copy files to/from container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-remove-containers" class="md-nav__link">
+    2.12 Remove containers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-building-images-with-dockerfile" class="md-nav__link">
+    3 Building Images with DockerFile
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Building Images with DockerFile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview-dockerfile-creation" class="md-nav__link">
+    3.1 Overview DOCKERFILE Creation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-build-a-docker-image" class="md-nav__link">
+    3.2 Build a Docker image
   </a>
   
 </li>
@@ -451,24 +703,158 @@
               
                 
                 
-                <p>Lab 2 Docker basics</p>
+                <h1 id="module-5-lab-docker-basics">Module 5 Lab Docker basics<a class="headerlink" href="#module-5-lab-docker-basics" title="Permanent link">&para;</a></h1>
 <p><strong>Objective:</strong></p>
 <ul>
 <li>Practice to run Docker containers</li>
+<li>Learn to build docker images using Dockerfiles</li>
 </ul>
-<h2 id="prepare-lab-environment">Prepare Lab Environment<a class="headerlink" href="#prepare-lab-environment" title="Permanent link">&para;</a></h2>
-<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
+<h2 id="1-setup-environment-and-install-docker">1 Setup Environment and Install Docker<a class="headerlink" href="#1-setup-environment-and-install-docker" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-an-instance-with-gcloud">1.1 Create an instance with gcloud<a class="headerlink" href="#11-create-an-instance-with-gcloud" title="Permanent link">&para;</a></h3>
+<p>Rather than using the Google Cloud Console to create a virtual machine instance, you can use the command line tool <code>gcloud</code>, which is pre-installed in <a href="https://cloud.google.com/developer-shell/#how_do_i_get_started">Google Cloud Shell</a>. Cloud Shell is a Debian-based virtual machine loaded with all the development tools you’ll need (gcloud, git, and others) and offers a persistent 5GB home directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to try this on your own machine in the future, read the <a href="https://cloud.google.com/sdk/gcloud/">gcloud command line</a> tool guide.</p>
+</div>
+<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
+<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
+<p>Once opened, you can create a new virtual machine instance from the command line by using <code>gcloud</code> (feel free to use another zone closer to you):</p>
+<p><strong>Step 1</strong> Create a new virtual machine instance on GCE</p>
+<div class="codehilite"><pre><span></span><code>gcloud config set project &lt;set_you_project_id&gt;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gcloud compute instances create docker-nginx --zone us-central1-c
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Created [...docker-nginx].
+NAME     ZONE           MACHINE_TYPE  PREEMPTIBLE INTERNAL_IP EXTERNAL_IP    STATUS
+docker-nginx  us-central1-c  n1-standard-1             10.240.X.X  X.X.X.X        RUNNING
+</code></pre></div>
+
+<p>The instance created has these default values:
+- The latest Debian 10 (buster) image.
+- The n1-standard-1 machine type.
+- A root persistent disk with the same name as the instance; the disk is automatically attached to the instance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can set the default region and zones that <code>gcloud</code> uses if you are always working within one region/zone and you don’t want to append the --<code>zone</code> flag every time. Do this by running these commands:</p>
+<p><code>gcloud config set compute/zone ...
+gcloud config set compute/region ...</code></p>
+</div>
+<p><strong>Step 2</strong> SSH into your instance using <code>gcloud</code> as well. </p>
+<div class="codehilite"><pre><span></span><code>gcloud compute ssh docker-nginx --zone us-central1-c
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>WARNING: The public SSH key file for gcloud does not exist.
+WARNING: The private SSH key file for gcloud does not exist.
+WARNING: You do not have an SSH key for gcloud.
+WARNING: [/usr/bin/ssh-keygen] will be executed to generate a key.
+This tool needs to create the directory 
+[/home/gcpstaging306_student/.ssh] before being able to generate SSH 
+Keys.
+</code></pre></div>
+
+<p>Now you’ll type <code>Y</code> to continue.</p>
+<div class="codehilite"><pre><span></span><code>Do you want to continue? (Y/n)
+</code></pre></div>
+
+<p><strong>Enter</strong> through the passphrase section to leave the passphrase empty. </p>
+<div class="codehilite"><pre><span></span><code>Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase)
+</code></pre></div>
+
+<h3 id="12-install-docker-engine">1.2 Install Docker Engine<a class="headerlink" href="#12-install-docker-engine" title="Permanent link">&para;</a></h3>
+<p>We need to first set up the Docker repository. To set up the repository:</p>
+<p><strong>Step 1</strong> Update the <code>apt</code> package index:</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get update
+</code></pre></div>
+
+<p><strong>Step 2</strong> Then install packages to allow “apt” to use a repository over HTTPS:</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Add Docker’s official GPG key:</p>
+<div class="codehilite"><pre><span></span><code>curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre></div>
+
+<p><strong>Step 4</strong> Set up the stable repository</p>
+<div class="codehilite"><pre><span></span><code>echo \
+  &quot;deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre></div>
+
+<p><strong>Step 5</strong> Install Docker Engine:</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+</code></pre></div>
+
+<p><strong>Step 6</strong> Verify Docker Version has been deployed:</p>
+<div class="codehilite"><pre><span></span><code>docker version
+</code></pre></div>
+
+<p>Verify what is the latest Docker <a href="https://docs.docker.com/engine/release-notes/">release</a></p>
+<p><strong>Step 6</strong> Confirm that your installation was successful by running Hello World! Container.</p>
+<div class="codehilite"><pre><span></span><code>sudo docker run hello-world
+</code></pre></div>
+
+<p><strong>Step 7</strong> If it is successful, you will see the following output:</p>
+<div class="codehilite"><pre><span></span><code>Unable to find image &#39;hello-world:latest&#39; locally
+latest: Pulling from library/hello-world
+b8dfde127a29: Pull complete
+Digest: sha256:f2266cbfc127c960fd30e76b7c792dc23b588c0db76233517e1891a4e357d519
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+</code></pre></div>
+
+<p><strong>Step 8</strong>  Exit from <code>VM</code></p>
+<div class="codehilite"><pre><span></span><code>exit
+</code></pre></div>
+
+<p><strong>Step 9</strong>  Delete <code>VM Instance</code> to avoid extra cost:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute instances delete docker-nginx --zone us-central1-c
+</code></pre></div>
+
+<p>Now you’ll type <code>Y</code> to continue.</p>
+<div class="codehilite"><pre><span></span><code>Do you want to continue? (Y/n)
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Now you know how to deploy Docker on Linux VM. </p>
+</div>
+<div class="admonition task">
+<p class="admonition-title">Task</p>
+<p>Find out how to deploy Docker on Mac or Windows?</p>
+</div>
+<h2 id="2-working-with-docker-cli">2 Working with Docker CLI<a class="headerlink" href="#2-working-with-docker-cli" title="Permanent link">&para;</a></h2>
+<h3 id="21-show-running-containers">2.1 Show running containers<a class="headerlink" href="#21-show-running-containers" title="Permanent link">&para;</a></h3>
+<p>Going forward we going to run Docker commands directly from Google Cloud Console.
+This is possible because Docker is installed on Cloud Console VM for you convenience.</p>
 <p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
 <p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
 <p>Once opened, you can use it to run the instructions for this lab.</p>
-<h1 id="1-docker-basics">1 Docker basics<a class="headerlink" href="#1-docker-basics" title="Permanent link">&para;</a></h1>
-<h2 id="11-show-running-containers">1.1 Show running containers<a class="headerlink" href="#11-show-running-containers" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Run docker ps to show running containers:</p>
+<p><strong>Step 1</strong> Create a docker container <code>hello-world</code>:</p>
+<div class="codehilite"><pre><span></span><code>docker run hello-world
+</code></pre></div>
+
+<p><strong>Step 2</strong> Run docker ps to show running containers:</p>
 <div class="codehilite"><pre><span></span><code>docker ps
 </code></pre></div>
 
-<p><strong>Step 2</strong> The output shows that there are no running containers at the moment.
-Use the command docker <code>ps -a</code> to list all containers including the ones has
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The output shows that there are no running containers at the moment.</p>
+</div>
+<p><strong>Step 2</strong> Use the command docker <code>ps -a</code> to list all containers including the ones has
 been stopped:</p>
 <div class="codehilite"><pre><span></span><code>docker ps -a
 </code></pre></div>
@@ -497,7 +883,7 @@ local system:</p>
 </code></pre></div>
 
 <p>As you see, there is only one image that was downloaded from the Docker Hub.</p>
-<h2 id="12-specify-a-container-main-process">1.2 Specify a container main process<a class="headerlink" href="#12-specify-a-container-main-process" title="Permanent link">&para;</a></h2>
+<h3 id="23-specify-a-container-main-process">2.3 Specify a container main process<a class="headerlink" href="#23-specify-a-container-main-process" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Let’s run our own "hello world" container. For that we will use the
 official <a href="https://hub.docker.com/_/ubuntu/">Ubuntu image</a>:</p>
 <div class="codehilite"><pre><span></span><code>docker run ubuntu /bin/echo &#39;Hello world&#39;
@@ -554,14 +940,14 @@ a container.</p>
 for running CI/CD pipelines as it considerably faster than using VMs and
 reduce time for deploying a test environments.</p>
 </div>
-<h2 id="13-specify-an-image-version">1.3 Specify an image version<a class="headerlink" href="#13-specify-an-image-version" title="Permanent link">&para;</a></h2>
+<h3 id="23-specify-an-image-version">2.3 Specify an image version<a class="headerlink" href="#23-specify-an-image-version" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> As you see, Docker has downloaded the ubuntu:latest image. You can
 see Ubuntu version by running the following command:</p>
 <div class="codehilite"><pre><span></span><code>docker run ubuntu /bin/cat /etc/issue.net
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>Ubuntu 16.04 LTS
+<div class="codehilite"><pre><span></span><code>Ubuntu 22.04 LTS
 </code></pre></div>
 
 <p>Let’s say you need a previous Ubuntu LTS release. In this case, you can specify
@@ -599,7 +985,7 @@ considered as a Bad Practice.</p>
 <li><code>SHA</code> tagging.</li>
 </ul>
 </div>
-<h2 id="14-run-an-interactive-container">1.4 Run an interactive container<a class="headerlink" href="#14-run-an-interactive-container" title="Permanent link">&para;</a></h2>
+<h3 id="24-run-an-interactive-container">2.4 Run an interactive container<a class="headerlink" href="#24-run-an-interactive-container" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Let’s use the <code>ubuntu</code> image to run an <em>interactive</em> bash session and
 inspect what is running inside our docker image.</p>
 <p>To achive that we going to use  <code>-i</code> and <code>-t</code> flags.</p>
@@ -649,11 +1035,11 @@ run <code>ls</code> command on  <code>/bin</code> and <code>/usr/bin</code> dire
 ubuntu container as well as <code>dpkg --list</code> command that shows total number of
 installed packages:</p>
 <div class="codehilite"><pre><span></span><code>root@8cbcbd0fe8d2:/# ls /bin | wc -l
-86
+294
 root@8cbcbd0fe8d2:/# ls /usr/bin | wc -l
-233
+xx
 root@eb11cd0b4106:/# dpkg --list | wc -l
-101
+xx
 </code></pre></div>
 
 <p><strong>Step 6</strong> Use the <code>exit</code> command or press <code>Ctrl-D</code> to exit the interactive
@@ -664,7 +1050,7 @@ bash session back to Cloud VM.</p>
 <p><strong>Step 7</strong> Now run <code>ls</code> command on <code>/bin</code> and <code>/usr/bin</code> directories on Cloud VM
 that we using as our class environment:</p>
 <div class="codehilite"><pre><span></span><code>cca-user@userx-docker-vm:~$ ls /bin | wc -l
-171
+1173
 cca-user@userx-docker-vm:~$ ls /usr/bin | wc -l
 660
 cca-user@userx-docker-vm:~$ dpkg --list | wc -l
@@ -718,7 +1104,7 @@ container stops:</p>
 <div class="codehilite"><pre><span></span><code>docker ps
 </code></pre></div>
 
-<h2 id="15-run-a-container-in-a-background">1.5 Run a container in a background<a class="headerlink" href="#15-run-a-container-in-a-background" title="Permanent link">&para;</a></h2>
+<h3 id="25-run-a-container-in-a-background">2.5 Run a container in a background<a class="headerlink" href="#25-run-a-container-in-a-background" title="Permanent link">&para;</a></h3>
 <p>Now we know how to connect to running container and execute commands in it.
 However in most cases you just want run a container in a <em>background</em> so it can
 do a specific action.</p>
@@ -791,7 +1177,7 @@ hello world
 and going to be used very often both for Docker and Kubernertes
 troubleshooting.</p>
 </div>
-<h2 id="16-accessing-containers-from-the-internet">1.6 Accessing Containers from the Internet<a class="headerlink" href="#16-accessing-containers-from-the-internet" title="Permanent link">&para;</a></h2>
+<h3 id="26-accessing-containers-from-the-internet">2.6 Accessing Containers from the Internet<a class="headerlink" href="#26-accessing-containers-from-the-internet" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Let’s run a simple web application. We will use the existing image
 training/webapp, which contains a Python Flask application:</p>
 <div class="codehilite"><pre><span></span><code>docker run -d -P training/webapp python app.py
@@ -838,12 +1224,12 @@ your case):</p>
 </code></pre></div>
 
 <p><strong>Step 6</strong> We want to manually specify the local port to expose (-p argument).
-Let’s use the standard HTTP port 80. We also want to specify the container name
+Let’s use the standard HTTP port 8080. We also want to specify the container name
 (--name argument):</p>
-<div class="codehilite"><pre><span></span><code>docker run -d -p 80:5000 --name webapp training/webapp python app.py
+<div class="codehilite"><pre><span></span><code>docker run -d -p 8080:5000 --name webapp training/webapp python app.py
 </code></pre></div>
 
-<p><strong>Step 7</strong> Let’s check that the port 80 is exposed:</p>
+<p><strong>Step 7</strong> Let’s check that the port 8080 is exposed:</p>
 <div class="codehilite"><pre><span></span><code>docker ps
 </code></pre></div>
 
@@ -856,19 +1242,21 @@ Let’s use the standard HTTP port 80. We also want to specify the container nam
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>`Hello world!``</p>
+<p><code>Hello world!</code></p>
 </div>
-<p><strong>Step 8</strong> You can also observe <code>Hello world!</code> webapp from you laptop, for that you
-need to use you public VM IP that can be gather from VMs list:</p>
-<div class="codehilite"><pre><span></span><code>Your_VM_Public_IP
-</code></pre></div>
-
-<p>Than paste VM Public IP address in you browser.</p>
+<p><strong>Step 4</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Our web-app can be accessed from Internet!</p>
 </div>
-<h2 id="17-restart-a-container">1.7 Restart a container<a class="headerlink" href="#17-restart-a-container" title="Permanent link">&para;</a></h2>
+<h3 id="27-restart-a-container">2.7 Restart a container<a class="headerlink" href="#27-restart-a-container" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Let’s stop the container with web application:</p>
 <div class="codehilite"><pre><span></span><code>docker stop webapp
 </code></pre></div>
@@ -880,10 +1268,7 @@ period, SIGKILL.</p>
 </code></pre></div>
 
 <p><strong>Step 3</strong> Check that the web application works:</p>
-<div class="codehilite"><pre><span></span><code>curl http://localhost/
-Hello world!
-</code></pre></div>
-
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
 <p><strong>Step 4</strong> You also can restart the running container using the docker restart
 command.</p>
 <div class="codehilite"><pre><span></span><code>docker restart webapp
@@ -897,7 +1282,7 @@ command.</p>
 6e400179070f    training/webapp   &quot;python app.py&quot;   25 minutes ago    Up 3 seconds
 </code></pre></div>
 
-<h2 id="18-ensuring-container-uptime">1.8 Ensuring Container Uptime<a class="headerlink" href="#18-ensuring-container-uptime" title="Permanent link">&para;</a></h2>
+<h3 id="28-ensuring-container-uptime">2.8 Ensuring Container Uptime<a class="headerlink" href="#28-ensuring-container-uptime" title="Permanent link">&para;</a></h3>
 <p>Docker considers any containers to exit with a non-zero exit code to have
 crashed. By default a crashed container will remain stopped.</p>
 <p><strong>Step 1</strong> Start the container that outputs a message and then exits with code 1
@@ -945,7 +1330,7 @@ failing and starting again:</p>
 <div class="codehilite"><pre><span></span><code>docker stop restart-always
 </code></pre></div>
 
-<h2 id="19-inspect-a-container">1.9 Inspect a container<a class="headerlink" href="#19-inspect-a-container" title="Permanent link">&para;</a></h2>
+<h3 id="29-inspect-a-container">2.9 Inspect a container<a class="headerlink" href="#29-inspect-a-container" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> You can use the <code>docker inspect</code> command to see the configuration and
 status information for the specified container:</p>
 <div class="codehilite"><pre><span></span><code>docker inspect webapp
@@ -981,13 +1366,13 @@ specific elements. For example:</p>
 </code></pre></div>
 
 <p>The command returns the IP address of the container.</p>
-<h2 id="110-interacting-with-containers">1.10 Interacting with containers<a class="headerlink" href="#110-interacting-with-containers" title="Permanent link">&para;</a></h2>
+<h3 id="210-interacting-with-containers">2.10 Interacting with containers<a class="headerlink" href="#210-interacting-with-containers" title="Permanent link">&para;</a></h3>
 <p>In some cases using <code>docker log</code> is not enough to undertand issues and you
 want to login inside of running VM. Also sometimes you package you applicaiton
 and in order to run it you need to login inside of container and execute and
 leave it running in background. Below provded few ways to interacting with
 containers that can help to achive descrined use cases.</p>
-<h3 id="1101-detach-from-interactive-container">1.10.1 Detach from Interactive container<a class="headerlink" href="#1101-detach-from-interactive-container" title="Permanent link">&para;</a></h3>
+<h3 id="2101-detach-from-interactive-container">2.10.1 Detach from Interactive container<a class="headerlink" href="#2101-detach-from-interactive-container" title="Permanent link">&para;</a></h3>
 <p>In Module, <code>1.4 Run an interactive container</code> we run an <code>Ubuntu</code> container with
 <code>-it</code> flag and able directly login inside of the container to interact with it,
 however after we exited contianer using <code>Ctrl-D</code> or <code>exit</code> command container
@@ -1023,7 +1408,7 @@ What about attaching back to container ?</p>
 <p><code>CTRL-p</code> <code>CTRL-q</code>  sequence key only works if docker contaienr started
 with <code>-it</code> command!</p>
 </div>
-<h3 id="1112-attach-to-a-container">1.11.2 Attach to a container<a class="headerlink" href="#1112-attach-to-a-container" title="Permanent link">&para;</a></h3>
+<h3 id="2112-attach-to-a-container">2.11.2 Attach to a container<a class="headerlink" href="#2112-attach-to-a-container" title="Permanent link">&para;</a></h3>
 <p>Now let's get back and <code>attach</code> to our running Ubuntu image. For that
 docker provides <code>docker attach</code> command.</p>
 <div class="codehilite"><pre><span></span><code>docker attach &lt;container name&gt;
@@ -1039,7 +1424,7 @@ and error (or any combination of the 3) to a running container. This allows
 you to view its ongoing output or to control it interactively, as though
 the commands were running directly in your terminal.</p>
 </div>
-<h3 id="1113-execute-a-process-in-a-container">1.11.3 Execute a process in a container<a class="headerlink" href="#1113-execute-a-process-in-a-container" title="Permanent link">&para;</a></h3>
+<h3 id="2113-execute-a-process-in-a-container">2.11.3 Execute a process in a container<a class="headerlink" href="#2113-execute-a-process-in-a-container" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Let verify if webapp container is still running</p>
 <div class="codehilite"><pre><span></span><code>docker ps
 </code></pre></div>
@@ -1083,7 +1468,7 @@ session:</p>
 <p><code>docker exec</code> is one of the most usefull docker commands used for
 troubleshooting containers.</p>
 </div>
-<h2 id="112-copy-files-tofrom-container">1.12 Copy files to/from container<a class="headerlink" href="#112-copy-files-tofrom-container" title="Permanent link">&para;</a></h2>
+<h3 id="212-copy-files-tofrom-container">2.12 Copy files to/from container<a class="headerlink" href="#212-copy-files-tofrom-container" title="Permanent link">&para;</a></h3>
 <p>The <code>docker cp</code> command allows you to copy files from the container to the local
 machine or from the local file system to the container. This command works for
 a running or stopped container.</p>
@@ -1107,7 +1492,7 @@ docker restart webapp
 <p class="admonition-title">Result</p>
 <p>`Hello world!!!``</p>
 </div>
-<h2 id="112-remove-containers">1.12 Remove containers<a class="headerlink" href="#112-remove-containers" title="Permanent link">&para;</a></h2>
+<h3 id="212-remove-containers">2.12 Remove containers<a class="headerlink" href="#212-remove-containers" title="Permanent link">&para;</a></h3>
 <p>Now let's clean up the environment and at the same time learn how delete
 containers.</p>
 <p>Step 1 First list running containers:</p>
@@ -1137,10 +1522,159 @@ containers.</p>
 docker rm 81c4c66baaf9
 </code></pre></div>
 
+<h2 id="3-building-images-with-dockerfile">3 Building Images with DockerFile<a class="headerlink" href="#3-building-images-with-dockerfile" title="Permanent link">&para;</a></h2>
+<p>In the previous modules, we learned how to use Docker images
+to run Docker containers. Docker images that we used have been downloaded from
+the Docker Hub, a Docker image registry maintained by Docker Inc. In this section we will create a
+simple web application from scratch. We will use Flask
+(<a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a>), a microframework for
+Python. Our application for each request will display a random picture from the
+defined set.</p>
+<p>The code for this application is also available in GitHub:</p>
+<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/flask-app
+</code></pre></div>
+
+<h3 id="31-overview-dockerfile-creation">3.1 Overview DOCKERFILE Creation<a class="headerlink" href="#31-overview-dockerfile-creation" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Clone git repo on you laptop:</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Module5/flask-app/
+</code></pre></div>
+
+<p><strong>Step 2</strong> In this directory, we see following files:</p>
+<div class="codehilite"><pre><span></span><code>flask-app/
+    Dockerfile
+    app.py
+    requirements.txt
+    templates/
+        index.html
+</code></pre></div>
+
+<p><strong>Step 3</strong> Let’s review file app.py with the following content:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># list of cat images</span>
+<span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/LtVXu5s7KwlK8/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/PekRU0CYIpXS8/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/11quO2C07Sh2oM/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/12HZukMBlutpoQ/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/1HKaikaFqDt7i/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/12bjQ7uASAaCKk/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/HFcl9uhuCqzGU/giphy.gif&quot;</span>
+<span class="p">]</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Step 4</strong> Below is the content of requirements.txt file:</p>
+<div class="codehilite"><pre><span></span><code>Flask==2.0.0
+</code></pre></div>
+
+<p><strong>Step 5</strong> Under directory templates observe index.html with the following
+content:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+      <span class="nt">body</span> <span class="p">{</span>
+        <span class="k">background</span><span class="p">:</span> <span class="kc">black</span><span class="p">;</span>
+        <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">div</span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+        <span class="k">max-width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">margin</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">border</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">white</span><span class="p">;</span>
+        <span class="k">padding</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">h4</span> <span class="p">{</span>
+        <span class="k">text-transform</span><span class="p">:</span> <span class="kc">uppercase</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Cat Gif of the day<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{url}}&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p><strong>Step 6</strong> Let’s review content of the Dockerfile:</p>
+<div class="codehilite"><pre><span></span><code><span class="c"># Official Python Alpine Base image using Simple Tags</span>
+<span class="c"># Image contains Python 3 and pip pre-installed, so no need to install them</span>
+
+<span class="k">FROM</span> <span class="s">python:3.9.5-alpine3.12</span>
+
+<span class="c"># Specify Working directory</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
+
+<span class="c"># COPY requirements.txt /usr/src/app/</span>
+<span class="k">COPY</span> requirements.txt ./
+
+<span class="c"># Install Python Flask used by the Python app</span>
+<span class="k">RUN</span> pip install --no-cache-dir -r requirements.txt
+
+<span class="c"># Copy files required for the app to run</span>
+<span class="k">COPY</span> app.py ./
+<span class="k">COPY</span> templates/index.html ./templates/
+
+<span class="c"># Make a record that the port number the container should be expose is:</span>
+<span class="k">EXPOSE</span><span class="s"> 5000</span>
+
+<span class="c"># run the application</span>
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;./app.py&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<h3 id="32-build-a-docker-image">3.2 Build a Docker image<a class="headerlink" href="#32-build-a-docker-image" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Now let’s build our Docker image. In the command below, replace
+<user-name> with your user name. This user name should be the same as you
+created when you registered on Docker Hub.</p>
+<div class="codehilite"><pre><span></span><code>docker build -t &lt;user-name&gt;/myfirstapp .
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Image has been buit </p>
+</div>
+<p><strong>Step 2</strong> Where is your built image? It’s in your machine’s local Docker image
+registry, you can check that your image exists with command below:</p>
+<div class="codehilite"><pre><span></span><code>docker images
+</code></pre></div>
+
+<p><strong>Step 3</strong> Now run a container in a background and expose a standard HTTP port
+(80), which is redirected to the container’s port 5000:</p>
+<div class="codehilite"><pre><span></span><code>docker run -dp 8080:5000 --name myfirstapp &lt;user-name&gt;/myfirstapp
+</code></pre></div>
+
+<p><strong>Step 4</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<p><strong>Step 5</strong> Stop the container and remove it:</p>
+<div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
+</code></pre></div>
+
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
 <p>We've learned a lot of docker commands which are very handy to know both
-when using Docker and Kubernetes. We've also learned how to create Docker Images from DOCKERFILE.</p>
+when using Docker and Kubernetes.</p>
 </div>
                 
               
@@ -1157,6 +1691,39 @@ when using Docker and Kubernetes. We've also learned how to create Docker Images
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_ass1/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 1 Assignment
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
