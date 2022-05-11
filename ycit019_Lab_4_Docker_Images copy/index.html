@@ -14,7 +14,7 @@
     
     
       
-        <title>backup ycit019 Lab 4 Docker Images Docker Hub Quya io - Cloud Architecture</title>
+        <title>ycit019 Lab 4 Docker Images copy - Cloud Architecture</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-building-docker-images" class="md-skip">
+        <a href="#prepare-lab-environment" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              backup ycit019 Lab 4 Docker Images Docker Hub Quya io
+              ycit019 Lab 4 Docker Images copy
             
           </span>
         </div>
@@ -312,8 +312,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -322,26 +320,34 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#11-create-dockerfile" class="md-nav__link">
-    1.1 Create DOCKERFILE
+  <a href="#prepare-lab-environment" class="md-nav__link">
+    Prepare Lab Environment
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#1-distributing-docker-images-with-container-registry" class="md-nav__link">
+    1 Distributing Docker images with Container Registry
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Distributing Docker images with Container Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-dockerfile" class="md-nav__link">
+    1.1 Create DOCKERFILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#12-build-a-docker-image" class="md-nav__link">
     1.2 Build a Docker image
   </a>
   
     <nav class="md-nav" aria-label="1.2 Build a Docker image">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#121-share-docker-images-with-tar-files" class="md-nav__link">
-    1.2.1 Share docker images with tar files
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#122-publish-docker-image-to-docker-hub" class="md-nav__link">
@@ -351,22 +357,47 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#123-automated-builds-with-docker-cloud" class="md-nav__link">
-    1.2.3 Automated Builds with Docker Cloud
+  <a href="#123-pushing-images-to-gcrio" class="md-nav__link">
+    1.2.3 Pushing images to gcr.io
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#124-push-docker-images-to-quayio" class="md-nav__link">
-    1.2.4 Push Docker Images to quay.io
+  <a href="#123-pushing-images-to-local-repository" class="md-nav__link">
+    1.2.3 Pushing images to Local Repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-follow-docker-best-practices" class="md-nav__link">
+    2 Follow Docker Best Practices
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Follow Docker Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-inspecting-dockerfiles-with-dockle" class="md-nav__link">
+    2.1 Inspecting Dockerfiles with dockle
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#125-demo-quayio" class="md-nav__link">
-    1.2.5 Demo quay.io
+  <a href="#22-automated-builds-with-google-cloud-build" class="md-nav__link">
+    2.2 Automated Builds with Google Cloud Build
   </a>
   
 </li>
@@ -394,13 +425,17 @@
 <ul>
 <li>Learn to build docker images using Dockerfiles.</li>
 <li>Store images in Docker Hub</li>
-<li>Learn alternative registry solutions (Quya.io)</li>
-<li>Automate image build process with Docker Cloud</li>
+<li>Learn alternative registry solutions (GCR)</li>
 </ul>
-<h1 id="1-building-docker-images">1 Building Docker Images<a class="headerlink" href="#1-building-docker-images" title="Permanent link">&para;</a></h1>
+<h2 id="prepare-lab-environment">Prepare Lab Environment<a class="headerlink" href="#prepare-lab-environment" title="Permanent link">&para;</a></h2>
+<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
+<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
+<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
+<p>Once opened, you can use it to run the instructions for this lab.</p>
+<h1 id="1-distributing-docker-images-with-container-registry">1 Distributing Docker images with Container Registry<a class="headerlink" href="#1-distributing-docker-images-with-container-registry" title="Permanent link">&para;</a></h1>
 <p>In the previous modules, we learned how to use Docker images
 to run Docker containers. Docker images that we used have been downloaded from
-the Docker Hub, a registry of Docker images. In this section we will create a
+the Docker Hub, a Docker image registry maintained by Docker Inc. In this section we will create a
 simple web application from scratch. We will use Flask
 (<a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a>), a microframework for
 Python. Our application for each request will display a random picture from the
@@ -408,13 +443,13 @@ defined set.</p>
 <p>In the next session we will create all necessary files for our application,
 build docker image and then push to Docker Hub and Quay.</p>
 <p>The code for this application is also available in GitHub:</p>
-<div class="codehilite"><pre><span></span><code>git clone https://github.com/archyufa/k8scanada
+<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/flask-app
 </code></pre></div>
 
 <h2 id="11-create-dockerfile">1.1 Create DOCKERFILE<a class="headerlink" href="#11-create-dockerfile" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Clone git repo on you laptop:</p>
-<div class="codehilite"><pre><span></span><code>git clone https://github.com/archyufa/k8scanada
-cd k8scanada/Module4/flask-app/
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Module5/flask-app/
 </code></pre></div>
 
 <p><strong>Step 2</strong> In this directory, we see following files:</p>
@@ -434,18 +469,16 @@ cd k8scanada/Module4/flask-app/
 
 <span class="c1"># list of cat images</span>
 <span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr01/15/9/anigif_enhanced-buzz-31540-1381844535-8.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26390-1381844163-18.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-1376-1381846217-0.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3391-1381844336-26.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-29111-1381845968-0.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3409-1381844582-13.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr02/15/9/anigif_enhanced-buzz-19667-1381844937-10.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26358-1381845043-13.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-18774-1381844645-6.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-25158-1381844793-0.gif&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif&quot;</span>
+    <span class="s2">&quot;https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/LtVXu5s7KwlK8/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/PekRU0CYIpXS8/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/11quO2C07Sh2oM/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/12HZukMBlutpoQ/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/1HKaikaFqDt7i/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/12bjQ7uASAaCKk/giphy.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;https://media.giphy.com/media/HFcl9uhuCqzGU/giphy.gif&quot;</span>
 <span class="p">]</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
@@ -458,7 +491,7 @@ cd k8scanada/Module4/flask-app/
 </code></pre></div>
 
 <p><strong>Step 4</strong> Below is the content of requirements.txt file:</p>
-<div class="codehilite"><pre><span></span><code>Flask==0.10.1
+<div class="codehilite"><pre><span></span><code>Flask==2.0.0
 </code></pre></div>
 
 <p><strong>Step 5</strong> Under directory templates observe index.html with the following
@@ -492,107 +525,67 @@ content:</p>
 </code></pre></div>
 
 <p><strong>Step 6</strong> Let’s review content of the Dockerfile:</p>
-<div class="codehilite"><pre><span></span><code><span class="c"># our base image</span>
-<span class="k">FROM</span> <span class="s">alpine:3.5</span>
+<div class="codehilite"><pre><span></span><code><span class="c"># Official Python Alpine Base image using Simple Tags</span>
+<span class="c"># Image contains Python 3 and pip pre-installed, so no need to install them</span>
 
-<span class="c"># Install python and pip</span>
-<span class="k">RUN</span> apk add --update py2-pip
+<span class="k">FROM</span> <span class="s">python:3.9.5-alpine3.12</span>
 
-<span class="c"># upgrade pip</span>
-<span class="k">RUN</span> pip install --upgrade pip
+<span class="c"># Specify Working directory</span>
+<span class="k">WORKDIR</span><span class="s"> /usr/src/app</span>
 
-<span class="c"># install Python modules needed by the Python app</span>
-<span class="k">COPY</span> requirements.txt /usr/src/app/
-<span class="k">RUN</span> pip install --no-cache-dir -r /usr/src/app/requirements.txt
+<span class="c"># COPY requirements.txt /usr/src/app/</span>
+<span class="k">COPY</span> requirements.txt ./
 
-<span class="c"># copy files required for the app to run</span>
-<span class="k">COPY</span> app.py /usr/src/app/
-<span class="k">COPY</span> templates/index.html /usr/src/app/templates/
+<span class="c"># Install Python Flask used by the Python app</span>
+<span class="k">RUN</span> pip install --no-cache-dir -r requirements.txt
 
-<span class="c"># tell the port number the container should expose</span>
+<span class="c"># Copy files required for the app to run</span>
+<span class="k">COPY</span> app.py ./
+<span class="k">COPY</span> templates/index.html ./templates/
+
+<span class="c"># Make a record that the port number the container should be expose is:</span>
 <span class="k">EXPOSE</span><span class="s"> 5000</span>
 
 <span class="c"># run the application</span>
-<span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;/usr/src/app/app.py&quot;</span><span class="p">]</span>
+<span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="s2">&quot;./app.py&quot;</span><span class="p">]</span>
 </code></pre></div>
 
 <h2 id="12-build-a-docker-image">1.2 Build a Docker image<a class="headerlink" href="#12-build-a-docker-image" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Now let’s build our Docker image. In the command below, replace
-<user-name> with your user name. This user name should be the same as you
+<Docker-hub-user-name> with your user name. This user name should be the same as you
 created when you registered on Docker Hub. Because we will publish our build
-image in the next step.</p>
-<div class="codehilite"><pre><span></span><code>docker build -t &lt;user-name&gt;/myfirstapp .
+image in the next step to your own Docker Hub.</p>
+<div class="codehilite"><pre><span></span><code>docker build -t &lt;Docker-hub-user-name&gt;/myfirstapp .
 </code></pre></div>
 
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Image has been buit </p>
+</div>
 <p><strong>Step 2</strong> Where is your built image? It’s in your machine’s local Docker image
-registry, you can
-check that your image exists with command below:</p>
+registry, you can check that your image exists with command below:</p>
 <div class="codehilite"><pre><span></span><code>docker images
 </code></pre></div>
 
 <p><strong>Step 3</strong> Now run a container in a background and expose a standard HTTP port
 (80), which is redirected to the container’s port 5000:</p>
-<div class="codehilite"><pre><span></span><code>docker run -dp 80:5000 --name myfirstapp &lt;user-name&gt;/myfirstapp
+<div class="codehilite"><pre><span></span><code>docker run -dp 8080:5000 --name myfirstapp &lt;Docker-hub-user-name&gt;/myfirstapp
 </code></pre></div>
 
-<p><strong>Step 4</strong> Use your browser to open the address http://<VM or Laptop IP> and
-check that the application works.</p>
-<p><strong>Step 5</strong> Stop the container and remove it:</p>
-<div class="codehilite"><pre><span></span><code>docker stop myfirstapp
-
-docker rm myfirstapp
-myfirstapp
-</code></pre></div>
-
-<h3 id="121-share-docker-images-with-tar-files">1.2.1 Share docker images with tar files<a class="headerlink" href="#121-share-docker-images-with-tar-files" title="Permanent link">&para;</a></h3>
-<p>Now ideally you want to share you freshly build docker image with someone or
-run it in different environment which for some reason don’t have internet access
-so images can not be pulled from Online Docker registries. In that case Docker
-images can be shared as we share traditionally regular files by creating
-<strong>tarballs</strong>  using docker save  command as following</p>
-<p><strong>Step 1</strong> Create a tar file using docker save  command:</p>
-<div class="codehilite"><pre><span></span><code>docker save &lt;user-name&gt;/myfirstapp &gt; myfirstapp.tar
-</code></pre></div>
-
-<p>Or</p>
-<div class="codehilite"><pre><span></span><code>docker save --output myfirstapp1.tar archyufa/myfirstapp
-ls -trh | grep tar
-</code></pre></div>
-
-<p><strong>Step 2</strong> Transfer images to another environment using scp command.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>You can also store this images in Object storages, e.g. Swift or
-Amazon S3 using version control.</p>
+<p><strong>Step 4</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
 </div>
-<p><strong>Step 3</strong> Now you can restore this images using docker load, that will load a
-tarred repository from a file or the standard input stream. It restores both
-images and tags.</p>
-<div class="codehilite"><pre><span></span><code>docker load &lt; myfirstapp.tar
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>23b9c7b43573: Loading layer [==================================================&gt;]   4.23MB/4.23MB
-
-b3b5c1214f71: Loading layer [==================================================&gt;]  52.87MB/52.87MB
-
-f877d8dd64d3: Loading layer [==================================================&gt;]  8.636MB/8.636MB
-
-bba871f91589: Loading layer [==================================================&gt;]  3.584kB/3.584kB
-
-1c131e92eb5f: Loading layer [==================================================&gt;]  5.053MB/5.053MB
-
-3f6463bcb64c: Loading layer [==================================================&gt;]   5.12kB/5.12kB
-
-47c61110467a: Loading layer [==================================================&gt;]  4.096kB/4.096kB
-
-Loaded image: archyufa/myfirstapp:latest
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>docker images
+<p><strong>Step 5</strong> Stop the container and remove it:</p>
+<div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
 </code></pre></div>
 
 <h3 id="122-publish-docker-image-to-docker-hub">1.2.2 Publish Docker Image to Docker Hub<a class="headerlink" href="#122-publish-docker-image-to-docker-hub" title="Permanent link">&para;</a></h3>
-<p>However the most popular way to share and work with you images is to push
+<p>One of the most popular way to share and work with you images is to push
 them to the Docker Hub.</p>
 <p><strong>Docker Hub</strong> is a <a href="https://hub.docker.com/explore/">registry</a>
 of Docker images. You can think of the registry as a directory of all available
@@ -604,7 +597,7 @@ Docker images.</p>
 </code></pre></div>
 
 <p><strong>Step 3</strong> Now, publish your image to docker Hub.</p>
-<div class="codehilite"><pre><span></span><code>docker push &lt;user-name&gt;/myfirstapp
+<div class="codehilite"><pre><span></span><code>docker push &lt;Docker-hub-user-name&gt;/myfirstapp
 </code></pre></div>
 
 <p><strong>Step 4</strong> Login to <a href="https://hub.docker.com">https://hub.docker.com</a> and verify
@@ -615,8 +608,13 @@ simage and tags.</p>
 </div>
 <p><strong>Step 5</strong> It is also possible to specify a custom tag for image prior to push
 it to the registry</p>
-<div class="codehilite"><pre><span></span><code>docker tag 5b45ce063cea &lt;user-name&gt;/myfirstapp:v1
-docker push &lt;user-name&gt;/myfirstapp:v1
+<p>Note Image Tag of the created <code>myfirstapp</code>:</p>
+<div class="codehilite"><pre><span></span><code>docker images
+</code></pre></div>
+
+<p>Modify <code>$docker_image_tag</code> with <code>myfirstapp:v1</code> image tag value:</p>
+<div class="codehilite"><pre><span></span><code>docker tag $docker_image_tag &lt;Docker-hub-user-name&gt;/myfirstapp:v1
+docker push &lt;Docker-hub-user-name&gt;/myfirstapp:v1
 </code></pre></div>
 
 <div class="admonition result">
@@ -626,9 +624,9 @@ observe 2 docker image one with the <strong>tag</strong> latest and another with
 </div>
 <p><strong>Step 6</strong> You can now <strong>pull</strong> or <strong>run</strong> specified <strong>Docker images</strong> from any
 other location where docker engine is installed with following commands:</p>
-<div class="codehilite"><pre><span></span><code>docker pull &lt;user-name&gt;/myfirstapp:latest
+<div class="codehilite"><pre><span></span><code>docker pull &lt;Docker-hub-user-name&gt;/myfirstapp:latest
 
-docker pull &lt;user-name&gt;/myfirstapp:v1
+docker pull &lt;Docker-hub-user-name&gt;/myfirstapp:v1
 </code></pre></div>
 
 <div class="admonition result">
@@ -645,35 +643,125 @@ myfirstapp       latest   f50f9524513f    1 hour ago   22 MB
 </code></pre></div>
 
 <p>Finally run images with specific tag:</p>
-<div class="codehilite"><pre><span></span><code>docker run &lt;user-name&gt;/myfirstapp:v1
+<div class="codehilite"><pre><span></span><code>docker run &lt;Docker-hub-user-name&gt;/myfirstapp:v1
 </code></pre></div>
 
-<h3 id="123-automated-builds-with-docker-cloud">1.2.3 Automated Builds with Docker Cloud<a class="headerlink" href="#123-automated-builds-with-docker-cloud" title="Permanent link">&para;</a></h3>
-<p><strong>Live Demo:</strong></p>
+<h3 id="123-pushing-images-to-gcrio">1.2.3 Pushing images to gcr.io<a class="headerlink" href="#123-pushing-images-to-gcrio" title="Permanent link">&para;</a></h3>
+<p>In a similar manner we need to tag the image to prepare it to be pushed to gcr.io. We just need to change the registry, which is for gcr.io formatted as gcr.io/PROJECT_ID.</p>
+<p><strong>Step 1</strong> Get the Project ID:</p>
+<div class="codehilite"><pre><span></span><code>PROJECT_ID=$(gcloud config get-value project)
+</code></pre></div>
+
+<p><strong>Step 2</strong> Enable the required APIs:</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable containerregistry.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 3</strong> Tag the image:</p>
+<p>Modify <code>$docker_image_tag</code> with <code>myfirstapp:v1</code> image tag value:</p>
+<div class="codehilite"><pre><span></span><code>docker tag $docker_image_tag gcr.io/${PROJECT_ID}/myfirstapp:v1
+</code></pre></div>
+
+<p>$docker_image_tag
+Push the image to gcr.io:</p>
+<div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/myfirstapp:v1
+</code></pre></div>
+
+<p><strong>Step 4</strong>  Login to GCP console -&gt; Container Registry -&gt; Images</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Docker images has been pushed to GCR registry</p>
+</div>
+<h3 id="123-pushing-images-to-local-repository">1.2.3 Pushing images to Local Repository<a class="headerlink" href="#123-pushing-images-to-local-repository" title="Permanent link">&para;</a></h3>
+<p>First, we need to spin up a local docker registry. This could be a use case if you want to deploy basic registry On-Prem.
+This registry will luck security features such as Authentication, SSL, scanning.
+If you interested to use Enterprise ready solution On-Prem consider: Jfrog Artifactory, RedHa's Clair, Docker Enterprise or
+open source CNCF project Harbor.</p>
+<p><strong>Step 1</strong> Deploy local registry</p>
+<div class="codehilite"><pre><span></span><code>docker run -d -p 5000:5000 --name registry registry:2.7.1
+</code></pre></div>
+
+<p><strong>Step 2</strong> In order to upload an image to a registry, we need to tag it properly</p>
+<p>Modify <code>$docker_image_tag</code> with <code>myfirstapp:v1</code> image tag value:</p>
+<div class="codehilite"><pre><span></span><code>docker tag $docker_image_tag localhost:5000/myfirstapp:v1
+</code></pre></div>
+
+<p><strong>Step 3</strong> Now that we have an image tagged correctly, we can push it to our local registry</p>
+<div class="codehilite"><pre><span></span><code>docker push localhost:5000/myfirstapp:v1
+</code></pre></div>
+
+<p><strong>Step 4</strong> Let’s now delete the local image, and pull it again from the local registry</p>
+<p>To delete the image, we need to first remove the container that depends on that image.
+Run <code>docker ps</code> and get the Container_ID for the container that uses  myfirstapp:v1
+Kill and delete that container by running the following command, but make sure to replace CONTAINER_ID, with the actual ID.</p>
+<div class="codehilite"><pre><span></span><code>docker rm CONTAINER_ID
+</code></pre></div>
+
+<p>Result: The command will print back the container ID, which is an indication it was successful.</p>
+<p><strong>Step 5</strong> Run docker images to validate</p>
+<div class="codehilite"><pre><span></span><code>docker images
+</code></pre></div>
+
+<p><strong>Step 6</strong> Now we can delete the docker image</p>
+<div class="codehilite"><pre><span></span><code>docker rmi localhost:5000/myfirstapp:v1
+</code></pre></div>
+
+<p><strong>Step 7</strong> Although the image is deleted locally, it is still in the registry and we can pull it back, or use it to deploy containers.</p>
+<div class="codehilite"><pre><span></span><code>docker run -dp 8080:5000 --name myfirstapp localhost:5000/myfirstapp:v1
+</code></pre></div>
+
+<p>Run <code>docker images</code> again to check how the image is available locally again.</p>
+<div class="codehilite"><pre><span></span><code>docker images
+</code></pre></div>
+
+<p><strong>Step 8 Cleanup:</strong></p>
+<div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
+</code></pre></div>
+
+<h1 id="2-follow-docker-best-practices">2 Follow Docker Best Practices<a class="headerlink" href="#2-follow-docker-best-practices" title="Permanent link">&para;</a></h1>
+<h2 id="21-inspecting-dockerfiles-with-dockle">2.1 Inspecting Dockerfiles with <code>dockle</code><a class="headerlink" href="#21-inspecting-dockerfiles-with-dockle" title="Permanent link">&para;</a></h2>
+<p><code>Dockle</code> - Container Image Linter for Security, Helping build the Best-Practice Docker Image, Easy to start</p>
+<p><code>Dockle</code> helps you:</p>
 <ul>
-<li>Docker Security scanning</li>
-<li>Setting Up Auto-Build in Docker Cloud and notifications to slac</li>
-<li>Automated Tests with PR</li>
+<li>Build Best Practice Docker images</li>
+<li>Build secure Docker images</li>
+<li>Checkpoints includes CIS Benchmarks</li>
 </ul>
-<h3 id="124-push-docker-images-to-quayio">1.2.4 Push Docker Images to quay.io<a class="headerlink" href="#124-push-docker-images-to-quayio" title="Permanent link">&para;</a></h3>
-<p><strong>Prerequisite:</strong> Register to  quay.io with your Github user</p>
-<p><strong>Step 1</strong> Login to quay.io from CLI</p>
-<div class="codehilite"><pre><span></span><code>docker login quay.io
+<p><strong>Step 1</strong>  Install Dockle</p>
+<div class="codehilite"><pre><span></span><code>$ VERSION=$(
+ curl --silent &quot;https://api.github.com/repos/goodwithtech/dockle/releases/latest&quot; | \
+ grep &#39;&quot;tag_name&quot;:&#39; | \
+ sed -E &#39;s/.*&quot;v([^&quot;]+)&quot;.*/\1/&#39; \
+) &amp;&amp; curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
+$ sudo dpkg -i dockle.deb &amp;&amp; rm dockle.deb
 </code></pre></div>
 
-<p><strong>Step 2</strong> Build image with quay prefix</p>
-<div class="codehilite"><pre><span></span><code>docker build -t quay.io/archyufa/myfirstapp .
+<p><strong>Step 2</strong> Experiment with existing applications we've created in the class:</p>
+<div class="codehilite"><pre><span></span><code>$ dockle [YOUR_IMAGE_NAME]
 </code></pre></div>
 
-<p><strong>Step 3</strong> Push image to quay registry</p>
-<div class="codehilite"><pre><span></span><code>docker push quay.io/archyufa/myfirstapp
+<p>e.g.</p>
+<div class="codehilite"><pre><span></span><code>dockle archy/myfirstapp
 </code></pre></div>
 
-<h3 id="125-demo-quayio">1.2.5 Demo quay.io<a class="headerlink" href="#125-demo-quayio" title="Permanent link">&para;</a></h3>
+<p>output:</p>
+<div class="codehilite"><pre><span></span><code>WARN    - CIS-DI-0001: Create a user for the container
+    * Last user should not be root
+WARN    - DKL-DI-0006: Avoid latest tag
+    * Avoid &#39;latest&#39; tag
+INFO    - CIS-DI-0005: Enable Content trust for Docker
+    * export DOCKER_CONTENT_TRUST=1 before docker pull/build
+INFO    - CIS-DI-0006: Add HEALTHCHECK instruction to the container image
+    * not found HEALTHCHECK statement
+INFO    - DKL-LI-0003: Only put necessary files
+    * Suspicious directory : tmp
+</code></pre></div>
+
+<h2 id="22-automated-builds-with-google-cloud-build">2.2 Automated Builds with Google Cloud Build<a class="headerlink" href="#22-automated-builds-with-google-cloud-build" title="Permanent link">&para;</a></h2>
 <p><strong>Live Demo:</strong></p>
 <ul>
-<li>Docker Security scanning</li>
-<li>Setting Up Auto-Build in Docker Cloud / Quai.io</li>
+<li>GCR Image scanning</li>
+<li>Setting Up Docker Image Auto-Build with Google Cloud Build based on Push to Branch</li>
+<li>Auto Deployment of Image to Cloud Run</li>
 </ul>
                 
               
