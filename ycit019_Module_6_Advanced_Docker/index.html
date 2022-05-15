@@ -479,6 +479,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Module 5 Assignment Solution
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -901,13 +913,13 @@ defined set.</p>
 <p>In the next session we will create all necessary files for our application,
 build docker image and then push to Docker Hub and Quay.</p>
 <p>The code for this application is also available in GitHub:</p>
-<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/flask-app
+<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019_2022/tree/main/Module5/flask-app
 </code></pre></div>
 
 <h2 id="11-create-dockerfile">1.1 Create DOCKERFILE<a class="headerlink" href="#11-create-dockerfile" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Clone git repo on you laptop:</p>
 <div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit019_2022
-cd ~/ycit019/Module5/flask-app/
+cd ~/ycit019_2022/Module5/flask-app/
 git pull
 </code></pre></div>
 
@@ -1250,7 +1262,7 @@ Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
 <p><strong>Step 3</strong>  Explore local images in your environment. </p>
 <h1 id="4-docker-compose">4 Docker Compose<a class="headerlink" href="#4-docker-compose" title="Permanent link">&para;</a></h1>
 <p>In this module, will guide you through the process of building a multi-container
-application using docker compose. The application code is available at GitHub: <a href="https://github.com/Cloud-Architects-Program/ycit019">https://github.com/Cloud-Architects-Program/ycit019</a></p>
+application using docker compose. The application code is available at GitHub: <a href="https://github.com/Cloud-Architects-Program/ycit019_2022">https://github.com/Cloud-Architects-Program/ycit019_2022</a></p>
 <h2 id="41-deploy-guestbook-app-with-compose">4.1 Deploy Guestbook app with Compose<a class="headerlink" href="#41-deploy-guestbook-app-with-compose" title="Permanent link">&para;</a></h2>
 <p>Let’s build another application. This time we going to create famous Guestbook
 application.</p>
@@ -1339,7 +1351,7 @@ Removing network guestbook_default
 
 <h2 id="42-deploy-voting-app-using-compose">4.2 Deploy Voting App using Compose<a class="headerlink" href="#42-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Switch to <code>Module5/example-voting-app</code> folder :</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Module5/example-voting-app/
+<div class="codehilite"><pre><span></span><code>cd ~/ycit019_2022/Module5/example-voting-app/
 </code></pre></div>
 
 <p><strong>Step 2</strong> The existing file docker-compose.yml defines several images:</p>
@@ -1361,11 +1373,11 @@ Removing network guestbook_default
 </li>
 </ul>
 <p><strong>App Architecture:</strong>
-<img alt="alt text" src="https://github.com/Cloud-Architects-Program/ycit019/blob/main/Module5/example-voting-app/architecture.png" title="architecture" /></p>
+<img alt="alt text" src="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module5/example-voting-app/architecture.png" title="architecture" /></p>
 <p>Note that three of the containers are built from Dockerfiles, while the other
 two are images on Docker Hub. Let's review them closely:</p>
 <p><strong>Step 3</strong> Review files that going to be deployed with <code>tree</code> command.
-Alternatively view the files in <a href="https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/example-voting-app">gitrepo page here</a></p>
+Alternatively view the files in <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/tree/main/Module5/example-voting-app">gitrepo page here</a></p>
 <div class="codehilite"><pre><span></span><code>sudo apt install tree
 tree
 </code></pre></div>
@@ -1466,7 +1478,7 @@ to talk to each other.</p>
 <p>So far we've learned docker-compose v2.
 docker-compose v3 is out of scope for this Lab. However you got the idea!</p>
 <p>Read the Docker-Compose <a href="https://docs.docker.com/compose/compose-file/">documentation</a> on new syntax.</p>
-<p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019/blob/main/Module5/v3-voting-app">here</a> for you reference.</p>
+<p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module6/v3-voting-app">here</a> for you reference.</p>
 </div>
                 
               
