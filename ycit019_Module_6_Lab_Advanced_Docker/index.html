@@ -14,7 +14,7 @@
     
     
       
-        <title>ycit019 Lab 4 Docker Images copy - Cloud Architecture</title>
+        <title>Module 6 Lab - Advanced Docker - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ycit019 Lab 4 Docker Images copy
+              Module 6 Lab - Advanced Docker
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT019
@@ -203,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -236,11 +240,202 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 6 Lab - Advanced Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Module 6 Lab - Advanced Docker
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-lab-environment" class="md-nav__link">
+    Prepare Lab Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-persistant-volumes" class="md-nav__link">
+    1 Persistant Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Persistant Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-storage-driver" class="md-nav__link">
+    1.1 Storage driver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-persisting-data-using-volumes" class="md-nav__link">
+    1.2 Persisting Data Using Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Persisting Data Using Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-create-and-manage-volumes" class="md-nav__link">
+    1.2.1  Create and manage volumes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-start-a-container-with-a-volume" class="md-nav__link">
+    1.2.2 Start a container with a volume
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-distributing-docker-images-with-container-registry" class="md-nav__link">
+    2 Distributing Docker images with Container Registry
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Distributing Docker images with Container Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-dockerfile" class="md-nav__link">
+    1.1 Create DOCKERFILE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-build-a-docker-image" class="md-nav__link">
+    1.2 Build a Docker image
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Build a Docker image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#122-publish-docker-image-to-docker-hub" class="md-nav__link">
+    1.2.2 Publish Docker Image to Docker Hub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-pushing-images-to-gcrio" class="md-nav__link">
+    1.2.3 Pushing images to gcr.io
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-pushing-images-to-local-repository" class="md-nav__link">
+    1.2.3 Pushing images to Local Repository
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-follow-docker-best-practices" class="md-nav__link">
+    3 Follow Docker Best Practices
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Follow Docker Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-inspecting-dockerfiles-with-dockle" class="md-nav__link">
+    3.1 Inspecting Dockerfiles with dockle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-scan-images-with-trivy" class="md-nav__link">
+    3.2 Scan images with Trivy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-docker-compose" class="md-nav__link">
+    4 Docker Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-guestbook-app-with-compose" class="md-nav__link">
+    4.1 Deploy Guestbook app with Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-deploy-voting-app-using-compose" class="md-nav__link">
+    4.2 Deploy Voting App using Compose
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -387,11 +582,58 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-distributing-docker-images-with-container-registry" class="md-nav__link">
-    1 Distributing Docker images with Container Registry
+  <a href="#1-persistant-volumes" class="md-nav__link">
+    1 Persistant Volumes
   </a>
   
-    <nav class="md-nav" aria-label="1 Distributing Docker images with Container Registry">
+    <nav class="md-nav" aria-label="1 Persistant Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-storage-driver" class="md-nav__link">
+    1.1 Storage driver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-persisting-data-using-volumes" class="md-nav__link">
+    1.2 Persisting Data Using Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Persisting Data Using Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-create-and-manage-volumes" class="md-nav__link">
+    1.2.1  Create and manage volumes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-start-a-container-with-a-volume" class="md-nav__link">
+    1.2.2 Start a container with a volume
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-distributing-docker-images-with-container-registry" class="md-nav__link">
+    2 Distributing Docker images with Container Registry
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Distributing Docker images with Container Registry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -441,23 +683,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-follow-docker-best-practices" class="md-nav__link">
-    2 Follow Docker Best Practices
+  <a href="#3-follow-docker-best-practices" class="md-nav__link">
+    3 Follow Docker Best Practices
   </a>
   
-    <nav class="md-nav" aria-label="2 Follow Docker Best Practices">
+    <nav class="md-nav" aria-label="3 Follow Docker Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-inspecting-dockerfiles-with-dockle" class="md-nav__link">
-    2.1 Inspecting Dockerfiles with dockle
+  <a href="#31-inspecting-dockerfiles-with-dockle" class="md-nav__link">
+    3.1 Inspecting Dockerfiles with dockle
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-automated-builds-with-google-cloud-build" class="md-nav__link">
-    2.2 Automated Builds with Google Cloud Build
+  <a href="#32-scan-images-with-trivy" class="md-nav__link">
+    3.2 Scan images with Trivy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-docker-compose" class="md-nav__link">
+    4 Docker Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-guestbook-app-with-compose" class="md-nav__link">
+    4.1 Deploy Guestbook app with Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-deploy-voting-app-using-compose" class="md-nav__link">
+    4.2 Deploy Voting App using Compose
   </a>
   
 </li>
@@ -483,6 +752,7 @@
                 <p>Lab 4 Managing Docker Images</p>
 <p><strong>Objective:</strong></p>
 <ul>
+<li>Docker Storage</li>
 <li>Learn to build docker images using Dockerfiles.</li>
 <li>Store images in Docker Hub</li>
 <li>Learn alternative registry solutions (GCR)</li>
@@ -492,7 +762,195 @@
 <p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
 <p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
 <p>Once opened, you can use it to run the instructions for this lab.</p>
-<h1 id="1-distributing-docker-images-with-container-registry">1 Distributing Docker images with Container Registry<a class="headerlink" href="#1-distributing-docker-images-with-container-registry" title="Permanent link">&para;</a></h1>
+<h2 id="1-persistant-volumes">1 Persistant Volumes<a class="headerlink" href="#1-persistant-volumes" title="Permanent link">&para;</a></h2>
+<h3 id="11-storage-driver">1.1 Storage driver<a class="headerlink" href="#11-storage-driver" title="Permanent link">&para;</a></h3>
+<p>We've discussed several Storage drivers (graphdrivers) during the class.
+Let's find out what graphdriver is running in our Lab environment.</p>
+<div class="codehilite"><pre><span></span><code>docker info | grep  Storage
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Storage Driver: overlay2
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our Classroom is running <code>auoverlay2fs</code> storage driver.</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Systems runnng Ubuntu or Debian ,going to run <code>overlay2</code> storage driver by
+default. Prior to that it was  <code>aufs</code> storage driver</p>
+</div>
+<h3 id="12-persisting-data-using-volumes">1.2 Persisting Data Using Volumes<a class="headerlink" href="#12-persisting-data-using-volumes" title="Permanent link">&para;</a></h3>
+<p>Docker Volumes are created and assigned when containers are started. Data
+Volumes allow you to map a host directory to a container for sharing data.</p>
+<p>This mapping is bi-directional. It allows data stored on the host to be accessed
+from within the container. It also means data saved by the process inside the
+container is persisted on the host.</p>
+<h4 id="121-create-and-manage-volumes">1.2.1  Create and manage volumes<a class="headerlink" href="#121-create-and-manage-volumes" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> Create a volume:</p>
+<div class="codehilite"><pre><span></span><code>docker volume create --name my-vol
+</code></pre></div>
+
+<p><strong>Step 2</strong> List volumes:</p>
+<div class="codehilite"><pre><span></span><code>docker volume ls
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Output:
+local               my-vol
+</code></pre></div>
+
+<p><strong>Step 3</strong> Inspect a volume:</p>
+<div class="codehilite"><pre><span></span><code>docker volume inspect my-vol
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>[
+    {
+        &quot;Driver&quot;: &quot;local&quot;,
+        &quot;Labels&quot;: {},
+        &quot;Mountpoint&quot;: &quot;/var/lib/docker/volumes/my-vol/_data&quot;,
+        &quot;Name&quot;: &quot;my-vol&quot;,
+        &quot;Options&quot;: {},
+        &quot;Scope&quot;: &quot;local&quot;
+    }
+]
+</code></pre></div>
+
+<p><strong>Step 3</strong> Add some data to the <code>Mountpoint</code> of the volume:</p>
+<div class="codehilite"><pre><span></span><code>sudo touch  /var/lib/docker/volumes/my-vol/_data/test_vol
+sudo ls  /var/lib/docker/volumes/my-vol/_data/
+</code></pre></div>
+
+<p><strong>Step 4</strong> Create a container <code>busybox</code> alpine image and attach created <code>my-vol</code>
+volume in to it:</p>
+<div class="codehilite"><pre><span></span><code>docker run -it -v my-vol:/world busybox
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>/ # ls /world
+test_vol
+/ #
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Volume is mounted and <code>test_vol</code> file is under <code>/world</code> folder as expected</p>
+</div>
+<p><strong>Step 5</strong>  Try to delete the volume:</p>
+<div class="codehilite"><pre><span></span><code>docker volume rm  my-vol
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Error response from daemon: unable to remove volume: remove my-vol: volume is in use - [6ef3055b516b306847150af8fcea796c02cd90578967802ac29c39d3a2c90102]
+</code></pre></div>
+
+<div class="admonition failure">
+<p class="admonition-title">Failure</p>
+<p>Deleting container that is attached is not permited. However you can
+delete with <code>-f</code> option</p>
+</div>
+<p><strong>Step 5</strong>  Busybox container stopped, howerver it is not deleted.
+Let's locate stopped <code>busybox</code> container and delete it:</p>
+<div class="codehilite"><pre><span></span><code>docker ps -a | grep busybox
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>docker rm $docker_id
+</code></pre></div>
+
+<p><strong>Step 6</strong> You can now delete <code>my-vol</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Volume is still avaiable if needed to be reattached any time</p>
+</div>
+<div class="codehilite"><pre><span></span><code>docker volume ls
+docker volume rm my-vol
+docker volume ls
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Volumes can be craeted and managed separately from containers.</p>
+</div>
+<h4 id="122-start-a-container-with-a-volume">1.2.2 Start a container with a volume<a class="headerlink" href="#122-start-a-container-with-a-volume" title="Permanent link">&para;</a></h4>
+<p>If you start a container with a volume that does not yet exist, Docker creates
+the volume for you.</p>
+<p><strong>Step 1</strong> Add a data volume to a container:</p>
+<div class="codehilite"><pre><span></span><code>docker run -d -P --name webapp -v /webapp training/webapp python app.py
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Command started a new container and created a new volume inside the
+container at /webapp.</p>
+</div>
+<p><strong>Step 2</strong> Locate the volume on the host using the docker inspect command:</p>
+<div class="codehilite"><pre><span></span><code> docker inspect webapp | grep -A9 Mounts
+ ```
+ **Output:**
+ ```       &quot;Mounts&quot;: [
+            {
+                &quot;Type&quot;: &quot;volume&quot;,
+                &quot;Name&quot;: &quot;39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d&quot;,
+                &quot;Source&quot;: &quot;/var/lib/docker/volumes/39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d/_data&quot;,
+                &quot;Destination&quot;: &quot;/webapp&quot;,
+                &quot;Driver&quot;: &quot;local&quot;,
+                &quot;Mode&quot;: &quot;&quot;,
+                &quot;RW&quot;: true,
+                &quot;Propagation&quot;: &quot;&quot;
+</code></pre></div>
+
+<p><strong>Step 3</strong> List container</p>
+<div class="codehilite"><pre><span></span><code>docker volume ls
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>DRIVER              VOLUME NAME
+local               39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d
+</code></pre></div>
+
+<p><strong>Step 5</strong> Alternatively, you can specify a host directory you want to use as a data
+volume:</p>
+<div class="codehilite"><pre><span></span><code>mkdir db
+
+docker run -d --name db -v ~/db:/db training/postgres
+</code></pre></div>
+
+<p><strong>Step 2</strong> Start an interactive session in the db container and create a new
+file in the /db directory:</p>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
+
+<p>Type inside docker containers console:</p>
+<div class="codehilite"><pre><span></span><code>root@9a7a4fbcc929:/# cd /db
+
+root@9a7a4fbcc929:/db# touch hello_from_db_container
+
+root@9a7a4fbcc929:/db# exit
+</code></pre></div>
+
+<p><strong>Step 4</strong> Check that the local db directory contains the new file:</p>
+<div class="codehilite"><pre><span></span><code>ls db
+hello_from_db_container
+</code></pre></div>
+
+<p><strong>Step 5</strong> Check that the data volume is persistent. Remove the db container:</p>
+<div class="codehilite"><pre><span></span><code>docker rm -f db
+</code></pre></div>
+
+<p><strong>Step 6</strong> Create the db container again:</p>
+<div class="codehilite"><pre><span></span><code>docker run -d --name db -v ~/db:/db training/postgres
+</code></pre></div>
+
+<p><strong>Step 7</strong> Check that its /db directory contains the hello_from_db_container
+file:</p>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
+
+<p>Run commands inside container:</p>
+<div class="codehilite"><pre><span></span><code>root@47a60c01590e:/# ls /db
+hello_from_db_container
+root@47a60c01590e:/# exit
+</code></pre></div>
+
+<h1 id="2-distributing-docker-images-with-container-registry">2 Distributing Docker images with Container Registry<a class="headerlink" href="#2-distributing-docker-images-with-container-registry" title="Permanent link">&para;</a></h1>
 <p>In the previous modules, we learned how to use Docker images
 to run Docker containers. Docker images that we used have been downloaded from
 the Docker Hub, a Docker image registry maintained by Docker Inc. In this section we will create a
@@ -503,13 +961,14 @@ defined set.</p>
 <p>In the next session we will create all necessary files for our application,
 build docker image and then push to Docker Hub and Quay.</p>
 <p>The code for this application is also available in GitHub:</p>
-<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/flask-app
+<div class="codehilite"><pre><span></span><code>https://github.com/Cloud-Architects-Program/ycit019_2022/tree/main/Module5/flask-app
 </code></pre></div>
 
 <h2 id="11-create-dockerfile">1.1 Create DOCKERFILE<a class="headerlink" href="#11-create-dockerfile" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Clone git repo on you laptop:</p>
-<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit019
-cd ~/ycit019/Module5/flask-app/
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit019_2022
+cd ~/ycit019_2022/Module5/flask-app/
+git pull
 </code></pre></div>
 
 <p><strong>Step 2</strong> In this directory, we see following files:</p>
@@ -721,8 +1180,7 @@ myfirstapp       latest   f50f9524513f    1 hour ago   22 MB
 <div class="codehilite"><pre><span></span><code>docker tag $docker_image_tag gcr.io/${PROJECT_ID}/myfirstapp:v1
 </code></pre></div>
 
-<p>$docker_image_tag
-Push the image to gcr.io:</p>
+<p>Push the image to gcr.io:</p>
 <div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/myfirstapp:v1
 </code></pre></div>
 
@@ -777,8 +1235,8 @@ Kill and delete that container by running the following command, but make sure t
 <div class="codehilite"><pre><span></span><code>docker rm -f myfirstapp
 </code></pre></div>
 
-<h1 id="2-follow-docker-best-practices">2 Follow Docker Best Practices<a class="headerlink" href="#2-follow-docker-best-practices" title="Permanent link">&para;</a></h1>
-<h2 id="21-inspecting-dockerfiles-with-dockle">2.1 Inspecting Dockerfiles with <code>dockle</code><a class="headerlink" href="#21-inspecting-dockerfiles-with-dockle" title="Permanent link">&para;</a></h2>
+<h1 id="3-follow-docker-best-practices">3 Follow Docker Best Practices<a class="headerlink" href="#3-follow-docker-best-practices" title="Permanent link">&para;</a></h1>
+<h2 id="31-inspecting-dockerfiles-with-dockle">3.1 Inspecting Dockerfiles with <code>dockle</code><a class="headerlink" href="#31-inspecting-dockerfiles-with-dockle" title="Permanent link">&para;</a></h2>
 <p><code>Dockle</code> - Container Image Linter for Security, Helping build the Best-Practice Docker Image, Easy to start</p>
 <p><code>Dockle</code> helps you:</p>
 <ul>
@@ -816,13 +1274,260 @@ INFO    - DKL-LI-0003: Only put necessary files
     * Suspicious directory : tmp
 </code></pre></div>
 
-<h2 id="22-automated-builds-with-google-cloud-build">2.2 Automated Builds with Google Cloud Build<a class="headerlink" href="#22-automated-builds-with-google-cloud-build" title="Permanent link">&para;</a></h2>
-<p><strong>Live Demo:</strong></p>
+<h2 id="32-scan-images-with-trivy">3.2 Scan images with <a href="https://aquasecurity.github.io/trivy/v0.18.0/">Trivy</a><a class="headerlink" href="#32-scan-images-with-trivy" title="Permanent link">&para;</a></h2>
+<p>Trivy (tri pronounced like trigger, vy pronounced like envy) is a simple and comprehensive vulnerability scanner for containers and other artifacts. A software vulnerability is a glitch, flaw, or weakness present in the software or in an Operating System. Trivy detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.). Trivy is easy to use. Just install the binary and you're ready to scan. All you need to do for scanning is to specify a target such as an image name of the container.</p>
+<p><strong>Step 1</strong>  Install Trivy</p>
+<div class="codehilite"><pre><span></span><code>sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+</code></pre></div>
+
+<p><strong>Step 2</strong> Specify an image name (and a tag).</p>
+<div class="codehilite"><pre><span></span><code>$ trivy image [YOUR_IMAGE_NAME]
+</code></pre></div>
+
+<p>For example:</p>
+<div class="codehilite"><pre><span></span><code>$ trivy image python:3.4-alpine
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>2019-05-16T01:20:43.180+0900    INFO    Updating vulnerability database...
+2019-05-16T01:20:53.029+0900    INFO    Detecting Alpine vulnerabilities...
+
+python:3.4-alpine3.9 (alpine 3.9.2)
+===================================
+Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
+
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| LIBRARY | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |             TITLE              |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| openssl | CVE-2019-1543    | MEDIUM   | 1.1.1a-r1         | 1.1.1b-r1     | openssl: ChaCha20-Poly1305     |
+|         |                  |          |                   |               | with long nonces               |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Explore local images in your environment. </p>
+<h1 id="4-docker-compose">4 Docker Compose<a class="headerlink" href="#4-docker-compose" title="Permanent link">&para;</a></h1>
+<p>In this module, will guide you through the process of building a multi-container
+application using docker compose. The application code is available at GitHub: <a href="https://github.com/Cloud-Architects-Program/ycit019_2022">https://github.com/Cloud-Architects-Program/ycit019_2022</a></p>
+<h2 id="41-deploy-guestbook-app-with-compose">4.1 Deploy Guestbook app with Compose<a class="headerlink" href="#41-deploy-guestbook-app-with-compose" title="Permanent link">&para;</a></h2>
+<p>Let’s build another application. This time we going to create famous Guestbook
+application.</p>
+<p>Guestbook consists of three services. A redis-master node, a set of redis-slave
+that can be scaled and find the redis-master via its DNS name. And a PHP frontend
+that exposes itself on port 80. The resulting application allows you to leave
+short messages which are stored in the redis cluster.</p>
+<p><strong>Step 1</strong> Change directory to the guestbook</p>
+<div class="codehilite"><pre><span></span><code>cd ~/ycit019/Module5/guestbook/
+ls
+</code></pre></div>
+
+<p><strong>Step 2</strong> Let’s review the docker-guestbook.yml file</p>
+<div class="codehilite"><pre><span></span><code>version: &quot;2&quot;
+
+services:
+ redis-master:
+   image: gcr.io/google_containers/redis:e2e
+   ports:
+     - &quot;6379&quot;
+ redis-slave:
+   image: gcr.io/google_samples/gb-redisslave:v1
+   ports:
+     - &quot;6379&quot;
+   environment:
+     - GET_HOSTS_FROM=dns
+ frontend:
+   image: gcr.io/google-samples/gb-frontend:v4
+   ports:
+     - &quot;80:80&quot;
+   environment:
+     - GET_HOSTS_FROM=dns
+</code></pre></div>
+
+<p><strong>Step 3</strong> Let’s run docker-guestbook.yml with compose</p>
+<div class="codehilite"><pre><span></span><code>export LD_LIBRARY_PATH=/usr/local/lib
+docker-compose -f docker-guestbook.yml up -d
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Creating network &quot;examples_default&quot; with the default driver
+Creating examples_redis-slave_1
+Creating examples_frontend_1
+Creating examples_redis-master_1
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>-d</code> -  Detached mode: Run containers in the background, print new container names.</p>
+<p><code>-f</code> -  Specify an alternate compose file (default: docker-compose.yml)</p>
+</div>
+<p><strong>Step 4</strong> Check that all containers are running:</p>
+<div class="codehilite"><pre><span></span><code>docker ps
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>CONTAINER ID        IMAGE                                    COMMAND
+d1006d1beee5        gcr.io/google-samples/gb-frontend:v4     &quot;apache2-foreground&quot;
+fb3a15fde23f        gcr.io/google_containers/redis:e2e       &quot;redis-server /etc...&quot;
+326b94d4cdd7        gcr.io/google_samples/gb-redisslave:v1   &quot;/entrypoint.sh /b...&quot;
+</code></pre></div>
+
+<p><strong>Step 5</strong>  Test the application locally</p>
+<p>Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Nice you now have compose stuck up and running!</p>
+</div>
+<p><strong>Step 6</strong> Cleanup environment:</p>
+<div class="codehilite"><pre><span></span><code>docker-compose -f docker-guestbook.yml down
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Stopping guestbook_frontend_1 ... done
+Stopping guestbook_redis-master_1 ... done
+Stopping guestbook_redis-slave_1 ... done
+Removing guestbook_frontend_1 ... done
+Removing guestbook_redis-master_1 ... done
+Removing guestbook_redis-slave_1 ... done
+Removing network guestbook_default
+</code></pre></div>
+
+<h2 id="42-deploy-voting-app-using-compose">4.2 Deploy Voting App using Compose<a class="headerlink" href="#42-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Switch to <code>Module5/example-voting-app</code> folder :</p>
+<div class="codehilite"><pre><span></span><code>cd ~/ycit019_2022/Module5/example-voting-app/
+</code></pre></div>
+
+<p><strong>Step 2</strong> The existing file docker-compose.yml defines several images:</p>
 <ul>
-<li>GCR Image scanning</li>
-<li>Setting Up Docker Image Auto-Build with Google Cloud Build based on Push to Branch</li>
-<li>Auto Deployment of Image to Cloud Run</li>
+<li>
+<p>A voting-app container based on a Python image</p>
+</li>
+<li>
+<p>A result-app container based on a Node.js image</p>
+</li>
+<li>
+<p>A Redis container based on a redis image, to temporarily store the data.</p>
+</li>
+<li>
+<p>A worker app based on a dotnet image</p>
+</li>
+<li>
+<p>A Postgres container based on a postgres image</p>
+</li>
 </ul>
+<p><strong>App Architecture:</strong>
+<img alt="alt text" src="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module5/example-voting-app/architecture.png" title="architecture" /></p>
+<p>Note that three of the containers are built from Dockerfiles, while the other
+two are images on Docker Hub. Let's review them closely:</p>
+<p><strong>Step 3</strong> Review files that going to be deployed with <code>tree</code> command.
+Alternatively view the files in <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/tree/main/Module5/example-voting-app">gitrepo page here</a></p>
+<div class="codehilite"><pre><span></span><code>sudo apt install tree
+tree
+</code></pre></div>
+
+<p>Step 5 Let’s change the default port to expose. Edit the docker-compose.yml file and find the following lines:</p>
+<div class="codehilite"><pre><span></span><code>ports:
+  - &quot;5000:80&quot;
+</code></pre></div>
+
+<p>Change 5000 to 8080:</p>
+<div class="codehilite"><pre><span></span><code>ports:
+  - &quot;8080:80&quot;
+</code></pre></div>
+
+<p><strong>Step 4</strong> Verify Docker Compose version:</p>
+<div class="codehilite"><pre><span></span><code>docker-compose version
+</code></pre></div>
+
+<p><strong>Step 5</strong> Use the docker-compose tool to launch your application:</p>
+<div class="codehilite"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
+
+<p><strong>Step 6</strong> Check that all containers are running, volumes created. Check
+compose state and logs :</p>
+<div class="codehilite"><pre><span></span><code>#Docker state
+docker ps
+docker volumes
+#Docker compose state
+docker-compose ps
+docker-compose logs
+</code></pre></div>
+
+<p><strong>Step 7</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<p><strong>Step 8</strong> Cleanup up.</p>
+<div class="codehilite"><pre><span></span><code>docker-compose down
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Stopping examplevotingapp_worker_1 ... done
+Stopping examplevotingapp_redis_1 ... done
+Stopping examplevotingapp_result_1 ... done
+Stopping examplevotingapp_db_1 ... done
+Stopping examplevotingapp_vote_1 ... done
+Removing examplevotingapp_worker_1 ... done
+Removing examplevotingapp_redis_1 ... done
+Removing examplevotingapp_result_1 ... done
+Removing examplevotingapp_db_1 ... done
+Removing examplevotingapp_vote_1 ... done
+Removing network examplevotingapp_default
+</code></pre></div>
+
+<p><strong>Step 9</strong> You <strong>Boss</strong> told you that the application has a bug. Update the
+the app by editing the vote/app.py file and change the following lines near the
+top of the file:</p>
+<div class="codehilite"><pre><span></span><code>vim vote/app.py
+</code></pre></div>
+
+<p>Press 'i'</p>
+<div class="codehilite"><pre><span></span><code>option_a = os.getenv(&#39;OPTION_A&#39;, &quot;Cats&quot;)
+option_b = os.getenv(&#39;OPTION_B&#39;, &quot;Dogs&quot;)
+</code></pre></div>
+
+<p><strong>Step 10</strong> Replace “Cats” and “Dogs” with two options of your choice. For example:</p>
+<div class="codehilite"><pre><span></span><code>option_a = os.getenv(&#39;OPTION_A&#39;, &quot;Java&quot;)
+option_b = os.getenv(&#39;OPTION_B&#39;, &quot;Python&quot;)
+</code></pre></div>
+
+<p>Press 'wq!'</p>
+<p><strong>Step 11</strong> Use docker-compose tool to launch your Update application:</p>
+<div class="codehilite"><pre><span></span><code>docker-compose up -d
+</code></pre></div>
+
+<p>Check the UI</p>
+<div class="admonition bingo">
+<p class="admonition-title">Bingo</p>
+<p>Let's see who wins the battle of Orchestrations!</p>
+</div>
+<p><strong>Step 8</strong> Cleanup up</p>
+<div class="codehilite"><pre><span></span><code>docker-compose down
+</code></pre></div>
+
+<div class="admonition congratulations">
+<p class="admonition-title">Congratulations</p>
+<p>You are now docker expert!
+We were able to start 2 microservices application with docker compose.
+First microservice had 3 services.
+Second microservice had 5 servics written in 3 different languages and able
+to talk to each other.</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>So far we've learned docker-compose v2.
+docker-compose v3 is out of scope for this Lab. However you got the idea!</p>
+<p>Read the Docker-Compose <a href="https://docs.docker.com/compose/compose-file/">documentation</a> on new syntax.</p>
+<p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module6/v3-voting-app">here</a> for you reference.</p>
+</div>
                 
               
               
@@ -838,6 +1543,39 @@ INFO    - DKL-LI-0003: Only put necessary files
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 5 Lab - Docker Basics
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
