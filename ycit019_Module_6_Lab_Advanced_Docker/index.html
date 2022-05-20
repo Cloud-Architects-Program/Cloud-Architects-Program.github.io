@@ -420,13 +420,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#42-deploy-voting-app-using-compose" class="md-nav__link">
-    4.2 Deploy Voting App using Compose
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -720,13 +713,6 @@
           <li class="md-nav__item">
   <a href="#41-deploy-guestbook-app-with-compose" class="md-nav__link">
     4.1 Deploy Guestbook app with Compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-deploy-voting-app-using-compose" class="md-nav__link">
-    4.2 Deploy Voting App using Compose
   </a>
   
 </li>
@@ -1397,136 +1383,16 @@ Removing guestbook_redis-slave_1 ... done
 Removing network guestbook_default
 </code></pre></div>
 
-<h2 id="42-deploy-voting-app-using-compose">4.2 Deploy Voting App using Compose<a class="headerlink" href="#42-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Switch to <code>Module6/example-voting-app</code> folder :</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019_2022/Module6/example-voting-app/
-</code></pre></div>
-
-<p><strong>Step 2</strong> The existing file docker-compose.yml defines several images:</p>
-<ul>
-<li>
-<p>A voting-app container based on a Python image</p>
-</li>
-<li>
-<p>A result-app container based on a Node.js image</p>
-</li>
-<li>
-<p>A Redis container based on a redis image, to temporarily store the data.</p>
-</li>
-<li>
-<p>A worker app based on a dotnet image</p>
-</li>
-<li>
-<p>A Postgres container based on a postgres image</p>
-</li>
-</ul>
-<p><strong>App Architecture:</strong>
-<img alt="alt text" src="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module5/example-voting-app/architecture.png" title="architecture" /></p>
-<p>Note that three of the containers are built from Dockerfiles, while the other
-two are images on Docker Hub. Let's review them closely:</p>
-<p><strong>Step 3</strong> Review files that going to be deployed with <code>tree</code> command.
-Alternatively view the files in <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/tree/main/Module5/example-voting-app">gitrepo page here</a></p>
-<div class="codehilite"><pre><span></span><code>sudo apt install tree
-tree
-</code></pre></div>
-
-<p>Step 5 Let’s change the default port to expose. Edit the docker-compose.yml file and find the following lines:</p>
-<div class="codehilite"><pre><span></span><code>ports:
-  - &quot;5000:80&quot;
-</code></pre></div>
-
-<p>Change 5000 to 8080:</p>
-<div class="codehilite"><pre><span></span><code>ports:
-  - &quot;8080:80&quot;
-</code></pre></div>
-
-<p><strong>Step 4</strong> Verify Docker Compose version:</p>
-<div class="codehilite"><pre><span></span><code>docker-compose version
-</code></pre></div>
-
-<p><strong>Step 5</strong> Use the docker-compose tool to launch your application:</p>
-<div class="codehilite"><pre><span></span><code>docker-compose up -d
-</code></pre></div>
-
-<p><strong>Step 6</strong> Check that all containers are running, volumes created. Check
-compose state and logs :</p>
-<div class="codehilite"><pre><span></span><code>#Docker state
-docker ps
-docker volumes
-#Docker compose state
-docker-compose ps
-docker-compose logs
-</code></pre></div>
-
-<p><strong>Step 7</strong> Now that we've launched the application containers, let's try to test the web
-application locally.</p>
-<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
-<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
-</div>
-<p><strong>Step 8</strong> Cleanup up.</p>
-<div class="codehilite"><pre><span></span><code>docker-compose down
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>Stopping examplevotingapp_worker_1 ... done
-Stopping examplevotingapp_redis_1 ... done
-Stopping examplevotingapp_result_1 ... done
-Stopping examplevotingapp_db_1 ... done
-Stopping examplevotingapp_vote_1 ... done
-Removing examplevotingapp_worker_1 ... done
-Removing examplevotingapp_redis_1 ... done
-Removing examplevotingapp_result_1 ... done
-Removing examplevotingapp_db_1 ... done
-Removing examplevotingapp_vote_1 ... done
-Removing network examplevotingapp_default
-</code></pre></div>
-
-<p><strong>Step 9</strong> You <strong>Boss</strong> told you that the application has a bug. Update the
-the app by editing the vote/app.py file and change the following lines near the
-top of the file:</p>
-<div class="codehilite"><pre><span></span><code>vim vote/app.py
-</code></pre></div>
-
-<p>Press 'i'</p>
-<div class="codehilite"><pre><span></span><code>option_a = os.getenv(&#39;OPTION_A&#39;, &quot;Cats&quot;)
-option_b = os.getenv(&#39;OPTION_B&#39;, &quot;Dogs&quot;)
-</code></pre></div>
-
-<p><strong>Step 10</strong> Replace “Cats” and “Dogs” with two options of your choice. For example:</p>
-<div class="codehilite"><pre><span></span><code>option_a = os.getenv(&#39;OPTION_A&#39;, &quot;Java&quot;)
-option_b = os.getenv(&#39;OPTION_B&#39;, &quot;Python&quot;)
-</code></pre></div>
-
-<p>Press 'wq!'</p>
-<p><strong>Step 11</strong> Use docker-compose tool to launch your Update application:</p>
-<div class="codehilite"><pre><span></span><code>docker-compose up -d
-</code></pre></div>
-
-<p>Check the UI</p>
-<div class="admonition bingo">
-<p class="admonition-title">Bingo</p>
-<p>Let's see who wins the battle of Orchestrations!</p>
-</div>
-<p><strong>Step 8</strong> Cleanup up</p>
-<div class="codehilite"><pre><span></span><code>docker-compose down
-</code></pre></div>
-
 <div class="admonition congratulations">
 <p class="admonition-title">Congratulations</p>
 <p>You are now docker expert!
-We were able to start 2 microservices application with docker compose.
-First microservice had 3 services.
-Second microservice had 5 servics written in 3 different languages and able
-to talk to each other.</p>
+We were able to start microservices application with docker compose.</p>
 </div>
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
-<p>So far we've learned docker-compose v2.
-docker-compose v3 is out of scope for this Lab. However you got the idea!</p>
+<p>We've learned how to use docker-compose v2.</p>
+<p>In the assignement you will be using docker-compose v3</p>
 <p>Read the Docker-Compose <a href="https://docs.docker.com/compose/compose-file/">documentation</a> on new syntax.</p>
-<p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019_2022/blob/main/Module6/v3-voting-app">here</a> for you reference.</p>
 </div>
                 
               
