@@ -14,7 +14,7 @@
     
     
       
-        <title>1 Containerize Applications - Cloud Architecture</title>
+        <title>Module 6 Assignment Solution - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1 Containerize Applications
+              Module 6 Assignment Solution
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT019
@@ -275,7 +277,7 @@
   
     <li class="md-nav__item">
       <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
-        Lab 9 Kubernetes Features
+        Module 9 Lab - Kubernetes Features
       </a>
     </li>
   
@@ -290,12 +292,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2">
         Assignments
@@ -340,6 +344,139 @@
       <a href="../ycit019_ass2/" class="md-nav__link">
         Module 6 Assignment
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 6 Assignment Solution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Module 6 Assignment Solution
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-the-cloud-source-repository-environment-with-module-6-assignment" class="md-nav__link">
+    Prepare the Cloud Source Repository Environment with Module 6 Assignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-build-and-push-docker-images-to-google-container-registry-gcr" class="md-nav__link">
+    2 Build and push Docker images to Google Container Registry (GCR)
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Build and push Docker images to Google Container Registry (GCR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-build-and-push-gowebapp-mysql-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp-mysql Image to GCR
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-build-and-push-gowebapp-image-to-gcr" class="md-nav__link">
+    2.1 Build and push gowebapp Image to GCR
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Build and push gowebapp Image to GCR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#23-test-application-by-running-with-docker-engine" class="md-nav__link">
+    2.3 Test application by running with Docker Engine.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-cleanup-running-applications-and-unused-networks" class="md-nav__link">
+    2.4 Cleanup running applications and unused networks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    3 Docker Compose
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-test-application-locally-with-docker-compose" class="md-nav__link">
+    3.1 Test application locally with Docker Compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-commit-docker-compose-file-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3.2 Commit docker-compose file to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-grant-viewing-permissions-for-a-repository-to-instructorsteachers" class="md-nav__link">
+    3.3 Grant viewing permissions for a repository to Instructors/Teachers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -747,34 +884,35 @@ docker compose file.</li>
 </code></pre></div>
 
 <p>Create structure as following:</p>
-<div class="codehilite"><pre><span></span><code>#TODO Specify docker-compose file &#39;3.4&#39;
-
+<div class="codehilite"><pre><span></span><code>version: &#39;2.4&#39;
 services:
   gowebapp-mysql:
-    #TODO Make a build in the `gowebapp-mysql` folder
-    #TODO Add Environment variable for MYSQL_DATABASE
-    #TODO Add healthcheck test that you can connect to Database and execute `SHOW DATABASES`
-    #TODO Add healthcheck, timeout: 45s, interval: 10s, retries: 10, start_period 15 sec
-    #TODO Reference doc for healthcheck https://docs.docker.com/compose/compose-file/compose-file-v3/#healthcheck
-    #TODO Add Restart  `always`
-    #TODO Attach to created to User-defined network `gowebapp1`
-
+    build: ./gowebapp-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpasswd
+    container_name: gowebapp-mysql
+    healthcheck:
+      test: &quot;/usr/bin/mysql --user=root --password=rootpasswd --execute \&quot;SHOW DATABASES;\&quot;&quot;
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    networks:
+      - gowebapp1
   gowebapp:
-    #TODO Make a build in the appropriate folder
-    #TODO Allocate ports so that contaiener port mapped to local port
-    #TODO Restart container in case failed
-    #TODO Attach to created to User-defined network `gowebapp1`
-    #TODO Add Environment variable for GOPATH
-    #TODO Add Dependency for `gowebapp-mysql` to start first
-
+    build: ./gowebapp
+    container_name: gowebapp
+    ports:
+      - &quot;8080:80&quot;
+    depends_on:
+      gowebapp-mysql:
+        condition: service_healthy
+    networks:
+      - gowebapp1
 networks:
-#TODO Create User-defined network `gowebapp1` type `driver: bridge`
+  gowebapp1:
+    driver: bridge
 </code></pre></div>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this case as we using Compose v3.4, you can also try <code>start_period</code> in the health-check</p>
-</div>
 <p><strong>Step 2</strong> Run compose file</p>
 <div class="codehilite"><pre><span></span><code>export CLOUDSDK_PYTHON=python2  # https://github.com/google-github-actions/setup-gcloud/issues/128
 </code></pre></div>
@@ -834,6 +972,39 @@ git commit -m &quot;adding docker-compose.yml&quot;
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_ass2/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 6 Assignment
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ycit019_ass3/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 8 Assignment
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
