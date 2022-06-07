@@ -786,10 +786,10 @@ ls
 </div>
 <p><strong>Step 6</strong> Define a Kubernetes Service object for the backend MySQL database.</p>
 <p>Follow instructions below to populate  <code>gowebapp-mysql-service.yaml</code></p>
-<p>For reference, please see <code>Service</code> <a href="https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service">docs</a>:</p>
-<div class="codehilite"><pre><span></span><code>https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
-</code></pre></div>
-
+<p><strong>Reference K8s Docs:</strong> </p>
+<ol>
+<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service">Service</a></li>
+</ol>
 <p>Additionally, you can use <code>kubectl</code> built-in docs for any type of resources:</p>
 <div class="codehilite"><pre><span></span><code>kubectl explain service
 </code></pre></div>
@@ -826,9 +826,11 @@ spec:
 <h2 id="25-create-deployment-object-for-the-backend-mysql-database">2.5 Create Deployment object for the backend MySQL database<a class="headerlink" href="#25-create-deployment-object-for-the-backend-mysql-database" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-mysql-deployment.yaml</code></p>
 <p>For reference, please see <code>Deployment</code> doc:</p>
-<div class="codehilite"><pre><span></span><code>https://kubernetes.io/docs/concepts/workloads/controllers/deployment
-</code></pre></div>
-
+<p><strong>Reference K8s Docs:</strong> </p>
+<ol>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment">Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/">Updating Env variables</a></li>
+</ol>
 <div class="codehilite"><pre><span></span><code>edit gowebapp-mysql-deployment.yaml
 </code></pre></div>
 
@@ -851,7 +853,8 @@ spec:
     spec:
       containers:
       - env:
-         - name: # TODO add MYSQL_ROOT_PASSWORD env value
+         - #TODO: define name as MYSQL_ROOT_PASSWORD 
+           #TODO: define value as rootpasswd
          image: #TODO define mysql image created in previous assignment, located in gcr registry
          name: gowebapp-mysql
          ports:
@@ -908,6 +911,11 @@ spec:
 
 <h2 id="26-create-a-k8s-deployment-object-for-the-frontend-gowebapp">2.6 Create a K8s Deployment object for the frontend gowebapp<a class="headerlink" href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-deployment.yaml</code></p>
+<p><strong>Reference K8s Docs:</strong> </p>
+<ol>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment">Deployments</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/">Updating Env variables</a></li>
+</ol>
 <div class="codehilite"><pre><span></span><code>edit gowebapp-deployment.yaml
 </code></pre></div>
 
@@ -930,7 +938,7 @@ spec:
       containers:
       - env:
         - #TODO: define name as MYSQL_ROOT_PASSWORD
-          #TODO: define value as cloudops
+          #TODO: define value as rootpasswd
         #TODO: Replace &lt;user-name&gt; with value you Docker-Hub ID.
         image: #TODO define gowebapp image created in previous assignment, located in gcr registry
         name: gowebapp
