@@ -741,32 +741,17 @@ k8s-concepts  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.
 echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc
 </code></pre></div>
 
+<h2 id="23-create-dev-namespace-and-make-it-default">2.3 Create 'dev' namespace and make it default.<a class="headerlink" href="#23-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
 <div class="codehilite"><pre><span></span><code>kubectl create ns dev
 </code></pre></div>
 
-<p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
 <div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
 </code></pre></div>
 
-<p><strong>Step 4</strong> Verify current context:</p>
-<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
-</code></pre></div>
-
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p><code>dev</code></p>
-</div>
-<h2 id="23-create-dev-namespace-and-make-it-default">2.3 Create 'dev' namespace and make it default.<a class="headerlink" href="#23-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
-<div class="codehilite"><pre><span></span><code>kubectl #TO DO(create namespace `dev`)
-</code></pre></div>
-
-<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
-<div class="codehilite"><pre><span></span><code>kubectl #TO DO (make `dev` context default)
-</code></pre></div>
-
 <p><strong>Step 3</strong> Verify current context:</p>
-<div class="codehilite"><pre><span></span><code>kubectl config current-context
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
 </code></pre></div>
 
 <div class="admonition result">
