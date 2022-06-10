@@ -14,7 +14,7 @@
     
     
       
-        <title>Module 8 Assignment - Cloud Architecture</title>
+        <title>Module 8 Assignment Solution - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module 8 Assignment
+              Module 8 Assignment Solution
             
           </span>
         </div>
@@ -375,6 +375,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Module 8 Assignment
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -387,12 +399,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 8 Assignment
+          Module 8 Assignment Solution
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Module 8 Assignment
+        Module 8 Assignment Solution
       </a>
       
         
@@ -408,13 +420,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-the-cloud-source-repository-environment-with-module-6-assignment" class="md-nav__link">
-    Prepare the Cloud Source Repository Environment with Module 6 Assignment
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#11-development-tools" class="md-nav__link">
@@ -513,18 +518,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../ycit019_ass3_solution/" class="md-nav__link">
-        Module 8 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../ycit019_ass4_2022/" class="md-nav__link">
         Module 9 Assignment
       </a>
@@ -568,13 +561,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-the-cloud-source-repository-environment-with-module-6-assignment" class="md-nav__link">
-    Prepare the Cloud Source Repository Environment with Module 6 Assignment
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#11-development-tools" class="md-nav__link">
@@ -686,61 +672,6 @@
 </ul>
 </li>
 </ul>
-<h2 id="prepare-the-cloud-source-repository-environment-with-module-6-assignment">Prepare the Cloud Source Repository Environment with Module 6 Assignment<a class="headerlink" href="#prepare-the-cloud-source-repository-environment-with-module-6-assignment" title="Permanent link">&para;</a></h2>
-<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
-<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
-<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
-<p>Once opened, you can use it to run the instructions for this lab.</p>
-<p>Cloud Source Repositories: Qwik Start</p>
-<p><strong>Step 1</strong> Locate directory where kubernetes <code>YAML</code> manifest going to be stored.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019_2022/
-git pull       # Pull latest Mod8_assignment
-</code></pre></div>
-
-<p>In case you don't have this folder clone it as following:</p>
-<div class="codehilite"><pre><span></span><code>cd ~
-git clone https://github.com/Cloud-Architects-Program/ycit019_2022
-cd ~/ycit019_2022/Mod8_assignment/
-ls
-</code></pre></div>
-
-<p><strong>Step 2</strong> Go into the local repository you've created:</p>
-<div class="codehilite"><pre><span></span><code>export student_name=&lt;write_your_name_here_and_remove_brakets&gt;
-</code></pre></div>
-
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Replace above with your project_id student_name</p>
-</div>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
-</code></pre></div>
-
-<p><strong>Step 3</strong> Copy <code>Mod8_assignment</code> folder to your repo:</p>
-<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
-cp -r ~/ycit019_2022/Mod8_assignment/ .
-</code></pre></div>
-
-<p><strong>Step 4</strong> Commit <code>Mod8_assignment</code> folder using the following Git commands:</p>
-<div class="codehilite"><pre><span></span><code>git status 
-git add .
-git commit -m &quot;adding `Mod8_assignment` with kubernetes YAML manifest&quot;
-</code></pre></div>
-
-<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
-<div class="codehilite"><pre><span></span><code>git push origin master
-</code></pre></div>
-
-<p><strong>Step 6</strong> Review Cloud Source Repositories</p>
-<p>Use the <code>Google Cloud Source Repositories</code> code browser to view repository files. 
-You can filter your view to focus on a specific branch, tag, or comment.</p>
-<p>Browse the Mod8_assignment files you pushed to the repository by opening the Navigation menu and selecting Source Repositories:</p>
-<div class="codehilite"><pre><span></span><code>Click Menu -&gt; Source Repositories &gt; Source Code.
-</code></pre></div>
-
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p>The console shows the files in the master branch at the most recent commit.</p>
-</div>
 <h2 id="11-development-tools">1.1 Development Tools<a class="headerlink" href="#11-development-tools" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -749,7 +680,6 @@ You can filter your view to focus on a specific branch, tag, or comment.</p>
 <p><strong>Step 1</strong> Choose one of the following option to develop the YAML manifests:</p>
 <p><em>Option 1:</em> You can develop in <a href="https://shell.cloud.google.com/">Google Cloud Shell Editor</a></p>
 <p><em>Option 2:</em> You can also develop locally on your laptop using <a href="https://code.visualstudio.com/">VCScode</a>. We recommend to use it in conjunction with VSC YAML extension from <a href="https://t.co/D5r4HZZdUC?amp=1">Redhat</a></p>
-<p><em>Option 4:</em> Use your preferred text editor on Linux VM (vim, nano).</p>
 <p><em>Option 3:</em> Use your preferred text editor on Linux VM (vim, nano).</p>
 <h2 id="21-create-gke-cluster">2.1 Create GKE Cluster<a class="headerlink" href="#21-create-gke-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
@@ -795,45 +725,70 @@ echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc
 <p><code>dev</code></p>
 </div>
 <h2 id="24-create-service-object-for-mysql">2.4 Create Service Object for MySQL<a class="headerlink" href="#24-create-service-object-for-mysql" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Locate folder with Kubernetes Manifests:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/Mod8_assignment/deploy
+<p><strong>Step 1</strong> Locate directory where kubernetes manifests going to be stored.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/ycit019/
+git pull       # Pull latest assignement3
+</code></pre></div>
+
+<p>In case you don't have this folder clone it as following:</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Assignment3/
 ls
 </code></pre></div>
 
-<p><strong>Output:</strong> <code>gowebapp-deployment.yaml  gowebapp-mysql-deployment.yaml  gowebapp-mysql-service.yaml  gowebapp-service.yaml</code></p>
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p>You can see 4 manifest with <code>Deployment</code> and <code>Service</code> manifests for <code>gowebapp</code> and  <code>gowebapp-mysql</code></p>
-</div>
+<p><strong>Step 2</strong> Go into the local repository you've created:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+</code></pre></div>
+
+<p><strong>Step 3</strong> Copy Assignment 3 <code>deploy</code> folder to your repo:</p>
+<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
+cp -r ~/ycit019/Assignment3/deploy .
+</code></pre></div>
+
+<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>git status 
+git add .
+git commit -m &quot;adding K8s manifests in deploy folder&quot;
+</code></pre></div>
+
+<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
 <p><strong>Step 6</strong> Define a Kubernetes Service object for the backend MySQL database.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy
+</code></pre></div>
+
 <p>Follow instructions below to populate  <code>gowebapp-mysql-service.yaml</code></p>
-<p><strong>Reference K8s Docs:</strong> </p>
-<ol>
-<li><a href="https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service">Service</a></li>
-</ol>
+<p>For reference, please see <code>Service</code> <a href="https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service">docs</a>:</p>
+<div class="codehilite"><pre><span></span><code>https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+</code></pre></div>
+
 <p>Additionally, you can use <code>kubectl</code> built-in docs for any type of resources:</p>
 <div class="codehilite"><pre><span></span><code>kubectl explain service
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>edit gowebapp-mysql-service.yaml
+<div class="codehilite"><pre><span></span><code>vim gowebapp-mysql-service.yaml
 </code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can also use VCS or Cloud Code to work with <code>yaml</code> manifest.</p>
 </div>
-<div class="codehilite"><pre><span></span><code>#TODO: Specify Kubernetes API apiVersion
-#TODO: Identify the kind of Object
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: Service
 metadata:
- #TODO: Give the service a name: &quot;gowebapp-mysql&quot;
+  name: gowebapp-mysql
   labels:
-    #TODO: Add a label KV &quot;run: gowebapp-mysql&quot;
+    run: gowebapp-mysql
 spec:
-  #TODO: leave the clusterIP to None. We allow k8s to assign clusterIP.
+  clusterIP: None
   ports:
-    #TODO: Define a &quot;port&quot; as 3306
-    #TODO: Define a &quot;targetPort&quot; as 3306
-  #TODO: Add a selector for our pods as label &quot;run&quot; with value &quot;gowebapp-mysql&quot;
+  - port: 3306
+    targetPort: 3306
+  selector:
+    run: gowebapp-mysql
 </code></pre></div>
 
 <p><strong>Step 3</strong> Create a Service object for MySQL</p>
@@ -847,39 +802,39 @@ spec:
 <h2 id="25-create-deployment-object-for-the-backend-mysql-database">2.5 Create Deployment object for the backend MySQL database<a class="headerlink" href="#25-create-deployment-object-for-the-backend-mysql-database" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-mysql-deployment.yaml</code></p>
 <p>For reference, please see <code>Deployment</code> doc:</p>
-<p><strong>Reference K8s Docs:</strong> </p>
-<ol>
-<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment">Deployments</a></li>
-<li><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/">Updating Env variables</a></li>
-</ol>
-<div class="codehilite"><pre><span></span><code>edit gowebapp-mysql-deployment.yaml
+<div class="codehilite"><pre><span></span><code>https://kubernetes.io/docs/concepts/workloads/controllers/deployment
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>vim gowebapp-mysql-deployment.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
-#TODO: Identify the type of Object
+kind: Deployment
 metadata:
-  #TODO: Give the Deployment a name &quot;gowebapp-mysql&quot;
+  name: gowebapp-mysql
   labels:
-  #TODO: Add a label KV &quot;run: gowebapp-mysql&quot;
-  #TODO: give the Deployment a label: tier: backend
+    run: gowebapp-mysql
+    tier: backend
 spec:
-  #TODO: Define number of replicas, set it to 1
-  #TODO: Starting from Deplloyment v1 selectors are mandatory
-    #add selector KV &quot;run: gowebapp-mysql&quot;
+  replicas: 1
+  selector:
+    matchLabels:
+      run: gowebapp-mysql
   strategy:
-    type: # Set strategy type as `Recreate`
+    type: Recreate
   template:
     metadata:
-      #TODO: Add a label called &quot;run&quot; with the name of the service: &quot;gowebapp-mysql&quot;
+      labels:
+        run: gowebapp-mysql
     spec:
       containers:
       - env:
-         - #TODO: define name as MYSQL_ROOT_PASSWORD 
-           #TODO: define value as rootpasswd
-         image: #TODO define mysql image created in previous assignment, located in gcr registry
-         name: gowebapp-mysql
-         ports:
-         #TODO: define containerPort: 3306
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
 </code></pre></div>
 
 <p><strong>Step 2</strong> Create a Deployment object for MySQL</p>
@@ -905,7 +860,7 @@ spec:
 </div>
 <h2 id="25-create-a-k8s-service-for-the-frontend-gowebapp">2.5 Create a K8s Service for the frontend gowebapp.<a class="headerlink" href="#25-create-a-k8s-service-for-the-frontend-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-service.yaml</code></p>
-<div class="codehilite"><pre><span></span><code>edit gowebapp-service.yaml
+<div class="codehilite"><pre><span></span><code>vim gowebapp-service.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: v1
@@ -913,13 +868,14 @@ kind: Service
 metadata:
   name: gowebapp
   labels:
-    #TODO: give the Service a label: run: gowebapp
-    #TODO: give the Service a label: tier: frontend
+    run: gowebapp
 spec:
-  #TODO: Define a &quot;ports&quot; array with the &quot;port&quot; attribute: 9000 and &quot;targetPort&quot; attributes: 80
-  #TODO: Add a selector for our pods as label &quot;run&quot; with value &quot;gowebapp&quot;
-  #TODO: Add a Service Type of LoadBalancer
-  #If you need help, see reference: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  type: LoadBalancer
 </code></pre></div>
 
 <p><strong>Step 2</strong> Create a Service object for gowebapp</p>
@@ -932,38 +888,33 @@ spec:
 
 <h2 id="26-create-a-k8s-deployment-object-for-the-frontend-gowebapp">2.6 Create a K8s Deployment object for the frontend gowebapp<a class="headerlink" href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-deployment.yaml</code></p>
-<p><strong>Reference K8s Docs:</strong> </p>
-<ol>
-<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment">Deployments</a></li>
-<li><a href="https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/">Updating Env variables</a></li>
-</ol>
-<div class="codehilite"><pre><span></span><code>edit gowebapp-deployment.yaml
+<div class="codehilite"><pre><span></span><code>vim gowebapp-deployment.yaml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
-#TODO: define the kind of object as Deployment
+kind: Deployment
 metadata:
-  #TODO: Add a name attribute for the service as &quot;gowebapp&quot;
+  name: gowebapp
   labels:
-    #TODO: give the Deployment a label: run: gowebapp
-    #TODO: give the Deployment a label: tier: frontend
+    run: gowebapp
 spec:
-  #TODO: Define number of replicas, set it to 2
-  #TODO: add selector KV &quot;run: gowebapp&quot;
+  replicas: 2
+  selector:
+    matchLabels:
+      run: gowebapp
   template:
     metadata:
       labels:
         run: gowebapp
-        tier: frontend
     spec:
       containers:
       - env:
-        - #TODO: define name as MYSQL_ROOT_PASSWORD
-          #TODO: define value as rootpasswd
-        image: #TODO define gowebapp image created in previous assignment, located in gcr registry
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp:v1
         name: gowebapp
         ports:
-        - #TODO: define the container port as 80
+        - containerPort: 80
 </code></pre></div>
 
 <p><strong>Step 2</strong> Create a Deployment object for gowebapp</p>
@@ -998,11 +949,11 @@ Since you may want to use application for you personal needs, let's change
 <code>YCIT019</code> logo to you <code>Name</code>.</p>
 <p><strong>Step 1</strong> Modify gowebapp frontend so that it has name of you company and link
 to company web page e.g.</p>
-<div class="codehilite"><pre><span></span><code>edit ~/$student_name-notepad/Mod8_assignment/gowebapp/code/template/partial/footer.tmpl
+<div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/gowebapp/code/template/partial/footer.tmpl
 </code></pre></div>
 
 <p><strong>Step 2</strong> Build a new version of Image</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/Mod8_assignment/gowebapp
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp
 docker build -t gcr.io/${PROJECT_ID}/gowebapp:v2 .
 docker push gcr.io/${PROJECT_ID}/gowebapp:v2 .
 </code></pre></div>
@@ -1015,26 +966,23 @@ Upgrade strategy called <code>RollingUpdate</code>.</p>
 <p><code>maxUnavailable</code> - is an optional field that specifies the maximum number of Pods that can be unavailable during the update process. By default, it ensures that at least 25% less than the desired number of Pods are up (25% max unavailable).</p>
 <p><code>Max Surge</code> - is an optional field that specifies the maximum number of Pods that can be created over the desired number of Pods. By default, it ensures that at most 25% more than the desired number of Pods are up (25% max surge).</p>
 <p><strong>Step 1</strong> Locate directory with manifest</p>
-<div class="codehilite"><pre><span></span><code>cd  ~/$student_name-notepad/Mod8_assignment/deploy
+<div class="codehilite"><pre><span></span><code>cd  ~/$MY_REPO/deploy
 </code></pre></div>
 
 <p><strong>Step 2</strong> Trigger rolling upgrade using <code>kubectl set</code> command</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl set image deployments/gowebapp gowebapp=gcr.io/${PROJECT_ID}/gowebapp:v2
 </code></pre></div>
 
 <p><strong>Step 3</strong> Verify rollout history</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl rollout history deployment/gowebapp
 </code></pre></div>
 
 <p><strong>Step 4</strong> Perform Rollback to v1</p>
-<div class="codehilite"><pre><span></span><code>#TO DO
+<div class="codehilite"><pre><span></span><code>kubectl rollout undo deployment/gowebapp --to-revision=1
 </code></pre></div>
 
 <h2 id="28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.8 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/
-</code></pre></div>
-
 <div class="codehilite"><pre><span></span><code>git add .
 git commit -m &quot;k8s manifests&quot;
 </code></pre></div>
@@ -1065,7 +1013,7 @@ git commit -m &quot;k8s manifests&quot;
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../ycit019_ass2_solution/" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../ycit019_ass3/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1074,19 +1022,19 @@ git commit -m &quot;k8s manifests&quot;
               <span class="md-footer__direction">
                 Previous
               </span>
-              Module 6 Assignment Solution
+              Module 8 Assignment
             </div>
           </div>
         </a>
       
       
-        <a href="../ycit019_ass3_solution/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../ycit019_ass4_2022/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Module 8 Assignment Solution
+              Module 9 Assignment
             </div>
           </div>
           <div class="md-footer__button md-icon">
