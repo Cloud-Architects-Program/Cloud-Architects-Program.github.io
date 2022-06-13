@@ -1152,7 +1152,8 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 edit gowebapp-mysql-vpa.yaml
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>kind: VerticalPodAutoscaler
+<div class="codehilite"><pre><span></span><code>apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
 metadata:
   name: gowebapp-mysql
 spec:
@@ -1260,50 +1261,9 @@ metadata:
   labels:
     run: gowebapp
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      run: gowebapp
-  template:
-    metadata:
-      labels:
-        run: gowebapp
-    spec:
-      containers:
-      - env:
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql
-              key: password
-        image: gcr.io/${PROJECT_ID}/gowebapp:v3
-        name: gowebapp
-        ports:
-          - containerPort: 80
-        livenessProbe:
-          httpGet:
-            path: /register
-            port: 80
-          initialDelaySeconds: 15
-          timeoutSeconds: 5
-        readinessProbe:
-          httpGet: 
-            path: /register
-            port: 80
-          initialDelaySeconds: 25
-          timeoutSeconds: 5
+.....
         resources:
         #TODO define a resource request and limits based on VPA Recommender
-        volumeMounts:
-          - name: config-volume
-            mountPath: /go/src/gowebapp/config
-      volumes: 
-      - name: config-volume
-        configMap:
-          name: gowebapp
-          items:
-          - key: webapp-config-json
-            path: config.json
 </code></pre></div>
 
 <p><strong>Step 2</strong> Redeploy our application with defined resource <code>request</code> and <code>limits</code></p>
@@ -1339,7 +1299,7 @@ spec:
 </code></pre></div>
 
 <p><strong>Step 3</strong> Take a closer look at the HPA and observe autoscaling or downscaling if any.</p>
-<div class="codehilite"><pre><span></span><code>kubectl describe hpa kubia
+<div class="codehilite"><pre><span></span><code>kubectl describe hpa gowebapp
 </code></pre></div>
 
 <div class="admonition note">
