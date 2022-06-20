@@ -14,7 +14,7 @@
     
     
       
-        <title>Module 10 Assignment - Cloud Architecture</title>
+        <title>Deploy Applications on Kubernetes - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module 10 Assignment
+              Deploy Applications on Kubernetes
             
           </span>
         </div>
@@ -182,14 +182,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         YCIT019
@@ -301,7 +299,19 @@
   
     <li class="md-nav__item">
       <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
-        Module 10 Kubernetes Networking
+        Module 10 Lab - Kubernetes Networking
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Module 11 Lab - Kubernetes Storage
       </a>
     </li>
   
@@ -316,14 +326,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
       
       <label class="md-nav__link" for="__nav_2_2">
         Assignments
@@ -423,173 +431,23 @@
             
   
   
-    
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Module 9 Assignment Solution
+      </a>
+    </li>
+  
+
+          
+            
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 10 Assignment
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
         Module 10 Assignment
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-prepare-environment" class="md-nav__link">
-    1. Prepare Environment
-  </a>
-  
-    <nav class="md-nav" aria-label="1. Prepare Environment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
-    1.1 Create GKE Cluster with Cluster Network Policy Support
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-locate-assignment-6" class="md-nav__link">
-    1.2 Locate Assignment 6
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#21-create-dev-namespace-and-make-it-default" class="md-nav__link">
-    2.1 Create 'dev' namespace and make it default.
-  </a>
-  
-    <nav class="md-nav" aria-label="2.1 Create 'dev' namespace and make it default.">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#24-create-gowebapp-mysql-deployment" class="md-nav__link">
-    2.4 Create GoWebApp Mysql deployment
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-create-gowebapp-deployment" class="md-nav__link">
-    2.4 Create GoWebApp deployment
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#31-ingress" class="md-nav__link">
-    3.1 Ingress
-  </a>
-  
-    <nav class="md-nav" aria-label="3.1 Ingress">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-expose-gowebapp-with-ingress-resource" class="md-nav__link">
-    3.1 Expose gowebapp with Ingress resource
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-kubernetes-network-policy" class="md-nav__link">
-    4 Kubernetes Network Policy
-  </a>
-  
-    <nav class="md-nav" aria-label="4 Kubernetes Network Policy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prerequisite" class="md-nav__link">
-    Prerequisite
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#41-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
-    4.1 Configure deny-all Network Policy for dev Namespace
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
-    4.2 Configure Network Policy for gowebapp-mysql
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#43-configure-network-policy-for-gowebapp" class="md-nav__link">
-    4.3 Configure Network Policy for gowebapp
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    5 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-cleaning-up" class="md-nav__link">
-    6 Cleaning Up
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1180,25 +1038,6 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../ycit019_ass4_2022/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Module 9 Assignment
-            </div>
-          </div>
-        </a>
-      
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
