@@ -618,6 +618,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Module 10 Assignment Solution
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1026,7 +1038,7 @@ kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
 </code></pre></div>
 
 <p>Check Events from the <code>mysql</code> Pod:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get describe $POD
+<div class="codehilite"><pre><span></span><code>kubectl describe $POD_NAME_FROM_PREVIOUS_COMMAND
 </code></pre></div>
 
 <div class="admonition note">
@@ -1336,7 +1348,7 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
 
 <h2 id="6-cleaning-up">6 Cleaning Up<a class="headerlink" href="#6-cleaning-up" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Delete the cluster</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-scaling
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-networking
 </code></pre></div>
                 
               
@@ -1370,6 +1382,20 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
           </div>
         </a>
       
+      
+        <a href="../ycit019_ass6_solution/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 10 Assignment Solution
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

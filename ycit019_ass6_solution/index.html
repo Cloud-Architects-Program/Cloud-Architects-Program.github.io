@@ -14,7 +14,7 @@
     
     
       
-        <title>Deploy Applications on Kubernetes - Cloud Architecture</title>
+        <title>Module 10 Assignment Solution - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy Applications on Kubernetes
+              Module 10 Assignment Solution
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT019
@@ -326,12 +328,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2">
         Assignments
@@ -455,11 +459,187 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 10 Assignment Solution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Module 10 Assignment Solution
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-prepare-environment" class="md-nav__link">
+    1. Prepare Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Prepare Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-gke-cluster-with-cluster-network-policy-support" class="md-nav__link">
+    1.1 Create GKE Cluster with Cluster Network Policy Support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-locate-assignment-6" class="md-nav__link">
+    1.2 Locate Assignment 6
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-create-a-namespace-dev" class="md-nav__link">
+    1.3 Create a Namespace dev
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configure-volumes" class="md-nav__link">
+    2 Configure Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Configure Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
+    2.1 Create Persistent Volume for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-create-gowebapp-deployment" class="md-nav__link">
+    2.4 Create GoWebApp deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ingress" class="md-nav__link">
+    3 Ingress
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Ingress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-expose-gowebapp-with-ingress-resource" class="md-nav__link">
+    3.1 Expose gowebapp with Ingress resource
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kubernetes-network-policy" class="md-nav__link">
+    4 Kubernetes Network Policy
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Kubernetes Network Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisite" class="md-nav__link">
+    Prerequisite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41-configure-deny-all-network-policy-for-dev-namespace" class="md-nav__link">
+    4.1 Configure deny-all Network Policy for dev Namespace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-configure-network-policy-for-gowebapp-mysql" class="md-nav__link">
+    4.2 Configure Network Policy for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-configure-network-policy-for-gowebapp" class="md-nav__link">
+    4.3 Configure Network Policy for gowebapp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    5 Commit K8s manifests to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleaning-up" class="md-nav__link">
+    6 Cleaning Up
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -523,22 +703,36 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#13-create-a-namespace-dev" class="md-nav__link">
+    1.3 Create a Namespace dev
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#21-create-dev-namespace-and-make-it-default" class="md-nav__link">
-    2.1 Create 'dev' namespace and make it default.
+  <a href="#2-configure-volumes" class="md-nav__link">
+    2 Configure Volumes
   </a>
   
-    <nav class="md-nav" aria-label="2.1 Create 'dev' namespace and make it default.">
+    <nav class="md-nav" aria-label="2 Configure Volumes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#24-create-gowebapp-mysql-deployment" class="md-nav__link">
-    2.4 Create GoWebApp Mysql deployment
+  <a href="#21-create-persistent-volume-for-gowebapp-mysql" class="md-nav__link">
+    2.1 Create Persistent Volume for gowebapp-mysql
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
   </a>
   
 </li>
@@ -556,11 +750,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#31-ingress" class="md-nav__link">
-    3.1 Ingress
+  <a href="#3-ingress" class="md-nav__link">
+    3 Ingress
   </a>
   
-    <nav class="md-nav" aria-label="3.1 Ingress">
+    <nav class="md-nav" aria-label="3 Ingress">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -723,16 +917,143 @@ git commit -m &quot;adding K8s manifests for assignment 6&quot;
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<h2 id="21-create-dev-namespace-and-make-it-default">2.1 Create 'dev' namespace and make it default.<a class="headerlink" href="#21-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
+<h3 id="13-create-a-namespace-dev">1.3 Create a Namespace <code>dev</code><a class="headerlink" href="#13-create-a-namespace-dev" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f dev-namespace.yaml
+<div class="codehilite"><pre><span></span><code>kubectl create ns dev
 </code></pre></div>
 
-<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
-<div class="codehilite"><pre><span></span><code>kubens dev
+<p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
 </code></pre></div>
 
-<h3 id="24-create-gowebapp-mysql-deployment">2.4 Create GoWebApp Mysql deployment<a class="headerlink" href="#24-create-gowebapp-mysql-deployment" title="Permanent link">&para;</a></h3>
+<p><strong>Step 4</strong> Verify current context:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>dev</code></p>
+</div>
+<h2 id="2-configure-volumes">2 Configure Volumes<a class="headerlink" href="#2-configure-volumes" title="Permanent link">&para;</a></h2>
+<h3 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) <code>gowebapp-mysql-pvc.yaml</code> manifest so that it will Dynamically creates 5G GCP PD Persistent Volume (PV), using  <code>balanced</code> persistent disk Provisioner with Access Mode <code>ReadWriteOnce</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-pvc.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gowebapp-mysql-pvc
+  labels:
+    run: gowebapp-mysql
+spec:
+#TODO Access Mode `ReadWriteOnce`
+#TODO Request 5G GCP PD Persistent Storage
+#TODO Balanced PD CSI Storage Class 
+#TODO GKE CSI Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver
+  storageClassName: standard-rwo
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+</code></pre></div>
+
+<p>Please see reference for PVC creation here:
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims</p>
+<p>Save the file!</p>
+<p><strong>Step 2</strong> Apply the manifest for <code>gowebapp-mysql-pvc</code> to Dynamically provision Persistent Volume:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-pvc.yaml
+</code></pre></div>
+
+<p><strong>Step 3</strong> Verify  <code>STATUS</code> of PVC</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pvc
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mongodb-pvc   Pending                                      standard-rwo   5s
+</code></pre></div>
+
+<p>List PVs:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pv
+</code></pre></div>
+
+<p>List GCP Disks:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute disks list
+</code></pre></div>
+
+<h3 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h3>
+<p>Create Mysql deployment using created Persistent Volume (PV)</p>
+<p><strong>Step 1</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> and add Volume</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-deployment.yaml
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: gowebapp-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: gowebapp-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql
+              key: password
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
+        livenessProbe:
+          tcpSocket: 
+            port: 3306
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+        readinessProbe: 
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 25
+          timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: 20m
+            memory: 252M
+          limits:
+            cpu: 1000m
+            memory: 2G
+        #TODO add the definition for volumeMounts:
+        volumeMounts:
+        - #TODO: add mountPath as /var/lib/mysql
+        - mountPath: /var/lib/mysql
+          name: mysql
+      #TODO Configure Pods access to storage by using the claim as a volume
+      #TODO: define persistentVolumeClaim
+      #TODO: claimName is the name defined in gowebapp-mysql-pvc.yaml
+      #TODO Ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes
+      volumes:
+        - name: mysql
+          persistentVolumeClaim:
+            claimName: gowebapp-mysql-pvc
+</code></pre></div>
+
+<p>Save the file!</p>
 <p><strong>Step 2</strong> Deploy <code>gowebapp-mysql</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 kubectl apply -f secret-mysql.yaml              #Create Secret
@@ -744,6 +1065,24 @@ kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
 <div class="codehilite"><pre><span></span><code>kubectl get pods
 </code></pre></div>
 
+<p>Check Events from the <code>mysql</code> Pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get describe $POD
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice the sequence of events:</p>
+<ul>
+<li>Scheduler selects node</li>
+<li>Volume mounted to Pod</li>
+<li><code>kubelet</code> pulls image</li>
+<li><code>kubelet</code> creates and starts container</li>
+</ul>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our Mysql Deployment is up and running with Volume mounted</p>
+</div>
 <h3 id="24-create-gowebapp-deployment">2.4 Create GoWebApp deployment<a class="headerlink" href="#24-create-gowebapp-deployment" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
@@ -772,7 +1111,7 @@ gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
 gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
 </code></pre></div>
 
-<p><strong>Step 4</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<p><strong>Step 5</strong> Access <code>Loadbalancer</code> IP via browser:</p>
 <div class="codehilite"><pre><span></span><code>EXTERNAL-IP:9000
 </code></pre></div>
 
@@ -780,20 +1119,20 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 <p class="admonition-title">Result</p>
 <p>Congrats!!! You've deployed you code to Kubernetes</p>
 </div>
-<h2 id="31-ingress">3.1 Ingress<a class="headerlink" href="#31-ingress" title="Permanent link">&para;</a></h2>
+<h2 id="3-ingress">3 Ingress<a class="headerlink" href="#3-ingress" title="Permanent link">&para;</a></h2>
 <h3 id="31-expose-gowebapp-with-ingress-resource">3.1 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#31-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Delete the LoadBalancer gowebapp service.</p>
-<div class="codehilite"><pre><span></span><code>#TODO delete the gowebapp service
+<div class="codehilite"><pre><span></span><code>kubectl delete svc gowebapp
 </code></pre></div>
 
-<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a NodePort service instead of LoadBalancer service.</p>
+<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a ClusterIP service instead of LoadBalancer service.</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 edit gowebapp-service.yaml
 </code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>Cloud Shell Editor opens. Make sure to update the service and save it!</p>
+<p>Cloud Shell Editor opens. Make sure update service and save it!</p>
 </div>
 <div class="codehilite"><pre><span></span><code>apiVersion: v1
 kind: Service
@@ -807,14 +1146,14 @@ spec:
     targetPort: 80
   selector:
     run: gowebapp
-  #TODO add the appropriate type
+  type: NodePort
 </code></pre></div>
 
 <p>Go back to  Cloud Shell Terminal.</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml   #Re-Create the service
+<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml  #Re-Create Service with ClusterIP
 </code></pre></div>
 
-<p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path /*</p>
+<p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path <code>/*</code></p>
 <div class="codehilite"><pre><span></span><code>cat &gt; gowebapp-ingress.yaml &lt;&lt; EOF
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -824,13 +1163,13 @@ spec:
   rules:
   - http:
       paths:
-      - path: #TODO add the correct path
-        pathType: #TODO add the pathType appropriate for a GKE Ingress
+      - path: /*
+        pathType: ImplementationSpecific
         backend:
           service:
-            name: #TODO add the appropriate service name
+            name: gowebapp
             port:
-              number: #TODO add the appropriate service port
+              number: 9000
 EOF
 </code></pre></div>
 
@@ -838,12 +1177,16 @@ EOF
 <div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-ingress.yaml   #Create Ingress
 </code></pre></div>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you create Ingress first time it takes several minutes, as Ingress Resource will create backing Loadbalancer for it.</p>
+</div>
 <p><strong>Step 5</strong> Verify the Ingress</p>
 <p>After you have deployed a workload, grouped its Pods into a Service, and created an Ingress for the Service, you should verify that the Ingress has provisioned the container-native load balancer successfully.</p>
 <div class="codehilite"><pre><span></span><code>kubectl describe ingress gowebapp-ingress
 </code></pre></div>
 
-<p><strong>Step 6</strong>  Test that application is reachable via <code>Ingress</code></p>
+<p><strong>Step 6</strong>  Test load balancer functionality</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Wait several minutes for the HTTP(S) load balancer to be configured.</p>
@@ -853,21 +1196,23 @@ EOF
 </code></pre></div>
 
 <p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
-<div class="codehilite"><pre><span></span><code>$ADDRESS/*
+<div class="codehilite"><pre><span></span><code>$ADDRESS/gowebapp
 </code></pre></div>
 
 <h2 id="4-kubernetes-network-policy">4 Kubernetes Network Policy<a class="headerlink" href="#4-kubernetes-network-policy" title="Permanent link">&para;</a></h2>
 <p>Let's secure our 2 tier application using Kubernetes Network Policy!</p>
-<p><strong>Task:</strong> We need to ensure the following is configured</p>
+<p><strong>Task:</strong> We need to ensure following is configured</p>
 <ul>
-<li><code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from outside the cluster (Internet), With-in the namespace, and from inside the Cluster</li>
+<li><code>dev</code> namespace Denys by default All <code>Ingress</code> traffic including from Outside, With In Namespace, and in Cluster</li>
 <li><code>mysql</code> pod can be accessed from the <code>gowebapp</code> pod</li>
 <li><code>gowebapp</code> pod can be accessed from the Internet, in our case GKE Ingress (HTTPs Loadbalancer) and it must be configure to allow the appropriate HTTP(S) load balancer health check IP ranges FROM CIDR: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code> or
   to make it less secure From any Endpoint CIDR: <code>0.0.0.0/0</code></li>
 </ul>
 <h3 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h3>
-<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support network Policy.</p>
-<p>Our GKE cluster is already deployed using Calico CNI. To check that calico is installed in your cluster, run:</p>
+<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI
+supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support
+network Policy.</p>
+<p>Our GKE cluster already deployed using Calico CNI. To check that you calico installed you cluster run:</p>
 <div class="codehilite"><pre><span></span><code>kubectl get pods -n kube-system | grep calico
 </code></pre></div>
 
@@ -881,11 +1226,12 @@ calico-typha-horizontal-autoscaler-58b8486cd4-pnt7c         1/1     Running   0 
 calico-typha-vertical-autoscaler-7595df8859-zxzmp           1/1     Running   0          20h
 </code></pre></div>
 
-<h3 id="41-configure-deny-all-network-policy-for-dev-namespace">4.1 Configure <code>deny-all</code> Network Policy for <code>dev</code> Namespace<a class="headerlink" href="#41-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
+<h3 id="41-configure-deny-all-network-policy-for-dev-namespace">4.1 Configure <code>deny-all</code> Network Policy for dev Namespace<a class="headerlink" href="#41-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Locate Directory</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 </code></pre></div>
 
-<p><strong>Step 1</strong> Create a policy so that <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from the Internet, with-in the namespace, and from inside the Cluster</p>
+<p><strong>Step 1</strong> Create Policy so that  <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from Outside Internet, With In Namespace, and inside of Cluster</p>
 <div class="codehilite"><pre><span></span><code>cat &gt; default-deny-dev.yaml &lt;&lt; EOF
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -893,9 +1239,10 @@ metadata:
   name: default-deny
 spec:
   podSelector:
-    matchLabels: #TODO add the appropriate match labels to block all traffic
+    matchLabels: {}
   policyTypes:
-    #TODO Default deny all ingress traffic https://kubernetes.io/docs/concepts/services-networking/network-policies/#default-deny-all-ingress-traffic
+    - Ingress
+  ingress: []
 EOF
 </code></pre></div>
 
@@ -911,21 +1258,13 @@ EOF
 <div class="codehilite"><pre><span></span><code>kubectl describe netpol default-deny
 </code></pre></div>
 
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p><none> - blocking the specific traffic to all pods in this namespace</p>
-</div>
-<p><strong>Step 3</strong> Verify that you can't access the application through Ingress anymore:</p>
+<p><strong>Step 3</strong> Verify that you can't access application from Ingress anymore:</p>
 <p>Visit the IP address in a web browser</p>
 <div class="codehilite"><pre><span></span><code>$Ingress IP
 </code></pre></div>
 
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p>can't access the app through ingress loadbalancer anymore.</p>
-</div>
 <h3 id="42-configure-network-policy-for-gowebapp-mysql">4.2 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#42-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
-<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pods</p>
+<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pod</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 </code></pre></div>
 
@@ -937,12 +1276,12 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      #TODO add the appropriate match labels
+      run: gowebapp-mysql
   ingress:
     - from:
       - podSelector:
           matchLabels:
-            #TODO add the appropriate match labels
+            run: gowebapp
 EOF
 </code></pre></div>
 
@@ -969,7 +1308,7 @@ EOF
 <p><code>run=gowebapp-mysql</code> Allowing ingress traffic only From PodSelector: <code>run=gowebapp</code> pod</p>
 </div>
 <h3 id="43-configure-network-policy-for-gowebapp">4.3 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#43-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h3>
-<p><strong>Step 1</strong> Configure a Network Policy to allow access for the Healthcheck IP ranges needed for the Ingress Loadbalancer, and hence allow access through the Ingress Loadbalancer. The IP rangers you need to enable access from are <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+<p><strong>Step 1</strong>  Configure a <code>frontend-policy</code> Network Policy to allow access for the Healthcheck IP ranges needed for the Ingress Loadbalancer, and hence allow access through the Ingress Loadbalancer. The IP rangers you need to enable access from are <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a6/
 </code></pre></div>
 
@@ -983,7 +1322,14 @@ spec:
     matchLabels:
       run: gowebapp
   ingress:
-  #TODO add the appropriate rules to enable access from IP ranges
+  policyTypes:
+    - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 35.191.0.0/16
+    - ipBlock:
+        cidr: 130.211.0.0/22
   policyTypes:
   - Ingress
 EOF
@@ -1009,7 +1355,7 @@ EOF
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p><code>run=gowebapp</code> Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
+<p><code>run=gowebapp</code>   Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
 </div>
 <p><strong>Step 4</strong>  Test that application is reachable via <code>Ingress</code> after all Network Policy has been applied.</p>
 <p>Get the Ingress IP address, run the following command:</p>
@@ -1050,6 +1396,25 @@ git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../ycit019_ass7/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 10 Assignment
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
