@@ -1,850 +1,267 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
-    
-    
-      
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Module 9 Lab - Kubernetes Features - Cloud Architecture</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
-        
-      
-    
-    
-    
-      
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
-      
-    
-    
-    
-      <link rel="stylesheet" href="../css/extra.css">
-    
-    
-      
-    
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-  
-    
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#0-create-gke-cluster" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
 
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Cloud Architecture
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
             
-              Module 9 Lab - Kubernetes Features
+<li>
+    <a href="../020_Lab_3_Terraform_Fundamentals/" class="dropdown-item">Lab 3 Terraform Fundamentals</a>
+</li>
             
-          </span>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-  </nav>
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Lab 4 Traffic Management</a>
+</li>
             
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
-
-    </a>
-    Cloud Architecture
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        Home
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      <label class="md-nav__link" for="__nav_2">
-        YCIT020
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT020
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Lab 5 EFK Stack</a>
+</li>
             
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
-      
-      <label class="md-nav__link" for="__nav_2_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Lab 6 Monitoring with Prometheus</a>
+</li>
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
-        Lab 3 Terraform Fundamentals
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
-      
-      <label class="md-nav__link" for="__nav_3">
-        YCIT019
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT019
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Lab 6 Monitoring with GMP</a>
+</li>
             
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
-      
-      <label class="md-nav__link" for="__nav_3_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Lab 9 GitOps with Flux</a>
+</li>
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
-        Module 5 Lab - Docker Basics
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
-        Module 6 Lab - Advanced Docker
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
-        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
-        Module 8 Lab - Kuberenetes Concepts
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 9 Lab - Kubernetes Features
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Module 9 Lab - Kubernetes Features
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#0-create-gke-cluster" class="md-nav__link">
-    0 Create GKE Cluster
-  </a>
-  
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Lab 10 Serverless Cloud Run</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#1-kubernetes-features" class="md-nav__link">
-    1 Kubernetes Features
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Kubernetes Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-using-liveness-probes" class="md-nav__link">
-    1.1 Using Liveness Probes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-using-configmaps" class="md-nav__link">
-    1.2 Using ConfigMaps
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-using-secrets" class="md-nav__link">
-    1.3 Using Secrets
-  </a>
-  
-    <nav class="md-nav" aria-label="1.3 Using Secrets">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#131-kubernetes-secrets" class="md-nav__link">
-    1.3.1 Kubernetes Secrets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-jobs" class="md-nav__link">
-    1.4 Jobs
-  </a>
-  
-    <nav class="md-nav" aria-label="1.4 Jobs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#141-non-parallel-job" class="md-nav__link">
-    1.4.1 Non-parallel Job
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#142-parallel-job" class="md-nav__link">
-    1.4.2 Parallel Job
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-cron-jobs" class="md-nav__link">
-    1.5 Cron Jobs
-  </a>
-  
-    <nav class="md-nav" aria-label="1.5 Cron Jobs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#151-create-cron-job" class="md-nav__link">
-    1.5.1 Create Cron Job
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-daemon-set" class="md-nav__link">
-    1.6 Daemon Set
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#17-cleaning-up" class="md-nav__link">
-    1.7 Cleaning Up
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
-  
-</nav>
-      
-    </li>
-  
-
-          
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
-        Module 9 Part 2 Lab Kubernetes Autoscaling
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
-        Module 10 Lab - Kubernetes Networking
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
-        Module 11 Lab - Kubernetes Storage
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
-      
-      <label class="md-nav__link" for="__nav_3_2">
-        Assignments
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Assignments
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1/" class="md-nav__link">
-        Module 5 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1_sol/" class="md-nav__link">
-        Module 5 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2/" class="md-nav__link">
-        Module 6 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2_solution/" class="md-nav__link">
-        Module 6 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3/" class="md-nav__link">
-        Module 8 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3_solution/" class="md-nav__link">
-        Module 8 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_2022/" class="md-nav__link">
-        Module 9 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_sol/" class="md-nav__link">
-        Module 9 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass7/" class="md-nav__link">
-        Module 10 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass6_solution/" class="md-nav__link">
-        Module 10 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#0-create-gke-cluster" class="md-nav__link">
-    0 Create GKE Cluster
-  </a>
-  
+<li>
+    <a href="../020_Assignment_2_Production_GKE/" class="dropdown-item">Assignment2</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#1-kubernetes-features" class="md-nav__link">
-    1 Kubernetes Features
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Kubernetes Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-using-liveness-probes" class="md-nav__link">
-    1.1 Using Liveness Probes
-  </a>
-  
+            
+<li>
+    <a href="../020_Assignment_3_Terraform_GCP_Foundation/" class="dropdown-item">Assignment3</a>
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#12-using-configmaps" class="md-nav__link">
-    1.2 Using ConfigMaps
-  </a>
-  
+            
+<li>
+    <a href="../020_Assignment_4_Helm_Foundation/" class="dropdown-item">Assignmen4</a>
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#13-using-secrets" class="md-nav__link">
-    1.3 Using Secrets
-  </a>
-  
-    <nav class="md-nav" aria-label="1.3 Using Secrets">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#131-kubernetes-secrets" class="md-nav__link">
-    1.3.1 Kubernetes Secrets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-jobs" class="md-nav__link">
-    1.4 Jobs
-  </a>
-  
-    <nav class="md-nav" aria-label="1.4 Jobs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#141-non-parallel-job" class="md-nav__link">
-    1.4.1 Non-parallel Job
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#142-parallel-job" class="md-nav__link">
-    1.4.2 Parallel Job
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-cron-jobs" class="md-nav__link">
-    1.5 Cron Jobs
-  </a>
-  
-    <nav class="md-nav" aria-label="1.5 Cron Jobs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#151-create-cron-job" class="md-nav__link">
-    1.5.1 Create Cron Job
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-daemon-set" class="md-nav__link">
-    1.6 Daemon Set
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#17-cleaning-up" class="md-nav__link">
-    1.7 Cleaning Up
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
             
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <p>Lab 8 Kubernetes Features</p>
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ycit019_Module_10_Kubernetes_Scaling/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#0-create-gke-cluster" class="nav-link">0 Create GKE Cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#1-kubernetes-features" class="nav-link">1 Kubernetes Features</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#11-using-liveness-probes" class="nav-link">1.1 Using Liveness Probes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#12-using-configmaps" class="nav-link">1.2 Using ConfigMaps</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#13-using-secrets" class="nav-link">1.3 Using Secrets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#14-jobs" class="nav-link">1.4 Jobs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#15-cron-jobs" class="nav-link">1.5 Cron Jobs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#16-daemon-set" class="nav-link">1.6 Daemon Set</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#17-cleaning-up" class="nav-link">1.7 Cleaning Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Lab 8 Kubernetes Features</p>
 <p><strong>Objective</strong></p>
 <ul>
 <li>Use Liveness Probes to healthcheck you application while it is running</li>
@@ -853,23 +270,23 @@
 </ul>
 <h2 id="0-create-gke-cluster">0 Create GKE Cluster<a class="headerlink" href="#0-create-gke-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enbale the Google Kubernetes Engine API.</p>
-<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
-</code></pre></div>
+<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+</code></pre>
 
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-features \
+<pre class="codehilite"><code>gcloud container clusters create k8s-features \
 --zone us-central1-c \
 --num-nodes 2
-</code></pre></div>
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+<pre class="codehilite"><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
 k8s-features  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong> Authenticate to the cluster.</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-features --zone us-central1-c
-</code></pre></div>
+<pre class="codehilite"><code>gcloud container clusters get-credentials k8s-features --zone us-central1-c
+</code></pre>
 
 <h1 id="1-kubernetes-features">1 Kubernetes Features<a class="headerlink" href="#1-kubernetes-features" title="Permanent link">&para;</a></h1>
 <h2 id="11-using-liveness-probes">1.1 Using Liveness Probes<a class="headerlink" href="#11-using-liveness-probes" title="Permanent link">&para;</a></h2>
@@ -886,7 +303,7 @@ Liveness checks:</p>
 <p>In below example we are going to use HTTP GET probe for a Pod that runs a container
 based on the <code>gcr.io/google_containers/liveness</code> image.</p>
 <p><strong> Step 1</strong> Create <code>http-liveness.yaml</code> manifest with below content:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; http-liveness.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; http-liveness.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -909,7 +326,7 @@ spec:
       initialDelaySeconds: 3
       periodSeconds: 3
 EOF
-</code></pre></div>
+</code></pre>
 
 <p>Based on the manifest, we can see that the Pod has a single Container.
 The <code>periodSeconds</code> field specifies that the kubelet should perform a liveness
@@ -925,28 +342,28 @@ other code indicates failure.</p>
 <p>Full code for for a reference in  <a href="https://github.com/kubernetes/kubernetes/blob/master/test/images/liveness/server.go">server.go</a>.</p>
 <p>For the first 10 seconds that the Container is alive, the <code>/healthz</code> handler
 returns a status of 200. After that, the handler returns a status of 500.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">http</span><span class="p">.</span><span class="nx">HandleFunc</span><span class="p">(</span><span class="s">&quot;/healthz&quot;</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">duration</span> <span class="o">:=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">Sub</span><span class="p">(</span><span class="nx">started</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nx">duration</span><span class="p">.</span><span class="nx">Seconds</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">10</span> <span class="p">{</span>
-        <span class="nx">w</span><span class="p">.</span><span class="nx">WriteHeader</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-        <span class="nx">w</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;error: %v&quot;</span><span class="p">,</span> <span class="nx">duration</span><span class="p">.</span><span class="nx">Seconds</span><span class="p">())))</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">w</span><span class="p">.</span><span class="nx">WriteHeader</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-        <span class="nx">w</span><span class="p">.</span><span class="nx">Write</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;ok&quot;</span><span class="p">))</span>
-    <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-go">http.HandleFunc(&quot;/healthz&quot;, func(w http.ResponseWriter, r *http.Request) {
+    duration := time.Now().Sub(started)
+    if duration.Seconds() &gt; 10 {
+        w.WriteHeader(500)
+        w.Write([]byte(fmt.Sprintf(&quot;error: %v&quot;, duration.Seconds())))
+    } else {
+        w.WriteHeader(200)
+        w.Write([]byte(&quot;ok&quot;))
+    }
+})
+</code></pre>
 
 <p>The kubelet starts performing health checks 3 seconds after the Container starts.
 So the first couple of health checks will succeed. But after 10 seconds, the health
 checks will fail, and the kubelet will kill and restart the Container.</p>
 <p><strong>Step 2</strong> Let's create a Pod and see how HTTP liveness check works:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create -f http-liveness.yaml
-</code></pre></div>
+<pre class="codehilite"><code class="language-shell">kubectl create -f http-liveness.yaml
+</code></pre>
 
 <p><strong>Step 3</strong> Monitor the Pod</p>
-<div class="codehilite"><pre><span></span><code>watch kubectl get pod
-</code></pre></div>
+<pre class="codehilite"><code>watch kubectl get pod
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -954,16 +371,16 @@ checks will fail, and the kubelet will kill and restart the Container.</p>
 </div>
 <p>Exit the shell session by using ctrl+c</p>
 <p><strong>Step 4</strong> Verify status of the Pod and review the Events happened after restart</p>
-<div class="codehilite"><pre><span></span><code>kubectl describe pod liveness-http
-</code></pre></div>
+<pre class="codehilite"><code class="language-shell">kubectl describe pod liveness-http
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Pod events shows that liveness probes have failed and the Container has been restarted.</p>
 </div>
 <p><strong>Step 5</strong> Clean up</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f http-liveness.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl delete -f http-liveness.yaml
+</code></pre>
 
 <h2 id="12-using-configmaps">1.2 Using ConfigMaps<a class="headerlink" href="#12-using-configmaps" title="Permanent link">&para;</a></h2>
 <p>In Kubernetes ConfigMaps could be use in several cases:</p>
@@ -975,7 +392,7 @@ checks will fail, and the kubelet will kill and restart the Container.</p>
 </ul>
 <p>Let's try second option and deploy nginx pod while storing its config in a ConfigMap.</p>
 <p><strong>Step 1</strong> Create nginx <code>my-nginx-config.conf</code> config file as below:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; my-nginx-config.conf
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; my-nginx-config.conf
 server {
   listen              80;
   server_name         www.cloudnative.tech;
@@ -989,18 +406,18 @@ server {
   }
 }
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong> Create ConfigMap from this file</p>
-<div class="codehilite"><pre><span></span><code>kubectl create configmap nginxconfig --from-file=my-nginx-config.conf
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create configmap nginxconfig --from-file=my-nginx-config.conf
+</code></pre>
 
 <p><strong>Step 3</strong> Review the ConfigMap</p>
-<div class="codehilite"><pre><span></span><code>kubectl describe cm nginxconfig
-</code></pre></div>
+<pre class="codehilite"><code>kubectl describe cm nginxconfig
+</code></pre>
 
 <p><strong>Result:</strong></p>
-<div class="codehilite"><pre><span></span><code>  ```
+<pre class="codehilite"><code>  ```
   Name:     nginxconfig
   Namespace:    default
   Labels:       &lt;none&gt;
@@ -1025,10 +442,10 @@ EOF
 
   Events:   &lt;none&gt;
   ```
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 4</strong> Create Nginx Pod <code>website.yaml</code> file, where ConfigMap referenced as a Volume</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; website.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; website.yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -1051,16 +468,16 @@ spec:
     configMap:
       name: nginxconfig
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Deploy Nginx Pod <code>website.yaml</code></p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f website.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f website.yaml
+</code></pre>
 
 <p>You can expose a service as we usually do with NodePort or LoadBalancer or by using the port-forward technicque in the next step</p>
 <p><strong>Step 6</strong> Open second <code>SSH</code> terminal by pressing "+" icon in the cloud shell and run following command</p>
-<div class="codehilite"><pre><span></span><code>kubectl port-forward website 8080:80
-</code></pre></div>
+<pre class="codehilite"><code>kubectl port-forward website 8080:80
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -1068,11 +485,11 @@ EOF
 </div>
 <p><strong>Step 7</strong> Test that website is running
 Navigate back to the first terminal tab and run the following</p>
-<div class="codehilite"><pre><span></span><code>curl localhost:8080
-</code></pre></div>
+<pre class="codehilite"><code>curl localhost:8080
+</code></pre>
 
 <p><strong>Result:</strong></p>
-<div class="codehilite"><pre><span></span><code>  ```
+<pre class="codehilite"><code>  ```
   &lt;html&gt;
   &lt;head&gt;&lt;title&gt;403 Forbidden&lt;/title&gt;&lt;/head&gt;
   &lt;body&gt;
@@ -1081,7 +498,7 @@ Navigate back to the first terminal tab and run the following</p>
   &lt;/body&gt;
   &lt;/html&gt;
   ```
-</code></pre></div>
+</code></pre>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -1089,21 +506,21 @@ Navigate back to the first terminal tab and run the following</p>
 </div>
 <p>You can also use the <code>preview</code> feature with the console</p>
 <p><strong>Step 8</strong> start a shell in the pod by using <code>exec</code></p>
-<div class="codehilite"><pre><span></span><code>kubectl exec website -it -- sh
-</code></pre></div>
+<pre class="codehilite"><code>kubectl exec website -it -- sh
+</code></pre>
 
 <p>Your terminal now should have <code>/#</code></p>
 <p><strong>Step 9</strong> view the content of the folder where we added the volume</p>
-<div class="codehilite"><pre><span></span><code>ls /etc/nginx/conf.d
-</code></pre></div>
+<pre class="codehilite"><code>ls /etc/nginx/conf.d
+</code></pre>
 
 <p><strong>Step 10</strong> check the content of the file in that folder and notice that it's the same as the config file for nginx we mounted.</p>
-<div class="codehilite"><pre><span></span><code>cat /etc/nginx/conf.d/my-nginx-config.conf
-</code></pre></div>
+<pre class="codehilite"><code>cat /etc/nginx/conf.d/my-nginx-config.conf
+</code></pre>
 
 <p><strong>Step 11</strong> Exit the shell</p>
-<div class="codehilite"><pre><span></span><code>exit
-</code></pre></div>
+<pre class="codehilite"><code>exit
+</code></pre>
 
 <p>Make sure you're back to the cloud shell terminal.</p>
 <h2 id="13-using-secrets">1.3 Using Secrets<a class="headerlink" href="#13-using-secrets" title="Permanent link">&para;</a></h2>
@@ -1111,12 +528,12 @@ Navigate back to the first terminal tab and run the following</p>
 <p>Kubernetes secrets allow users to define sensitive information outside of containers and expose that information to containers through environment variables as well as files within Pods. In this section we will declare and create secrets to hold our database connection information that will be used by Wordpress to connect to its backend database.</p>
 <p><strong>Step 1</strong> Open up two terminal windows. We will use one window to generate encoded strings that will contain our sensitive data. The other window will be used to create the secrets YAML declaration.</p>
 <p><strong>Step 2</strong> In the first terminal window, execute the following commands to encode our strings:</p>
-<div class="codehilite"><pre><span></span><code>echo -n &quot;admin&quot; | base64
+<pre class="codehilite"><code>echo -n &quot;admin&quot; | base64
 echo -n &quot;t0p-Secret&quot; | base64
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong> create the secret. For this lab, we added the encoded values for you. Feel free to change the username and password, and replace the values in the file below:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; app-secrets.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; app-secrets.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -1126,22 +543,22 @@ data:
   username: YWRtaW4=
   password: dDBwLVNlY3JldA==
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 4</strong> Create the secret:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create -f app-secrets.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create -f app-secrets.yaml
+</code></pre>
 
 <p><strong>Step 5</strong> Verify secret creation and get details:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get secrets
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get secrets
+</code></pre>
 
 <p><strong>Step 6</strong> Get details of this secret:</p>
-<div class="codehilite"><pre><span></span><code>kubectl describe secrets/app-secrets
-</code></pre></div>
+<pre class="codehilite"><code>kubectl describe secrets/app-secrets
+</code></pre>
 
 <p><strong>Result:</strong></p>
-<div class="codehilite"><pre><span></span><code>Name:         app-secret
+<pre class="codehilite"><code>Name:         app-secret
 Namespace:    default
 Labels:       &lt;none&gt;
 Annotations:  &lt;none&gt;
@@ -1152,11 +569,11 @@ Data
 ====
 password:  10 bytes
 username:  5 bytes
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 7</strong> Create a pod that will reference the secret as a volume.
 Use either nano or vim to create secret-pod.yaml, and copy the following to it</p>
-<div class="codehilite"><pre><span></span><code>apiVersion: v1
+<pre class="codehilite"><code>apiVersion: v1
 kind: Pod
 metadata:
   name: secret-test-pod
@@ -1173,17 +590,17 @@ spec:
       secret:
         secretName: app-secret
   restartPolicy: Never
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 8</strong> View the logs of the pod.</p>
-<div class="codehilite"><pre><span></span><code>kubectl logs secret-test-pod
-</code></pre></div>
+<pre class="codehilite"><code>kubectl logs secret-test-pod
+</code></pre>
 
 <p>Notice how we were able to pull the content of the secret using a command. Not very secure, right?</p>
 <p><strong>Step 9</strong> Delete both the pod and the secret</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete pod secret-test-pod
+<pre class="codehilite"><code>kubectl delete pod secret-test-pod
 kubectl delete secret app-secret
-</code></pre></div>
+</code></pre>
 
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
@@ -1199,7 +616,7 @@ kubectl delete secret app-secret
 <p>Use the image "busybox" and have it sleep for 10 seconds and then complete.
 Run your job to be sure it works.</p>
 <p><strong>Step 1</strong> Create a Job Manifest</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; busybox.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; busybox.yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -1213,34 +630,34 @@ spec:
         command: [&quot;sleep&quot;, &quot;20&quot;]
       restartPolicy: Never
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong> Run a Job</p>
-<div class="codehilite"><pre><span></span><code>kubectl create -f busybox.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create -f busybox.yaml
+</code></pre>
 
 <p><strong>Step 3</strong> Look at the job:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get jobs
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get jobs
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME      DESIRED   SUCCESSFUL   AGE
+<pre class="codehilite"><code>NAME      DESIRED   SUCCESSFUL   AGE
 busybox    1         0            0s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>The output shows that the job is not successful yet.</p>
 </div>
 <p><strong>Step 4</strong> Watch the pod status</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -w pods
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get -w pods
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME         READY     STATUS    RESTARTS   AGE
+<pre class="codehilite"><code>NAME         READY     STATUS    RESTARTS   AGE
 busybox-lk49x   1/1       Running   0          7s
 busybox-lk49x   0/1       Completed   0         24s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -1248,23 +665,23 @@ busybox-lk49x   0/1       Completed   0         24s
 Then pod successfully exits after a few seconds and shows the <code>Completed</code> status.</p>
 </div>
 <p><strong>Step 5</strong> Watch the job status again:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get jobs
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get jobs
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME      COMPLETIONS   DURATION   AGE
+<pre class="codehilite"><code>NAME      COMPLETIONS   DURATION   AGE
 busybox   1/1           21s        1m
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Delete a Job</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f busybox.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl delete -f busybox.yaml
+</code></pre>
 
 <h3 id="142-parallel-job">1.4.2 Parallel Job<a class="headerlink" href="#142-parallel-job" title="Permanent link">&para;</a></h3>
 <p>Non-parallel jobs run only one pod per job. This API is used to run multiple pods in parallel for the job. The number of pods to complete is defined by <code>.spec.completions</code> attribute in the configuration file. The number of pods to run in parallel is defined by <code>.spec.parallelism</code> attribute in the configuration file. The default value for both of these attributes is 1.</p>
 <p>The job is complete when there is one successful pod for each value in the range in 1 to <code>.spec.completions</code>. For that reason, it is also called as <em>fixed completion count</em> job.</p>
 <p><strong>Step 1</strong> Create a Job Manifest</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; job-parallel.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; job-parallel.yaml
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -1282,7 +699,7 @@ spec:
         command: [&quot;sleep&quot;,  &quot;10&quot;]
       restartPolicy: Never
 EOF
-</code></pre></div>
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1292,15 +709,15 @@ This means the job will be complete when six pods have successfully completed.
 A maximum of two pods will run in parallel at a given time.</p>
 </div>
 <p><strong>Step 2</strong> Create a parallel job using the command:</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f job-parallel.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f job-parallel.yaml
+</code></pre>
 
 <p><strong>Step 3</strong> Watch the status of the job as shown:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -w jobs
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get -w jobs
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME   COMPLETIONS   DURATION   AGE
+<pre class="codehilite"><code>NAME   COMPLETIONS   DURATION   AGE
 wait   0/6           6s         6s
 wait   1/6           12s        12s
 wait   2/6           12s        12s
@@ -1308,18 +725,18 @@ wait   3/6           24s        24s
 wait   4/6           24s        24s
 wait   5/6           36s        36s
 wait   6/6           36s        36s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition results">
 <p class="admonition-title">Results</p>
 <p>The output shows that 2 pods are created about every 12 seconds.</p>
 </div>
 <p><strong>Step 4</strong>  In another terminal window, watch the status of pods created:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -w pods -l job-name=wait
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get -w pods -l job-name=wait
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME         READY   STATUS      RESTARTS   AGE
+<pre class="codehilite"><code>NAME         READY   STATUS      RESTARTS   AGE
 wait-5blwm   0/1     Completed   0          17s
 wait-stmk4   0/1     Completed   0          17s
 wait-ts6xt   1/1     Running     0          5s
@@ -1336,35 +753,35 @@ wait-rq6z5   1/1     Running             0          2s
 wait-f85bj   1/1     Running             0          2s
 wait-f85bj   0/1     Completed           0          12s
 wait-rq6z5   0/1     Completed           0          12s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Once the job is completed, you can get the list of completed pods</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods -l job-name=wait
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pods -l job-name=wait
+</code></pre>
 
 <p>Result:</p>
-<div class="codehilite"><pre><span></span><code>NAME         READY   STATUS      RESTARTS   AGE
+<pre class="codehilite"><code>NAME         READY   STATUS      RESTARTS   AGE
 wait-5blwm   0/1     Completed   0          2m55s
 wait-f85bj   0/1     Completed   0          2m31s
 wait-rq6z5   0/1     Completed   0          2m31s
 wait-stmk4   0/1     Completed   0          2m55s
 wait-ts6xt   0/1     Completed   0          2m43s
 wait-xlhl6   0/1     Completed   0          2m43s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Similarly, <code>kubectl get jobs</code> shows the status of the job after it
 has completed:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get jobs
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get jobs
+</code></pre>
 
 <p>Result:</p>
-<div class="codehilite"><pre><span></span><code>NAME   COMPLETIONS   DURATION   AGE
+<pre class="codehilite"><code>NAME   COMPLETIONS   DURATION   AGE
 wait   6/6           36s        3m54s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Deleting a job deletes all the pods as well. Delete the job as:</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f job-parallel.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl delete -f job-parallel.yaml
+</code></pre>
 
 <h2 id="15-cron-jobs">1.5 Cron Jobs<a class="headerlink" href="#15-cron-jobs" title="Permanent link">&para;</a></h2>
 <p>A Cron Job is a job that runs on a given schedule, written in Cron format.
@@ -1376,7 +793,7 @@ There are two primary use cases:</p>
 <h3 id="151-create-cron-job">1.5.1 Create Cron Job<a class="headerlink" href="#151-create-cron-job" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Create <code>CronJob</code> manifest that prints the current timestamp and the
 message "<code>Hello World</code>" every minute.</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; cronjob.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; cronjob.yaml
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -1399,18 +816,18 @@ spec:
             - date; echo Hello World!
           restartPolicy: OnFailure
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong> Create the Cron Job as shown in the command:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create -f cronjob.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create -f cronjob.yaml
+</code></pre>
 
 <p><strong>Step 3</strong> Watch the status of the job as shown:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -w cronjobs
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get -w cronjobs
+</code></pre>
 
 <p><strong>Output</strong>:</p>
-<div class="codehilite"><pre><span></span><code>NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+<pre class="codehilite"><code>NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE
 hello   */1 * * * *   False     0        &lt;none&gt;          6s
 hello   */1 * * * *   False     1        5s              39s
 hello   */1 * * * *   False     0        15s             49s
@@ -1418,14 +835,14 @@ hello   */1 * * * *   False     1        5s              99s
 hello   */1 * * * *   False     0        15s             109s
 hello   */1 * * * *   False     1        6s              2m40s
 hello   */1 * * * *   False     0        16s             2m50s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 4</strong> In another terminal window, watch the status of pods created:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get -w pods -l app=hello-cronpod
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get -w pods -l app=hello-cronpod
+</code></pre>
 
 <p><strong>Output</strong>:</p>
-<div class="codehilite"><pre><span></span><code>NAME                     READY   STATUS      RESTARTS   AGE
+<pre class="codehilite"><code>NAME                     READY   STATUS      RESTARTS   AGE
 hello-1622584020-kc46c   0/1     Completed   0          118s
 hello-1622584080-c2pcq   0/1     Completed   0          58s
 hello-1622584140-hxnv2   0/1     Pending     0          0s
@@ -1433,20 +850,20 @@ hello-1622584140-hxnv2   0/1     Pending     0          0s
 hello-1622584140-hxnv2   0/1     ContainerCreating   0          0s
 hello-1622584140-hxnv2   1/1     Running             0          1s
 hello-1622584140-hxnv2   0/1     Completed           0          2s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Get logs from one of the pods:</p>
-<div class="codehilite"><pre><span></span><code>kubectl logs hello-1622584140-hxnv2
-</code></pre></div>
+<pre class="codehilite"><code>kubectl logs hello-1622584140-hxnv2
+</code></pre>
 
 <p><strong>Output</strong>:</p>
-<div class="codehilite"><pre><span></span><code>Tue Jun  1 21:49:07 UTC 2021
+<pre class="codehilite"><code>Tue Jun  1 21:49:07 UTC 2021
 Hello World!
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Delete Cron Job</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f cronjob.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl delete -f cronjob.yaml
+</code></pre>
 
 <h2 id="16-daemon-set">1.6 Daemon Set<a class="headerlink" href="#16-daemon-set" title="Permanent link">&para;</a></h2>
 <p>Daemon Set ensures that a copy of the pod runs on a selected set of nodes.
@@ -1457,7 +874,7 @@ removed, pods are removed through garbage collection.</p>
 <p>The following is an example DaemonSet that runs a Prometheus exporter container
 that used for collecting machine metrics from each node.</p>
 <p><strong>Step 1</strong> Create a DaemonSet manifest</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; daemonset.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF &gt; daemonset.yaml
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -1479,31 +896,31 @@ spec:
         ports:
         - containerPort: 80
 EOF
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong>  Run the following command to create the ReplicaSet and pods:</p>
-<div class="codehilite"><pre><span></span><code>kubectl create -f daemonset.yaml --record
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create -f daemonset.yaml --record
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>--record</code> flag will track changes made through each revision.</p>
 </div>
 <p><strong>Step 3</strong> Get basic details about the DaemonSet:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get daemonsets/prometheus-daemonset
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get daemonsets/prometheus-daemonset
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE-SELECTOR   AGE
+<pre class="codehilite"><code>NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE-SELECTOR   AGE
 prometheus-daemonset   1         1         1         1            1           &lt;none&gt;          5s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 4</strong> Get more details about the DaemonSet:</p>
-<div class="codehilite"><pre><span></span><code>kubectl describe daemonset/prometheus-daemonset
-</code></pre></div>
+<pre class="codehilite"><code>kubectl describe daemonset/prometheus-daemonset
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>Name:           prometheus-daemonset
+<pre class="codehilite"><code>Name:           prometheus-daemonset
 Selector:       name=prometheus-exporter,tier=monitoring
 Node-Selector:  &lt;none&gt;
 Labels:         &lt;none&gt;
@@ -1531,27 +948,27 @@ Events:
   ----    ------            ----   ----                  -------
   Normal  SuccessfulCreate  9m     daemonset-controller  Created pod: prometheus-daemonset-f4xl2
   Normal  SuccessfulCreate  2m18s  daemonset-controller  Created pod: prometheus-daemonset-w596z
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Get pods in the DaemonSet:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods -l name=prometheus-exporter
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pods -l name=prometheus-exporter
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME                         READY   STATUS    RESTARTS   AGE
+<pre class="codehilite"><code>NAME                         READY   STATUS    RESTARTS   AGE
 prometheus-daemonset-f4xl2   1/1     Running   0          8m27s
 prometheus-daemonset-w596z   1/1     Running   0          105s
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Verify that the Prometheus pod was successfully deployed to the cluster nodes:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods -o wide
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pods -o wide
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME                         READY   STATUS    RESTARTS   AGE     IP          NODE                                          NOMINATED NODE   READINESS GATES
+<pre class="codehilite"><code>NAME                         READY   STATUS    RESTARTS   AGE     IP          NODE                                          NOMINATED NODE   READINESS GATES
 prometheus-daemonset-f4xl2   1/1     Running   0          6m51s   10.0.0.19   gke-k8s-features-default-pool-73e09df7-m2lf   &lt;none&gt;           &lt;none&gt;
 prometheus-daemonset-w596z   1/1     Running   0          9s      10.0.1.2    gke-k8s-features-default-pool-73e09df7-k7hj   &lt;none&gt;           &lt;none&gt;
-</code></pre></div>
+</code></pre>
 
 <div class="admonition notes">
 <p class="admonition-title">Notes</p>
@@ -1559,99 +976,87 @@ prometheus-daemonset-w596z   1/1     Running   0          9s      10.0.1.2    gk
 by changing the <code>spec.template.spec</code> to include a <code>nodeSelector</code> to matche <code>node</code> label.</p>
 </div>
 <p><strong>Step 7</strong>  Delete a DaemonSet</p>
-<div class="codehilite"><pre><span></span><code>kubectl delete -f daemonset.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl delete -f daemonset.yaml
+</code></pre>
 
 <h2 id="17-cleaning-up">1.7 Cleaning Up<a class="headerlink" href="#17-cleaning-up" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Delete the cluster</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-concepts
+<pre class="codehilite"><code>gcloud container clusters delete k8s-concepts
 </code></pre></div>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+            </div>
         </div>
-        
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Module 8 Lab - Kuberenetes Concepts
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Module 9 Part 2 Lab Kubernetes Autoscaling
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
-      
-  <div class="md-footer-social">
-    
-      
-      
-        
-        
-      
-      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-      </a>
-    
-  </div>
 
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
-      
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
-      
-    
-  </body>
+</div>
+
+    </body>
 </html>

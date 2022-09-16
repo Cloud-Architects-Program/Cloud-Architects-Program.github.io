@@ -1,665 +1,266 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
-    
-    
-      
-        <title>Istio Traffic Control - Canary Deployments - Cloud Architecture</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
-      
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
         
-      
-    
-    
-    
-      
         
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
-      
-    
-    
-    
-      <link rel="stylesheet" href="../css/extra.css">
-    
-    
-      
-    
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-  
-    
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#istio-traffic-control-canary-deployments" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Lab 4 Traffic Management - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
 
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Cloud Architecture
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
             
-              Istio Traffic Control - Canary Deployments
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-  </nav>
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
-
-    </a>
-    Cloud Architecture
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        Home
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      <label class="md-nav__link" for="__nav_2">
-        YCIT020
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT020
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
-      
-      <label class="md-nav__link" for="__nav_2_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
-        Lab 3 Terraform Fundamentals
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      <label class="md-nav__link" for="__nav_3">
-        YCIT019
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT019
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
-      
-      <label class="md-nav__link" for="__nav_3_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
-        Module 5 Lab - Docker Basics
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
-        Module 6 Lab - Advanced Docker
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
-        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
-        Module 8 Lab - Kuberenetes Concepts
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
-        Module 9 Lab - Kubernetes Features
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
-        Module 9 Part 2 Lab Kubernetes Autoscaling
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
-        Module 10 Lab - Kubernetes Networking
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
-        Module 11 Lab - Kubernetes Storage
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
-      
-      <label class="md-nav__link" for="__nav_3_2">
-        Assignments
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Assignments
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1/" class="md-nav__link">
-        Module 5 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1_sol/" class="md-nav__link">
-        Module 5 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2/" class="md-nav__link">
-        Module 6 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2_solution/" class="md-nav__link">
-        Module 6 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3/" class="md-nav__link">
-        Module 8 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3_solution/" class="md-nav__link">
-        Module 8 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_2022/" class="md-nav__link">
-        Module 9 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_sol/" class="md-nav__link">
-        Module 9 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass7/" class="md-nav__link">
-        Module 10 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass6_solution/" class="md-nav__link">
-        Module 10 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisite-delete-private-cluster" class="md-nav__link">
-    Prerequisite  Delete Private Cluster
-  </a>
-  
+<li>
+    <a href="../020_Lab_3_Terraform_Fundamentals/" class="dropdown-item">Lab 3 Terraform Fundamentals</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#0-create-regional-gke-cluster-on-gcp" class="md-nav__link">
-    0 Create Regional GKE Cluster on GCP
-  </a>
-  
+            
+<li>
+    <a href="./" class="dropdown-item active">Lab 4 Traffic Management</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#1-deploy-istio-using-custom-resources" class="md-nav__link">
-    1  Deploy Istio using Custom Resources
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Lab 5 EFK Stack</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-deploy-an-micorservices-application" class="md-nav__link">
-    2 Deploy an Micorservices Application
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Lab 6 Monitoring with Prometheus</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-allow-external-traffic-to-online-boutique-application" class="md-nav__link">
-    3 Allow External traffic to Online Boutique Application
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Allow External traffic to Online Boutique Application">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-create-gateway-resource" class="md-nav__link">
-    3.1 Create Gateway resource
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Lab 6 Monitoring with GMP</a>
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#32-create-virtualservice-resource" class="md-nav__link">
-    3.2 Create VirtualService resource
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Lab 9 GitOps with Flux</a>
 </li>
-        
-      </ul>
-    </nav>
-  
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Lab 10 Serverless Cloud Run</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#4-routing-traffic-to-services-outside-of-the-mesh" class="md-nav__link">
-    4 Routing traffic to services outside of the Mesh
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-canary-deployments-with-istio" class="md-nav__link">
-    4 Canary Deployments with Istio
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-cleanup" class="md-nav__link">
-    5 Cleanup
-  </a>
-  
-</li>
-      
     </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
             
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="istio-traffic-control-canary-deployments">Istio Traffic Control - Canary Deployments<a class="headerlink" href="#istio-traffic-control-canary-deployments" title="Permanent link">&para;</a></h1>
+<li>
+    <a href="../020_Assignment_2_Production_GKE/" class="dropdown-item">Assignment2</a>
+</li>
+            
+<li>
+    <a href="../020_Assignment_3_Terraform_GCP_Foundation/" class="dropdown-item">Assignment3</a>
+</li>
+            
+<li>
+    <a href="../020_Assignment_4_Helm_Foundation/" class="dropdown-item">Assignmen4</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../020_Lab_3_Terraform_Fundamentals/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../020_Lab_5_EFK/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#istio-traffic-control-canary-deployments" class="nav-link">Istio Traffic Control - Canary Deployments</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#prerequisite-delete-private-cluster" class="nav-link">Prerequisite  Delete Private Cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#0-create-regional-gke-cluster-on-gcp" class="nav-link">0 Create Regional GKE Cluster on GCP</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1-deploy-istio-using-custom-resources" class="nav-link">1  Deploy Istio using Custom Resources</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-deploy-an-micorservices-application" class="nav-link">2 Deploy an Micorservices Application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-allow-external-traffic-to-online-boutique-application" class="nav-link">3 Allow External traffic to Online Boutique Application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-routing-traffic-to-services-outside-of-the-mesh" class="nav-link">4 Routing traffic to services outside of the Mesh</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-canary-deployments-with-istio" class="nav-link">4 Canary Deployments with Istio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#5-cleanup" class="nav-link">5 Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="istio-traffic-control-canary-deployments">Istio Traffic Control - Canary Deployments<a class="headerlink" href="#istio-traffic-control-canary-deployments" title="Permanent link">&para;</a></h1>
 <p><strong>Objective:</strong></p>
 <ul>
 <li>Install Istio</li>
@@ -668,12 +269,12 @@
 </ul>
 <h2 id="prerequisite-delete-private-cluster">Prerequisite  Delete Private Cluster<a class="headerlink" href="#prerequisite-delete-private-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Locate Terraform Configuration directory:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
-</code></pre></div>
+<pre class="codehilite"><code>cd ~/$MY_REPO/notepad-infrastructure
+</code></pre>
 
 <p><strong>Step 2:</strong> Delete Private Cluster that we've deployed with terraform:</p>
-<div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
-</code></pre></div>
+<pre class="codehilite"><code>terraform destroy -var-file terraform.tfvars
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -681,31 +282,31 @@
 </div>
 <h2 id="0-create-regional-gke-cluster-on-gcp">0 Create Regional GKE Cluster on GCP<a class="headerlink" href="#0-create-regional-gke-cluster-on-gcp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
-<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
-</code></pre></div>
+<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+</code></pre>
 
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
-<div class="codehilite"><pre><span></span><code>gcloud compute networks create default \
+<pre class="codehilite"><code>gcloud compute networks create default \
     --subnet-mode=auto \
     --bgp-routing-mode=regional \
     --mtu=1460
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>gcloud container clusters create istio-traffic-lab \
+<pre class="codehilite"><code>gcloud container clusters create istio-traffic-lab \
 --region us-central1 \
 --enable-ip-alias \
 --enable-network-policy \
 --num-nodes 1 \
 --machine-type &quot;e2-standard-2&quot; \
 --release-channel stable
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials istio-traffic-lab --region us-central1
-</code></pre></div>
+<pre class="codehilite"><code>gcloud container clusters get-credentials istio-traffic-lab --region us-central1
+</code></pre>
 
 <p><strong>Step 3:</strong> Setup kubectx</p>
-<div class="codehilite"><pre><span></span><code>sudo apt install kubectx
-</code></pre></div>
+<pre class="codehilite"><code>sudo apt install kubectx
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -716,10 +317,10 @@
 <h2 id="1-deploy-istio-using-custom-resources">1  Deploy Istio using Custom Resources<a class="headerlink" href="#1-deploy-istio-using-custom-resources" title="Permanent link">&para;</a></h2>
 <p>This installation guide uses the istioctl command line tool to provide rich customization of the Istio control plane and of the sidecars for the Istio data plane.</p>
 <p>Download and extract the latest release:</p>
-<div class="codehilite"><pre><span></span><code>curl -L https://istio.io/downloadIstio | sh -\
+<pre class="codehilite"><code>curl -L https://istio.io/downloadIstio | sh -\
 cd istio-1.11.1
 export PATH=$PWD/bin:$PATH
-</code></pre></div>
+</code></pre>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -741,50 +342,50 @@ CRDs allow registration of new/non-default Kubernetes resources. When Istio CRDs
 Kubernetes as a deployment platform and thus allowing Kubernetes to store configuration of Istio features such as routing, security and telemetry and etc.</p>
 <p>We going to install using using <code>demo</code> configuration profile. The <code>demo</code> configuration profile allows to experiment with most of Istio features with modest resource requirements. 
 Since it enables high levels of tracing and access logging, it is not suitable for production use cases.</p>
-<div class="codehilite"><pre><span></span><code>export STATIC_IP=&lt;set your Static IP&gt;
-</code></pre></div>
+<pre class="codehilite"><code>export STATIC_IP=&lt;set your Static IP&gt;
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>istioctl install --set profile=demo --set values.gateways.istio-ingressgateway.loadBalancerIP=$STATIC_IP
-</code></pre></div>
+<pre class="codehilite"><code>istioctl install --set profile=demo --set values.gateways.istio-ingressgateway.loadBalancerIP=$STATIC_IP
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>✔ Istio core installed
+<pre class="codehilite"><code>✔ Istio core installed
 ✔ Istiod installed
 ✔ Egress gateways installed
 ✔ Ingress gateways installed
 ✔ Installation complete
 Thank you for installing Istio 1.11.  Please take a few minutes to tell us about your install/upgrade experience!  
-</code></pre></div>
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Wait a few seconds for the CRDs to be committed in the Kubernetes API-server.</p>
 </div>
 <p><strong>Step 3</strong> Verify Istio CRDs successfully applied to Kubernetes Cluster.</p>
-<div class="codehilite"><pre><span></span><code>kubectl get crds | grep istio
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get crds | grep istio
+</code></pre>
 
 <p><strong>Step 3</strong> Verify that Istio Ingressgateway is setup using STATIC_IP Load Balancer:</p>
 <p>List <code>STATIC_IP</code> Load Balancer</p>
-<div class="codehilite"><pre><span></span><code>gcloud compute addresses list
-</code></pre></div>
+<pre class="codehilite"><code>gcloud compute addresses list
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME              ADDRESS/RANGE  TYPE      PURPOSE  NETWORK  REGION       SUBNET  STATUS
+<pre class="codehilite"><code>NAME              ADDRESS/RANGE  TYPE      PURPOSE  NETWORK  REGION       SUBNET  STATUS
 static-ingres-ip  35.192.101.76  EXTERNAL                    us-central1          IN_USE
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Our static IP showed as in use</p>
 </div>
 <p>Verify that Istio Ingressgateway using STATIC_IP:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get svc istio-ingressgateway -n istio-system
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get svc istio-ingressgateway -n istio-system
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     Ports
+<pre class="codehilite"><code>NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     Ports
 istio-ingressgateway   LoadBalancer   10.32.1.153   35.192.101.76   15021:32714/TCP,80:30042/TCP,443:31889/TCP,...  62s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -792,27 +393,27 @@ istio-ingressgateway   LoadBalancer   10.32.1.153   35.192.101.76   15021:32714/
 </div>
 <h2 id="2-deploy-an-micorservices-application">2 Deploy an Micorservices Application<a class="headerlink" href="#2-deploy-an-micorservices-application" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Get the source code for a sample application. For this lab, we will use the Online Boutique sample app.</p>
-<div class="codehilite"><pre><span></span><code>cd ~
+<pre class="codehilite"><code>cd ~
 git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
 cd microservices-demo
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong> Create a namespace <code>online-boutique</code> for example</p>
-<div class="codehilite"><pre><span></span><code>kubectl create namespace online-boutique
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create namespace online-boutique
+</code></pre>
 
 <p><strong>Step 3</strong> Enable automatic sidecar injection for the online-boutique namespace</p>
-<div class="codehilite"><pre><span></span><code>kubectl label namespace online-boutique istio-injection=enabled --overwrite
-</code></pre></div>
+<pre class="codehilite"><code>kubectl label namespace online-boutique istio-injection=enabled --overwrite
+</code></pre>
 
 <p>Check namespace:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get ns online-boutique --show-labels
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get ns online-boutique --show-labels
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME              STATUS   AGE     LABELS
+<pre class="codehilite"><code>NAME              STATUS   AGE     LABELS
 online-boutique   Active   4m30s   istio-injection=enabled
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -820,50 +421,50 @@ online-boutique   Active   4m30s   istio-injection=enabled
 </div>
 <p><strong>Step 5</strong> Switch to <code>online-boutique</code> namespace:</p>
 <p>List namespaces:</p>
-<div class="codehilite"><pre><span></span><code>kubens
-</code></pre></div>
+<pre class="codehilite"><code>kubens
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>**default**
+<pre class="codehilite"><code>**default**
 istio-system
 kube-node-lease
 kube-public
 kube-system
 online-boutique
-</code></pre></div>
+</code></pre>
 
 <p>!!! result we listed all namespaces and we see that active namespace is <code>default</code></p>
 <p>Switch to <code>online-boutique</code> namespace and make it active:</p>
-<div class="codehilite"><pre><span></span><code>kubens online-boutique
-</code></pre></div>
+<pre class="codehilite"><code>kubens online-boutique
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubens
-</code></pre></div>
+<pre class="codehilite"><code>kubens
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>**default**
+<pre class="codehilite"><code>**default**
 istio-system
 kube-node-lease
 kube-public
 kube-system
 **online-boutique**
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>We switched context to <code>online-boutique</code> and it's now became active </p>
 </div>
 <p><strong>Step 4</strong> Deploy the application by creating the kubernetes manifests</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f ./release/kubernetes-manifests.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f ./release/kubernetes-manifests.yaml
+</code></pre>
 
 <p><strong>Step 5</strong> Watch the pods and verify that all pods were started successfully with the sidecar injected</p>
-<div class="codehilite"><pre><span></span><code>watch kubectl get pods
-</code></pre></div>
+<pre class="codehilite"><code>watch kubectl get pods
+</code></pre>
 
 <p>We can see containers starting as <code>Init:0/1</code> in this phase pod firewall rules gets update to establish communication with future Envoy Sidecar. Than <code>PodInitializing</code> start <code>Envoy</code> and application container.</p>
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME                                     READY   STATUS    RESTARTS   AGE
+<pre class="codehilite"><code>NAME                                     READY   STATUS    RESTARTS   AGE
 adservice-5844cffbd4-h7lkk               2/2     Running   0          84s
 cartservice-fdc659ddc-fzmn9              2/2     Running   0          86s
 checkoutservice-64db75877d-hk25l         2/2     Running   0          88s
@@ -876,7 +477,7 @@ productcatalogservice-5cd47f8cc8-c6hdn   2/2     Running   0          86s
 recommendationservice-b75687c5b-clcbt    2/2     Running   0          88s
 redis-cart-74594bd569-9gpjt              2/2     Running   0          84s
 shippingservice-778554994-ttwf2          2/2     Running   0          85s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -886,7 +487,7 @@ shippingservice-778554994-ttwf2          2/2     Running   0          85s
 <h3 id="31-create-gateway-resource">3.1 Create Gateway resource<a class="headerlink" href="#31-create-gateway-resource" title="Permanent link">&para;</a></h3>
 <p>In order for traffic to flow to the frontend of the application, we need to create an ingress gateway and a virtual service attached to it.</p>
 <p><strong>Step 1</strong> Apply the istio manifests to configure the Istio <code>Gateway</code>:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; frontend-gateway.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt; frontend-gateway.yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -902,10 +503,10 @@ spec:
     hosts:
     - &quot;*&quot;
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f frontend-gateway.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f frontend-gateway.yaml
+</code></pre>
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -923,41 +524,41 @@ EOF
 <p>At this point our gateway is listening for request that match any host  on port 80 and it's accessible on the public internet.</p>
 </div>
 <p>Check the created gateway:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get gateway
+<pre class="codehilite"><code>kubectl get gateway
 kubectl get gateway -o yaml
-</code></pre></div>
+</code></pre>
 
 <p>Check the Envoy listeners been created:</p>
-<div class="codehilite"><pre><span></span><code>export INGRESS_POD=$(kubectl get pods -n istio-system | grep &#39;ingress&#39; |awk &#39;{ print $1}&#39;)
+<pre class="codehilite"><code>export INGRESS_POD=$(kubectl get pods -n istio-system | grep 'ingress' |awk '{ print $1}')
 istioctl proxy-config listener $INGRESS_POD  -n istio-system
-</code></pre></div>
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>ADDRESS PORT  MATCH DESTINATION
+<pre class="codehilite"><code>ADDRESS PORT  MATCH DESTINATION
 0.0.0.0 8080  ALL   Route: http.8080
 0.0.0.0 15021 ALL   Inline Route: /healthz/ready*
 0.0.0.0 15090 ALL   Inline Route: /stats/prometheus*
-</code></pre></div>
+</code></pre>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>HTTP port correctly exposed correctly</p>
 </div>
 <p>Verify what Ingress Gateway spec.selector.istio selects for use:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pod --selector=&quot;istio=ingressgateway&quot; --all-namespaces
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pod --selector=&quot;istio=ingressgateway&quot; --all-namespaces
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>istio-ingressgateway-xxx pod in istio-system (our edge envoy pod) will proxy traffic further to Kubernetes services.</p>
 </div>
 <p>Try to connect to the Istio Ingress IP:</p>
-<div class="codehilite"><pre><span></span><code>curl -i 35.192.101.76
-</code></pre></div>
+<pre class="codehilite"><code>curl -i 35.192.101.76
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>HTTP/1.1 404 Not Found
-</code></pre></div>
+<pre class="codehilite"><code>HTTP/1.1 404 Not Found
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -975,7 +576,7 @@ istioctl proxy-config listener $INGRESS_POD  -n istio-system
 Requests can be routed based on the request source and destination, HTTP paths and header field and weights associated with individual service versions. 
 As well as use advanced routing properties such as retries, request timeouts, circuit braking, fault injection and etc.</p>
 <p>export STUDENT=<your_name> #Used to configure DNS</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; frontend-vs.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt; frontend-vs.yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -992,18 +593,18 @@ spec:
         port:
           number: 80
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f frontend-vs.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f frontend-vs.yaml
+</code></pre>
 
 <p>Acquire <code>frontend</code> app URL:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get virtualservices
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get virtualservices
+</code></pre>
 
 <p>Access <code>frontend</code> app URL from your browser:</p>
-<div class="codehilite"><pre><span></span><code>$STUDENT.cloud-montreal.ca
-</code></pre></div>
+<pre class="codehilite"><code>$STUDENT.cloud-montreal.ca
+</code></pre>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -1015,7 +616,7 @@ EOF
 </ul>
 <p><strong>Step 3</strong> Defines another <code>Virtualservice</code> to be used by our load generator to make sure traffic directed to the frontend from within the mesh stays internal, 
 and doesn't go through the gateway.</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; frontend-load-vs.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt; frontend-load-vs.yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -1030,10 +631,10 @@ spec:
         port:
           number: 80
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f frontend-load-vs.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f frontend-load-vs.yaml
+</code></pre>
 
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
@@ -1047,7 +648,7 @@ Although this provides a convenient way to get started with Istio, configuring s
 <p>Istio has an option, <code>global.outboundTrafficPolicy.mode</code>, that configures the sidecar handling of external services, that is, those services that are not defined in Istio’s internal service registry. 
 If this option is set to <code>ALLOW_ANY</code>, the Istio proxy lets calls to unknown services pass through. If the option is set to <code>REGISTRY_ONLY</code>, 
 then the Istio proxy blocks any host without an HTTP service or service entry defined within the mesh.</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; allow-egress-googleapis.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt; allow-egress-googleapis.yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
@@ -1081,13 +682,13 @@ spec:
     name: https
     protocol: HTTPS
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f allow-egress-googleapis.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f allow-egress-googleapis.yaml
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl get serviceentries  
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get serviceentries  
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -1097,16 +698,16 @@ EOF
 <p>We going to deploy a new version of <code>recommendationservice</code> with <code>canary</code> label.</p>
 <p>Once we’ve deployed the new version, we can start releasing it gradually by routing 20% of all incoming requests to the latest version, while the rest of the requests (98%) still goes to the existing version.</p>
 <p><strong>Step 1</strong> Patch the Recommendation service deployment to give it a <code>production</code> label</p>
-<div class="codehilite"><pre><span></span><code>kubectl patch deployment -n online-boutique recommendationservice --type=&#39;json&#39; -p=&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/spec/template/metadata/labels/version&quot;, &quot;value&quot;: &quot;production&quot;}]&#39;
-</code></pre></div>
+<pre class="codehilite"><code>kubectl patch deployment -n online-boutique recommendationservice --type='json' -p='[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/spec/template/metadata/labels/version&quot;, &quot;value&quot;: &quot;production&quot;}]'
+</code></pre>
 
 <p><strong>Step 2</strong> Check the labels on the deployment</p>
-<div class="codehilite"><pre><span></span><code>export RECOMMMENDATIONSERVICE=$(kubectl get pods | grep &#39;recommendationservice&#39; |awk &#39;{ print $1}&#39;)
+<pre class="codehilite"><code>export RECOMMMENDATIONSERVICE=$(kubectl get pods | grep 'recommendationservice' |awk '{ print $1}')
 kubectl get pod -n online-boutique $RECOMMMENDATIONSERVICE --show-labels
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong> Create a DestinationRule that defines two subsets <code>production</code> and <code>canary</code></p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;  destinationrule-recommendation.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt;  destinationrule-recommendation.yaml
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -1122,42 +723,42 @@ spec:
     labels:
       version: canary
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f  destinationrule-recommendation.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f  destinationrule-recommendation.yaml
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl get destinationrules
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get destinationrules
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>We've defined DestinationRule with 2 subsets.</p>
 </div>
 <p><strong>Step 4</strong> Make a change to the <code>Recommendation</code> service and by modifying it's <code>max_responses</code> parameter from <code>5</code> to <code>2</code>.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/microservices-demo
+<pre class="codehilite"><code>cd ~/microservices-demo
 ls
 cat src/recommendationservice/Dockerfile
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>sed -i &#39;s/max_responses = 5/max_responses = 2/g&#39; \
+<pre class="codehilite"><code>sed -i 's/max_responses = 5/max_responses = 2/g' \
    src/recommendationservice/recommendation_server.py
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Build a new version of the image</p>
-<div class="codehilite"><pre><span></span><code>PROJECT_ID=$(gcloud config list --format &quot;value(core.project)&quot;)
+<pre class="codehilite"><code>PROJECT_ID=$(gcloud config list --format &quot;value(core.project)&quot;)
 
 docker build -t \
   gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary \
   src/recommendationservice
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 6</strong> Push the image to GCR</p>
-<div class="codehilite"><pre><span></span><code>docker push gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary
-</code></pre></div>
+<pre class="codehilite"><code>docker push gcr.io/${PROJECT_ID}/microservices_demo/recommendationservice:canary
+</code></pre>
 
 <p><strong>Step 7</strong> Deploy the <code>canary</code> version of the Recommendation service:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;  recommendation-deployment-vcanary.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt;  recommendation-deployment-vcanary.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -1218,25 +819,25 @@ spec:
             cpu: 100m
             memory: 220Mi
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f recommendation-deployment-vcanary.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f recommendation-deployment-vcanary.yaml
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl get deploy | grep recommendationservice 
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get deploy | grep recommendationservice 
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>recommendationservice          1/1     1            1           16m
+<pre class="codehilite"><code>recommendationservice          1/1     1            1           16m
 recommendationservice-canary   1/1     1            1           31s
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>2 versions of <code>recommendationservice</code> has been deployed</p>
 </div>
 <p><strong>Step 8</strong> Create a virtual service to direct 20% of the traffic to the <code>canary</code> version</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;  vs-recommendation.yaml
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt;  vs-recommendation.yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -1260,72 +861,93 @@ spec:
         subset: canary 
       weight: 20
 EOF
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f vs-recommendation.yaml
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f vs-recommendation.yaml
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl get VirtualService
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get VirtualService
+</code></pre>
 
 <p><strong>Step 9</strong> Refresh the page for one of the products where recommendations are shown multiple times, and notice how most of the time you get 5 recommendations while if 20% of the time you get only 2 recommendations.</p>
 <h2 id="5-cleanup">5 Cleanup<a class="headerlink" href="#5-cleanup" title="Permanent link">&para;</a></h2>
 <p>Delete GKE cluster:</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters delete istio-traffic-lab --region us-central1
+<pre class="codehilite"><code>gcloud container clusters delete istio-traffic-lab --region us-central1
 </code></pre></div>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+            </div>
         </div>
-        
-      </main>
-      
-        
-<footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
-      
-  <div class="md-footer-social">
-    
-      
-      
-        
-        
-      
-      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-      </a>
-    
-  </div>
 
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
-      
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
-      
-    
-  </body>
+</div>
+
+    </body>
 </html>

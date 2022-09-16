@@ -1,794 +1,282 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
-    
-    
-      
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Module 9 Assignment Solution - Cloud Architecture</title>
-      
-    
-    
-      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
-      
-        
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
-        
-      
-    
-    
-    
-      
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
-      
-    
-    
-    
-      <link rel="stylesheet" href="../css/extra.css">
-    
-    
-      
-    
-    
-  </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-  
-    
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#deploy-applications-on-kubernetes" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
 
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Cloud Architecture
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
             
-              Module 9 Assignment Solution
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-  </nav>
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
-      
-  <img src="../images/k8s.svg" alt="logo">
-
-    </a>
-    Cloud Architecture
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        Home
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
-      
-      <label class="md-nav__link" for="__nav_2">
-        YCIT020
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT020
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
-      
-      <label class="md-nav__link" for="__nav_2_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
-        Lab 3 Terraform Fundamentals
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
-      
-      <label class="md-nav__link" for="__nav_3">
-        YCIT019
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT019
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
-      
-      <label class="md-nav__link" for="__nav_3_1">
-        Labs
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
-        Module 5 Lab - Docker Basics
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
-        Module 6 Lab - Advanced Docker
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
-        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
-        Module 8 Lab - Kuberenetes Concepts
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
-        Module 9 Lab - Kubernetes Features
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
-        Module 9 Part 2 Lab Kubernetes Autoscaling
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
-        Module 10 Lab - Kubernetes Networking
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
-        Module 11 Lab - Kubernetes Storage
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-            
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
-      
-      <label class="md-nav__link" for="__nav_3_2">
-        Assignments
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Assignments
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1/" class="md-nav__link">
-        Module 5 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1_sol/" class="md-nav__link">
-        Module 5 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2/" class="md-nav__link">
-        Module 6 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2_solution/" class="md-nav__link">
-        Module 6 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3/" class="md-nav__link">
-        Module 8 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3_solution/" class="md-nav__link">
-        Module 8 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_2022/" class="md-nav__link">
-        Module 9 Assignment
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 9 Assignment Solution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Module 9 Assignment Solution
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#11-create-gke-cluster" class="md-nav__link">
-    1.1 Create GKE Cluster
-  </a>
-  
+<li>
+    <a href="../020_Lab_3_Terraform_Fundamentals/" class="dropdown-item">Lab 3 Terraform Fundamentals</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#12-locate-assignment-4" class="md-nav__link">
-    1.2 Locate Assignment 4
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Lab 4 Traffic Management</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#21-externalize-web-application-configuration" class="md-nav__link">
-    2.1 Externalize Web Application Configuration
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Lab 5 EFK Stack</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#22-build-new-docker-image-for-your-frontend-application" class="md-nav__link">
-    2.2 Build new Docker image for your frontend application
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Lab 6 Monitoring with Prometheus</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#23-run-and-test-new-docker-image-locally" class="md-nav__link">
-    2.3 Run and test new Docker image locally
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Lab 6 Monitoring with GMP</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#24-update-dockercompose-file-to-support-changes" class="md-nav__link">
-    2.4 Update DockerCompose file to support changes
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Lab 9 GitOps with Flux</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#31-create-a-namespace-dev" class="md-nav__link">
-    3.1 Create a Namespace dev
-  </a>
-  
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Lab 10 Serverless Cloud Run</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#32-create-a-secret" class="md-nav__link">
-    3.2 Create a Secret
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#33-create-configmap-and-probes-for-gowebapp" class="md-nav__link">
-    3.3 Create ConfigMap and Probes for gowebapp
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
-    3.4 Deploy webapp by Referencing Secret, ConfigMap and define Probes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    3.5 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#36-cleaning-up" class="md-nav__link">
-    3.6 Cleaning Up
-  </a>
-  
-</li>
-      
     </ul>
-  
-</nav>
-      
-    </li>
-  
-
-          
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass7/" class="md-nav__link">
-        Module 10 Assignment
-      </a>
-    </li>
-  
-
-          
+<li>
+    <a href="../020_Assignment_2_Production_GKE/" class="dropdown-item">Assignment2</a>
+</li>
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass6_solution/" class="md-nav__link">
-        Module 10 Assignment Solution
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
+<li>
+    <a href="../020_Assignment_3_Terraform_GCP_Foundation/" class="dropdown-item">Assignment3</a>
+</li>
             
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#11-create-gke-cluster" class="md-nav__link">
-    1.1 Create GKE Cluster
-  </a>
-  
+<li>
+    <a href="../020_Assignment_4_Helm_Foundation/" class="dropdown-item">Assignmen4</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#12-locate-assignment-4" class="md-nav__link">
-    1.2 Locate Assignment 4
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#21-externalize-web-application-configuration" class="md-nav__link">
-    2.1 Externalize Web Application Configuration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#22-build-new-docker-image-for-your-frontend-application" class="md-nav__link">
-    2.2 Build new Docker image for your frontend application
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#23-run-and-test-new-docker-image-locally" class="md-nav__link">
-    2.3 Run and test new Docker image locally
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#24-update-dockercompose-file-to-support-changes" class="md-nav__link">
-    2.4 Update DockerCompose file to support changes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#31-create-a-namespace-dev" class="md-nav__link">
-    3.1 Create a Namespace dev
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#32-create-a-secret" class="md-nav__link">
-    3.2 Create a Secret
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#33-create-configmap-and-probes-for-gowebapp" class="md-nav__link">
-    3.3 Create ConfigMap and Probes for gowebapp
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="md-nav__link">
-    3.4 Deploy webapp by Referencing Secret, ConfigMap and define Probes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    3.5 Commit K8s manifests to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#36-cleaning-up" class="md-nav__link">
-    3.6 Cleaning Up
-  </a>
-  
-</li>
-      
     </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
             
-          
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                <h1 id="deploy-applications-on-kubernetes">Deploy Applications on Kubernetes<a class="headerlink" href="#deploy-applications-on-kubernetes" title="Permanent link">&para;</a></h1>
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../ycit019_ass4_2022/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ycit019_ass7/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#deploy-applications-on-kubernetes" class="nav-link">Deploy Applications on Kubernetes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#11-create-gke-cluster" class="nav-link">1.1 Create GKE Cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#12-locate-assignment-4" class="nav-link">1.2 Locate Assignment 4</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#21-externalize-web-application-configuration" class="nav-link">2.1 Externalize Web Application Configuration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#22-build-new-docker-image-for-your-frontend-application" class="nav-link">2.2 Build new Docker image for your frontend application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#23-run-and-test-new-docker-image-locally" class="nav-link">2.3 Run and test new Docker image locally</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#24-update-dockercompose-file-to-support-changes" class="nav-link">2.4 Update DockerCompose file to support changes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#31-create-a-namespace-dev" class="nav-link">3.1 Create a Namespace dev</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#32-create-a-secret" class="nav-link">3.2 Create a Secret</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#33-create-configmap-and-probes-for-gowebapp" class="nav-link">3.3 Create ConfigMap and Probes for gowebapp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" class="nav-link">3.4 Deploy webapp by Referencing Secret, ConfigMap and define Probes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="nav-link">3.5 Commit K8s manifests to repository and share it with Instructor/Teacher</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#36-cleaning-up" class="nav-link">3.6 Cleaning Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="deploy-applications-on-kubernetes">Deploy Applications on Kubernetes<a class="headerlink" href="#deploy-applications-on-kubernetes" title="Permanent link">&para;</a></h1>
 <p><strong>Objective:</strong></p>
 <ul>
 <li>Review process of creating K8s:<ul>
@@ -803,82 +291,82 @@
 <p>Externalize Web Application Configuration</p>
 <h2 id="11-create-gke-cluster">1.1 Create GKE Cluster<a class="headerlink" href="#11-create-gke-cluster" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
-<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
-</code></pre></div>
+<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+</code></pre>
 
 <p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with two nodes:</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-concepts \
+<pre class="codehilite"><code>gcloud container clusters create k8s-concepts \
 --zone us-central1-c \
 --num-nodes 2
-</code></pre></div>
+</code></pre>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+<pre class="codehilite"><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
 k8s-concepts  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong> Authenticate to the cluster.</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-concepts --zone us-central1-c
-</code></pre></div>
+<pre class="codehilite"><code>gcloud container clusters get-credentials k8s-concepts --zone us-central1-c
+</code></pre>
 
 <h2 id="12-locate-assignment-4">1.2 Locate Assignment 4<a class="headerlink" href="#12-locate-assignment-4" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Locate directory where Kubernetes manifests going to be stored.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/ycit019/
+<pre class="codehilite"><code>cd ~/ycit019/
 git pull       # Pull latest assignement3
-</code></pre></div>
+</code></pre>
 
 <p>In case you don't have this folder clone it as following:</p>
-<div class="codehilite"><pre><span></span><code>cd ~
+<pre class="codehilite"><code>cd ~
 git clone https://github.com/Cloud-Architects-Program/ycit019
 cd ~/ycit019/Assignment4/
 ls
-</code></pre></div>
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>You can see 4 Kubernetes manifests with Assignment tasks.</p>
 </div>
 <p><strong>Step 2</strong> Go into your personal Google Cloud Source Repository:</p>
-<div class="codehilite"><pre><span></span><code>MY_REPO=your_student_id-notepad
-</code></pre></div>
+<pre class="codehilite"><code>MY_REPO=your_student_id-notepad
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Replace $student_id with your ID</p>
 </div>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
-</code></pre></div>
+<pre class="codehilite"><code>cd ~/$MY_REPO
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
-</code></pre></div>
+<pre class="codehilite"><code>git pull                              # Pull latest code from you repo
+</code></pre>
 
 <p><strong>Step 3</strong> Copy Assignment 4 <code>deploy_a4</code> folder to your repo:</p>
-<div class="codehilite"><pre><span></span><code>cp -r ~/ycit019/Assignment4/deploy_a4 .
-</code></pre></div>
+<pre class="codehilite"><code>cp -r ~/ycit019/Assignment4/deploy_a4 .
+</code></pre>
 
 <p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
-<div class="codehilite"><pre><span></span><code>git status 
+<pre class="codehilite"><code>git status 
 git add .
 git commit -m &quot;adding K8s manifests for assignment 4&quot;
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
-<div class="codehilite"><pre><span></span><code>git push origin master
-</code></pre></div>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
 
 <h2 id="21-externalize-web-application-configuration">2.1 Externalize Web Application Configuration<a class="headerlink" href="#21-externalize-web-application-configuration" title="Permanent link">&para;</a></h2>
 <p>Let’s make some minor modifications to the web application to externalize its configuration, and make it easier to manage and update at deployment time.</p>
 <p><strong>Step 1:</strong> Move config file outside compiled application</p>
 <p>First, let’s move the web application’s configuration into a folder outside the main compilation path</p>
-<div class="codehilite"><pre><span></span><code>cd ~
+<pre class="codehilite"><code>cd ~
 mkdir $MY_REPO/gowebapp/config
 cp $MY_REPO/gowebapp/code/config/config.json \
 $MY_REPO/gowebapp/config
-</code></pre></div>
+</code></pre>
 
 <p>Remove <code>config</code> folder that is located in <code>code</code> directory</p>
-<div class="codehilite"><pre><span></span><code>rm -rf $MY_REPO/gowebapp/code/config
-</code></pre></div>
+<pre class="codehilite"><code>rm -rf $MY_REPO/gowebapp/code/config
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -889,8 +377,8 @@ code  config  Dockerfile</code></p>
 <p><strong>Step 2:</strong> Modify app to support setting DB password through environment
 variable Next, let’s make a minor modification to the Go application code to allow setting the DB password through an environment variable. This will make it easier to dynamically inject this value at deployment time.</p>
 <p>Use a text editor of your choice (vim, VS code) to modify:</p>
-<div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/gowebapp/code/vendor/app/shared/database/database.go
-</code></pre></div>
+<pre class="codehilite"><code>vim ~/$MY_REPO/gowebapp/code/vendor/app/shared/database/database.go
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -899,7 +387,7 @@ variable Next, let’s make a minor modification to the Go application code to a
 <ul>
 <li>Add an import for the <code>"os"</code> package at line 8. After making this change, your imports list will look like the following:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>import (
+<pre class="codehilite"><code>import (
   &quot;encoding/json&quot;
   &quot;fmt&quot;
   &quot;log&quot;
@@ -911,23 +399,23 @@ variable Next, let’s make a minor modification to the Go application code to a
   &quot;github.com/jmoiron/sqlx&quot;
   &quot;gopkg.in/mgo.v2&quot;
 )
-</code></pre></div>
+</code></pre>
 
 <ul>
 <li>Add the following code at line 89 after <code>var err error</code> :</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>// Check for MySQL Password environment variable and update configuration if present
+<pre class="codehilite"><code>// Check for MySQL Password environment variable and update configuration if present
 if os.Getenv(&quot;DB_PASSWORD&quot;) != &quot;&quot; {
     d.MySQL.Password = os.Getenv(&quot;DB_PASSWORD&quot;)
 }
-</code></pre></div>
+</code></pre>
 
 <h2 id="22-build-new-docker-image-for-your-frontend-application">2.2 Build new Docker image for your frontend application<a class="headerlink" href="#22-build-new-docker-image-for-your-frontend-application" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Update <code>Dockerfile</code> for your <code>gowebapp</code> frontend application:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp
-</code></pre></div>
+<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>FROM golang:1.16.4
+<pre class="codehilite"><code>FROM golang:1.16.4
 
 LABEL maintainer &quot;student@mcgill.ca&quot;
 LABEL gowebapp &quot;v1&quot;
@@ -947,16 +435,16 @@ RUN go get &amp;&amp; go install
 VOLUME $GOPATH/src/gowebapp/config
 
 ENTRYPOINT $GOPATH/bin/gowebapp
-</code></pre></div>
+</code></pre>
 
 <p>Step 2: Build updated <code>gowebapp</code> Docker image locally</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp
-</code></pre></div>
+<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp
+</code></pre>
 
 <p>Build and push the <code>gowebapp</code> image to GCR. Make sure to include “.“ at the end of build command. </p>
-<div class="codehilite"><pre><span></span><code>docker build -t gcr.io/${PROJECT_ID}/gowebapp:v3 .
+<pre class="codehilite"><code>docker build -t gcr.io/${PROJECT_ID}/gowebapp:v3 .
 docker push gcr.io/${PROJECT_ID}/gowebapp:v3
-</code></pre></div>
+</code></pre>
 
 <h2 id="23-run-and-test-new-docker-image-locally">2.3 Run and test new Docker image locally<a class="headerlink" href="#23-run-and-test-new-docker-image-locally" title="Permanent link">&para;</a></h2>
 <p>Before deploying to Kubernetes, let’s test the updated <code>gowebapp</code> Docker image locally, to ensure that the frontend and backend containers run and integrate properly.</p>
@@ -966,12 +454,12 @@ docker push gcr.io/${PROJECT_ID}/gowebapp:v3
 <p class="admonition-title">Note</p>
 <p>Update user-name with command below with you docker-hub id</p>
 </div>
-<div class="codehilite"><pre><span></span><code>docker network create gowebapp -d bridge
-</code></pre></div>
+<pre class="codehilite"><code>docker network create gowebapp -d bridge
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>docker run --net gowebapp --name gowebapp-mysql --hostname \
+<pre class="codehilite"><code>docker run --net gowebapp --name gowebapp-mysql --hostname \
 gowebapp-mysql -d -e MYSQL_ROOT_PASSWORD=rootpasswd gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2:</strong> Now launch a frontend container using the updated gowebapp image, mapping the container port 80 - where the web application is exposed - to port 30005 on the host machine. Notice how we're mapping a host volume into the container for configuration, and setting a container environment variable with the
 MySQL DB password:</p>
@@ -979,11 +467,11 @@ MySQL DB password:</p>
 <p class="admonition-title">Note</p>
 <p>Update user-name with command below with you docker-hub id</p>
 </div>
-<div class="codehilite"><pre><span></span><code>docker run -p 8080:80 \
+<pre class="codehilite"><code>docker run -p 8080:80 \
 -v ~/$MY_REPO/gowebapp/config:/go/src/gowebapp/config \
 --net gowebapp -d --name gowebapp \
 --hostname gowebapp gcr.io/${PROJECT_ID}/gowebapp:v3
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong>  Test the application locally</p>
 <p>Now that we've launched the application containers, let's try to test the web
@@ -1000,18 +488,18 @@ application locally.</p>
 <p>By externalizing application configuration, you have made it easier to manage and modify your application configuration at deployment time. This will be very helpful as we deploy our applications to Kubernetes</p>
 </div>
 <p><strong>Step 5</strong> Cleanup environment</p>
-<div class="codehilite"><pre><span></span><code>docker rm -f $(docker ps -q)
+<pre class="codehilite"><code>docker rm -f $(docker ps -q)
 docker network rm gowebapp
-</code></pre></div>
+</code></pre>
 
 <h2 id="24-update-dockercompose-file-to-support-changes">2.4 Update DockerCompose file to support changes<a class="headerlink" href="#24-update-dockercompose-file-to-support-changes" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Edit docker-compose file</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/
-</code></pre></div>
+<pre class="codehilite"><code>cd ~/$MY_REPO/
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>vim docker-compose.yml
+<pre class="codehilite"><code>vim docker-compose.yml
 
-version: &#39;2.4&#39;
+version: '2.4'
 
 services:
   gowebapp-mysql:
@@ -1042,12 +530,12 @@ services:
 networks:
   gowebapp1:
     driver: bridge
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 3</strong> Test application</p>
-<div class="codehilite"><pre><span></span><code>export CLOUDSDK_PYTHON=/usr/bin/python 
+<pre class="codehilite"><code>export CLOUDSDK_PYTHON=/usr/bin/python 
 docker-compose up -d
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 4</strong>  Test the application locally</p>
 <p>Now that we've launched the application containers, let's try to test the web
@@ -1059,21 +547,21 @@ application locally.</p>
 <p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
 </div>
 <p><strong>Step 5</strong> Tear down environment</p>
-<div class="codehilite"><pre><span></span><code>docker-compose down
-</code></pre></div>
+<pre class="codehilite"><code>docker-compose down
+</code></pre>
 
 <h2 id="31-create-a-namespace-dev">3.1 Create a Namespace <code>dev</code><a class="headerlink" href="#31-create-a-namespace-dev" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
-<div class="codehilite"><pre><span></span><code>kubectl create ns dev
-</code></pre></div>
+<pre class="codehilite"><code>kubectl create ns dev
+</code></pre>
 
 <p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
-<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
-</code></pre></div>
+<pre class="codehilite"><code>kubectl config set-context --current --namespace=dev
+</code></pre>
 
 <p><strong>Step 4</strong> Verify current context:</p>
-<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
-</code></pre></div>
+<pre class="codehilite"><code>kubectl config view | grep namespace
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -1082,29 +570,29 @@ application locally.</p>
 <h2 id="32-create-a-secret">3.2 Create a Secret<a class="headerlink" href="#32-create-a-secret" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> <code>Base64</code> Encode MySQL password <code>rootpasswd</code>. See Lab 8 for more details.</p>
 <p><strong>Step 2</strong> Edit a secret for the MySQL password in <code>dev</code> namespaces.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a4
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a4
 vim secret-mysql.yaml
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kind: Secret
+<pre class="codehilite"><code>kind: Secret
 apiVersion: v1
 metadata:
   name: mysql
 type: Opaque
 data:
   password: cm9vdHBhc3N3ZA==
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f secret-mysql.yaml
+<pre class="codehilite"><code>kubectl apply -f secret-mysql.yaml
 kubectl describe secret mysql
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> under
 <code>~/$MY_REPO/deploy_a4</code></p>
-<div class="codehilite"><pre><span></span><code>vim ~/$MY_REPO/deploy_a4/gowebapp-mysql-deployment.yaml
-</code></pre></div>
+<pre class="codehilite"><code>vim ~/$MY_REPO/deploy_a4/gowebapp-mysql-deployment.yaml
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>apiVersion: extensions/v1beta1
+<pre class="codehilite"><code>apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: gowebapp-mysql
@@ -1140,34 +628,34 @@ spec:
             port: 3306
           initialDelaySeconds: 25
           timeoutSeconds: 2     
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong>  Start the rolling upgrade and record the command used in the rollout history:</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-deployment.yaml --record
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-deployment.yaml --record
+</code></pre>
 
 <p><strong>Step 3</strong> Verify that rollout was successful</p>
-<div class="codehilite"><pre><span></span><code>kubectl rollout status deploy gowebapp-mysql
-</code></pre></div>
+<pre class="codehilite"><code>kubectl rollout status deploy gowebapp-mysql
+</code></pre>
 
 <p><strong>Step 4</strong> Check if pods are running</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pods
+</code></pre>
 
 <p><strong>Step 5</strong> Create a Service object for MySQL</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-mysql-service.yaml --record
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-service.yaml --record
+</code></pre>
 
 <p><strong>Step 6</strong> Check to make sure it worked</p>
-<div class="codehilite"><pre><span></span><code>kubectl get service -l &quot;run=gowebapp-mysql&quot;
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get service -l &quot;run=gowebapp-mysql&quot;
+</code></pre>
 
 <h2 id="33-create-configmap-and-probes-for-gowebapp">3.3 Create ConfigMap and Probes for <code>gowebapp</code><a class="headerlink" href="#33-create-configmap-and-probes-for-gowebapp" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
+<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp/config/
 kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
 kubectl describe configmap gowebapp
-</code></pre></div>
+</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1175,13 +663,13 @@ kubectl describe configmap gowebapp
 </div>
 <h2 id="34-deploy-webapp-by-referencing-secret-configmap-and-define-probes">3.4 Deploy <code>webapp</code> by Referencing Secret, ConfigMap and define Probes<a class="headerlink" href="#34-deploy-webapp-by-referencing-secret-configmap-and-define-probes" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1:</strong> Update <code>gowebapp-deployment.yaml</code> under <code>~/$MY_REPO/deploy_a4/</code></p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_a4/
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a4/
 vim gowebapp-deployment.yaml
-</code></pre></div>
+</code></pre>
 
 <p>In this exercise, we will add liveness/readiness probes to our deployments. For more information, see here:
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/</p>
-<div class="codehilite"><pre><span></span><code>apiVersion: apps/v1
+<pre class="codehilite"><code>apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gowebapp
@@ -1230,46 +718,46 @@ spec:
           items:
           - key: webapp-config-json
             path: config.json
-</code></pre></div>
+</code></pre>
 
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-deployment.yaml --record
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-deployment.yaml --record
+</code></pre>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>This will start the rolling upgrade and record the command used in the rollout history</p>
 </div>
 <p><strong>Step 3:</strong> Verify that rollout was successful</p>
-<div class="codehilite"><pre><span></span><code>kubectl rollout status deploy gowebapp
-</code></pre></div>
+<pre class="codehilite"><code>kubectl rollout status deploy gowebapp
+</code></pre>
 
 <p><strong>Step 4:</strong> Get rollout history</p>
-<div class="codehilite"><pre><span></span><code>kubectl rollout history deploy gowebapp
-</code></pre></div>
+<pre class="codehilite"><code>kubectl rollout history deploy gowebapp
+</code></pre>
 
 <p><strong>Step 5:</strong> Get rollout history details for specific revision (use number show in output to previous command)</p>
-<div class="codehilite"><pre><span></span><code>kubectl rollout history deploy gowebapp --revision=&lt;latest_version_number
-</code></pre></div>
+<pre class="codehilite"><code>kubectl rollout history deploy gowebapp --revision=&lt;latest_version_number
+</code></pre>
 
 <p><strong>Step 6</strong> Check if pods are running</p>
-<div class="codehilite"><pre><span></span><code>kubectl get pods
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get pods
+</code></pre>
 
 <p><strong>Step 7</strong> Create a Service object for gowebapp</p>
-<div class="codehilite"><pre><span></span><code>kubectl apply -f gowebapp-service.yaml --record
-</code></pre></div>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-service.yaml --record
+</code></pre>
 
 <p><strong>Step 8</strong> Access your application on Public IP via automatically created Loadbalancer 
 created for <code>gowebapp</code> service.</p>
 <p>To get the value of <code>Loadbalancer</code> run following command:</p>
-<div class="codehilite"><pre><span></span><code>kubectl get svc gowebapp -o wide
-</code></pre></div>
+<pre class="codehilite"><code>kubectl get svc gowebapp -o wide
+</code></pre>
 
 <p>Expected output:</p>
-<div class="codehilite"><pre><span></span><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+<pre class="codehilite"><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
 gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step </strong> Access <code>Loadbalancer</code> IP via browser:</p>
 <div class="admonition result">
@@ -1278,104 +766,92 @@ gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP        
 </div>
 <h2 id="35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">3.5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#35-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
-<div class="codehilite"><pre><span></span><code>git add .
+<pre class="codehilite"><code>git add .
 git commit -m &quot;k8s manifests for Hands-on Assignment 4&quot;
-</code></pre></div>
+</code></pre>
 
 <p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
-<div class="codehilite"><pre><span></span><code>git push origin master
-</code></pre></div>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
 
 <h2 id="36-cleaning-up">3.6 Cleaning Up<a class="headerlink" href="#36-cleaning-up" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Delete the cluster</p>
-<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-concepts
+<pre class="codehilite"><code>gcloud container clusters delete k8s-concepts
 </code></pre></div>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+            </div>
         </div>
-        
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../ycit019_ass4_2022/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Module 9 Assignment
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../ycit019_ass7/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Module 10 Assignment
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
-      
-  <div class="md-footer-social">
-    
-      
-      
-        
-        
-      
-      <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-      </a>
-    
-  </div>
 
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
-      
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
-    
-    
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
-      
-    
-  </body>
+</div>
+
+    </body>
 </html>
