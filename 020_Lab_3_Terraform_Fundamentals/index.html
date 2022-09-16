@@ -9,19 +9,19 @@
       
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.3">
     
     
       
-        <title>Cloud Architecture</title>
+        <title>Lab 3 Terraform Fundamentals - Cloud Architecture</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.e35208c4.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.e35208c4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -36,7 +36,7 @@
     
     
     
-      <link rel="stylesheet" href="css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
     
       
@@ -53,7 +53,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
   
     
-    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ycit019-cloud-architecture" class="md-skip">
+        <a href="#1-what-is-terraform" class="md-skip">
           Skip to content
         </a>
       
@@ -72,9 +72,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
       
-  <img src="images/k8s.svg" alt="logo">
+  <img src="../images/k8s.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Home
+              Lab 3 Terraform Fundamentals
             
           </span>
         </div>
@@ -151,9 +151,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
       
-  <img src="images/k8s.svg" alt="logo">
+  <img src="../images/k8s.svg" alt="logo">
 
     </a>
     Cloud Architecture
@@ -167,21 +167,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
         Home
       </a>
-      
     </li>
   
 
@@ -192,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -213,12 +205,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Labs
@@ -234,11 +228,51 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="020_Lab_3_Terraform_Fundamentals/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lab 3 Terraform Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Lab 3 Terraform Fundamentals
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -305,7 +339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
         Module 5 Lab - Docker Basics
       </a>
     </li>
@@ -317,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
         Module 6 Lab - Advanced Docker
       </a>
     </li>
@@ -329,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
         Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
       </a>
     </li>
@@ -341,7 +375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
         Module 8 Lab - Kuberenetes Concepts
       </a>
     </li>
@@ -353,7 +387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
         Module 9 Lab - Kubernetes Features
       </a>
     </li>
@@ -365,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
         Module 9 Part 2 Lab Kubernetes Autoscaling
       </a>
     </li>
@@ -377,7 +411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Lab_10_Networking/" class="md-nav__link">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
         Module 10 Lab - Kubernetes Networking
       </a>
     </li>
@@ -389,7 +423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_Lab_11_Storage/" class="md-nav__link">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
         Module 11 Lab - Kubernetes Storage
       </a>
     </li>
@@ -428,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass1/" class="md-nav__link">
+      <a href="../ycit019_ass1/" class="md-nav__link">
         Module 5 Assignment
       </a>
     </li>
@@ -440,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass1_sol/" class="md-nav__link">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
         Module 5 Assignment Solution
       </a>
     </li>
@@ -452,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass2/" class="md-nav__link">
+      <a href="../ycit019_ass2/" class="md-nav__link">
         Module 6 Assignment
       </a>
     </li>
@@ -464,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass2_solution/" class="md-nav__link">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
         Module 6 Assignment Solution
       </a>
     </li>
@@ -476,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass3/" class="md-nav__link">
+      <a href="../ycit019_ass3/" class="md-nav__link">
         Module 8 Assignment
       </a>
     </li>
@@ -488,7 +522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass3_solution/" class="md-nav__link">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
         Module 8 Assignment Solution
       </a>
     </li>
@@ -500,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass4_2022/" class="md-nav__link">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
         Module 9 Assignment
       </a>
     </li>
@@ -512,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass4_sol/" class="md-nav__link">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
         Module 9 Assignment Solution
       </a>
     </li>
@@ -524,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass7/" class="md-nav__link">
+      <a href="../ycit019_ass7/" class="md-nav__link">
         Module 10 Assignment
       </a>
     </li>
@@ -536,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ycit019_ass6_solution/" class="md-nav__link">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
         Module 10 Assignment Solution
       </a>
     </li>
@@ -574,6 +608,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -585,7 +634,24 @@
               
                 
                 
-                <h1 id="ycit019-cloud-architecture">YCIT019 - Cloud Architecture<a class="headerlink" href="#ycit019-cloud-architecture" title="Permanent link">&para;</a></h1>
+                <p>Lab 2 Terraform Fundamentals</p>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Automating through code the configuration and provisioning of resources</li>
+</ul>
+<h1 id="1-what-is-terraform">1 What is Terraform?<a class="headerlink" href="#1-what-is-terraform" title="Permanent link">&para;</a></h1>
+<p>Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing, popular service providers and custom in-house solutions.</p>
+<p>Configuration files describe to Terraform the components needed to run a single application or your entire data center. Terraform generates an execution plan describing what it will do to reach the desired state, and then executes it to build the described infrastructure. As the configuration changes, Terraform can determine what changed and create incremental execution plans that can be applied.</p>
+<p>The infrastructure Terraform can manage includes both low-level components such as compute instances, storage, and networking, and high-level components such as DNS entries and SaaS features.</p>
+<h2 id="12-key-features">1.2 Key features<a class="headerlink" href="#12-key-features" title="Permanent link">&para;</a></h2>
+<p><strong>Infrastructure as code</strong>
+Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your data center to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used.</p>
+<p><strong>Execution plans</strong>
+Terraform has a planning step in which it generates an execution plan. The execution plan shows what Terraform will do when you execute the apply command. This lets you avoid any surprises when Terraform manipulates infrastructure.</p>
+<p><strong>Resource graph</strong>
+Terraform builds a graph of all your resources and parallelizes the creation and modification of any non-dependent resources. Because of this, Terraform builds infrastructure as efficiently as possible, and operators get insight into dependencies in their infrastructure.</p>
+<p><strong>Change automation</strong>
+Complex changesets can be applied to your infrastructure with minimal human interaction. With the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order, which helps you avoid many possible human errors.</p>
                 
               
               
@@ -604,14 +670,28 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
       
-        <a href="020_Lab_3_Terraform_Fundamentals/" class="md-footer__link md-footer__link--next" rel="next">
+      
+        <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Lab 3 Terraform Fundamentals
+              Module 5 Lab - Docker Basics
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -653,10 +733,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
     
   </body>
