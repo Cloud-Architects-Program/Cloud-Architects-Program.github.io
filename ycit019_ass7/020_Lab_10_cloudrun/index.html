@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>MOdule 12 Serverless Cloud Run - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">MOdule 12 Serverless Cloud Run</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
+</li>
+            
+<li>
+    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
+</li>
+            
+<li>
+    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../020_Lab_9_GitOps/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../020_Module_2_Assignment_Terraform_Foundation/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#lab-5-cloudrun-for-anthos" class="nav-link">Lab 5 Cloudrun for Anthos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun" class="nav-link">0 Create Regional GKE Cluster on GCP and Enable CloudRun</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#1-deploy-a-knative-service" class="nav-link">1 Deploy a Knative Service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-test-the-knative-service" class="nav-link">2 Test the Knative Service</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-knative-serving-api" class="nav-link">3 Knative Serving API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-cleanup" class="nav-link">4 Cleanup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="lab-5-cloudrun-for-anthos">Lab 5 Cloudrun for Anthos<a class="headerlink" href="#lab-5-cloudrun-for-anthos" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Enable CloudRun on a Kubernetes cluster</li>
+<li>Deploy a web application</li>
+<li>Autoscale applications from 0-to-1 and back to 0</li>
+</ul>
+<h2 id="0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun">0 Create Regional GKE Cluster on GCP and Enable CloudRun<a class="headerlink" href="#0-create-regional-gke-cluster-on-gcp-and-enable-cloudrun" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<pre class="codehilite"><code>gcloud services enable \
+container.googleapis.com \
+containerregistry.googleapis.com
+</code></pre>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node and enable CloudRun:</p>
+<pre class="codehilite"><code>gcloud container clusters create cloudrun-demo \
+  --zone=us-central1-b \
+  --num-nodes=1 \
+  --machine-type=n1-standard-4 \
+  --enable-autoscaling --min-nodes=1 --max-nodes=5 \
+  --enable-ip-alias \
+  --addons=HttpLoadBalancing,CloudRun \
+  --enable-stackdriver-kubernetes \
+  --release-channel stable
+</code></pre>
+
+<p>Enabling CloudRun will install Knative components on the cluster. As we discussed in class, Knative makes it possible to:</p>
+<ul>
+<li>Deploy and serve applications using Knative API. </li>
+<li>Allow applications automatically scale from zero-to-N, and back to zero, based on requests.</li>
+<li>Build and package the application code inside the cluster.</li>
+<li>Deliver events to your application; However, this feature is not enabled by CloudRun.</li>
+</ul>
+<p><strong>Step 3</strong> Verify the Knative components are properly installed.</p>
+<pre class="codehilite"><code>kubectl get pods --namespace=knative-serving
+</code></pre>
+
+<h2 id="1-deploy-a-knative-service">1 Deploy a Knative Service<a class="headerlink" href="#1-deploy-a-knative-service" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> deploy a Knatvie service to the cluster you just created. For this example, we will use <code>kubectl</code>; however, you can also use the CloudRun UI. To expose an application on Knative, we need to define a Service object, which is different than the Kubernetes Service type.</p>
+<pre class="codehilite"><code>cat &lt;&lt;EOF&gt; helloworld.yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: helloworld-go
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/cloudrun/hello
+          env:
+            - name: TARGET
+              value: &quot;Go Sample v1&quot;
+EOF 
+</code></pre>
+
+<pre class="codehilite"><code>kubectl apply -f helloworld.yaml
+</code></pre>
+
+<p><strong>Step 2</strong> Verify the service is deployed by querying "ksvc" (Knative Service) objects</p>
+<pre class="codehilite"><code>kubectl get ksvc
+</code></pre>
+
+<p><strong>Step 3</strong> Although the Knative service is deployed, there are no Pod created yet, given that there are no requests on this service.</p>
+<pre class="codehilite"><code>kubectl get pod
+</code></pre>
+
+<h2 id="2-test-the-knative-service">2 Test the Knative Service<a class="headerlink" href="#2-test-the-knative-service" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Let's test the service by making a request using <code>curl</code>.</p>
+<p>To avoid having to set up DNS, we'll test the deployed service by sending a request to the Istio ingress gateway with the target host that should handle the request as an HTTP header. That hostname should be the URL listed in the previous deployment step and of the form: http://<em>service-name</em>.<em>namespace</em>.example.com</p>
+<p><strong>Step 2</strong> Obtain the IP address of the ingress gateway</p>
+<pre class="codehilite"><code>kubectl get svc -n gke-system istio-ingress
+</code></pre>
+
+<p><strong>Step 3</strong> From Cloud Shell, use curl to access the service. Use the URL we obtained in step 5, and replace [YOUR-IP] with the IP address you obtained in the previous step.</p>
+<pre class="codehilite"><code>curl -v -H &quot;Host: helloworld-go.default.example.com&quot; http://[YOUR-IP]
+</code></pre>
+
+<p><strong>Step 4</strong> Verify that a pod was created and that this pod will get termintated if there are no more requests on this service.</p>
+<pre class="codehilite"><code>kubectl get pod
+</code></pre>
+
+<h2 id="3-knative-serving-api">3 Knative Serving API<a class="headerlink" href="#3-knative-serving-api" title="Permanent link">&para;</a></h2>
+<p>When we deploy the helloworld Service to Knative, it creates three kinds of objects: Configuration, Route, and Revision.</p>
+<pre class="codehilite"><code>kubectl get configuration,revision,route
+</code></pre>
+
+<ul>
+<li><strong>Service</strong> Describes an application on Knative.</li>
+<li><strong>Revision</strong> Read-only snapshot of an application's image and other settings</li>
+<li><strong>Configuration</strong> Created automatically by the service. It creates a new Revision when the revisionTemplate field changes.</li>
+<li><strong>Route</strong> Configures how the traffic coming to the Service should be split between Revisions.</li>
+</ul>
+<h2 id="4-cleanup">4 Cleanup<a class="headerlink" href="#4-cleanup" title="Permanent link">&para;</a></h2>
+<p>Delete the GKE cluster:</p>
+<pre class="codehilite"><code>gcloud container clusters delete cloudrun-demo --region us-central1
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

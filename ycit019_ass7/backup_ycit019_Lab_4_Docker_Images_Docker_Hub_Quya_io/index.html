@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>backup ycit019 Lab 4 Docker Images Docker Hub Quya io - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">MOdule 12 Serverless Cloud Run</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
+</li>
+            
+<li>
+    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
+</li>
+            
+<li>
+    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#1-building-docker-images" class="nav-link">1 Building Docker Images</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#11-create-dockerfile" class="nav-link">1.1 Create DOCKERFILE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#12-build-a-docker-image" class="nav-link">1.2 Build a Docker image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Lab 4 Managing Docker Images</p>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Learn to build docker images using Dockerfiles.</li>
+<li>Store images in Docker Hub</li>
+<li>Learn alternative registry solutions (Quya.io)</li>
+<li>Automate image build process with Docker Cloud</li>
+</ul>
+<h1 id="1-building-docker-images">1 Building Docker Images<a class="headerlink" href="#1-building-docker-images" title="Permanent link">&para;</a></h1>
+<p>In the previous modules, we learned how to use Docker images
+to run Docker containers. Docker images that we used have been downloaded from
+the Docker Hub, a registry of Docker images. In this section we will create a
+simple web application from scratch. We will use Flask
+(<a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a>), a microframework for
+Python. Our application for each request will display a random picture from the
+defined set.</p>
+<p>In the next session we will create all necessary files for our application,
+build docker image and then push to Docker Hub and Quay.</p>
+<p>The code for this application is also available in GitHub:</p>
+<pre class="codehilite"><code>git clone https://github.com/archyufa/k8scanada
+</code></pre>
+
+<h2 id="11-create-dockerfile">1.1 Create DOCKERFILE<a class="headerlink" href="#11-create-dockerfile" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Clone git repo on you laptop:</p>
+<pre class="codehilite"><code>git clone https://github.com/archyufa/k8scanada
+cd k8scanada/Module4/flask-app/
+</code></pre>
+
+<p><strong>Step 2</strong> In this directory, we see following files:</p>
+<pre class="codehilite"><code>flask-app/
+    Dockerfile
+    app.py
+    requirements.txt
+    templates/
+        index.html
+</code></pre>
+
+<p><strong>Step 3</strong> Let’s review file app.py with the following content:</p>
+<pre class="codehilite"><code class="language-python">from flask import Flask, render_template
+import random
+
+app = Flask(__name__)
+
+# list of cat images
+images = [
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr01/15/9/anigif_enhanced-buzz-31540-1381844535-8.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26390-1381844163-18.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-1376-1381846217-0.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3391-1381844336-26.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-29111-1381845968-0.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3409-1381844582-13.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr02/15/9/anigif_enhanced-buzz-19667-1381844937-10.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26358-1381845043-13.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-18774-1381844645-6.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-25158-1381844793-0.gif&quot;,
+    &quot;http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif&quot;
+]
+
+@app.route('/')
+def index():
+    url = random.choice(images)
+    return render_template('index.html', url=url)
+
+if __name__ == &quot;__main__&quot;:
+    app.run(host=&quot;0.0.0.0&quot;)
+</code></pre>
+
+<p><strong>Step 4</strong> Below is the content of requirements.txt file:</p>
+<pre class="codehilite"><code>Flask==0.10.1
+</code></pre>
+
+<p><strong>Step 5</strong> Under directory templates observe index.html with the following
+content:</p>
+<pre class="codehilite"><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+      body {
+        background: black;
+        color: white;
+      }
+      div.container {
+        max-width: 500px;
+        margin: 100px auto;
+        border: 20px solid white;
+        padding: 10px;
+        text-align: center;
+      }
+      h4 {
+        text-transform: uppercase;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;h4&gt;Cat Gif of the day&lt;/h4&gt;
+      &lt;img src=&quot;{{url}}&quot; /&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>Step 6</strong> Let’s review content of the Dockerfile:</p>
+<pre class="codehilite"><code class="language-docker"># our base image
+FROM alpine:3.5
+
+# Install python and pip
+RUN apk add --update py2-pip
+
+# upgrade pip
+RUN pip install --upgrade pip
+
+# install Python modules needed by the Python app
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+
+# copy files required for the app to run
+COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the application
+CMD [&quot;python&quot;, &quot;/usr/src/app/app.py&quot;]
+</code></pre>
+
+<h2 id="12-build-a-docker-image">1.2 Build a Docker image<a class="headerlink" href="#12-build-a-docker-image" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Now let’s build our Docker image. In the command below, replace
+<user-name> with your user name. This user name should be the same as you
+created when you registered on Docker Hub. Because we will publish our build
+image in the next step.</p>
+<pre class="codehilite"><code>docker build -t &lt;user-name&gt;/myfirstapp .
+</code></pre>
+
+<p><strong>Step 2</strong> Where is your built image? It’s in your machine’s local Docker image
+registry, you can
+check that your image exists with command below:</p>
+<pre class="codehilite"><code>docker images
+</code></pre>
+
+<p><strong>Step 3</strong> Now run a container in a background and expose a standard HTTP port
+(80), which is redirected to the container’s port 5000:</p>
+<pre class="codehilite"><code>docker run -dp 80:5000 --name myfirstapp &lt;user-name&gt;/myfirstapp
+</code></pre>
+
+<p><strong>Step 4</strong> Use your browser to open the address http://<VM or Laptop IP> and
+check that the application works.</p>
+<p><strong>Step 5</strong> Stop the container and remove it:</p>
+<pre class="codehilite"><code>docker stop myfirstapp
+
+docker rm myfirstapp
+myfirstapp
+</code></pre>
+
+<h3 id="121-share-docker-images-with-tar-files">1.2.1 Share docker images with tar files<a class="headerlink" href="#121-share-docker-images-with-tar-files" title="Permanent link">&para;</a></h3>
+<p>Now ideally you want to share you freshly build docker image with someone or
+run it in different environment which for some reason don’t have internet access
+so images can not be pulled from Online Docker registries. In that case Docker
+images can be shared as we share traditionally regular files by creating
+<strong>tarballs</strong>  using docker save  command as following</p>
+<p><strong>Step 1</strong> Create a tar file using docker save  command:</p>
+<pre class="codehilite"><code>docker save &lt;user-name&gt;/myfirstapp &gt; myfirstapp.tar
+</code></pre>
+
+<p>Or</p>
+<pre class="codehilite"><code>docker save --output myfirstapp1.tar archyufa/myfirstapp
+ls -trh | grep tar
+</code></pre>
+
+<p><strong>Step 2</strong> Transfer images to another environment using scp command.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can also store this images in Object storages, e.g. Swift or
+Amazon S3 using version control.</p>
+</div>
+<p><strong>Step 3</strong> Now you can restore this images using docker load, that will load a
+tarred repository from a file or the standard input stream. It restores both
+images and tags.</p>
+<pre class="codehilite"><code>docker load &lt; myfirstapp.tar
+</code></pre>
+
+<pre class="codehilite"><code>23b9c7b43573: Loading layer [==================================================&gt;]   4.23MB/4.23MB
+
+b3b5c1214f71: Loading layer [==================================================&gt;]  52.87MB/52.87MB
+
+f877d8dd64d3: Loading layer [==================================================&gt;]  8.636MB/8.636MB
+
+bba871f91589: Loading layer [==================================================&gt;]  3.584kB/3.584kB
+
+1c131e92eb5f: Loading layer [==================================================&gt;]  5.053MB/5.053MB
+
+3f6463bcb64c: Loading layer [==================================================&gt;]   5.12kB/5.12kB
+
+47c61110467a: Loading layer [==================================================&gt;]  4.096kB/4.096kB
+
+Loaded image: archyufa/myfirstapp:latest
+</code></pre>
+
+<pre class="codehilite"><code>docker images
+</code></pre>
+
+<h3 id="122-publish-docker-image-to-docker-hub">1.2.2 Publish Docker Image to Docker Hub<a class="headerlink" href="#122-publish-docker-image-to-docker-hub" title="Permanent link">&para;</a></h3>
+<p>However the most popular way to share and work with you images is to push
+them to the Docker Hub.</p>
+<p><strong>Docker Hub</strong> is a <a href="https://hub.docker.com/explore/">registry</a>
+of Docker images. You can think of the registry as a directory of all available
+Docker images.</p>
+<p><strong>Step 1 (Optional)</strong> If you don’t have a Docker account, sign up for one
+<a href="https://hub.docker.com/">here</a>. Make a note of your username and password.</p>
+<p><strong>Step 2</strong> Log in to your local machine.</p>
+<pre class="codehilite"><code>docker login
+</code></pre>
+
+<p><strong>Step 3</strong> Now, publish your image to docker Hub.</p>
+<pre class="codehilite"><code>docker push &lt;user-name&gt;/myfirstapp
+</code></pre>
+
+<p><strong>Step 4</strong> Login to <a href="https://hub.docker.com">https://hub.docker.com</a> and verify
+simage and tags.</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Image been pushed and can be observed in Docker Hub, with the <strong>tag</strong> latest.</p>
+</div>
+<p><strong>Step 5</strong> It is also possible to specify a custom tag for image prior to push
+it to the registry</p>
+<pre class="codehilite"><code>docker tag 5b45ce063cea &lt;user-name&gt;/myfirstapp:v1
+docker push &lt;user-name&gt;/myfirstapp:v1
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Image been pushed and can be observed in Docker Hub. You can now
+observe 2 docker image one with the <strong>tag</strong> latest and another with tag v1</p>
+</div>
+<p><strong>Step 6</strong> You can now <strong>pull</strong> or <strong>run</strong> specified <strong>Docker images</strong> from any
+other location where docker engine is installed with following commands:</p>
+<pre class="codehilite"><code>docker pull &lt;user-name&gt;/myfirstapp:latest
+
+docker pull &lt;user-name&gt;/myfirstapp:v1
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Images stored locally</p>
+</div>
+<pre class="codehilite"><code>docker images
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="codehilite"><code>myfirstapp       v1       f50f9524513f    1 hour ago   22 MB
+
+myfirstapp       latest   f50f9524513f    1 hour ago   22 MB
+</code></pre>
+
+<p>Finally run images with specific tag:</p>
+<pre class="codehilite"><code>docker run &lt;user-name&gt;/myfirstapp:v1
+</code></pre>
+
+<h3 id="123-automated-builds-with-docker-cloud">1.2.3 Automated Builds with Docker Cloud<a class="headerlink" href="#123-automated-builds-with-docker-cloud" title="Permanent link">&para;</a></h3>
+<p><strong>Live Demo:</strong></p>
+<ul>
+<li>Docker Security scanning</li>
+<li>Setting Up Auto-Build in Docker Cloud and notifications to slac</li>
+<li>Automated Tests with PR</li>
+</ul>
+<h3 id="124-push-docker-images-to-quayio">1.2.4 Push Docker Images to quay.io<a class="headerlink" href="#124-push-docker-images-to-quayio" title="Permanent link">&para;</a></h3>
+<p><strong>Prerequisite:</strong> Register to  quay.io with your Github user</p>
+<p><strong>Step 1</strong> Login to quay.io from CLI</p>
+<pre class="codehilite"><code>docker login quay.io
+</code></pre>
+
+<p><strong>Step 2</strong> Build image with quay prefix</p>
+<pre class="codehilite"><code>docker build -t quay.io/archyufa/myfirstapp .
+</code></pre>
+
+<p><strong>Step 3</strong> Push image to quay registry</p>
+<pre class="codehilite"><code>docker push quay.io/archyufa/myfirstapp
+</code></pre>
+
+<h3 id="125-demo-quayio">1.2.5 Demo quay.io<a class="headerlink" href="#125-demo-quayio" title="Permanent link">&para;</a></h3>
+<p><strong>Live Demo:</strong></p>
+<ul>
+<li>Docker Security scanning</li>
+<li>Setting Up Auto-Build in Docker Cloud / Quai.io</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
