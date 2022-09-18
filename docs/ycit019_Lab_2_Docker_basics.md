@@ -1,0 +1,820 @@
+Lab 2 Docker basics
+
+**Objective:**
+
+  * Practice to run Docker containers
+
+
+## Prepare Lab Environment
+
+This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.
+
+Open the Google Cloud Shell by clicking on the icon on the top right of the screen:
+
+![alt text](images/cloud_shell.png "Google Cloud Shell")
+
+Once opened, you can use it to run the instructions for this lab.
+
+# 1 Docker basics
+
+## 1.1 Show running containers
+
+**Step 1** Run docker ps to show running containers:
+```
+docker ps
+
+```
+**Step 2** The output shows that there are no running containers at the moment.
+Use the command docker `ps -a` to list all containers including the ones has
+been stopped:
+
+```
+docker ps -a
+```
+**Output:**
+```
+
+CONTAINER ID IMAGE       COMMAND  CREATED        STATUS             PORTS  NAMES
+6e6db2a24a8e hello-world "/hello" 15 minutes ago Exited (0) 15 min  dreamy_nobel
+```
+
+Review the collumns `CONTAINER ID`, `STATUS`, `COMMAND`, `PORTS`, `NAMES`.
+
+In the previous section we started one container and the command docker `ps -a`
+shows it as `Exited`.
+
+!!! note
+    You can name your own containers with --name when you use docker run. If
+    you do not provide a name, Docker will generate a random one like the one
+    you have.
+
+!!! question
+    Why Docker names are random? How docker containers named?
+
+**Step 3** Let’s run the command `docker images` to show all the images on your
+local system:
+
+```
+docker images
+
+```
+
+As you see, there is only one image that was downloaded from the Docker Hub.
+
+## 1.2 Specify a container main process
+
+**Step 1** Let’s run our own "hello world" container. For that we will use the
+official [Ubuntu image](https://hub.docker.com/_/ubuntu/):
+
+```
+docker run ubuntu /bin/echo 'Hello world'
+```
+**Output:**
+```
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+...
+Status: Downloaded newer image for ubuntu:latest
+Hello world
+```
+As you see, Docker downloaded the image ubuntu because it was not on the local
+machine.
+
+**Step 2** Let’s run the command `docker images` again:
+
+```
+docker images
+```
+**Output:**
+```
+
+REPOSITORY          TAG                 IMAGE ID            CREATED        SIZE
+ubuntu              latest              42118e3df429        11 days ago  124.8 MB
+hello-world         latest              c54a2cc56cbb        4 weeks ago  1.848 kB
+```
+
+**Step 3** If you run the same "hello world" container again, Docker will use a
+local copy of the image:
+
+```
+docker run ubuntu /bin/echo 'Hello world'
+```
+**Output:**
+```
+Hello world
+```
+
+!!! question
+    Compare Ubuntu Docker image with ISO image or with Cloud VM image.
+
+    * Why the size is so different ?
+
+
+!!! summary
+    Pulling docker images from Docker Hub takes sometime. This time depends on:
+
+    * How large is the image?
+    * How fast is the network to Internet ?
+
+    However, it is still much faster than booting traditional OS with Ubuntu
+    on VM.
+
+    If image already pulled on local host it takes fraction of a second to start
+    a container.
+
+    Running application in docker containers considered as a best practice
+    for running CI/CD pipelines as it considerably faster than using VMs and
+    reduce time for deploying a test environments.
+
+
+## 1.3 Specify an image version
+
+**Step 1** As you see, Docker has downloaded the ubuntu:latest image. You can
+see Ubuntu version by running the following command:
+
+```
+docker run ubuntu /bin/cat /etc/issue.net
+
+```
+**Output:**
+```
+Ubuntu 16.04 LTS
+```
+
+Let’s say you need a previous Ubuntu LTS release. In this case, you can specify
+the version you need:
+
+```
+docker run ubuntu:14.04 /bin/cat /etc/issue.net
+
+```
+**Output:**
+```
+Unable to find image 'ubuntu:14.04' locally
+14.04: Pulling from library/ubuntu
+...
+Status: Downloaded newer image for ubuntu:14.04
+Ubuntu 14.04.4 LTS
+```
+
+**Step 2** The `docker images` command should show that we have 3 Ubuntu
+images downloaded locally:
+
+```
+docker images
+
+```
+**Output:**
+```
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              latest              42118e3df429        11 days ago         124.8 MB
+ubuntu              14.04               0ccb13bf1954        11 days ago         188 MB
+hello-world         latest              c54a2cc56cbb        4 weeks ago         1.848 kB
+```
+
+!!! tip
+    Running CI/CD pipeline with Docker using `latest` tag
+    considered as a Bad Practice.
+
+    Instead consider using:
+
+    * Versioning
+    * `SHA` tagging.
+
+
+## 1.4 Run an interactive container
+
+**Step 1** Let’s use the `ubuntu` image to run an *interactive* bash session and
+inspect what is running inside our docker image.
+
+To achive that we going to use  `-i` and `-t` flags.
+
+The  `-i` is shorthand for `--interactive`, which instructs Docker to keep
+`stdin` open so that we can send commands to the sprocess.
+
+The `-t` flag is short for `--tty` and allocates a `pseudo-TTY` or terminal
+inside of the session.
+
+```
+docker run -it ubuntu /bin/bash
+root@17d8bdeda98e:/#
+```
+
+!!! result
+    We get a  bash shell prompt inside of the container.
+
+!!! note
+    Bash prompt is not availabe for all docker images.
+
+**Step 2** Let's print the system information of the latest `Ubuntu` image:
+```
+root@17d8bdeda98e:/#  uname -a
+Linux 17d8bdeda98e 3.19.0-31-generic ...
+```
+
+**Step 3** Let's verify what Ubuntu version is run by `latest` image of ubuntu:
+```
+root@17d8bdeda98e:/#  lsb_release -a
+bash: lsb_release: command not found
+```
+
+!!! failure
+    Why the standard Ubuntu command that checks version of OS is not working as
+    expeced ?
+
+**Step 4** Let's verify Ubuntu version using alternative way by checking
+`/etc/lsb-release` file.
+
+```
+root@8cbcbd0fe8d2:/# cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.3 LTS"
+```
+
+**Step 5** Let's compare the number of executable binaries availabe inside of
+the docker image versus Cloud VM that we running our class environment. First,
+run `ls` command on  `/bin` and `/usr/bin` directories inside of the running
+ubuntu container as well as `dpkg --list` command that shows total number of
+installed packages:
+
+```
+root@8cbcbd0fe8d2:/# ls /bin | wc -l
+86
+root@8cbcbd0fe8d2:/# ls /usr/bin | wc -l
+233
+root@eb11cd0b4106:/# dpkg --list | wc -l
+101
+```
+
+**Step 6** Use the `exit` command or press `Ctrl-D` to exit the interactive
+bash session back to Cloud VM.
+```
+root@eb11cd0b4106:/# exit
+```
+**Step 7** Now run `ls` command on `/bin` and `/usr/bin` directories on Cloud VM
+that we using as our class environment:
+
+```
+cca-user@userx-docker-vm:~$ ls /bin | wc -l
+171
+cca-user@userx-docker-vm:~$ ls /usr/bin | wc -l
+660
+cca-user@userx-docker-vm:~$ dpkg --list | wc -l
+463
+```
+
+!!! result
+    Official Docker container has much less binaries and packages installed vs
+    Ubuntu Cloud Image.
+
+!!! summary
+    Some of the use cases running docker containers in `interactive mode` are:
+
+    * Troubleshooting containerized applications
+    * Deploying and running containerized application on the existing
+    production systems without affecting it.
+
+    We've also learned that an official Docker "minimal" ubuntu image, does not
+    include `lsb_release` command, as well as many other commands and packages
+    that can be found in [Official Ubuntu ISO image](https://www.ubuntu.com/download/server).
+    The docker images are ment to contain only required *core system* commands
+    and functions to make Images as light as possible.
+    That say you can still install required packages using `apt-get install`,
+    however this may increase size of docker image considerably.
+
+
+!!! hint
+    While Docker `Ubuntu` image we used so far or Docker `Centos` image are
+    very familiar to users and can be good starting point for learning docker
+    containers. Using them in production or development considered as a Bad
+    Practice.
+
+    This is due those images still considered as `heavy` and potentially
+    contain a lot more valnurabilities compare to specialized images.
+
+    To reduce image pull time from docker hub and follow the best secuirity
+    practices consider using specialized images that works well with you
+    underlining code (Node image for NodeJS applications and etc.).
+    Examples of specialized images are:
+
+      * Alpine Linux
+      * Node
+      * Atomic
+
+    In fact, not so long ago all the [official Docker Images](https://github.com/docker-library/official-images/tree/master/library)
+    in Docker-Hub [has been moved](https://www.brianchristner.io/docker-is-moving-to-alpine-linux/)
+    to use [Alpine Image](https://www.alpinelinux.org/).
+
+
+**Step 8** Finally let’s check that when the shell process has finished, the
+container stops:
+```
+docker ps
+```
+
+## 1.5 Run a container in a background
+
+Now we know how to connect to running container and execute commands in it.
+However in most cases you just want run a container in a *background* so it can
+do a specific action.
+
+**Step 1** Run a container in a background using the `-d` command line argument:
+
+```
+docker run -d ubuntu /bin/sh -c "while true; do date; echo hello world; sleep 1; done"
+```
+!!! result
+    Command should return the container ID.
+
+**Step 2** Let’s use the `docker ps` command to see running containers:
+```
+docker ps
+
+```
+```
+ CONTAINER ID IMAGE  COMMAND                  CREATED        STATUS  PORTS NAMES
+ac231579e57f ubuntu "/bin/sh -c 'while tr"   1 minute ago   Up 11 minute  evil_golick
+```
+
+!!! note
+    Container id is going to  be different in your case
+
+!!! hint
+    Instead of using full `container-id` when building commands, it is possible
+    simply type first few characters of container-id, to make things nice and
+    easy.
+
+**Step 3** Let’s use `container-id` to show the container standard output:
+```
+docker logs <container-id>
+
+```
+```
+Thu Jan 26 00:23:45 UTC 2017
+hello world
+Thu Jan 26 00:23:46 UTC 2017
+hello world
+Thu Jan 26 00:23:47 UTC 2017
+hello world
+...
+```
+
+As you can see, in the `docker ps` command output, the auto generated container
+name is `evil_golick` (your container can have a different name).
+
+**Step 4** Now, instead of using docker `contaier-id` use container name to
+show the container standard output:
+```
+docker logs <name>
+
+```
+```
+Thu Jan 26 00:23:51 UTC 2017
+hello world
+Thu Jan 26 00:23:52 UTC 2017
+hello world
+Thu Jan 26 00:23:53 UTC 2017
+hello world
+...
+```
+**Step 5** Finally, let’s stop our container:
+```
+docker stop <name>
+
+```
+**Step 6** Check, that there are no running containers:
+```
+docker ps
+```
+
+!!! summary
+    `docker logs` is a very usefull command to troubleshoot containers,
+    and going to be used very often both for Docker and Kubernertes
+    troubleshooting.
+
+
+## 1.6 Accessing Containers from the Internet
+
+**Step 1** Let’s run a simple web application. We will use the existing image
+training/webapp, which contains a Python Flask application:
+```
+docker run -d -P training/webapp python app.py
+
+```
+```
+...
+Status: Downloaded newer image for training/webapp:latest
+6e88f42d3d853762edcbfe1fe73fdc5c48865275bc6df759b83b0939d5bd2456
+```
+
+In the command above we specified the main process (python app.py), the `-d`
+command line argument, which tells Docker to run the container in the
+background. The `-P` command line argument tells Docker to map any required
+network ports inside our container to our host. This allows us to access the web
+application in the container.
+
+**Step 2** Use the `docker ps` command to list running containers:
+
+```
+docker ps
+
+```
+```
+CONTAINER ID IMAGE           COMMAND         CREATED       STATUS       PORTS                   NAMES
+6e88f42d3d85 training/webapp "python app.py" 3 minutes ago Up 3 minutes 0.0.0.0:32768->5000/tcp determined_torvalds
+```
+
+The PORTS column contains the mapped ports. In our case, Docker has exposed port
+5000 (the default Python Flask port) on port 32768 (can be different in your
+case).
+
+**Step 3** The `docker port` command shows the exposed port. We will use the
+container name (determined_torvalds in the example above, it can be different in
+your case):
+
+```
+docker port <name> 5000
+0.0.0.0:32768
+```
+
+**Step 4** Let’s check that we can access the web application exposed port:
+```
+curl http://localhost:<port>/
+```
+
+!!! result
+    `Hello world!`
+
+**Step 5** Let’s stop our web application for now:
+```
+docker stop <name>
+```
+
+**Step 6** We want to manually specify the local port to expose (-p argument).
+Let’s use the standard HTTP port 80. We also want to specify the container name
+(--name argument):
+
+```
+docker run -d -p 80:5000 --name webapp training/webapp python app.py
+
+```
+**Step 7** Let’s check that the port 80 is exposed:
+```
+docker ps
+
+```
+
+```
+
+CONTAINER ID IMAGE           COMMAND         CREATED       STATUS       PORTS                NAMES
+249476631f7d training/webapp "python app.py" 1 minute  ago Up 1 minute  0.0.0.0:80->5000/tcp webapp
+```
+
+
+```
+
+curl http://localhost/
+```
+!!! result
+    `Hello world!``
+
+
+**Step 8** You can also observe `Hello world!` webapp from you laptop, for that you
+need to use you public VM IP that can be gather from VMs list:
+
+```
+Your_VM_Public_IP
+```
+
+Than paste VM Public IP address in you browser.
+
+!!! result
+    Our web-app can be accessed from Internet!
+
+
+## 1.7 Restart a container
+
+**Step 1** Let’s stop the container with web application:
+```
+docker stop webapp
+```
+The main process inside of the container will receive SIGTERM, and after a grace
+period, SIGKILL.
+
+**Step 2** You can start the container later using the `docker start` command:
+
+```
+docker start webapp
+```
+
+**Step 3** Check that the web application works:
+
+```
+curl http://localhost/
+Hello world!
+```
+
+**Step 4** You also can restart the running container using the docker restart
+command.
+```
+docker restart webapp
+```
+
+**Step 4**  Run `docker ps` command and check  `STATUS` field:
+
+```
+docker ps
+```
+```
+CONTAINER ID    IMAGE             COMMAND           CREATED           STATUS              
+6e400179070f    training/webapp   "python app.py"   25 minutes ago    Up 3 seconds
+```
+
+## 1.8 Ensuring Container Uptime
+
+Docker considers any containers to exit with a non-zero exit code to have
+crashed. By default a crashed container will remain stopped.
+
+**Step 1** Start the container that outputs a message and then exits with code 1
+to simulate a crash.
+```
+docker run -d --name restart-default scrapbook/docker-restart-example
+```
+```
+docker ps -a | grep restart-default
+```
+```
+
+CONTAINER ID  IMAGE                             CREATED       STATUS               NAMES
+c854289d2f39  scrapbook/docker-restart-example  5 seconds ago Exited 3 sec ago    restart-default
+$ docker logs restart-default
+Sun Sep 17 20:34:55 UTC 2017 Booting up...
+```
+
+!!! result
+    Container crushed and exited.
+
+However, there are several ways to ensure that you container up and running even
+if it’s restarts.
+
+**Step 2** The option `--restart=on-failure`: allows you to say how many times
+Docker should try again:
+
+```
+docker run -d --name restart-3 --restart=on-failure:3 scrapbook/docker-restart-example
+
+```
+```
+docker logs restart-3
+```
+```
+Thu Apr 20 14:01:27 UTC 2017 Booting up...
+Thu Apr 20 14:01:28 UTC 2017 Booting up...
+Thu Apr 20 14:01:29 UTC 2017 Booting up...
+Thu Apr 20 14:01:31 UTC 2017 Booting up...
+```
+
+**Step 3** Finally, Docker can always restart a failed container. In this case,
+Docker will keep trying until the container is explicitly told to stop.
+```
+docker run -d --name restart-always --restart=always scrapbook/docker-restart-example
+docker logs restart-always
+```
+
+**Step 4**  After sometime stop running docker container, as it will be keep
+failing and starting again:
+```
+docker stop restart-always
+```
+
+## 1.9 Inspect a container
+
+**Step 1** You can use the `docker inspect` command to see the configuration and
+status information for the specified container:
+
+```
+docker inspect webapp
+
+```
+```
+[
+    {
+        "Id": "249476631f7d...",
+        "Created": "2016-08-02T23:42:56.932135327Z",
+        "Path": "python",
+        "Args": [
+            "app.py"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 16055,
+            "ExitCode": 0,
+            "Error": "",
+            ...
+```
+
+**Step 2** You can specify a filter (-f command line argument) to show only
+specific elements. For example:
+
+```
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' webapp
+```
+```
+
+172.17.0.2
+```
+The command returns the IP address of the container.
+
+## 1.10 Interacting with containers
+In some cases using `docker log` is not enough to undertand issues and you
+want to login inside of running VM. Also sometimes you package you applicaiton
+and in order to run it you need to login inside of container and execute and
+leave it running in background. Below provded few ways to interacting with
+containers that can help to achive descrined use cases.
+
+
+### 1.10.1 Detach from Interactive container
+In Module, `1.4 Run an interactive container` we run an `Ubuntu` container with
+`-it` flag and able directly login inside of the container to interact with it,
+however after we exited contianer using `Ctrl-D` or `exit` command container
+stopped. However you can exit from `Interactive mode` without stoping
+a container. Let's demonstrate how this works:
+
+**Step 1** Start Ubunu container in interactive  mode:
+```
+docker run -it ubuntu /bin/bash
+```
+
+**Step 2** Run `watch date` command inside running container in order to exit
+`date` command every 2 seconds.
+```
+root@1d688a9f4ed4:/# watch date
+```
+
+**Step 3** Detach from a container and leave it running using the
+`CTRL-p` `CTRL-q` key sequence.
+
+
+**Step 4** Verify that Ubuntu container is still running:
+```
+docker ps
+```
+```
+CONTAINER ID  IMAGE   COMMAND      CREATED        STATUS        NAMES
+1d688a9f4ed4  ubuntu  "/bin/bash"  1 minutes ago  Up 1 minutes  admiring_lovelace
+```
+
+!!! result
+    Great you were able to detach from Docker container without stopping it,
+    while it is executing a process in it.
+    What about attaching back to container ?
+
+!!! important
+    `CTRL-p` `CTRL-q`  sequence key only works if docker contaienr started
+    with `-it` command!
+
+### 1.11.2 Attach to a container
+
+Now let's get back and `attach` to our running Ubuntu image. For that
+docker provides `docker attach` command.
+
+```
+docker attach <container name>
+```
+```
+Every 2.0s: date                                                                                                                    Mon Sep 18 00:08:57 2017
+
+```
+
+!!! summary
+    `docker attach` attaches your contairs terminal’s standard input, output,
+    and error (or any combination of the 3) to a running container. This allows
+    you to view its ongoing output or to control it interactively, as though
+    the commands were running directly in your terminal.
+
+### 1.11.3 Execute a process in a container
+
+**Step 1** Let verify if webapp container is still running
+
+```
+docker ps
+```
+```
+CONTAINER ID IMAGE           COMMAND         CREATED       STATUS       PORTS                NAMES
+249476631f7d training/webapp "python app.py" 1 minute  ago Up 1 minute  0.0.0.0:80->5000/tcp webapp
+
+```
+
+If not running start it with following command: `$ docker run -d -p 80:5000 --name webapp training/webapp python app.py`
+other wise skip to **next step**.
+
+
+**Step 2** Use the docker exec command to execute a command in the running
+container. For example:
+```
+docker exec webapp ps aux
+
+```
+```
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.2  0.0  52320 17384 ?        Ss   00:11   0:00 python app.py
+root        26  0.0  0.0  15572  2104 ?        Rs   00:12   0:00 ps aux
+```
+The same command with the `-it` command line argument can be used to run an
+interactive session in the container:
+```
+docker exec -it webapp bash
+root@249476631f7d:/opt/webapp# ps auxw
+ps auxw
+
+```
+```
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  52320 17384 ?        Ss   00:11   0:00 python app.py
+root        32  0.0  0.0  18144  3064 ?        Ss   00:14   0:00 bash
+root        47  0.0  0.0  15572  2076 ?        R+   00:16   0:00 ps auxw
+```
+**Step 2** Use the `exit` command or press `Ctrl-D` to exit the interactive bash
+session:
+```
+root@249476631f7d:/opt/webapp# exit
+```
+
+!!! Summary
+    `docker exec` is one of the most usefull docker commands used for
+    troubleshooting containers.
+
+## 1.12 Copy files to/from container
+
+The `docker cp` command allows you to copy files from the container to the local
+machine or from the local file system to the container. This command works for
+a running or stopped container.
+
+**Step 1** Let’s copy the container’s app.py file to the local machine:
+```
+docker cp webapp:/opt/webapp/app.py .
+```
+**Step 2** Edit the local app.py file. For example, change the line return
+'Hello '+provider+'!' to return 'Hello '+provider+'!!!'. Copy the modified file
+back and restart the container:
+```
+docker cp app.py webapp:/opt/webapp/
+
+docker restart webapp
+```
+**Step 3** Check that the modified web application works::
+```
+curl http://localhost/
+
+```
+
+!!! result
+    `Hello world!!!``
+
+
+
+## 1.12 Remove containers
+Now let's clean up the environment and at the same time learn how delete
+containers.
+
+Step 1 First list running containers:
+```
+docker ps
+```
+```
+CONTAINER ID IMAGE           COMMAND         CREATED       STATUS       PORTS                NAMES
+81c4c66baaf9 training/webapp "python app.py" 1 minute  ago Up 1 minute  0.0.0.0:80->5000/tcp webapp
+```
+
+Step 2 Than try to delete running container using `docker rm <container_id>`
+```
+docker rm $container_id
+```
+```
+Error response from daemon: You cannot remove a running container 81c4c66baaf9. Stop the container before attempting removal or force remove.
+```
+
+!!! failure
+    Docker containers needs to be first stopped or deleted using `--force` flag.
+
+```
+docker rm $container_id -f
+```
+
+Alternatively, you can run `stop` and `rm` in sequence:
+```
+docker stop 81c4c66baaf9
+docker rm 81c4c66baaf9
+```
+
+
+!!! summary
+    We've learned a lot of docker commands which are very handy to know both
+    when using Docker and Kubernetes. We've also learned how to create Docker Images from DOCKERFILE.
