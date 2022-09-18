@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Module 8 Assignment Solution - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
+</li>
+            
+<li>
+    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
+</li>
+            
+<li>
+    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
+</li>
+            
+<li>
+    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../ycit019_ass3/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ycit019_ass4_2022/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#1-deploy-applications-on-kubernetes" class="nav-link">1 Deploy Applications on Kubernetes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#11-development-tools" class="nav-link">1.1 Development Tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#21-create-gke-cluster" class="nav-link">2.1 Create GKE Cluster</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#22-setup-kubectl-autocomplete" class="nav-link">2.2 Setup KUBECTL AUTOCOMPLETE</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#23-create-dev-namespace-and-make-it-default" class="nav-link">2.3 Create 'dev' namespace and make it default.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#24-create-service-object-for-mysql" class="nav-link">2.4 Create Service Object for MySQL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#25-create-deployment-object-for-the-backend-mysql-database" class="nav-link">2.5 Create Deployment object for the backend MySQL database</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#25-create-a-k8s-service-for-the-frontend-gowebapp" class="nav-link">2.5 Create a K8s Service for the frontend gowebapp.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" class="nav-link">2.6 Create a K8s Deployment object for the frontend gowebapp</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#27-fix-gowebapp-code-bugs-and-build-a-new-image" class="nav-link">2.7 Fix gowebapp code bugs and build a new image.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#27-rolling-upgrade" class="nav-link">2.7 Rolling Upgrade</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="nav-link">2.8 Commit K8s manifests to repository and share it with Instructor/Teacher</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#29-cleaning-up" class="nav-link">2.9 Cleaning Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="1-deploy-applications-on-kubernetes">1 Deploy Applications on Kubernetes<a class="headerlink" href="#1-deploy-applications-on-kubernetes" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Review process of creating NameSpaces</li>
+<li>Review process of changing Context</li>
+<li>Review process of creating K8s:<ul>
+<li>Services</li>
+<li>Labels, Selectors</li>
+<li>Deployments</li>
+<li>Rolling Updates</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-development-tools">1.1 Development Tools<a class="headerlink" href="#11-development-tools" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This steps is optional</p>
+</div>
+<p><strong>Step 1</strong> Choose one of the following option to develop the YAML manifests:</p>
+<p><em>Option 1:</em> You can develop in <a href="https://shell.cloud.google.com/">Google Cloud Shell Editor</a></p>
+<p><em>Option 2:</em> You can also develop locally on your laptop using <a href="https://code.visualstudio.com/">VCScode</a>. We recommend to use it in conjunction with VSC YAML extension from <a href="https://t.co/D5r4HZZdUC?amp=1">Redhat</a></p>
+<p><em>Option 3:</em> Use your preferred text editor on Linux VM (vim, nano).</p>
+<h2 id="21-create-gke-cluster">2.1 Create GKE Cluster<a class="headerlink" href="#21-create-gke-cluster" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+</code></pre>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with two nodes:</p>
+<pre class="codehilite"><code>gcloud container clusters create k8s-concepts \
+--zone us-central1-c \
+--num-nodes 2
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="codehilite"><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+k8s-concepts  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
+</code></pre>
+
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<pre class="codehilite"><code>gcloud container clusters get-credentials k8s-concepts --zone us-central1-c
+</code></pre>
+
+<h2 id="22-setup-kubectl-autocomplete">2.2 Setup KUBECTL AUTOCOMPLETE<a class="headerlink" href="#22-setup-kubectl-autocomplete" title="Permanent link">&para;</a></h2>
+<p>Since we going to use a lot of kubectl cli let's setup autocomplete.</p>
+<pre class="codehilite"><code>source &lt;(kubectl completion bash)
+echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc
+</code></pre>
+
+<h2 id="23-create-dev-namespace-and-make-it-default">2.3 Create 'dev' namespace and make it default.<a class="headerlink" href="#23-create-dev-namespace-and-make-it-default" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
+<pre class="codehilite"><code>kubectl create ns dev
+</code></pre>
+
+<p><strong>Step 2</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<pre class="codehilite"><code>kubectl config set-context --current --namespace=dev
+</code></pre>
+
+<p><strong>Step 3</strong> Verify current context:</p>
+<pre class="codehilite"><code>kubectl config view | grep namespace
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>dev</code></p>
+</div>
+<h2 id="24-create-service-object-for-mysql">2.4 Create Service Object for MySQL<a class="headerlink" href="#24-create-service-object-for-mysql" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Locate directory where kubernetes manifests going to be stored.</p>
+<pre class="codehilite"><code>cd ~/ycit019/
+git pull       # Pull latest assignement3
+</code></pre>
+
+<p>In case you don't have this folder clone it as following:</p>
+<pre class="codehilite"><code>cd ~
+git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Assignment3/
+ls
+</code></pre>
+
+<p><strong>Step 2</strong> Go into the local repository you've created:</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO
+</code></pre>
+
+<p><strong>Step 3</strong> Copy Assignment 3 <code>deploy</code> folder to your repo:</p>
+<pre class="codehilite"><code>git pull                              # Pull latest code from you repo
+cp -r ~/ycit019/Assignment3/deploy .
+</code></pre>
+
+<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<pre class="codehilite"><code>git status 
+git add .
+git commit -m &quot;adding K8s manifests in deploy folder&quot;
+</code></pre>
+
+<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
+
+<p><strong>Step 6</strong> Define a Kubernetes Service object for the backend MySQL database.</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy
+</code></pre>
+
+<p>Follow instructions below to populate  <code>gowebapp-mysql-service.yaml</code></p>
+<p>For reference, please see <code>Service</code> <a href="https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service">docs</a>:</p>
+<pre class="codehilite"><code>https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service
+</code></pre>
+
+<p>Additionally, you can use <code>kubectl</code> built-in docs for any type of resources:</p>
+<pre class="codehilite"><code>kubectl explain service
+</code></pre>
+
+<pre class="codehilite"><code>vim gowebapp-mysql-service.yaml
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use VCS or Cloud Code to work with <code>yaml</code> manifest.</p>
+</div>
+<pre class="codehilite"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
+spec:
+  clusterIP: None
+  ports:
+  - port: 3306
+    targetPort: 3306
+  selector:
+    run: gowebapp-mysql
+</code></pre>
+
+<p><strong>Step 3</strong> Create a Service object for MySQL</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-service.yaml --record
+</code></pre>
+
+<p><strong>Step 4</strong> Check to make sure it worked</p>
+<pre class="codehilite"><code>kubectl get service -l &quot;run=gowebapp-mysql&quot;
+</code></pre>
+
+<h2 id="25-create-deployment-object-for-the-backend-mysql-database">2.5 Create Deployment object for the backend MySQL database<a class="headerlink" href="#25-create-deployment-object-for-the-backend-mysql-database" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-mysql-deployment.yaml</code></p>
+<p>For reference, please see <code>Deployment</code> doc:</p>
+<pre class="codehilite"><code>https://kubernetes.io/docs/concepts/workloads/controllers/deployment
+</code></pre>
+
+<pre class="codehilite"><code>vim gowebapp-mysql-deployment.yaml
+</code></pre>
+
+<pre class="codehilite"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: gowebapp-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: gowebapp-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
+</code></pre>
+
+<p><strong>Step 2</strong> Create a Deployment object for MySQL</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-deployment.yaml --record
+</code></pre>
+
+<p><strong>Step 3</strong> Check to make sure it worked</p>
+<pre class="codehilite"><code>kubectl get deployment -l &quot;run=gowebapp-mysql&quot;
+</code></pre>
+
+<p><strong>Step 3</strong> Check <code>mysql</code> pod logs:</p>
+<p>List mysql Pods and note the name the <code>pod</code>:</p>
+<pre class="codehilite"><code>kubectl get pods -l &quot;run=gowebapp-mysql&quot;
+</code></pre>
+
+<p>Ensure <code>Mysql</code> is up by looking at <code>pod</code> logs:</p>
+<pre class="codehilite"><code>kubectl logs &lt;Pod_name&gt;
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We have created <code>Service</code> and <code>Deployment</code> for backend application.</p>
+</div>
+<h2 id="25-create-a-k8s-service-for-the-frontend-gowebapp">2.5 Create a K8s Service for the frontend gowebapp.<a class="headerlink" href="#25-create-a-k8s-service-for-the-frontend-gowebapp" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-service.yaml</code></p>
+<pre class="codehilite"><code>vim gowebapp-service.yaml
+</code></pre>
+
+<pre class="codehilite"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: gowebapp
+  labels:
+    run: gowebapp
+spec:
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  type: LoadBalancer
+</code></pre>
+
+<p><strong>Step 2</strong> Create a Service object for gowebapp</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-service.yaml --record
+</code></pre>
+
+<p><strong>Step 3</strong> Check to make sure it worked</p>
+<pre class="codehilite"><code>kubectl get service -l &quot;run=gowebapp&quot;
+</code></pre>
+
+<h2 id="26-create-a-k8s-deployment-object-for-the-frontend-gowebapp">2.6 Create a K8s Deployment object for the frontend gowebapp<a class="headerlink" href="#26-create-a-k8s-deployment-object-for-the-frontend-gowebapp" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Follow instructions below to populate <code>gowebapp-deployment.yaml</code></p>
+<pre class="codehilite"><code>vim gowebapp-deployment.yaml
+</code></pre>
+
+<pre class="codehilite"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp
+  labels:
+    run: gowebapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: gowebapp
+  template:
+    metadata:
+      labels:
+        run: gowebapp
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rootpasswd
+        image: gcr.io/${PROJECT_ID}/gowebapp:v1
+        name: gowebapp
+        ports:
+        - containerPort: 80
+</code></pre>
+
+<p><strong>Step 2</strong> Create a Deployment object for gowebapp</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-deployment.yaml --record
+</code></pre>
+
+<p><strong>Step 3</strong> Check to make sure it worked</p>
+<pre class="codehilite"><code>kubectl get deployment -l &quot;run=gowebapp&quot;
+</code></pre>
+
+<p><strong>Step 4</strong> Access your application on Public IP via automatically created Loadbalancer 
+created for <code>gowebapp</code> service.</p>
+<p>To get the value of <code>Loadbalancer</code> run following command:</p>
+<pre class="codehilite"><code>kubectl get svc gowebapp -o wide
+</code></pre>
+
+<p>Expected output:</p>
+<pre class="codehilite"><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
+gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
+</code></pre>
+
+<p><strong>Step 5</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Congrats!!! You've deployed you code to Kubernetes</p>
+</div>
+<h2 id="27-fix-gowebapp-code-bugs-and-build-a-new-image">2.7 Fix gowebapp code bugs and build a new image.<a class="headerlink" href="#27-fix-gowebapp-code-bugs-and-build-a-new-image" title="Permanent link">&para;</a></h2>
+<p>Task:
+As you've noticed <code>gowebapp</code> frontend app has <code>YCIT019</code> logo in it.
+Since you may want to use application for you personal needs, let's change
+<code>YCIT019</code> logo to you <code>Name</code>.</p>
+<p><strong>Step 1</strong> Modify gowebapp frontend so that it has name of you company and link
+to company web page e.g.</p>
+<pre class="codehilite"><code>vim ~/$MY_REPO/gowebapp/code/template/partial/footer.tmpl
+</code></pre>
+
+<p><strong>Step 2</strong> Build a new version of Image</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp
+docker build -t gcr.io/${PROJECT_ID}/gowebapp:v2 .
+docker push gcr.io/${PROJECT_ID}/gowebapp:v2 .
+</code></pre>
+
+<h2 id="27-rolling-upgrade">2.7 Rolling Upgrade<a class="headerlink" href="#27-rolling-upgrade" title="Permanent link">&para;</a></h2>
+<p>For <code>gowebapp</code> frontend deployment manifest we've not specified
+any upgrade strategy type. It means application will use default
+Upgrade strategy called <code>RollingUpdate</code>.</p>
+<p><code>RollingUpdate</code> strategy - updates Pods in a rolling update fashion.</p>
+<p><code>maxUnavailable</code> - is an optional field that specifies the maximum number of Pods that can be unavailable during the update process. By default, it ensures that at least 25% less than the desired number of Pods are up (25% max unavailable).</p>
+<p><code>Max Surge</code> - is an optional field that specifies the maximum number of Pods that can be created over the desired number of Pods. By default, it ensures that at most 25% more than the desired number of Pods are up (25% max surge).</p>
+<p><strong>Step 1</strong> Locate directory with manifest</p>
+<pre class="codehilite"><code>cd  ~/$MY_REPO/deploy
+</code></pre>
+
+<p><strong>Step 2</strong> Trigger rolling upgrade using <code>kubectl set</code> command</p>
+<pre class="codehilite"><code>kubectl set image deployments/gowebapp gowebapp=gcr.io/${PROJECT_ID}/gowebapp:v2
+</code></pre>
+
+<p><strong>Step 3</strong> Verify rollout history</p>
+<pre class="codehilite"><code>kubectl rollout history deployment/gowebapp
+</code></pre>
+
+<p><strong>Step 4</strong> Perform Rollback to v1</p>
+<pre class="codehilite"><code>kubectl rollout undo deployment/gowebapp --to-revision=1
+</code></pre>
+
+<h2 id="28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">2.8 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#28-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<pre class="codehilite"><code>git add .
+git commit -m &quot;k8s manifests&quot;
+</code></pre>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
+
+<h2 id="29-cleaning-up">2.9 Cleaning Up<a class="headerlink" href="#29-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<pre class="codehilite"><code>gcloud container clusters delete k8s-concepts
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
