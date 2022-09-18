@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>ycit019 Lab 5 Docker Compose - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
+</li>
+            
+<li>
+    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
+</li>
+            
+<li>
+    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
+</li>
+            
+<li>
+    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#1-docker-security" class="nav-link">1 Docker Security</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#2-docker-compose" class="nav-link">2 Docker Compose</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#21-deploy-guestbook-app-with-compose" class="nav-link">2.1 Deploy Guestbook app with Compose</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#22-deploy-voting-app-using-compose" class="nav-link">2.2 Deploy Voting App using Compose</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Lab 5 Docker Compose and Docker Security</p>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Practice to use Docker Compose, </li>
+</ul>
+<h2 id="1-docker-security">1 Docker Security<a class="headerlink" href="#1-docker-security" title="Permanent link">&para;</a></h2>
+<h3 id="11-scan-images-with-trivy">1.1 Scan images with <a href="https://aquasecurity.github.io/trivy/v0.18.0/">Trivy</a><a class="headerlink" href="#11-scan-images-with-trivy" title="Permanent link">&para;</a></h3>
+<p>Trivy (tri pronounced like trigger, vy pronounced like envy) is a simple and comprehensive vulnerability scanner for containers and other artifacts. A software vulnerability is a glitch, flaw, or weakness present in the software or in an Operating System. Trivy detects vulnerabilities of OS packages (Alpine, RHEL, CentOS, etc.) and application dependencies (Bundler, Composer, npm, yarn, etc.). Trivy is easy to use. Just install the binary and you're ready to scan. All you need to do for scanning is to specify a target such as an image name of the container.</p>
+<p><strong>Step 1</strong>  Install Trivy</p>
+<pre class="codehilite"><code>sudo apt-get install wget apt-transport-https gnupg lsb-release
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy
+</code></pre>
+
+<p><strong>Step 2</strong> Specify an image name (and a tag).</p>
+<pre class="codehilite"><code>$ trivy image [YOUR_IMAGE_NAME]
+</code></pre>
+
+<p>For example:</p>
+<pre class="codehilite"><code>$ trivy image python:3.4-alpine
+</code></pre>
+
+<pre class="codehilite"><code>2019-05-16T01:20:43.180+0900    INFO    Updating vulnerability database...
+2019-05-16T01:20:53.029+0900    INFO    Detecting Alpine vulnerabilities...
+
+python:3.4-alpine3.9 (alpine 3.9.2)
+===================================
+Total: 1 (UNKNOWN: 0, LOW: 0, MEDIUM: 1, HIGH: 0, CRITICAL: 0)
+
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| LIBRARY | VULNERABILITY ID | SEVERITY | INSTALLED VERSION | FIXED VERSION |             TITLE              |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+| openssl | CVE-2019-1543    | MEDIUM   | 1.1.1a-r1         | 1.1.1b-r1     | openssl: ChaCha20-Poly1305     |
+|         |                  |          |                   |               | with long nonces               |
++---------+------------------+----------+-------------------+---------------+--------------------------------+
+</code></pre>
+
+<p><strong>Step 3</strong>  Explore local images in your environment. </p>
+<h1 id="2-docker-compose">2 Docker Compose<a class="headerlink" href="#2-docker-compose" title="Permanent link">&para;</a></h1>
+<p>In this module, will guide you through the process of building a multi-container
+application using docker compose. The application code is available at GitHub: <a href="https://github.com/Cloud-Architects-Program/ycit019">https://github.com/Cloud-Architects-Program/ycit019</a></p>
+<h2 id="21-deploy-guestbook-app-with-compose">2.1 Deploy Guestbook app with Compose<a class="headerlink" href="#21-deploy-guestbook-app-with-compose" title="Permanent link">&para;</a></h2>
+<p>Let’s build another application. This time we going to create famous Guestbook
+application.</p>
+<p>Guestbook consists of three services. A redis-master node, a set of redis-slave
+that can be scaled and find the redis-master via its DNS name. And a PHP frontend
+that exposes itself on port 80. The resulting application allows you to leave
+short messages which are stored in the redis cluster.</p>
+<p><strong>Step 1</strong> Change directory to the guestbook</p>
+<pre class="codehilite"><code>cd ~/ycit019/Module5/guestbook/
+ls
+</code></pre>
+
+<p><strong>Step 2</strong> Let’s review the docker-guestbook.yml file</p>
+<pre class="codehilite"><code>version: &quot;2&quot;
+
+services:
+ redis-master:
+   image: gcr.io/google_containers/redis:e2e
+   ports:
+     - &quot;6379&quot;
+ redis-slave:
+   image: gcr.io/google_samples/gb-redisslave:v1
+   ports:
+     - &quot;6379&quot;
+   environment:
+     - GET_HOSTS_FROM=dns
+ frontend:
+   image: gcr.io/google-samples/gb-frontend:v4
+   ports:
+     - &quot;80:80&quot;
+   environment:
+     - GET_HOSTS_FROM=dns
+</code></pre>
+
+<p><strong>Step 3</strong> Let’s run docker-guestbook.yml with compose</p>
+<pre class="codehilite"><code>export LD_LIBRARY_PATH=/usr/local/lib
+docker-compose -f docker-guestbook.yml up -d
+</code></pre>
+
+<pre class="codehilite"><code>Creating network &quot;examples_default&quot; with the default driver
+Creating examples_redis-slave_1
+Creating examples_frontend_1
+Creating examples_redis-master_1
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>-d</code> -  Detached mode: Run containers in the background, print new container names.</p>
+<p><code>-f</code> -  Specify an alternate compose file (default: docker-compose.yml)</p>
+</div>
+<p><strong>Step 4</strong> Check that all containers are running:</p>
+<pre class="codehilite"><code>docker ps
+</code></pre>
+
+<pre class="codehilite"><code>CONTAINER ID        IMAGE                                    COMMAND
+d1006d1beee5        gcr.io/google-samples/gb-frontend:v4     &quot;apache2-foreground&quot;
+fb3a15fde23f        gcr.io/google_containers/redis:e2e       &quot;redis-server /etc...&quot;
+326b94d4cdd7        gcr.io/google_samples/gb-redisslave:v1   &quot;/entrypoint.sh /b...&quot;
+</code></pre>
+
+<p><strong>Step 5</strong>  Test the application locally</p>
+<p>Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Nice you now have compose stuck up and running!</p>
+</div>
+<p><strong>Step 6</strong> Cleanup environment:</p>
+<pre class="codehilite"><code>docker-compose -f docker-guestbook.yml down
+</code></pre>
+
+<pre class="codehilite"><code>Stopping guestbook_frontend_1 ... done
+Stopping guestbook_redis-master_1 ... done
+Stopping guestbook_redis-slave_1 ... done
+Removing guestbook_frontend_1 ... done
+Removing guestbook_redis-master_1 ... done
+Removing guestbook_redis-slave_1 ... done
+Removing network guestbook_default
+</code></pre>
+
+<h2 id="22-deploy-voting-app-using-compose">2.2 Deploy Voting App using Compose<a class="headerlink" href="#22-deploy-voting-app-using-compose" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Switch to <code>Module5/example-voting-app</code> folder :</p>
+<pre class="codehilite"><code>cd ~/ycit019/Module5/example-voting-app/
+</code></pre>
+
+<p><strong>Step 2</strong> The existing file docker-compose.yml defines several images:</p>
+<ul>
+<li>
+<p>A voting-app container based on a Python image</p>
+</li>
+<li>
+<p>A result-app container based on a Node.js image</p>
+</li>
+<li>
+<p>A Redis container based on a redis image, to temporarily store the data.</p>
+</li>
+<li>
+<p>A worker app based on a dotnet image</p>
+</li>
+<li>
+<p>A Postgres container based on a postgres image</p>
+</li>
+</ul>
+<p><strong>App Architecture:</strong>
+<img alt="alt text" src="https://github.com/Cloud-Architects-Program/ycit019/blob/main/Module5/example-voting-app/architecture.png" title="architecture" /></p>
+<p>Note that three of the containers are built from Dockerfiles, while the other
+two are images on Docker Hub. Let's review them closely:</p>
+<p><strong>Step 3</strong> Review files that going to be deployed with <code>tree</code> command.
+Alternatively view the files in <a href="https://github.com/Cloud-Architects-Program/ycit019/tree/main/Module5/example-voting-app">gitrepo page here</a></p>
+<pre class="codehilite"><code>sudo apt install tree
+tree
+</code></pre>
+
+<p>Step 5 Let’s change the default port to expose. Edit the docker-compose.yml file and find the following lines:</p>
+<pre class="codehilite"><code>ports:
+  - &quot;5000:80&quot;
+</code></pre>
+
+<p>Change 5000 to 8080:</p>
+<pre class="codehilite"><code>ports:
+  - &quot;8080:80&quot;
+</code></pre>
+
+<p><strong>Step 4</strong> Verify Docker Compose version:</p>
+<pre class="codehilite"><code>docker-compose version
+</code></pre>
+
+<p><strong>Step 5</strong> Use the docker-compose tool to launch your application:</p>
+<pre class="codehilite"><code>docker-compose up -d
+</code></pre>
+
+<p><strong>Step 6</strong> Check that all containers are running, volumes created. Check
+compose state and logs :</p>
+<pre class="codehilite"><code>#Docker state
+docker ps
+docker volumes
+#Docker compose state
+docker-compose ps
+docker-compose logs
+</code></pre>
+
+<p><strong>Step 7</strong> Now that we've launched the application containers, let's try to test the web
+application locally.</p>
+<p>You should be able to access the application at Google Cloud <code>Web Preview</code> Console:</p>
+<p><img alt="alt text" src="../images/web_preview.png" title="Web Preview" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Web Preview using port <code>8080</code> by default. If you application using other port, you can edit this as needed.</p>
+</div>
+<p><strong>Step 8</strong> Cleanup up.</p>
+<pre class="codehilite"><code>docker-compose down
+</code></pre>
+
+<pre class="codehilite"><code>Stopping examplevotingapp_worker_1 ... done
+Stopping examplevotingapp_redis_1 ... done
+Stopping examplevotingapp_result_1 ... done
+Stopping examplevotingapp_db_1 ... done
+Stopping examplevotingapp_vote_1 ... done
+Removing examplevotingapp_worker_1 ... done
+Removing examplevotingapp_redis_1 ... done
+Removing examplevotingapp_result_1 ... done
+Removing examplevotingapp_db_1 ... done
+Removing examplevotingapp_vote_1 ... done
+Removing network examplevotingapp_default
+</code></pre>
+
+<p><strong>Step 9</strong> You <strong>Boss</strong> told you that the application has a bug. Update the
+the app by editing the vote/app.py file and change the following lines near the
+top of the file:</p>
+<pre class="codehilite"><code>vim vote/app.py
+</code></pre>
+
+<p>Press 'i'</p>
+<pre class="codehilite"><code>option_a = os.getenv('OPTION_A', &quot;Cats&quot;)
+option_b = os.getenv('OPTION_B', &quot;Dogs&quot;)
+</code></pre>
+
+<p><strong>Step 10</strong> Replace “Cats” and “Dogs” with two options of your choice. For example:</p>
+<pre class="codehilite"><code>option_a = os.getenv('OPTION_A', &quot;Java&quot;)
+option_b = os.getenv('OPTION_B', &quot;Python&quot;)
+</code></pre>
+
+<p>Press 'wq!'</p>
+<p><strong>Step 11</strong> Use docker-compose tool to launch your Update application:</p>
+<pre class="codehilite"><code>docker-compose up -d
+</code></pre>
+
+<p>Check the UI</p>
+<div class="admonition bingo">
+<p class="admonition-title">Bingo</p>
+<p>Let's see who wins the battle of Orchestrations!</p>
+</div>
+<p><strong>Step 8</strong> Cleanup up</p>
+<pre class="codehilite"><code>docker-compose down
+</code></pre>
+
+<div class="admonition congratulations">
+<p class="admonition-title">Congratulations</p>
+<p>You are now docker expert!
+We were able to start 2 microservices application with docker compose.
+First microservice had 3 services.
+Second microservice had 5 servics written in 3 different languages and able
+to talk to each other.</p>
+</div>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>So far we've learned docker-compose v2.
+docker-compose v3 is out of scope for this Lab. However you got the idea!</p>
+<p>Read the Docker-Compose <a href="https://docs.docker.com/compose/compose-file/">documentation</a> on new syntax.</p>
+<p>Also example of v3 version of <code>voting-app</code> is <a href="https://github.com/Cloud-Architects-Program/ycit019/blob/main/Module5/v3-voting-app">here</a> for you reference.</p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
