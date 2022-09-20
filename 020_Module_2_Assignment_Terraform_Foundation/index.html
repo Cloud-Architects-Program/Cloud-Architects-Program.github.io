@@ -1431,8 +1431,7 @@ argument</p>
 <div class="codehilite"><pre><span></span><code>export PROJECT_ID=&lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/module2/foundation-infrastructure/
-cat &lt;&lt; EOF&gt;&gt; main.tf
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; main.tf
 provider &quot;google&quot; {
   alias   = &quot;gcp-provider&quot;
   project = &quot;$PROJECT_ID&quot;
@@ -1631,6 +1630,7 @@ echo $PROJECT_ID
 echo $ACCOUNT_ID
 </code></pre></div>
 
+<p>This might force installation of <code>gcloud alpha</code> commands and may take upto 10 mins. It may also ask for some APIs to be enabled.</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
 billing_account = &quot;$ACCOUNT_ID&quot;
 project_name    = &quot;$PROJECT_NAME&quot;
@@ -1642,6 +1642,7 @@ EOF
 <div class="codehilite"><pre><span></span><code>cat terraform.tfvars
 </code></pre></div>
 
+<p>If not enter the values manually.</p>
 <p>Finally, let's define <code>google_project</code> resource in <code>project.tf</code> file, we will replace actual values for <code>name</code> and <code>billing_account</code> with variables:</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; project.tf
 resource &quot;google_project&quot; &quot;project&quot; {
@@ -1652,6 +1653,7 @@ resource &quot;google_project&quot; &quot;project&quot; {
 EOF
 </code></pre></div>
 
+<p>If you are creating as part of the GCP organization,  you have to add the variable <code>org_id = &lt;ORG Number&gt;</code> in the project.tf file.</p>
 <p>Run plan command:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
@@ -1891,7 +1893,7 @@ resource &quot;google_storage_bucket&quot; &quot;state&quot; {
   name          = var.bucket_name
   project       = local.project_id
   storage_class = var.storage_class
-
+  location      = var.gcp_region
   force_destroy = &quot;true&quot;
 }
 EOF
@@ -1903,8 +1905,7 @@ variable &quot;bucket_name&quot; {
 }
 
 variable &quot;storage_class&quot; {
-  description = 
-  default = &quot;MULTI_REGIONAL&quot;
+  default = &quot;REGIONAL&quot;
 }
 EOF
 </code></pre></div>
@@ -2027,7 +2028,7 @@ terraform {
   required_providers { 
     google = {
       source  = &quot;hashicorp/google&quot;
-      version = &quot;~&gt; 3.70.0&quot;
+      version = &quot;~&gt; 4.37.0&quot;
     }
   }
 }
@@ -2075,7 +2076,7 @@ the state file, and determine what changes need to be applied.</p>
 <p><strong>Local vs Remote backend:</strong>
 <code>Local</code> state files are the default for terraform. <code>Remote</code> state allows for collaboration between members of your team, for example multiple users or systems can deploy terraform configuration to the same environment as state is stored remotely and can be pulled <code>localy</code> during the execution. This however may create issues if 2 users running terraform <code>plan</code> and <code>apply</code> at the same time, however some remote backends including gcs provide <code>locking</code> feature that we covered and enabled in previous section <code>Configure versioning on GCP Storage bucket.</code></p>
 <p>In addition to that, <code>Remote</code> state is more secure storage of sensitive values that might be contained in variables or outputs.</p>
-<p>See documents for<a href="https://www.terraform.io/docs/language/settings/backends/remote.html">remote</a> backend for reference:</p>
+<p>See documents for <a href="https://www.terraform.io/docs/language/settings/backends/remote.html">remote</a> backend for reference:</p>
 <p><strong>Step 1</strong> Configure remote backend using gcs bucket:</p>
 <p>Let's configure a backend for your state, using the <code>gcs</code> bucket you previously created in Foundation Layer.</p>
 <p>Backends are configured with a nested backend block within the top-level terraform block While a backend can be declared
@@ -2103,7 +2104,7 @@ When you change, configure or unconfigure a backend, terraform must be re-initia
 </code></pre></div>
 
 <p>Verify if <code>folder</code> state has been created in our bucket:</p>
-<div class="codehilite"><pre><span></span><code>gsutil ls gs://$ORG-notepad-dev-tfstate
+<div class="codehilite"><pre><span></span><code>gsutil ls gs://$ORG-notepad-dev-tfstate/state
 </code></pre></div>
 
 <div class="admonition summary">
@@ -2239,7 +2240,7 @@ Terraform will perform the following actions:
 </code></pre></div>
 
 <p>Verify that <code>custom-mode</code> VPC has been created:</p>
-<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list 
 gcloud compute networks describe $(gcloud compute networks list | grep CUSTOM |awk &#39;{ print $1 }&#39;)
 </code></pre></div>
 
