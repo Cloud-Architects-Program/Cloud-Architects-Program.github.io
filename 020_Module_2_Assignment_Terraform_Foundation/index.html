@@ -1273,7 +1273,6 @@
 
   <h1>Module 2 Terraforming GCP Foundation</h1>
 
-<p>Lab 3 Creating Production GKE Cluster via IaC using Terraform</p>
 <p><strong>Objective:</strong></p>
 <ul>
 <li>Learn Terraform Commands</li>
@@ -1306,6 +1305,8 @@ when and what questions.</p>
 
 <p><strong>Step 2</strong> Create <code>foundation-infrastructure</code> and <code>notepad-infrastructure</code> folders that will contains respective terraform configurations</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+mkdir module2
+cd module2
 mkdir foundation-infrastructure
 mkdir notepad-infrastructure
 </code></pre></div>
@@ -1348,7 +1349,7 @@ EOF
 <p><strong>Step 6</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git status 
 git add .
-git commit -m &quot;Terraform Folder structure for assignement 3&quot;
+git commit -m &quot;Terraform Folder structure for module 2&quot;
 </code></pre></div>
 
 <p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
@@ -1356,7 +1357,7 @@ git commit -m &quot;Terraform Folder structure for assignement 3&quot;
 </code></pre></div>
 
 <h2 id="1-build-gcp-foundation-layer">1 Build GCP Foundation Layer<a class="headerlink" href="#1-build-gcp-foundation-layer" title="Permanent link">&para;</a></h2>
-<p>In this Lab we going to build GCP Foundation layer. As we learned in the class this includes Org Structure creation with Folders and Projects,
+<p>In this assignment we going to build GCP Foundation layer. As we learned in the class this includes Org Structure creation with Folders and Projects,
 creation IAM Roles and assigning them to users and groups in organization. This Layer usually build be DevOps or Infra team that.</p>
 <p>Since we don't have organization registered for each student, we going to skip creation of folders and IAM groups.
 We going to start from creation of a Project, deleting <code>default</code> VPC and configuring inside that project a <code>gcs</code> bucket that will be 
@@ -1376,11 +1377,6 @@ used in the next terraform layer to store a Terraform state.</p>
 <ul>
 <li>Enable Google Project Service APIs</li>
 <li>Create VPC (google_compute_network) and Subnet (google_compute_subnetwork)</li>
-<li>Create Cloud Nat (google_compute_router) and (google_compute_router_nat)</li>
-<li>Private GKE<ul>
-<li>Private Nodes with Public API Endpoint (for simplicity)</li>
-</ul>
-</li>
 </ul>
 <h3 id="11-installing-terraform">1.1 Installing Terraform<a class="headerlink" href="#11-installing-terraform" title="Permanent link">&para;</a></h3>
 <p>GCP Cloud Shell comes with many common tools pre-installed including <code>terraform</code></p>
@@ -1393,7 +1389,7 @@ used in the next terraform layer to store a Terraform state.</p>
 <p>If you would like to use terraform on GCP you have 2 options:</p>
 <p>1). Using you user credentials, great option for testing terraform from you laptop and for learning purposes.</p>
 <p>2). Using <a href="https://cloud.google.com/docs/authentication/getting-started#command-line">service account</a>, great option if you going to use terraform with CI/CD system and fully automate Terraform deployment.</p>
-<p>In this Lab we going to use Option 1 - using user credentials.</p>
+<p>In this assignment we going to use Option 1 - using user credentials.</p>
 <p><strong>Step 1:</strong> In order to make requests against the GCP API, you need to authenticate to prove that it's you making the request. 
 The preferred method of provisioning resources with Terraform on your workstation is to use the Google Cloud SDK (Option 1) </p>
 <div class="codehilite"><pre><span></span><code>gcloud auth application-default login
@@ -1403,12 +1399,12 @@ The preferred method of provisioning resources with Terraform on your workstatio
 <p>Terraform relies on <code>providers</code> to interact with remote systems. Every resource type is implemented by a provider; without
 <code>providers</code>, Terraform can't manage any kind of infrastructure; in order for terraform to install and use a provider it must be
 declared.</p>
-<p>In this exercise you will declare and configure the Terraform provider(s) that will be used for the rest of the Lab.</p>
+<p>In this exercise you will declare and configure the Terraform provider(s) that will be used for the rest of the assignment.</p>
 <h4 id="131-declare-terraform-providers">1.3.1 Declare Terraform Providers<a class="headerlink" href="#131-declare-terraform-providers" title="Permanent link">&para;</a></h4>
 <p>The <code>required_providers</code> block defines the providers terraform will use to provision resources and their source.</p>
 <ul>
 <li>
-<p><code>version</code>: The version argument is optional and is used to tell terraform to pick a particular version from the available
+<p><code>version</code>: The version argument is optional and is used to tell terraform to pick a particular version from the availale
 versions</p>
 </li>
 <li>
@@ -1421,7 +1417,7 @@ terraform {
   required_providers {
     google = {
       source  = &quot;hashicorp/google&quot;
-      version = &quot;~&gt; 3.70.0&quot;
+      version = &quot;~&gt; 4.37.0&quot;
     }
   }
 }
@@ -1435,7 +1431,7 @@ argument</p>
 <div class="codehilite"><pre><span></span><code>export PROJECT_ID=&lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure/
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/module2/foundation-infrastructure/
 cat &lt;&lt; EOF&gt;&gt; main.tf
 provider &quot;google&quot; {
   alias   = &quot;gcp-provider&quot;
@@ -1451,7 +1447,7 @@ EOF
 </div>
 <h4 id="133-initialize-terraform">1.3.3 Initialize Terraform<a class="headerlink" href="#133-initialize-terraform" title="Permanent link">&para;</a></h4>
 <p>Now that you have declared and configured the GCP provider for terraform, initialize terraform:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure/
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/module2/foundation-infrastructure/
 terraform init
 </code></pre></div>
 
@@ -2003,16 +1999,11 @@ TODO
 <ul>
 <li>Enable Google Project Service APIs</li>
 <li>Create VPC (google_compute_network) and Subnet (google_compute_subnetwork)</li>
-<li>Create Cloud Nat (google_compute_router) and (google_compute_router_nat)</li>
-<li>Private GKE<ul>
-<li>Private Nodes with Public API Endpoint (for simplicity)</li>
-</ul>
-</li>
 </ul>
 <h3 id="21-initialize-terraform-for-gcp-services-layer">2.1  Initialize Terraform for GCP Services Layer<a class="headerlink" href="#21-initialize-terraform-for-gcp-services-layer" title="Permanent link">&para;</a></h3>
 <h4 id="211-define-and-configure-terraform-provider">2.1.1 Define and configure terraform provider<a class="headerlink" href="#211-define-and-configure-terraform-provider" title="Permanent link">&para;</a></h4>
 <p><strong>Step 1:</strong> Take note of newly created GCP Project_ID and BUCKET_ID:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/module2/foundation-infrastructure
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform output | grep &#39;id&#39; |awk &#39;{ print $3}&#39;
@@ -2028,7 +2019,7 @@ echo $BUCKET_ID
 
 <p><strong>Step 2:</strong> Declare the Terraform Provider for GCP Services Layer:</p>
 <p>We now going to switch to <code>notepad-infrastructure</code> where we going to create a new GCP service Layer terraform configuration:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/module2/notepad-infrastructure
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; provider.tf
