@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Module 10 Assignment Solution - Cloud Architecture</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../css/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Cloud Architecture</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
+</li>
+            
+<li>
+    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
+</li>
+            
+<li>
+    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
+</li>
+            
+<li>
+    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
+</li>
+            
+<li>
+    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Labs</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
+</li>
+            
+<li>
+    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Assignments</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
+</li>
+            
+<li>
+    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Module 10 Assignment Solution</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../ycit019_ass7/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#deploy-applications-on-kubernetes" class="nav-link">Deploy Applications on Kubernetes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1-prepare-environment" class="nav-link">1. Prepare Environment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2-configure-volumes" class="nav-link">2 Configure Volumes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3-ingress" class="nav-link">3 Ingress</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4-kubernetes-network-policy" class="nav-link">4 Kubernetes Network Policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" class="nav-link">5 Commit K8s manifests to repository and share it with Instructor/Teacher</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#6-cleaning-up" class="nav-link">6 Cleaning Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="deploy-applications-on-kubernetes">Deploy Applications on Kubernetes<a class="headerlink" href="#deploy-applications-on-kubernetes" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Review process of creating K8s:<ul>
+<li>Network Policy</li>
+<li>Ingress</li>
+<li>PVC, PV</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-prepare-environment">1. Prepare Environment<a class="headerlink" href="#1-prepare-environment" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-gke-cluster-with-cluster-network-policy-support">1.1 Create GKE Cluster with Cluster Network Policy Support<a class="headerlink" href="#11-create-gke-cluster-with-cluster-network-policy-support" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+</code></pre>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 1 node:</p>
+<pre class="codehilite"><code>gcloud container clusters create k8s-networking \
+--zone us-central1-c \
+--enable-ip-alias \
+--create-subnetwork=&quot;&quot; \
+--network=default \
+--enable-network-policy \
+--num-nodes 2
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="codehilite"><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+k8s-scaling  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
+</code></pre>
+
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<pre class="codehilite"><code>gcloud container clusters get-credentials k8s-networking --zone us-central1-c
+</code></pre>
+
+<h3 id="12-locate-assignment-6">1.2 Locate Assignment 6<a class="headerlink" href="#12-locate-assignment-6" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Locate directory where Kubernetes manifests going to be stored.</p>
+<pre class="codehilite"><code>cd ~/ycit019/
+git pull       # Pull latest assignement6
+</code></pre>
+
+<p>In case you don't have this folder clone it as following:</p>
+<pre class="codehilite"><code>cd ~
+git clone https://github.com/Cloud-Architects-Program/ycit019
+cd ~/ycit019/Assignment6/
+ls
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You can see Kubernetes manifests with Assignment tasks.</p>
+</div>
+<p><strong>Step 2</strong> Go into your personal Google Cloud Source Repository:</p>
+<pre class="codehilite"><code>MY_REPO=your_student_id-notepad
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace $student_id with your ID</p>
+</div>
+<pre class="codehilite"><code>cd ~/$MY_REPO
+</code></pre>
+
+<pre class="codehilite"><code>git pull                              # Pull latest code from you repo
+</code></pre>
+
+<p><strong>Step 3</strong> Copy Assignment 6 <code>deploy_a6</code> folder to your repo:</p>
+<pre class="codehilite"><code>cp -r ~/ycit019/Assignment6/deploy_a6 .
+</code></pre>
+
+<p><strong>Step 4</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<pre class="codehilite"><code>git status 
+git add .
+git commit -m &quot;adding K8s manifests for assignment 6&quot;
+</code></pre>
+
+<p><strong>Step 5</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
+
+<h3 id="13-create-a-namespace-dev">1.3 Create a Namespace <code>dev</code><a class="headerlink" href="#13-create-a-namespace-dev" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
+<pre class="codehilite"><code>kubectl create ns dev
+</code></pre>
+
+<p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
+<pre class="codehilite"><code>kubectl config set-context --current --namespace=dev
+</code></pre>
+
+<p><strong>Step 4</strong> Verify current context:</p>
+<pre class="codehilite"><code>kubectl config view | grep namespace
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>dev</code></p>
+</div>
+<h2 id="2-configure-volumes">2 Configure Volumes<a class="headerlink" href="#2-configure-volumes" title="Permanent link">&para;</a></h2>
+<h3 id="21-create-persistent-volume-for-gowebapp-mysql">2.1 Create Persistent Volume for <code>gowebapp-mysql</code><a class="headerlink" href="#21-create-persistent-volume-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Edit a Persistent Volume Claim (PVC) <code>gowebapp-mysql-pvc.yaml</code> manifest so that it will Dynamically creates 5G GCP PD Persistent Volume (PV), using  <code>balanced</code> persistent disk Provisioner with Access Mode <code>ReadWriteOnce</code>.</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-pvc.yaml
+</code></pre>
+
+<pre class="codehilite"><code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gowebapp-mysql-pvc
+  labels:
+    run: gowebapp-mysql
+spec:
+#TODO Access Mode `ReadWriteOnce`
+#TODO Request 5G GCP PD Persistent Storage
+#TODO Balanced PD CSI Storage Class 
+#TODO GKE CSI Reference: https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/gce-pd-csi-driver
+  storageClassName: standard-rwo
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+</code></pre>
+
+<p>Please see reference for PVC creation here:
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims</p>
+<p>Save the file!</p>
+<p><strong>Step 2</strong> Apply the manifest for <code>gowebapp-mysql-pvc</code> to Dynamically provision Persistent Volume:</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-pvc.yaml
+</code></pre>
+
+<p><strong>Step 3</strong> Verify  <code>STATUS</code> of PVC</p>
+<pre class="codehilite"><code>kubectl get pvc
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre class="codehilite"><code>NAME          STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+mongodb-pvc   Pending                                      standard-rwo   5s
+</code></pre>
+
+<p>List PVs:</p>
+<pre class="codehilite"><code>kubectl get pv
+</code></pre>
+
+<p>List GCP Disks:</p>
+<pre class="codehilite"><code>gcloud compute disks list
+</code></pre>
+
+<h3 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h3>
+<p>Create Mysql deployment using created Persistent Volume (PV)</p>
+<p><strong>Step 1</strong>  Update <code>gowebapp-mysql-deployment.yaml</code> and add Volume</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6
+edit gowebapp-mysql-deployment.yaml
+</code></pre>
+
+<pre class="codehilite"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gowebapp-mysql
+  labels:
+    run: gowebapp-mysql
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: gowebapp-mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: gowebapp-mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql
+              key: password
+        image: gcr.io/${PROJECT_ID}/gowebapp-mysql:v1
+        name: gowebapp-mysql
+        ports:
+        - containerPort: 3306
+        livenessProbe:
+          tcpSocket: 
+            port: 3306
+          initialDelaySeconds: 30
+          timeoutSeconds: 2
+        readinessProbe: 
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 25
+          timeoutSeconds: 2
+        resources:
+          requests:
+            cpu: 20m
+            memory: 252M
+          limits:
+            cpu: 1000m
+            memory: 2G
+        #TODO add the definition for volumeMounts:
+        volumeMounts:
+        - #TODO: add mountPath as /var/lib/mysql
+        - mountPath: /var/lib/mysql
+          name: mysql
+      #TODO Configure Pods access to storage by using the claim as a volume
+      #TODO: define persistentVolumeClaim
+      #TODO: claimName is the name defined in gowebapp-mysql-pvc.yaml
+      #TODO Ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#claims-as-volumes
+      volumes:
+        - name: mysql
+          persistentVolumeClaim:
+            claimName: gowebapp-mysql-pvc
+</code></pre>
+
+<p>Save the file!</p>
+<p><strong>Step 2</strong> Deploy <code>gowebapp-mysql</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+kubectl apply -f secret-mysql.yaml              #Create Secret
+kubectl apply -f gowebapp-mysql-service.yaml    #Create Service
+kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
+</code></pre>
+
+<p>Check Status of the <code>mysql</code> Pod:</p>
+<pre class="codehilite"><code>kubectl get pods
+</code></pre>
+
+<p>Check Events from the <code>mysql</code> Pod:</p>
+<pre class="codehilite"><code>kubectl get describe $POD
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice the sequence of events:</p>
+<ul>
+<li>Scheduler selects node</li>
+<li>Volume mounted to Pod</li>
+<li><code>kubelet</code> pulls image</li>
+<li><code>kubelet</code> creates and starts container</li>
+</ul>
+</div>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our Mysql Deployment is up and running with Volume mounted</p>
+</div>
+<h3 id="24-create-gowebapp-deployment">2.4 Create GoWebApp deployment<a class="headerlink" href="#24-create-gowebapp-deployment" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp/config/
+kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
+kubectl describe configmap gowebapp
+</code></pre>
+
+<p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_a6/</code></p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+kubectl apply -f gowebapp-service.yaml    #Create Service
+kubectl apply -f gowebapp-deployment.yaml #Create Deployment
+</code></pre>
+
+<pre class="codehilite"><code>kubectl get pods
+</code></pre>
+
+<p><strong>Step 3</strong> Access your application on Public IP via automatically created Loadbalancer 
+created for <code>gowebapp</code> service.</p>
+<p>To get the value of <code>Loadbalancer</code> run following command:</p>
+<pre class="codehilite"><code>kubectl get svc gowebapp -o wide
+</code></pre>
+
+<p>Expected output:</p>
+<pre class="codehilite"><code>NAME             TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+gowebapp         Loadbalancer 10.107.15.39  XXXXXX        9000:32634/TCP   30m
+gowebapp-mysql   ClusterIP   None           &lt;none&gt;        3306/TCP         1h
+</code></pre>
+
+<p><strong>Step 5</strong> Access <code>Loadbalancer</code> IP via browser:</p>
+<pre class="codehilite"><code>EXTERNAL-IP:9000
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Congrats!!! You've deployed you code to Kubernetes</p>
+</div>
+<h2 id="3-ingress">3 Ingress<a class="headerlink" href="#3-ingress" title="Permanent link">&para;</a></h2>
+<h3 id="31-expose-gowebapp-with-ingress-resource">3.1 Expose <code>gowebapp</code> with Ingress resource<a class="headerlink" href="#31-expose-gowebapp-with-ingress-resource" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Delete the LoadBalancer gowebapp service.</p>
+<pre class="codehilite"><code>kubectl delete svc gowebapp
+</code></pre>
+
+<p><strong>Step 2</strong> Modify gowebapp service manifest <code>gowebapp-service.yaml</code> to change the service to a ClusterIP service instead of LoadBalancer service.</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+edit gowebapp-service.yaml
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Cloud Shell Editor opens. Make sure update service and save it!</p>
+</div>
+<pre class="codehilite"><code>apiVersion: v1
+kind: Service
+metadata:
+  name: gowebapp
+  labels:
+    run: gowebapp
+spec:
+  ports:
+  - port: 9000
+    targetPort: 80
+  selector:
+    run: gowebapp
+  type: NodePort
+</code></pre>
+
+<p>Go back to  Cloud Shell Terminal.</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-service.yaml  #Re-Create Service with ClusterIP
+</code></pre>
+
+<p><strong>Step 3</strong> Create an Ingress resource for the gowebapp service to expose it externally at the path <code>/*</code></p>
+<pre class="codehilite"><code>cat &gt; gowebapp-ingress.yaml &lt;&lt; EOF
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gowebapp-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: gowebapp
+            port:
+              number: 9000
+EOF
+</code></pre>
+
+<p><strong>Step 4</strong> Deploy <code>gowebapp-ingress</code> app under ~/$MY_REPO/deploy_a6/</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-ingress.yaml   #Create Ingress
+</code></pre>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you create Ingress first time it takes several minutes, as Ingress Resource will create backing Loadbalancer for it.</p>
+</div>
+<p><strong>Step 5</strong> Verify the Ingress</p>
+<p>After you have deployed a workload, grouped its Pods into a Service, and created an Ingress for the Service, you should verify that the Ingress has provisioned the container-native load balancer successfully.</p>
+<pre class="codehilite"><code>kubectl describe ingress gowebapp-ingress
+</code></pre>
+
+<p><strong>Step 6</strong>  Test load balancer functionality</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait several minutes for the HTTP(S) load balancer to be configured.</p>
+</div>
+<p>Get the Ingress IP address, run the following command:</p>
+<pre class="codehilite"><code>kubectl get ing gowebapp-ingress
+</code></pre>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<pre class="codehilite"><code>$ADDRESS/gowebapp
+</code></pre>
+
+<h2 id="4-kubernetes-network-policy">4 Kubernetes Network Policy<a class="headerlink" href="#4-kubernetes-network-policy" title="Permanent link">&para;</a></h2>
+<p>Let's secure our 2 tier application using Kubernetes Network Policy!</p>
+<p><strong>Task:</strong> We need to ensure following is configured</p>
+<ul>
+<li><code>dev</code> namespace Denys by default All <code>Ingress</code> traffic including from Outside, With In Namespace, and in Cluster</li>
+<li><code>mysql</code> pod can be accessed from the <code>gowebapp</code> pod</li>
+<li><code>gowebapp</code> pod can be accessed from the Internet, in our case GKE Ingress (HTTPs Loadbalancer) and it must be configure to allow the appropriate HTTP(S) load balancer health check IP ranges FROM CIDR: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code> or
+  to make it less secure From any Endpoint CIDR: <code>0.0.0.0/0</code></li>
+</ul>
+<h3 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h3>
+<p>In order to ensure that Kubernetes can configure Network Policy we need to make sure our CNI
+supports this feature.  As we've learned from class Calico, WeaveNet and Cilium are CNIs that support
+network Policy.</p>
+<p>Our GKE cluster already deployed using Calico CNI. To check that you calico installed you cluster run:</p>
+<pre class="codehilite"><code>kubectl get pods -n kube-system | grep calico
+</code></pre>
+
+<p><strong>Output</strong> </p>
+<pre class="codehilite"><code>calico-node-2n65c                                           1/1     Running   0          20h
+calico-node-prhgk                                           1/1     Running   0          20h
+calico-node-vertical-autoscaler-57bfddcfd8-85ltc            1/1     Running   0          20h
+calico-typha-67c885c7b7-7vf6d                               1/1     Running   0          20h
+calico-typha-67c885c7b7-zwkll                               1/1     Running   0          20h
+calico-typha-horizontal-autoscaler-58b8486cd4-pnt7c         1/1     Running   0          20h
+calico-typha-vertical-autoscaler-7595df8859-zxzmp           1/1     Running   0          20h
+</code></pre>
+
+<h3 id="41-configure-deny-all-network-policy-for-dev-namespace">4.1 Configure <code>deny-all</code> Network Policy for dev Namespace<a class="headerlink" href="#41-configure-deny-all-network-policy-for-dev-namespace" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Locate Directory</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre>
+
+<p><strong>Step 1</strong> Create Policy so that  <code>dev</code> namespace deny by default all <code>Ingress</code> traffic including from Outside Internet, With In Namespace, and inside of Cluster</p>
+<pre class="codehilite"><code>cat &gt; default-deny-dev.yaml &lt;&lt; EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny
+spec:
+  podSelector:
+    matchLabels: {}
+  policyTypes:
+    - Ingress
+  ingress: []
+EOF
+</code></pre>
+
+<p>Edit the required fields and save:</p>
+<pre class="codehilite"><code>edit default-deny-dev.yaml 
+</code></pre>
+
+<p><strong>Step 2</strong> Deploy <code>default-deny-dev</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<pre class="codehilite"><code>kubectl apply -f default-deny-dev.yaml   # deny-all Ingress Traffic to dev Namespace
+</code></pre>
+
+<p>Verify Policy:</p>
+<pre class="codehilite"><code>kubectl describe netpol default-deny
+</code></pre>
+
+<p><strong>Step 3</strong> Verify that you can't access application from Ingress anymore:</p>
+<p>Visit the IP address in a web browser</p>
+<pre class="codehilite"><code>$Ingress IP
+</code></pre>
+
+<h3 id="42-configure-network-policy-for-gowebapp-mysql">4.2 Configure Network Policy for <code>gowebapp-mysql</code><a class="headerlink" href="#42-configure-network-policy-for-gowebapp-mysql" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Create a <code>backend-policy</code> network policy to allow access to <code>gowebapp-mysql</code> pod from the <code>gowebapp</code> pod</p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre>
+
+<pre class="codehilite"><code>cat &gt; gowebapp-mysql-netpol.yaml &lt;&lt; EOF
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: backend-policy
+spec:
+  podSelector:
+    matchLabels:
+      run: gowebapp-mysql
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            run: gowebapp
+EOF
+</code></pre>
+
+<p>Edit the required fields and save:</p>
+<pre class="codehilite"><code>edit gowebapp-mysql-netpol.yaml
+</code></pre>
+
+<p><strong>Step 2</strong> Using <a href="https://editor.cilium.io/">Cilium Editor</a> test you Policy for Ingress traffic only</p>
+<p>Open Browser, Upload created Policy YAML. </p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>mysql</code> pod can only communicate with <code>gowebapp</code> pod</p>
+</div>
+<p><strong>Step 3</strong> Deploy <code>gowebapp-mysql-netpol</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-mysql-netpol.yaml   # `mysql` pod can be accessed from the `gowebapp` pod
+</code></pre>
+
+<p>Verify Policy:</p>
+<pre class="codehilite"><code>kubectl describe netpol backend-policy
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>run=gowebapp-mysql</code> Allowing ingress traffic only From PodSelector: <code>run=gowebapp</code> pod</p>
+</div>
+<h3 id="43-configure-network-policy-for-gowebapp">4.3 Configure Network Policy for <code>gowebapp</code><a class="headerlink" href="#43-configure-network-policy-for-gowebapp" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Configure a <code>frontend-policy</code> Network Policy to allow access for the Healthcheck IP ranges needed for the Ingress Loadbalancer, and hence allow access through the Ingress Loadbalancer. The IP rangers you need to enable access from are <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_a6/
+</code></pre>
+
+<pre class="codehilite"><code>cat &gt; gowebapp-netpol.yaml &lt;&lt; EOF
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend-policy
+spec:
+  podSelector: 
+    matchLabels:
+      run: gowebapp
+  ingress:
+  policyTypes:
+    - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 35.191.0.0/16
+    - ipBlock:
+        cidr: 130.211.0.0/22
+  policyTypes:
+  - Ingress
+EOF
+</code></pre>
+
+<p>Edit the required fields and save:</p>
+<pre class="codehilite"><code>edit gowebapp-netpol.yaml
+</code></pre>
+
+<p><strong>Step 2</strong> Using <a href="https://editor.cilium.io/">Cilium Editor</a> test you Policy for Ingress traffic only</p>
+<p>Open Browser, Upload created Policy YAML. </p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>gowebapp</code> pod can only get ingress traffic from CIDRs: <code>35.191.0.0/16</code> and <code>130.211.0.0/22</code></p>
+</div>
+<p><strong>Step 3</strong> Deploy <code>gowebapp-netpol</code> Policy app under ~/$MY_REPO/deploy_a6/</p>
+<pre class="codehilite"><code>kubectl apply -f gowebapp-netpol.yaml  # `gowebapp` pod from Internet on CIDR: `35.191.0.0/16` and `130.211.0.0/22`
+</code></pre>
+
+<p>Verify Policy:</p>
+<pre class="codehilite"><code>kubectl describe netpol frontend-policy
+</code></pre>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p><code>run=gowebapp</code>   Allowing ingress traffic from CIDR: 35.191.0.0/16 and 130.211.0.0/22</p>
+</div>
+<p><strong>Step 4</strong>  Test that application is reachable via <code>Ingress</code> after all Network Policy has been applied.</p>
+<p>Get the Ingress IP address, run the following command:</p>
+<pre class="codehilite"><code>kubectl get ing gowebapp-ingress
+</code></pre>
+
+<p>In the command output, the Ingress' IP address is displayed in the ADDRESS column. Visit the IP address in a web browser</p>
+<pre class="codehilite"><code>$ADDRESS/*
+</code></pre>
+
+<p><strong>Step 5</strong> Verify that <code>NotePad</code> application is functional (e.g can login and create new entries)</p>
+<h2 id="5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher">5 Commit K8s manifests to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-k8s-manifests-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
+<pre class="codehilite"><code>git add .
+git commit -m &quot;k8s manifests for Hands-on Assignment 6&quot;
+</code></pre>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<pre class="codehilite"><code>git push origin master
+</code></pre>
+
+<h2 id="6-cleaning-up">6 Cleaning Up<a class="headerlink" href="#6-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<pre class="codehilite"><code>gcloud container clusters delete k8s-scaling
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
