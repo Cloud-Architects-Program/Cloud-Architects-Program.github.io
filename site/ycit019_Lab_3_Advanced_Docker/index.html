@@ -1,231 +1,934 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
+    
+    
+      
         <title>ycit019 Lab 3 Advanced Docker - Cloud Architecture</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-        <link href="../css/extra.css" rel="stylesheet">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Cloud Architecture</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
-</li>
-            
-<li>
-    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
-</li>
-            
-<li>
-    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
-</li>
-            
-<li>
-    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7a952b86.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="2"><a href="#1-docker-networking" class="nav-link">1 Docker Networking</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#2-persistant-volumes" class="nav-link">2 Persistant Volumes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-        </ul>
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-docker-networking" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ycit019 Lab 3 Advanced Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          YCIT020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="md-nav__link">
+        Module 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_4_Traffic_control/" class="md-nav__link">
+        Module 8 Traffic Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_5_EFK/" class="md-nav__link">
+        Module 9 EFK Stack
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_Prometheus/" class="md-nav__link">
+        Module 10 Monitoring with Prometheus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_GMP/" class="md-nav__link">
+        Module 10 Monitoring with GMP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_9_GitOps/" class="md-nav__link">
+        Module 11 GitOps with Flux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_10_cloudrun/" class="md-nav__link">
+        Module 12 SERVERLESS Cloud Run
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
+        Module 2 Terraform Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
+        Module 3 GKE Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_4_Assignment_Production_GKE/" class="md-nav__link">
+        Module 4 GKE-Terraform Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_6_Assignment_Helm_Foundation/" class="md-nav__link">
+        Module 6 Helm Assignment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          YCIT019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        Module 5 Lab - Docker Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        Module 6 Lab - Advanced Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+        Module 8 Lab - Kuberenetes Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        Module 9 Lab - Kubernetes Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        Module 9 Part 2 Lab Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Module 10 Lab - Kubernetes Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Module 11 Lab - Kubernetes Storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Module 5 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Module 5 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Module 6 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Module 6 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Module 8 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Module 8 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        Module 9 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Module 9 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        Module 10 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Module 10 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-docker-networking" class="md-nav__link">
+    1 Docker Networking
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Docker Networking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-docker-networking-basics" class="md-nav__link">
+    1.1 Docker Networking Basics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-default-bridge-network" class="md-nav__link">
+    1.2 Default bridge network
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-user-defined-private-networks" class="md-nav__link">
+    1.3 User-defined Private Networks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-access-containers-from-outside" class="md-nav__link">
+    1.4 Access containers from outside
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-persistant-volumes" class="md-nav__link">
+    2 Persistant Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Persistant Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-storage-driver" class="md-nav__link">
+    2.1 Storage driver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-persisting-data-using-volumes" class="md-nav__link">
+    2.2 Persisting Data Using Volumes
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Persisting Data Using Volumes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-create-and-manage-volumes" class="md-nav__link">
+    2.2.1  Create and manage volumes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-start-a-container-with-a-volume" class="md-nav__link">
+    2.2.2 Start a container with a volume
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-use-a-read-only-volume" class="md-nav__link">
+    2.2.3 Use a read-only volume
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>ycit019 Lab 3 Advanced Docker</h1>
 
 <p>Lab 3 Docker Networking, Persistence, Monitoring and Logging</p>
 <p><strong>Objective:</strong></p>
@@ -244,10 +947,10 @@
 <h3 id="11-docker-networking-basics">1.1 Docker Networking Basics<a class="headerlink" href="#11-docker-networking-basics" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> The Docker Network Command
 The <code>docker network</code> command is the main command for configuring and managing container networks. Run the <code>docker network</code> command from the first terminal.</p>
-<pre class="codehilite"><code class="language-term1">docker network
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network
+</code></pre></div>
 
-<pre class="codehilite"><code>Usage:  docker network COMMAND
+<div class="codehilite"><pre><span></span><code>Usage:  docker network COMMAND
 
 Manage networks
 
@@ -263,8 +966,8 @@ Commands:
   prune       Remove all unused networks
   rm          Remove one or more networks
 
-Run 'docker network COMMAND --help' for more information on a command.
-</code></pre>
+Run &#39;docker network COMMAND --help&#39; for more information on a command.
+</code></pre></div>
 
 <p>The command output shows how to use the command as well as all of the <code>docker
 network</code> sub-commands. As you can see from the output, the <code>docker network</code>
@@ -273,14 +976,14 @@ networks, and remove networks. It also allows you to connect and disconnect
 containers from networks.</p>
 <p><strong>Step 2</strong> Run a <code>docker network ls</code> command to view existing container networks
 on the current Docker host.</p>
-<pre class="codehilite"><code class="language-term1">docker network ls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network ls
+</code></pre></div>
 
-<pre class="codehilite"><code>NETWORK ID          NAME                DRIVER              SCOPE
+<div class="codehilite"><pre><span></span><code>NETWORK ID          NAME                DRIVER              SCOPE
 3430ad6f20bf        bridge              bridge              local
 a7449465c379        host                host                local
 06c349b9cc77        none                null                local
-</code></pre>
+</code></pre></div>
 
 <p>The output above shows the container networks that are created as part of a
 standard installation of Docker.</p>
@@ -295,10 +998,10 @@ subnet info, connected containers, and more.</p>
 <p>Use <code>docker network inspect &lt;network&gt;</code> to view configuration details of the
 container networks on your Docker host. The command below shows the details of
 the network called <code>bridge</code>.</p>
-<pre class="codehilite"><code class="language-term1">docker network inspect bridge
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network inspect bridge
+</code></pre></div>
 
-<pre class="codehilite"><code>[
+<div class="codehilite"><pre><span></span><code>[
     {
         &quot;Name&quot;: &quot;bridge&quot;,
         &quot;Id&quot;: &quot;3430ad6f20bf1486df2e5f64ddc93cc4ff95d81f59b6baea8a510ad500df2e57&quot;,
@@ -330,7 +1033,7 @@ the network called <code>bridge</code>.</p>
         &quot;Labels&quot;: {}
     }
 ]
-</code></pre>
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -344,10 +1047,10 @@ driver.</p>
 <code>docker info</code> command, that  shows a lot of interesting information about a
 Docker installation.</p>
 <p>Run the <code>docker info</code> command and locate the list of network plugins.</p>
-<pre class="codehilite"><code class="language-term1">docker info
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker info
+</code></pre></div>
 
-<pre class="codehilite"><code>Containers: 0
+<div class="codehilite"><pre><span></span><code>Containers: 0
  Running: 0
  Paused: 0
  Stopped: 0
@@ -361,7 +1064,7 @@ Plugins:
 Swarm: inactive
 Runtimes: runc
 &lt;Snip&gt;
-</code></pre>
+</code></pre></div>
 
 <p>The output above shows the <strong>bridge</strong>, <strong>host</strong>,<strong>macvlan</strong>, <strong>null</strong>, and
 <strong>overlay</strong> drivers.</p>
@@ -374,14 +1077,14 @@ found what drivers current docker setup supports.</p>
 <p>Every clean installation of Docker comes with a pre-built network called
 <strong>Default bridge network</strong>. Let's explore in more details how it works.</p>
 <p><strong>Step 1</strong> Verify this with the <code>docker network ls</code>.</p>
-<pre class="codehilite"><code class="language-term1">docker network ls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network ls
+</code></pre></div>
 
-<pre class="codehilite"><code>NETWORK ID          NAME                DRIVER              SCOPE
+<div class="codehilite"><pre><span></span><code>NETWORK ID          NAME                DRIVER              SCOPE
 3430ad6f20bf        bridge              bridge              local
 a7449465c379        host                host                local
 06c349b9cc77        none                null                local
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -397,13 +1100,13 @@ single-host networking.</p>
 <p>All networks created with the <em>bridge</em> driver are based on a Linux bridge
 (a.k.a. a virtual switch).</p>
 <p><strong>Step 5</strong> Start webapp in Default bridge network</p>
-<pre class="codehilite"><code>docker run -d -p 80:5000 --name webapp training/webapp python app.py
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run -d -p 80:5000 --name webapp training/webapp python app.py
+</code></pre></div>
 
 <p><strong>Step 6</strong> Check that the webapp and db containers are running:</p>
 <p><strong>Command:</strong></p>
-<pre class="codehilite"><code class="language-term1">docker ps
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker ps
+</code></pre></div>
 
 <h3 id="13-user-defined-private-networks">1.3 User-defined Private Networks<a class="headerlink" href="#13-user-defined-private-networks" title="Permanent link">&para;</a></h3>
 <p>So far we’ve learned how Docker networking works with <strong>Docker default bridge
@@ -412,22 +1115,22 @@ is now possible to create <strong>multiple Docker bridges</strong> to allow netw
 segregation within the same host or <strong>multi-host networking</strong> to allow
 communicate Docker containers between hosts.</p>
 <p>The commands are available through the Docker Engine CLI are:</p>
-<pre class="codehilite"><code>docker network create
+<div class="codehilite"><pre><span></span><code>docker network create
 docker network connect
 docker network ls
 docker network rm
 docker network disconnect
 docker network inspect
-</code></pre>
+</code></pre></div>
 
 <p>Let's demonstrate how to create a custom bridge network.</p>
 <p><strong>Step 1</strong> By default, Docker runs containers in the bridge network. You may
 want to isolate one or more containers in a separate network. Let’s create a
 new network:</p>
-<pre class="codehilite"><code>docker network create my-network \
+<div class="codehilite"><pre><span></span><code>docker network create my-network \
 -d bridge \
 --subnet 172.19.0.0/16
-</code></pre>
+</code></pre></div>
 
 <p>The <code>-d</code> bridge command line argument specifies the bridge network driver and
 the <code>--subnet</code> command line argument specifies the network segment in CIDR
@@ -459,21 +1162,21 @@ avoid potential conflicts with the existing networks.</p>
 </li>
 </ul>
 <p><strong>Step 2</strong> To check that the new network is created, execute docker network ls:</p>
-<pre class="codehilite"><code>docker network ls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network ls
+</code></pre></div>
 
-<pre class="codehilite"><code>NETWORK ID          NAME                DRIVER              SCOPE
+<div class="codehilite"><pre><span></span><code>NETWORK ID          NAME                DRIVER              SCOPE
 d428e49e4869        bridge              bridge              local
 0d1f78528cc5        host                host                local
 56ef0481820d        my-network          bridge              local
 4a07cef84617        none                null                local
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> Let’s inspect the new network:</p>
-<pre class="codehilite"><code>docker network inspect my-network
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network inspect my-network
+</code></pre></div>
 
-<pre class="codehilite"><code>[
+<div class="codehilite"><pre><span></span><code>[
     {
         &quot;Name&quot;: &quot;my-network&quot;,
         &quot;Id&quot;: &quot;56ef0481820d...&quot;,
@@ -495,22 +1198,22 @@ d428e49e4869        bridge              bridge              local
         &quot;Labels&quot;: {}
     }
 ]
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 4</strong> As expected, there are no containers connected to the my-network.
 Let’s recreate the db container in the my-network:</p>
-<pre class="codehilite"><code>docker rm -f db
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker rm -f db
+</code></pre></div>
 
-<pre class="codehilite"><code>docker run -d --network=my-network --name db training/postgres
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run -d --network=my-network --name db training/postgres
+</code></pre></div>
 
 <p><strong>Step 5</strong> Inspect the <code>my-network</code>again:</p>
-<pre class="codehilite"><code>docker network inspect my-network
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network inspect my-network
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code class="language-..">    &quot;Containers&quot;: {
+<div class="codehilite"><pre><span></span><code>    &quot;Containers&quot;: {
         &quot;93af62cdab64...&quot;: {
             &quot;Name&quot;: &quot;db&quot;,
             &quot;EndpointID&quot;: &quot;b1e8e314cff0...&quot;,
@@ -520,7 +1223,7 @@ Let’s recreate the db container in the my-network:</p>
         }
     },
 ...
-</code></pre>
+</code></pre></div>
 
 <p>As you see, the <code>db</code> container is connected to the my-network and has 172.19.0.2
 address.</p>
@@ -531,16 +1234,16 @@ IP address of the webapp again:</p>
 <p>Quick reminder how to locate webapp ip:</p>
 <p><code>docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' webapp</code></p>
 </div>
-<pre class="codehilite"><code>docker exec -it db bash
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
 
 <p>Once inside of container run:</p>
-<pre class="codehilite"><code>root@c3afff20019a:/# ping -c 1 172.17.0.3
+<div class="codehilite"><pre><span></span><code>root@c3afff20019a:/# ping -c 1 172.17.0.3
 PING 172.17.0.3 (172.17.0.3) 56(84) bytes of data.
 
 --- 172.17.0.3 ping statistics ---
 1 packets transmitted, 0 received, 100% packet loss, time 0ms
-</code></pre>
+</code></pre></div>
 
 <p>As expected, the webapp container is no longer accessible from the db container,
 because they are connected to different networks.</p>
@@ -552,15 +1255,15 @@ different applications on same host for isolation or resource duplicate
 prevention.</p>
 </div>
 <p><strong>Step 7</strong> Let’s connect the webapp container to the my-network:</p>
-<pre class="codehilite"><code>docker network connect my-network webapp
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network connect my-network webapp
+</code></pre></div>
 
 <p><strong>Step 8</strong> Check that the webapp container now is connected to the my-network:</p>
-<pre class="codehilite"><code>docker network inspect my-network
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker network inspect my-network
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>...
+<div class="codehilite"><pre><span></span><code>...
     &quot;Containers&quot;: {
         &quot;62ed4a627356...&quot;: {
             &quot;Name&quot;: &quot;webapp&quot;,
@@ -578,23 +1281,23 @@ prevention.</p>
         }
     },
 ...
-</code></pre>
+</code></pre></div>
 
 <p>The output shows that two containers are connected to the my-network and the
 webapp container has 172.19.0.3 address in that network.</p>
 <p><strong>Step 9</strong> Check that the webapp container is accessible from the db container
 using its new IP address:</p>
-<pre class="codehilite"><code>docker exec -it db bash
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
 
-<pre class="codehilite"><code>root@c3afff20019a:/# ping -c 1 172.19.0.3
+<div class="codehilite"><pre><span></span><code>root@c3afff20019a:/# ping -c 1 172.19.0.3
 PING 172.19.0.3 (172.19.0.3) 56(84) bytes of data.
 64 bytes from 172.19.0.3: icmp_seq=1 ttl=64 time=0.136 ms
 
 --- 172.19.0.3 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 0.136/0.136/0.136/0.000 ms
-</code></pre>
+</code></pre></div>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -603,10 +1306,10 @@ rtt min/avg/max/mdev = 0.136/0.136/0.136/0.000 ms
 <p><strong>Step 10</strong> You can now remove the existing container. You should stop the
 container before removing it. Alternatively you can use the -f command line
 argument:</p>
-<pre class="codehilite"><code>docker rm -f webapp
+<div class="codehilite"><pre><span></span><code>docker rm -f webapp
 docker rm -f db
 docker network rm  my-network
-</code></pre>
+</code></pre></div>
 
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
@@ -657,10 +1360,10 @@ that traffic that hits the Docker host on port 8080 will be passed on to port
 command to run, the container will run a basic web server on port 80.</p>
 </div>
 <p><strong>Step 1</strong> Start a new container based off the official NGINX image by running <code>docker run --name web1 -d -p 8080:80 nginx</code>.</p>
-<pre class="codehilite"><code class="language-term1">docker run --name web1 -d -p 8080:80 nginx
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run --name web1 -d -p 8080:80 nginx
+</code></pre></div>
 
-<pre class="codehilite"><code>Unable to find image 'nginx:latest' locally
+<div class="codehilite"><pre><span></span><code>Unable to find image &#39;nginx:latest&#39; locally
 latest: Pulling from library/nginx
 6d827a3ef358: Pull complete
 b556b18c7952: Pull complete
@@ -669,15 +1372,15 @@ b556b18c7952: Pull complete
 Digest: sha256:52f84ace6ea43f2f58937e5f9fc562e99ad6876e82b99d171916c1ece587c188
 Status: Downloaded newer image for nginx:latest
 4e0da45b0f169f18b0e1ee9bf779500cb0f756402c0a0821d55565f162741b3e
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong> Review the container status and port mappings by running <code>docker ps</code>.</p>
-<pre class="codehilite"><code class="language-term1">docker ps
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker ps
+</code></pre></div>
 
-<pre class="codehilite"><code>CONTAINER ID   IMAGE   COMMAND                  PORTS                           NAMES
-4e0da45b0f16   nginx   &quot;nginx -g 'daemon ...&quot;   443/tcp, 0.0.0.0:8080-&gt;80/tcp   web1
-</code></pre>
+<div class="codehilite"><pre><span></span><code>CONTAINER ID   IMAGE   COMMAND                  PORTS                           NAMES
+4e0da45b0f16   nginx   &quot;nginx -g &#39;daemon ...&quot;   443/tcp, 0.0.0.0:8080-&gt;80/tcp   web1
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -695,10 +1398,10 @@ of VM to the browser.</p>
 <p>In order to locate Public IP see the list of VMs.</p>
 </div>
 <p>Alternatively from inside of VM run <code>curl 127.0.0.1:8080</code> command.</p>
-<pre class="codehilite"><code class="language-term1">curl 127.0.0.1:8080
-</code></pre>
+<div class="codehilite"><pre><span></span><code>curl 127.0.0.1:8080
+</code></pre></div>
 
-<pre class="codehilite"><code>&lt;!DOCTYPE html&gt;
+<div class="codehilite"><pre><span></span><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;Snip&gt;
 &lt;head&gt;
@@ -707,7 +1410,7 @@ of VM to the browser.</p>
 &lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
+</code></pre></div>
 
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -728,19 +1431,19 @@ unlike in Kubernetes which we learn soon, exposes applications via
 service IPs and communicates via POD IPs using (NAT)</p>
 </div>
 <p><strong>Step 4</strong> Cleanup environment</p>
-<pre class="codehilite"><code>docker rm -f $(docker ps -q)
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker rm -f $(docker ps -q)
+</code></pre></div>
 
 <h2 id="2-persistant-volumes">2 Persistant Volumes<a class="headerlink" href="#2-persistant-volumes" title="Permanent link">&para;</a></h2>
 <h3 id="21-storage-driver">2.1 Storage driver<a class="headerlink" href="#21-storage-driver" title="Permanent link">&para;</a></h3>
 <p>We've discussed several Storage drivers (graphdrivers) during the class.
 Let's find out what graphdriver is running in our Lab environment.</p>
-<pre class="codehilite"><code>docker info | grep  Storage
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker info | grep  Storage
+</code></pre></div>
 
-<pre class="codehilite"><code>WARNING: No swap limit support
+<div class="codehilite"><pre><span></span><code>WARNING: No swap limit support
 Storage Driver: aufs
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -761,22 +1464,22 @@ from within the container. It also means data saved by the process inside the
 container is persisted on the host.</p>
 <h4 id="221-create-and-manage-volumes">2.2.1  Create and manage volumes<a class="headerlink" href="#221-create-and-manage-volumes" title="Permanent link">&para;</a></h4>
 <p><strong>Step 1</strong> Create a volume:</p>
-<pre class="codehilite"><code>docker volume create --name my-vol
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume create --name my-vol
+</code></pre></div>
 
 <p><strong>Step 2</strong> List volumes:</p>
-<pre class="codehilite"><code>docker volume ls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume ls
+</code></pre></div>
 
-<pre class="codehilite"><code>Output:
+<div class="codehilite"><pre><span></span><code>Output:
 local               my-vol
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> Inspect a volume:</p>
-<pre class="codehilite"><code>docker volume inspect my-vol
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume inspect my-vol
+</code></pre></div>
 
-<pre class="codehilite"><code>[
+<div class="codehilite"><pre><span></span><code>[
     {
         &quot;Driver&quot;: &quot;local&quot;,
         &quot;Labels&quot;: {},
@@ -786,33 +1489,33 @@ local               my-vol
         &quot;Scope&quot;: &quot;local&quot;
     }
 ]
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> Add some data to the <code>Mountpoint</code> of the volume:</p>
-<pre class="codehilite"><code>sudo touch  /var/lib/docker/volumes/my-vol/_data/test_vol
+<div class="codehilite"><pre><span></span><code>sudo touch  /var/lib/docker/volumes/my-vol/_data/test_vol
 sudo ls  /var/lib/docker/volumes/my-vol/_data/
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 4</strong> Create a container <code>busybox</code> alpine image and attach created <code>my-vol</code>
 volume in to it:</p>
-<pre class="codehilite"><code>docker run -it -v my-vol:/world busybox
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run -it -v my-vol:/world busybox
+</code></pre></div>
 
-<pre class="codehilite"><code>/ # ls /world
+<div class="codehilite"><pre><span></span><code>/ # ls /world
 test_vol
 / #
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>Volume is mounted and <code>test_vol</code> file is under <code>/world</code> folder as expected</p>
 </div>
 <p><strong>Step 5</strong>  Try to delete the volume:</p>
-<pre class="codehilite"><code>docker volume rm  my-vol
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume rm  my-vol
+</code></pre></div>
 
-<pre class="codehilite"><code>Error response from daemon: unable to remove volume: remove my-vol: volume is in use - [6ef3055b516b306847150af8fcea796c02cd90578967802ac29c39d3a2c90102]
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Error response from daemon: unable to remove volume: remove my-vol: volume is in use - [6ef3055b516b306847150af8fcea796c02cd90578967802ac29c39d3a2c90102]
+</code></pre></div>
 
 <div class="admonition failure">
 <p class="admonition-title">Failure</p>
@@ -821,21 +1524,21 @@ delete with <code>-f</code> option</p>
 </div>
 <p><strong>Step 5</strong>  Busybox container stopped, howerver it is not deleted.
 Let's locate stopped <code>busybox</code> container and delete it:</p>
-<pre class="codehilite"><code>docker ps -a | grep busybox
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker ps -a | grep busybox
+</code></pre></div>
 
-<pre class="codehilite"><code>docker rm $docker_id
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker rm $docker_id
+</code></pre></div>
 
 <p><strong>Step 6</strong> You can now delete <code>my-vol</code></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Volume is still avaiable if needed to be reattached any time</p>
 </div>
-<pre class="codehilite"><code>docker volume ls
+<div class="codehilite"><pre><span></span><code>docker volume ls
 docker volume rm my-vol
 docker volume ls
-</code></pre>
+</code></pre></div>
 
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
@@ -845,8 +1548,8 @@ docker volume ls
 <p>If you start a container with a volume that does not yet exist, Docker creates
 the volume for you.</p>
 <p><strong>Step 1</strong> Add a data volume to a container:</p>
-<pre class="codehilite"><code>docker run -d -P --name webapp -v /webapp training/webapp python app.py
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run -d -P --name webapp -v /webapp training/webapp python app.py
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -854,7 +1557,7 @@ the volume for you.</p>
 container at /webapp.</p>
 </div>
 <p><strong>Step 2</strong> Locate the volume on the host using the docker inspect command:</p>
-<pre class="codehilite"><code> docker inspect webapp | grep -A9 Mounts
+<div class="codehilite"><pre><span></span><code> docker inspect webapp | grep -A9 Mounts
  ```
  **Output:**
  ```       &quot;Mounts&quot;: [
@@ -867,93 +1570,93 @@ container at /webapp.</p>
                 &quot;Mode&quot;: &quot;&quot;,
                 &quot;RW&quot;: true,
                 &quot;Propagation&quot;: &quot;&quot;
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> List container</p>
-<pre class="codehilite"><code>docker volume ls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume ls
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>DRIVER              VOLUME NAME
+<div class="codehilite"><pre><span></span><code>DRIVER              VOLUME NAME
 local               39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 5</strong> Alternatively, you can specify a host directory you want to use as a data
 volume:</p>
-<pre class="codehilite"><code>mkdir db
+<div class="codehilite"><pre><span></span><code>mkdir db
 
 docker run -d --name db -v ~/db:/db training/postgres
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong> Start an interactive session in the db container and create a new
 file in the /db directory:</p>
-<pre class="codehilite"><code>docker exec -it db bash
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
 
 <p>Type inside docker containers console:</p>
-<pre class="codehilite"><code>root@9a7a4fbcc929:/# cd /db
+<div class="codehilite"><pre><span></span><code>root@9a7a4fbcc929:/# cd /db
 
 root@9a7a4fbcc929:/db# touch hello_from_db_container
 
 root@9a7a4fbcc929:/db# exit
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 4</strong> Check that the local db directory contains the new file:</p>
-<pre class="codehilite"><code>ls db
+<div class="codehilite"><pre><span></span><code>ls db
 hello_from_db_container
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 5</strong> Check that the data volume is persistent. Remove the db container:</p>
-<pre class="codehilite"><code>docker rm -f db
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker rm -f db
+</code></pre></div>
 
 <p><strong>Step 6</strong> Create the db container again:</p>
-<pre class="codehilite"><code>docker run -d --name db -v ~/db:/db training/postgres
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker run -d --name db -v ~/db:/db training/postgres
+</code></pre></div>
 
 <p><strong>Step 7</strong> Check that its /db directory contains the hello_from_db_container
 file:</p>
-<pre class="codehilite"><code>docker exec -it db bash
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker exec -it db bash
+</code></pre></div>
 
 <p>Run commands inside container:</p>
-<pre class="codehilite"><code>root@47a60c01590e:/# ls /db
+<div class="codehilite"><pre><span></span><code>root@47a60c01590e:/# ls /db
 hello_from_db_container
 root@47a60c01590e:/# exit
-</code></pre>
+</code></pre></div>
 
 <h4 id="223-use-a-read-only-volume">2.2.3 Use a read-only volume<a class="headerlink" href="#223-use-a-read-only-volume" title="Permanent link">&para;</a></h4>
 <p><strong>Step 1</strong> Mounting Volumes gives the container <strong>full read and write access</strong> to the
 directory. You can specify <strong>read-only permissions</strong> on the directory by adding
 the <strong>permissions :ro</strong> to the mount. If the container attempts to modify data
 within the directory it will error.</p>
-<pre class="codehilite"><code>docker run -d --name db1 -v ~/db:/db:ro training/postgres
+<div class="codehilite"><pre><span></span><code>docker run -d --name db1 -v ~/db:/db:ro training/postgres
 docker exec -it db1 bash
 cd db
 touch test
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 </div>
-<pre class="codehilite"><code>touch: cannot touch 'test': Read-only file system
+<div class="codehilite"><pre><span></span><code>touch: cannot touch &#39;test&#39;: Read-only file system
 $ exit
-</code></pre>
+</code></pre></div>
 
 <p><strong> Step 2</strong> Clean up containers and volumes:</p>
-<pre class="codehilite"><code>docker rm -f $(docker ps -q)
+<div class="codehilite"><pre><span></span><code>docker rm -f $(docker ps -q)
 docker volume ls
-</code></pre>
+</code></pre></div>
 
 <div class="admonition output">
 <p class="admonition-title">Output</p>
 </div>
-<pre class="codehilite"><code>DRIVER              VOLUME NAME
+<div class="codehilite"><pre><span></span><code>DRIVER              VOLUME NAME
 local               39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>docker volume rm 39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d
-</code></pre>
+<div class="codehilite"><pre><span></span><code>docker volume rm 39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5384d
+</code></pre></div>
 
 <div class="admonition summary">
 <p class="admonition-title">Summary</p>
@@ -964,81 +1667,62 @@ local               39885c52758dcf7516513be2d44a17560e42b6da75aba30bc66d4af41df5
 <p>If you Docker host has several Storage plugins configured (e.g. ceph,
 gluster) you can specify via <code>--opt type=btrfs, nfs</code> or <code>--driver=glusterfs</code>
 during docker volume creation.</p>
-</div></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
 </div>
 
-    </body>
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.37e9125f.min.js"></script>
+      
+    
+  </body>
 </html>
