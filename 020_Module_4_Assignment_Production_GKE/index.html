@@ -1,292 +1,1197 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
+    
+    
+      
         <title>Module 4 - Cloud Architecture</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-        <link href="../css/extra.css" rel="stylesheet">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Cloud Architecture</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="dropdown-item">Module 2 Terraform Fundamentals</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
-</li>
-            
-<li>
-    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
-</li>
-            
-<li>
-    <a href="./" class="dropdown-item active">Module 4</a>
-</li>
-            
-<li>
-    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" href="../020_Module_3_Assignment_Production_GKE/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="../020_Module_6_Assignment_Helm_Foundation/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7a952b86.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="2"><a href="#1-creating-production-gke-cluster" class="nav-link">1 Creating Production GKE Cluster</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#2-deploy-notepad-go-webapp" class="nav-link">2 Deploy NotePad Go webapp</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#3-running-gke-in-production" class="nav-link">3 Running GKE in Production</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="nav-link">4 Commit Readme doc to repository and share it with Instructor/Teacher</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="2"><a href="#5-cleanup" class="nav-link">5 Cleanup</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-        </ul>
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-creating-production-gke-cluster" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          YCIT020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="md-nav__link">
+        Module 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_4_Traffic_control/" class="md-nav__link">
+        Module 8 Traffic Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_5_EFK/" class="md-nav__link">
+        Module 9 EFK Stack
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_Prometheus/" class="md-nav__link">
+        Module 10 Monitoring with Prometheus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_GMP/" class="md-nav__link">
+        Module 10 Monitoring with GMP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_9_GitOps/" class="md-nav__link">
+        Module 11 GitOps with Flux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_10_cloudrun/" class="md-nav__link">
+        Module 12 SERVERLESS Cloud Run
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
+        Module 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
+        Module 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Module 4
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-production-gke-cluster" class="md-nav__link">
+    1 Creating Production GKE Cluster
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Creating Production GKE Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-locate-assignment-2" class="md-nav__link">
+    1.1 Locate Assignment 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-creating-a-gcp-project" class="md-nav__link">
+    1.2 Creating a GCP project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deleting-default-vpc" class="md-nav__link">
+    1.2 Deleting Default VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-creating-a-custom-mode-network-vpc" class="md-nav__link">
+    1.3 Creating a custom mode network (VPC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-design-and-create-a-user-managed-subnet" class="md-nav__link">
+    1.4 Design and create a user-managed subnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" class="md-nav__link">
+    1.5 Creating a Private, Regional and VPC Native GKE Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-create-a-google-cloud-nat" class="md-nav__link">
+    1.6 Create a Google Cloud Nat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deploy-notepad-go-webapp" class="md-nav__link">
+    2 Deploy NotePad Go webapp
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Deploy NotePad Go webapp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-a-namespace-dev" class="md-nav__link">
+    2.1 Create a Namespace dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-create-gowebapp-deployment" class="md-nav__link">
+    2.3 Create GoWebApp deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-running-gke-in-production" class="md-nav__link">
+    3 Running GKE in Production
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Running GKE in Production">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploy-a-new-nodepool" class="md-nav__link">
+    3.1 Deploy a New NodePool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-migrating-pods-to-the-new-node-pool" class="md-nav__link">
+    3.2 Migrating pods to the new Node Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
+    3.3 Configure Node auto-repair and Node auto-upgrades
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    4 Commit Readme doc to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleanup" class="md-nav__link">
+    5 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_6_Assignment_Helm_Foundation/" class="md-nav__link">
+        Module 6
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          YCIT019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        Module 5 Lab - Docker Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        Module 6 Lab - Advanced Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+        Module 8 Lab - Kuberenetes Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        Module 9 Lab - Kubernetes Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        Module 9 Part 2 Lab Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Module 10 Lab - Kubernetes Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Module 11 Lab - Kubernetes Storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Module 5 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Module 5 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Module 6 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Module 6 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Module 8 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Module 8 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        Module 9 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Module 9 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        Module 10 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Module 10 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-production-gke-cluster" class="md-nav__link">
+    1 Creating Production GKE Cluster
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Creating Production GKE Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-locate-assignment-2" class="md-nav__link">
+    1.1 Locate Assignment 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-creating-a-gcp-project" class="md-nav__link">
+    1.2 Creating a GCP project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deleting-default-vpc" class="md-nav__link">
+    1.2 Deleting Default VPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-creating-a-custom-mode-network-vpc" class="md-nav__link">
+    1.3 Creating a custom mode network (VPC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-design-and-create-a-user-managed-subnet" class="md-nav__link">
+    1.4 Design and create a user-managed subnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" class="md-nav__link">
+    1.5 Creating a Private, Regional and VPC Native GKE Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-create-a-google-cloud-nat" class="md-nav__link">
+    1.6 Create a Google Cloud Nat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deploy-notepad-go-webapp" class="md-nav__link">
+    2 Deploy NotePad Go webapp
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Deploy NotePad Go webapp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-create-a-namespace-dev" class="md-nav__link">
+    2.1 Create a Namespace dev
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-create-mysql-deployment" class="md-nav__link">
+    2.2 Create Mysql deployment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-create-gowebapp-deployment" class="md-nav__link">
+    2.3 Create GoWebApp deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-running-gke-in-production" class="md-nav__link">
+    3 Running GKE in Production
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Running GKE in Production">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-deploy-a-new-nodepool" class="md-nav__link">
+    3.1 Deploy a New NodePool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-migrating-pods-to-the-new-node-pool" class="md-nav__link">
+    3.2 Migrating pods to the new Node Pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-configure-node-auto-repair-and-node-auto-upgrades" class="md-nav__link">
+    3.3 Configure Node auto-repair and Node auto-upgrades
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    4 Commit Readme doc to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cleanup" class="md-nav__link">
+    5 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Module 4</h1>
 
 <p>Lab 2 Creating Production GKE Cluster</p>
 <p><strong>Objective:</strong></p>
 <h2 id="1-creating-production-gke-cluster">1 Creating Production GKE Cluster<a class="headerlink" href="#1-creating-production-gke-cluster" title="Permanent link">&para;</a></h2>
 <h3 id="11-locate-assignment-2">1.1 Locate Assignment 2<a class="headerlink" href="#11-locate-assignment-2" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong>  Clone <code>ycit020</code> repo with Kubernetes manifests, which going to use for our work:</p>
-<pre class="codehilite"><code>cd ~
+<div class="codehilite"><pre><span></span><code>cd ~
 git clone https://github.com/Cloud-Architects-Program/ycit020
 cd ~/ycit020/Assignment2/
 ls
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>You can see Kubernetes manifests with Assignment tasks.</p>
 </div>
 <p><strong>Step 2</strong> Go into your personal Google Cloud Source Repository:</p>
-<pre class="codehilite"><code>MY_REPO=your_student_id-notepad
-</code></pre>
+<div class="codehilite"><pre><span></span><code>MY_REPO=your_student_id-notepad
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Replace $student_id with your ID</p>
 </div>
-<pre class="codehilite"><code>cd ~/$MY_REPO
-</code></pre>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+</code></pre></div>
 
-<pre class="codehilite"><code>git pull                              # Pull latest code from you repo
-</code></pre>
+<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
+</code></pre></div>
 
 <p><strong>Step 3</strong> Copy Assignment 2 <code>deploy_a2</code> folder to your repo:</p>
-<pre class="codehilite"><code>cp -r ~/ycit020/Assignment2/deploy_a2 deploy_ycit020_a2
-</code></pre>
+<div class="codehilite"><pre><span></span><code>cp -r ~/ycit020/Assignment2/deploy_a2 deploy_ycit020_a2
+</code></pre></div>
 
 <p><strong>Step 4</strong> Create <code>Document</code> for <code>Assignment 2</code>, that will be used for grading:</p>
-<pre class="codehilite"><code>cd ~/$MY_REPO
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 mkdir docs
 cat &gt; docs/production_gke.md &lt;&lt; EOF
 # Creating Production GKE Cluster
@@ -304,17 +1209,17 @@ cat &gt; docs/production_gke.md &lt;&lt; EOF
 **Step 6** Create a Cloud Nat Gateway:
 
 EOF
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 5</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
-<pre class="codehilite"><code>git status 
+<div class="codehilite"><pre><span></span><code>git status 
 git add .
 git commit -m &quot;adding documentation for ycit020 assignment 2&quot;
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
-<pre class="codehilite"><code>git push origin master
-</code></pre>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
 
 <h3 id="12-creating-a-gcp-project">1.2 Creating a GCP project<a class="headerlink" href="#12-creating-a-gcp-project" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
@@ -323,49 +1228,49 @@ git commit -m &quot;adding documentation for ycit020 assignment 2&quot;
 While you going to store code in existing project that we've used so far in class</p>
 </div>
 <p>Set variables:</p>
-<pre class="codehilite"><code>export ORG=&lt;student-name&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>export ORG=&lt;student-name&gt;
+</code></pre></div>
 
-<pre class="codehilite"><code>export PRODUCT=notepad
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
 export ENV=dev
 export PROJECT_PREFIX=1   # Project has to be unique
 export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
-</code></pre>
+</code></pre></div>
 
 <p>Create a project:</p>
-<pre class="codehilite"><code>gcloud projects create $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud projects create $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
 
 <p>List billings and take note of <code>ACCOUNT_ID</code>:</p>
-<pre class="codehilite"><code>gcloud alpha billing accounts list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud alpha billing accounts list
+</code></pre></div>
 
 <p>Define a variable for <code>ACCOUNT_ID</code>:</p>
-<pre class="codehilite"><code>export ACCOUNT_ID=&lt;Your Billing Account&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>export ACCOUNT_ID=&lt;Your Billing Account&gt;
+</code></pre></div>
 
 <p>Attach your project to the correct billing account:</p>
-<pre class="codehilite"><code>gcloud alpha billing accounts projects link $PROJECT_ID --billing-account=$ACCOUNT_ID
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud alpha billing accounts projects link $PROJECT_ID --billing-account=$ACCOUNT_ID
+</code></pre></div>
 
 <p>Set the newly created project as default for gcloud:</p>
-<pre class="codehilite"><code>gcloud config set project $PROJECT_ID
+<div class="codehilite"><pre><span></span><code>gcloud config set project $PROJECT_ID
 gcloud config set compute/region us-central1
-</code></pre>
+</code></pre></div>
 
 <p>Enable <code>compute</code>, <code>container</code>, <code>cloudresourcemanager</code> APIs:</p>
-<pre class="codehilite"><code>gcloud services enable container.googleapis.com
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
 gcloud services enable compute.googleapis.com 
 gcloud services enable cloudresourcemanager.googleapis.com
-</code></pre>
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Enabling GCP Service APIs very important step in automation (e.g. terraform)</p>
 </div>
 <p>Get a list of services that enabled in your project:</p>
-<pre class="codehilite"><code>gcloud services list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud services list
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -373,8 +1278,8 @@ gcloud services enable cloudresourcemanager.googleapis.com
 </div>
 <h3 id="12-deleting-default-vpc">1.2 Deleting Default VPC<a class="headerlink" href="#12-deleting-default-vpc" title="Permanent link">&para;</a></h3>
 <p>Observe Asset Inventory in GCP UI:</p>
-<pre class="codehilite"><code>Products -&gt; IAM &amp; Admin -&gt; Asset Inventory -&gt; Overview
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Products -&gt; IAM &amp; Admin -&gt; Asset Inventory -&gt; Overview
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -382,32 +1287,32 @@ gcloud services enable cloudresourcemanager.googleapis.com
 for many companies will not be acceptable practice (e.g. GDPR)</p>
 </div>
 <p>List all networks in a project:</p>
-<pre class="codehilite"><code>gcloud compute networks list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME     SUBNET_MODE  BGP_ROUTING_MODE  IPV4_RANGE  GATEWAY_IPV4
+<div class="codehilite"><pre><span></span><code>NAME     SUBNET_MODE  BGP_ROUTING_MODE  IPV4_RANGE  GATEWAY_IPV4
 default  AUTO         REGIONAL
-</code></pre>
+</code></pre></div>
 
 <p>Review existing firewall rules for <code>default</code> vpc:</p>
-<pre class="codehilite"><code>gcloud compute firewall-rules list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
 
 <p>Also check in Google cloud UI:</p>
-<pre class="codehilite"><code>Networking-&gt;Firewalls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
 
 <p>Delete firewall rules associated with <code>default</code> vpc network:</p>
-<pre class="codehilite"><code>gcloud compute firewall-rules delete default-allow-internal
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules delete default-allow-internal
 gcloud compute firewall-rules delete default-allow-ssh
 gcloud compute firewall-rules delete default-allow-rdp
 gcloud compute firewall-rules delete default-allow-icmp
-</code></pre>
+</code></pre></div>
 
 <p>Delete the <code>Default</code> network, following best practices:</p>
-<pre class="codehilite"><code>gcloud compute networks delete default
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks delete default
+</code></pre></div>
 
 <h3 id="13-creating-a-custom-mode-network-vpc">1.3 Creating a custom mode network (VPC)<a class="headerlink" href="#13-creating-a-custom-mode-network-vpc" title="Permanent link">&para;</a></h3>
 <p><strong>Task N1:</strong> Using reference doc: <a href="https://cloud.google.com/vpc/docs/using-vpc#create-custom-network">Creating a custom mode network</a>. Create a new custom mode VPC network using gcloud command with following parameters:</p>
@@ -423,34 +1328,34 @@ gcloud compute firewall-rules delete default-allow-icmp
 and <code>regional</code>.</p>
 <p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
 <p>Set variables:</p>
-<pre class="codehilite"><code>export PRODUCT=notepad
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
 export ENV=dev
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>TODO: gcloud create network
-</code></pre>
+<div class="codehilite"><pre><span></span><code>TODO: gcloud create network
+</code></pre></div>
 
 <p>Review created network:</p>
-<pre class="codehilite"><code>gcloud compute networks list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+</code></pre></div>
 
 <p>Also check in Google cloud UI:</p>
-<pre class="codehilite"><code>Networking-&gt;VPC Networks
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks
+</code></pre></div>
 
 <p><strong>Step 2:</strong> Create firewall rules <code>default-allow-internal</code> and <code>default-allow-ssh</code>:</p>
-<pre class="codehilite"><code>gcloud compute firewall-rules create $ORG-$PRODUCT-$ENV-allow-tcp-ssh-icmp --network $ORG-$PRODUCT-$ENV-vpc --allow tcp:22,tcp:3389,icmp
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules create $ORG-$PRODUCT-$ENV-allow-tcp-ssh-icmp --network $ORG-$PRODUCT-$ENV-vpc --allow tcp:22,tcp:3389,icmp
 gcloud compute firewall-rules create allow-internal --network $ORG-$PRODUCT-$ENV-vpc --allow tcp,udp,icmp --source-ranges 10.128.0.0/22
-</code></pre>
+</code></pre></div>
 
 <p>Reference: https://cloud.google.com/kubernetes-engine/docs/concepts/firewall-rules</p>
 <p>Review created firewall rules:</p>
-<pre class="codehilite"><code>gcloud compute firewall-rules list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
 
 <p>Also check in Google cloud UI:</p>
-<pre class="codehilite"><code>Networking-&gt;Firewalls
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
 
 <h3 id="14-design-and-create-a-user-managed-subnet">1.4 Design and create a <code>user-managed</code> subnet<a class="headerlink" href="#14-design-and-create-a-user-managed-subnet" title="Permanent link">&para;</a></h3>
 <p>After you've created VPC network, it is require to add subnet to it.</p>
@@ -469,11 +1374,11 @@ design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code
 <li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
 </ol>
 <p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>docs/production_gke.md</code>:</p>
-<pre class="codehilite"><code>env |     subnet    |    pod range     |    srv range   | kubectl api range
+<div class="codehilite"><pre><span></span><code>env |     subnet    |    pod range     |    srv range   | kubectl api range
 dev |     IP range  |     IP range     |     IP range   |     IP range    
 stg |     IP range  |     IP range     |     IP range   |     IP range     
 prd |     IP range  |     IP range     |     IP range   |     IP range     
-</code></pre>
+</code></pre></div>
 
 <p>Document a subnet VPC design in <code>docs/production_gke.md</code> doc under <code>step 2</code>.</p>
 <p><strong>Task N3:</strong> Create a <code>user-managed</code> subnet.</p>
@@ -495,8 +1400,8 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 </ul>
 </li>
 </ul>
-<pre class="codehilite"><code>TODO: gcloud subnet create 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>TODO: gcloud subnet create 
+</code></pre></div>
 
 <p>Reference docs:</p>
 <ol>
@@ -505,12 +1410,12 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <li>Use <code>gcloud subnets create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/create">reference</a> for all available options.</li>
 </ol>
 <p>Review created subnet:</p>
-<pre class="codehilite"><code>gcloud compute networks subnets list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets list
+</code></pre></div>
 
 <p>Also check in Google cloud UI:</p>
-<pre class="codehilite"><code>Networking-&gt;VPC Networks -&gt; Click VPC network and check `Subnet` tab
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks -&gt; Click VPC network and check `Subnet` tab
+</code></pre></div>
 
 <p>Document a subnet VPC creation command in <code>docs/production_gke.md</code> doc under <code>step 3</code>.</p>
 <h3 id="15-creating-a-private-regional-and-vpc-native-gke-cluster">1.5 Creating a Private, Regional and VPC Native GKE Cluster<a class="headerlink" href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" title="Permanent link">&para;</a></h3>
@@ -533,8 +1438,8 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#channels">GKE Release Channels</a></li>
 <li>Use <code>gcloud container clusters create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/container/clusters/create">reference</a> for all available options.</li>
 </ol>
-<pre class="codehilite"><code>#TODO gcloud clusters create $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>#TODO gcloud clusters create $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 <p>Document a GKE cluster creation command in <code>docs/production_gke.md</code> doc under <code>step 4</code>.</p>
 <div class="admonition result">
@@ -542,16 +1447,16 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <p>The private cluster is now created. <code>gcloud</code> has set up <code>kubectl</code> to authenticate with the private cluster but the cluster's K8s API server will only accept connections from the primary range of your subnetwork, and the secondary range of your subnetwork that is used for pods. That means nobody can access K8s API at this point of time, until we specify allowed ranges.</p>
 </div>
 <p><strong>Step 3</strong> Authenticate to the cluster.</p>
-<pre class="codehilite"><code>gcloud container clusters get-credentials $ORG-$PRODUCT-$ENV-cluster --region us-central1 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials $ORG-$PRODUCT-$ENV-cluster --region us-central1 
+</code></pre></div>
 
 <p><strong>Step 4:</strong> Connecting to a Private Cluster</p>
 <p>Let's try to connect to the cluster:</p>
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
-<pre class="codehilite"><code>Unable to connect to the server i/o timeout
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Unable to connect to the server i/o timeout
+</code></pre></div>
 
 <div class="admonition fail">
 <p class="admonition-title">Fail</p>
@@ -560,8 +1465,8 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <p><strong>Step 4:</strong> Enable Master Authorized networks on you cluster</p>
 <p>Suppose you have a group of machines, outside of your VPC network, belongs to your organization. You could authorize those machines to access the public endpoint.</p>
 <p>Here we will enable master authorized networks and whitelist the IP address for our Cloud Shell instance, to allow access to the master:</p>
-<pre class="codehilite"><code>gcloud container clusters update $ORG-$PRODUCT-$ENV-cluster --enable-master-authorized-networks --master-authorized-networks $(curl ipinfo.io/ip)/32 --region us-central1
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters update $ORG-$PRODUCT-$ENV-cluster --enable-master-authorized-networks --master-authorized-networks $(curl ipinfo.io/ip)/32 --region us-central1
+</code></pre></div>
 
 <p>Now we can access the API server using <code>kubectl</code> from GCP console:</p>
 <div class="admonition note">
@@ -569,30 +1474,30 @@ prd |     IP range  |     IP range     |     IP range   |     IP range
 <p>In real life it could be CIDR Range for you company, so only engineers or CI/CD systems from you company can connect to <code>kubectl</code> apis in secure manner.</p>
 </div>
 <p>Now we can access the API server using kubectl:</p>
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl run hello-web --image=gcr.io/google-samples/hello-app:1.0 --port=8080
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl run hello-web --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME        READY   STATUS    RESTARTS   AGE
+<div class="codehilite"><pre><span></span><code>NAME        READY   STATUS    RESTARTS   AGE
 hello-web   1/1     Running   0          7s
-</code></pre>
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
 <p>We can deploy Pods to our Private Cluster.</p>
 </div>
-<pre class="codehilite"><code>kubectl delete pod hello-web
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod hello-web
+</code></pre></div>
 
 <p><strong>Step 2:</strong> Testing Outbound Traffic</p>
 <p>Outbound traffic is not routable in private clusters so access to the internet is limited. This isolates pods that are running sensitive workloads.</p>
-<pre class="codehilite"><code>cat &lt;&lt;EOF | kubectl create -f -
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -601,26 +1506,26 @@ spec:
   containers:
   - name: wget
     image: alpine
-    command: ['wget', '-T', '5', 'http://www.example.com/']
+    command: [&#39;wget&#39;, &#39;-T&#39;, &#39;5&#39;, &#39;http://www.example.com/&#39;]
   restartPolicy: Never
 EOF
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME   READY   STATUS   RESTARTS   AGE
+<div class="codehilite"><pre><span></span><code>NAME   READY   STATUS   RESTARTS   AGE
 wget   0/1     Error    0          4m41s
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl logs wget
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl logs wget
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>Connecting to www.example.com (93.184.216.34:80)
+<div class="codehilite"><pre><span></span><code>Connecting to www.example.com (93.184.216.34:80)
 wget: download timed out
-</code></pre>
+</code></pre></div>
 
 <div class="admonition results">
 <p class="admonition-title">Results</p>
@@ -640,26 +1545,26 @@ can't even deploy images from Docker Hub. See troubleshooting details <a href="h
 <p><strong>Step 1:</strong> Create a Cloud NAT configuration using Cloud Router</p>
 <p>Create Cloud Router in the same region as the instances that use Cloud NAT. Cloud NAT is only used to place NAT information onto the VMs. It is not used as part of the actual NAT gateway.</p>
 <p><strong>Step 1a:</strong> Create a <code>Cloud Router</code>:</p>
-<pre class="codehilite"><code>gcloud compute routers create gke-nat-router \
+<div class="codehilite"><pre><span></span><code>gcloud compute routers create gke-nat-router \
     --network $ORG-$PRODUCT-$ENV-vpc \
     --region us-central1
-</code></pre>
+</code></pre></div>
 
 <p>Verify created Cloud Router:</p>
-<pre class="codehilite"><code>Networking -&gt; Hybrid Connectivity -&gt; Cloud Routers
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Hybrid Connectivity -&gt; Cloud Routers
+</code></pre></div>
 
 <p><strong>Step 1b:</strong> Create a <code>Cloud Nat</code> Gateway:</p>
-<pre class="codehilite"><code>gcloud compute routers nats create nat-config \
+<div class="codehilite"><pre><span></span><code>gcloud compute routers nats create nat-config \
     --router-region us-central1 \
     --router gke-nat-router \
     --nat-all-subnet-ip-ranges \
     --auto-allocate-nat-external-ips
-</code></pre>
+</code></pre></div>
 
 <p>Verify created <code>Cloud Nat</code>:</p>
-<pre class="codehilite"><code>Networking -&gt; Network Services -&gt; Cloud NAT
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Network Services -&gt; Cloud NAT
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -668,7 +1573,7 @@ can't even deploy images from Docker Hub. See troubleshooting details <a href="h
 <p>Document Cloud Router and Cloud Nat creation  command in <code>docs/production_gke.md</code> doc under <code>step 5 and 6</code> respectively.</p>
 <p><strong>Step 2:</strong> Testing Outbound Traffic</p>
 <p>Most outbound traffic is not routable in private clusters so access to the internet is limited. This isolates pods that are running sensitive workloads.</p>
-<pre class="codehilite"><code>cat &lt;&lt;EOF | kubectl create -f -
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -677,28 +1582,28 @@ spec:
   containers:
   - name: wget
     image: alpine
-    command: ['wget', '-T', '5', 'http://www.example.com/']
+    command: [&#39;wget&#39;, &#39;-T&#39;, &#39;5&#39;, &#39;http://www.example.com/&#39;]
   restartPolicy: Never
 EOF
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME                              READY   STATUS      RESTARTS   AGE
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS      RESTARTS   AGE
 wget                              0/1     Completed   0          2m53s
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl logs wget
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl logs wget
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>Connecting to www.example.com (93.184.216.34:80)
-saving to 'index.html'
+<div class="codehilite"><pre><span></span><code>Connecting to www.example.com (93.184.216.34:80)
+saving to &#39;index.html&#39;
 index.html           100% |********************************|  1256  0:00:00 ETA
-'index.html' saved
-</code></pre>
+&#39;index.html&#39; saved
+</code></pre></div>
 
 <div class="admonition results">
 <p class="admonition-title">Results</p>
@@ -707,16 +1612,16 @@ index.html           100% |********************************|  1256  0:00:00 ETA
 <h2 id="2-deploy-notepad-go-webapp">2 Deploy NotePad Go webapp<a class="headerlink" href="#2-deploy-notepad-go-webapp" title="Permanent link">&para;</a></h2>
 <h3 id="21-create-a-namespace-dev">2.1 Create a Namespace <code>dev</code><a class="headerlink" href="#21-create-a-namespace-dev" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Create 'dev' namespace that's going to be used to develop and deploy <code>Notestaker</code> application on Kubernetes using <code>kubetl</code> CLI.</p>
-<pre class="codehilite"><code>kubectl create ns dev
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl create ns dev
+</code></pre></div>
 
 <p><strong>Step 3</strong> Use <code>dev</code> context to create K8s resources inside this namespace.</p>
-<pre class="codehilite"><code>kubectl config set-context --current --namespace=dev
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
+</code></pre></div>
 
 <p><strong>Step 4</strong> Verify current context:</p>
-<pre class="codehilite"><code>kubectl config view | grep namespace
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -725,37 +1630,37 @@ index.html           100% |********************************|  1256  0:00:00 ETA
 <h3 id="22-create-mysql-deployment">2.2 Create Mysql deployment<a class="headerlink" href="#22-create-mysql-deployment" title="Permanent link">&para;</a></h3>
 <p>Create Mysql deployment:</p>
 <p><strong>Step 1</strong>  Deploy PVC, Deployment, Services and Network Policy:</p>
-<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_ycit020_a2
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a2
 kubectl apply -f gowebapp-mysql-pvc.yaml        #Create PVC
 kubectl apply -f secret-mysql.yaml              #Create Secret
 kubectl apply -f gowebapp-mysql-service.yaml    #Create Service
 kubectl apply -f gowebapp-mysql-deployment.yaml #Create Deployment
 kubectl apply -f default-deny-dev.yaml   # deny-all Ingress Traffic to dev Namespace
 kubectl apply -f gowebapp-mysql-netpol.yaml   # `mysql` pod can be accessed from the `gowebapp` pod
-</code></pre>
+</code></pre></div>
 
 <p>Verify status of mysql:</p>
-<pre class="codehilite"><code>kubectl get deploy,secret,pvc
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get deploy,secret,pvc
+</code></pre></div>
 
 <h3 id="23-create-gowebapp-deployment">2.3 Create GoWebApp deployment<a class="headerlink" href="#23-create-gowebapp-deployment" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1:</strong> Create ConfigMap for gowebapp's config.json file</p>
-<pre class="codehilite"><code>cd ~/$MY_REPO/gowebapp/config/
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/gowebapp/config/
 kubectl create configmap gowebapp --from-file=webapp-config-json=config.json
 kubectl describe configmap gowebapp
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong> Deploy <code>gowebapp</code> app under <code>~/$MY_REPO/deploy_ycit020_a2/</code></p>
-<pre class="codehilite"><code>cd ~/$MY_REPO/deploy_ycit020_a2/
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/deploy_ycit020_a2/
 kubectl apply -f gowebapp-service.yaml    #Create Service
 kubectl apply -f gowebapp-deployment.yaml #Create Deployment
 kubectl apply -f gowebapp-netpol.yaml  #gowebapp pod from Internet on CIDR range
 kubectl apply -f gowebapp-ingress.yaml   #Create Ingress
-</code></pre>
+</code></pre></div>
 
 <p>Verify status of gowebapp:</p>
-<pre class="codehilite"><code>kubectl get pods,cm,ing
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods,cm,ing
+</code></pre></div>
 
 <!-- ### 2.5 TODO Scheduling a distributed `gowebapp` workload
 
@@ -763,7 +1668,7 @@ In much the same way as multi-zone clusters. You can create workloads that are d
 
 
 
-<pre class="codehilite"><code>cat &lt;&lt;EOF | kubectl create -f -
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -801,14 +1706,14 @@ spec:
                         - hello-web
                 topologyKey: failure-domain.beta.kubernetes.io/zone
 EOF
-</code></pre>
+</code></pre></div>
 
 
 
 
 
-<pre class="codehilite"><code>kubectl get pods -o wide
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -o wide
+</code></pre></div>
 
 
  -->
@@ -818,49 +1723,49 @@ EOF
 <p>A Kubernetes Engine cluster consists of a master and nodes. Kubernetes doesn't handle provisioning of nodes, so Google Kubernetes Engine handles this for you with a concept called <em>node pools</em>.</p>
 <p>A node pool is a subset of node instances within a cluster that all have the same configuration. They map to instance templates in Google Compute Engine, which provides the VMs used by the cluster. By default a Kubernetes Engine cluster has a single node pool, but you can add or remove them as you wish to change the shape of your cluster.</p>
 <p>In the previous example, you created a Kubernetes Engine cluster. This gave us three nodes (three e2-small (2 vCPUs, 2 GB memory), 100 GB of disk each) in a single node pool (called default-pool). Let's inspect the node pool:</p>
-<pre class="codehilite"><code>gcloud config set compute/region us-central1
+<div class="codehilite"><pre><span></span><code>gcloud config set compute/region us-central1
 gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME          MACHINE_TYPE  DISK_SIZE_GB  NODE_VERSION
+<div class="codehilite"><pre><span></span><code>NAME          MACHINE_TYPE  DISK_SIZE_GB  NODE_VERSION
 default-pool  e2-small     100           1.20.8-gke.700
-</code></pre>
+</code></pre></div>
 
 <p>If you want to add more nodes of this type, you can grow this node pool. If you want to add more nodes of a different type, you can add other node pools.</p>
 <p>A common method of moving a cluster to larger nodes is to add a new node pool, move the work from the old nodes to the new, and delete the old node pool.</p>
 <p>Let's add a second node pool, and migrate our workload over to it. This time we will use the larger <code>e2-medium</code> (2 vCPUs, 4 GB memory), 100 GB of disk each machine type.</p>
-<pre class="codehilite"><code>gcloud container node-pools create new-pool --cluster $ORG-$PRODUCT-$ENV-cluster \
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools create new-pool --cluster $ORG-$PRODUCT-$ENV-cluster \
     --machine-type e2-medium --num-nodes 1
-</code></pre>
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME          MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
+<div class="codehilite"><pre><span></span><code>NAME          MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
 default-pool  e2-small      100           1.20.8-gke.700
 new-pool      e2-medium  100           1.20.8-gke.700
-</code></pre>
+</code></pre></div>
 
-<pre class="codehilite"><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME                                                  STATUS   ROLES    AGE    VERSION
+<div class="codehilite"><pre><span></span><code>NAME                                                  STATUS   ROLES    AGE    VERSION
 gke-ayrat-notepad-dev-cl-default-pool-34b29738-b1m8   Ready    &lt;none&gt;   11m    v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-c22a1803-hh91   Ready    &lt;none&gt;   11m    v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-f2a61828-zjgk   Ready    &lt;none&gt;   11m    v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-2df77edb-thgj   Ready    &lt;none&gt;   104s   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-40bedbb3-gsxr   Ready    &lt;none&gt;   101s   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-d8f28859-hgqn   Ready    &lt;none&gt;   60s    v1.20.8-gke.700
-</code></pre>
+</code></pre></div>
 
 <p>Kubernetes does not reschedule Pods as long as they are running and available, so your workload remains running on the nodes in the default pool.</p>
 <p>Look at one of your nodes using kubectl describe. Just like you can attach labels to pods, nodes are automatically labelled with useful information which lets the scheduler make decisions and the administrator perform action on groups of nodes.</p>
 <p>Replace "[NODE NAME]" with the name of one of your nodes from the previous step.</p>
-<pre class="codehilite"><code>kubectl describe node [NODE NAME] | head -n 20
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl describe node [NODE NAME] | head -n 20
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>Name:               gke-ayrat-notepad-dev-cluste-new-pool-d8f28859-hgqn
+<div class="codehilite"><pre><span></span><code>Name:               gke-ayrat-notepad-dev-cluste-new-pool-d8f28859-hgqn
 Roles:              &lt;none&gt;
 Labels:             beta.kubernetes.io/arch=amd64
                     beta.kubernetes.io/instance-type=e2-standard-4
@@ -881,82 +1786,82 @@ Labels:             beta.kubernetes.io/arch=amd64
                     topology.kubernetes.io/region=us-central1
                     topology.kubernetes.io/zone=us-central1-b
 &lt;...&gt;
-</code></pre>
+</code></pre></div>
 
 <p>You can also select nodes by node pool using the cloud.google.com/gke-nodepool label. We'll use this powerful construct shortly.</p>
-<pre class="codehilite"><code>kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME                                          STATUS    ROLES     AGE       VERSION
+<div class="codehilite"><pre><span></span><code>NAME                                          STATUS    ROLES     AGE       VERSION
 gke-ayrat-notepad-dev-cl-default-pool-34b29738-b1m8   Ready    &lt;none&gt;   14m   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-c22a1803-hh91   Ready    &lt;none&gt;   14m   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-f2a61828-zjgk   Ready    &lt;none&gt;   14m   v1.20.8-gke.70
-</code></pre>
+</code></pre></div>
 
 <h3 id="32-migrating-pods-to-the-new-node-pool">3.2 Migrating pods to the new Node Pool<a class="headerlink" href="#32-migrating-pods-to-the-new-node-pool" title="Permanent link">&para;</a></h3>
 <p>To migrate your pods to the new node pool, we will perform the following steps:</p>
 <p><code>Cordon</code> the existing node pool: This operation marks the nodes in the existing node pool (default-pool) as unschedulable. Kubernetes stops scheduling new Pods to these nodes once you mark them as unschedulable.</p>
 <p>Drain the existing node pool: This operation evicts the workloads running on the nodes of the existing node pool (default-pool) gracefully.</p>
 <p>You could cordon an individual node using the kubectl cordon command, but running this command on each node individually would be tedious. To speed up the process, we can embed the command in a loop. Be sure you copy the whole line - it will have scrolled off the screen to the right!</p>
-<pre class="codehilite"><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do kubectl cordon &quot;$node&quot;; done
-</code></pre>
+<div class="codehilite"><pre><span></span><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do kubectl cordon &quot;$node&quot;; done
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>node/gke-ayrat-notepad-dev-cl-default-pool-4a7a0d9d-d5q9 cordoned
+<div class="codehilite"><pre><span></span><code>node/gke-ayrat-notepad-dev-cl-default-pool-4a7a0d9d-d5q9 cordoned
 node/gke-ayrat-notepad-dev-cl-default-pool-4d5f96ee-nnv9 cordoned
 node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 cordoned
-</code></pre>
+</code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This loop utilizes the command kubectl get nodes to select all nodes in the default pool (using the cloud.google.com/gke-nodepool=default-pool label), and then it iterates through and runs kubectl cordon on each one.</p>
 </div>
 <p>After running the loop, you should see that the default-pool nodes have SchedulingDisabled status in the node list:</p>
-<pre class="codehilite"><code>kubectl get nodes
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME                                            STATUS                     ROLES     AGE       VERSION
+<div class="codehilite"><pre><span></span><code>NAME                                            STATUS                     ROLES     AGE       VERSION
 gke-ayrat-notepad-dev-cl-default-pool-4a7a0d9d-d5q9   Ready,SchedulingDisabled   &lt;none&gt;   38m     v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-4d5f96ee-nnv9   Ready,SchedulingDisabled   &lt;none&gt;   38m     v1.20.8-gke.700
 gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8   Ready,SchedulingDisabled   &lt;none&gt;   38m     v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-af1b690a-v6j9   Ready                      &lt;none&gt;   2m57s   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-f3195336-k11r   Ready                      &lt;none&gt;   2m44s   v1.20.8-gke.700
 gke-ayrat-notepad-dev-cluste-new-pool-f47e9e43-6qzb   Ready                      &lt;none&gt;   2m50s   v1.20.8-gke.700
-</code></pre>
+</code></pre></div>
 
 <p>Next, we want to evict the Pods already scheduled on each node. To do this, we will construct another loop, this time using the kubectl drain command:</p>
-<pre class="codehilite"><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do kubectl drain --force --ignore-daemonsets --delete-emptydir-data &quot;$node&quot;; done
-</code></pre>
+<div class="codehilite"><pre><span></span><code>for node in $(kubectl get nodes -l cloud.google.com/gke-nodepool=default-pool -o=name); do kubectl drain --force --ignore-daemonsets --delete-emptydir-data &quot;$node&quot;; done
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>&lt;...&gt;
+<div class="codehilite"><pre><span></span><code>&lt;...&gt;
 pod/gowebapp-mysql-6ffb7f9586-prddc evicted
 pod/hello-web evicted
 node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 evicted
 &lt;...&gt;
-</code></pre>
+</code></pre></div>
 
 <p>As each node is drained, the pods running on it are evicted. Eviction makes sure to follow rules to provide the least disruption to the applications as possible. Users in production may want to look at more advanced features like <code>Pod Disruption Budgets</code>.</p>
 <p>Because the default node pool is unschedulable, the pods are now running on the single machine in the new node pool:</p>
-<pre class="codehilite"><code>kubectl get pods -o wide
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -o wide
+</code></pre></div>
 
 <p><strong>Output:</strong></p>
-<pre class="codehilite"><code>NAME                         READY     STATUS    RESTARTS   AGE       IP          NODE
+<div class="codehilite"><pre><span></span><code>NAME                         READY     STATUS    RESTARTS   AGE       IP          NODE
 node/gke-ayrat-notepad-dev-cl-default-pool-4a7a0d9d-d5q9 cordoned
 node/gke-ayrat-notepad-dev-cl-default-pool-4d5f96ee-nnv9 cordoned
 node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 cordoned
-</code></pre>
+</code></pre></div>
 
 <p>You can now delete the original node pool:</p>
-<pre class="codehilite"><code>gcloud container node-pools delete default-pool --cluster $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools delete default-pool --cluster $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 <p>Check that node-pool has been deleted:</p>
-<pre class="codehilite"><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 <div class="admonition result">
 <p class="admonition-title">Result</p>
@@ -964,38 +1869,38 @@ node/gke-ayrat-notepad-dev-cl-default-pool-eb93c399-zcs8 cordoned
 </div>
 <h3 id="33-configure-node-auto-repair-and-node-auto-upgrades">3.3 Configure Node auto-repair and Node auto-upgrades<a class="headerlink" href="#33-configure-node-auto-repair-and-node-auto-upgrades" title="Permanent link">&para;</a></h3>
 <p>Kubernetes Engine's node auto-repair feature helps you keep the nodes in your cluster in a healthy, running state. When enabled, Kubernetes Engine makes periodic checks on the health state of each node in your cluster. If a node fails consecutive health checks over an extended time period (approximately 10 minutes), Kubernetes Engine initiates a repair process for that node.</p>
-<pre class="codehilite"><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
+</code></pre></div>
 
 <p>This will enable the autorepair feature for nodes. Please see
 https://cloud.google.com/kubernetes-engine/docs/node-auto-repair for more
 information on node autorepairs.</p>
 <p>First, Enable and configure OS Login in GKE:</p>
-<pre class="codehilite"><code>gcloud compute project-info add-metadata --metadata enable-oslogin=TRUE
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud compute project-info add-metadata --metadata enable-oslogin=TRUE
+</code></pre></div>
 
 <p>Next, for some fun: let's break a VM!</p>
 <p>This gcloud command will find the VM in your regional node pool which is in the default zone, and SSH into it. If you are asked to generate an SSH key just answer 'Y' at the prompt and hit enter to not set a passphrase.</p>
-<pre class="codehilite"><code>gcloud compute ssh $(gcloud compute instances list | \
+<div class="codehilite"><pre><span></span><code>gcloud compute ssh $(gcloud compute instances list | \
                       grep -m 1 notepad-dev | \
-                      awk '{ print $1 }') \
+                      awk &#39;{ print $1 }&#39;) \
                       --zone us-central1-a
-</code></pre>
+</code></pre></div>
 
 <p>You can simulate a node failure by removing the kubelet binary, which is responsible for running Pods on every Kubernetes node:</p>
-<pre class="codehilite"><code>sudo rm /home/kubernetes/bin/kubelet &amp;&amp; sudo systemctl restart kubelet
+<div class="codehilite"><pre><span></span><code>sudo rm /home/kubernetes/bin/kubelet &amp;&amp; sudo systemctl restart kubelet
 logout
-</code></pre>
+</code></pre></div>
 
 <p>Now when we check the node status we see the node is NotReady.</p>
-<pre class="codehilite"><code>watch kubectl get nodes
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
 
-<pre class="codehilite"><code>NAME                                          STATUS     ROLES     AGE       VERSION
+<div class="codehilite"><pre><span></span><code>NAME                                          STATUS     ROLES     AGE       VERSION
 gke-gke-workshop-new-pool-42b33f8c-9grf   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
 gke-gke-workshop-new-pool-847e18a1-f1bp   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
 gke-gke-workshop-new-pool-8c4b26e9-fq8p   NotReady   &lt;none&gt;    6m        v1.9.6-gke.1
-</code></pre>
+</code></pre></div>
 
 <p>The Kubernetes Engine node repair agent will wait a few minutes in case the problem is intermittent. We'll come back to this in a minute.</p>
 <p>Define a maintenance window
@@ -1007,59 +1912,59 @@ You can configure a maintenance window to have more control over when automatic 
 Whenever a new version of Kubernetes is released, Google upgrades your master to that version. You can then choose to upgrade your nodes to that version, bringing functionality and security updates to both the OS and the Kubernetes components.</p>
 <p>Node Auto-Upgrades use the same update mechanism as manual node upgrades, but does the scheduled upgrades during your maintenance window.</p>
 <p>Auto-upgrades are enabled per node pool.</p>
-<pre class="codehilite"><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster   --enable-autoupgrade
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster   --enable-autoupgrade
+</code></pre></div>
 
 <p>This will enable the autoupgrade feature for nodes. Please see
 https://cloud.google.com/kubernetes-engine/docs/node-management for more
 information on node autoupgrades.</p>
-<pre class="codehilite"><code>ERROR: (gcloud.container.node-pools.update) ResponseError: code=400, message=Operation operation-1511896056410-dbda7f9f is currently operating on cluster gke-workshop. Please wait and try again once it's done.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>ERROR: (gcloud.container.node-pools.update) ResponseError: code=400, message=Operation operation-1511896056410-dbda7f9f is currently operating on cluster gke-workshop. Please wait and try again once it&#39;s done.
+</code></pre></div>
 
 <p>That's good - that means our broken node is being repaired! Try again in a few minutes.</p>
 <p>Check your node repair
 How is that node repair coming?</p>
 <p>After a few minutes, you will see that the master drained the node, and then removed it.</p>
-<pre class="codehilite"><code>watch kubectl get nodes
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
 
-<pre class="codehilite"><code>NotReady,SchedulingDisabled
-</code></pre>
+<div class="codehilite"><pre><span></span><code>NotReady,SchedulingDisabled
+</code></pre></div>
 
 <p>A few minutes after that, a new node was turned on in its place:</p>
-<pre class="codehilite"><code>Ready
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Ready
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
-<pre class="codehilite"><code>kubectl delete deployment hello-web
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl delete deployment hello-web
+</code></pre></div>
 
 <h2 id="4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">4 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#4-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
 <p><strong>Step 1</strong> Commit <code>docs</code> folder using the following Git commands:</p>
-<pre class="codehilite"><code>cd ~/$MY_REPO
-</code></pre>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+</code></pre></div>
 
-<pre class="codehilite"><code>git add .
+<div class="codehilite"><pre><span></span><code>git add .
 git commit -m &quot;Readme doc for Production GKE Creation using gcloud&quot;
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
-<pre class="codehilite"><code>git push origin master
-</code></pre>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
 
 <h2 id="5-cleanup">5 Cleanup<a class="headerlink" href="#5-cleanup" title="Permanent link">&para;</a></h2>
-<pre class="codehilite"><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>We going to delete the <code>$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX</code> only,
 please do not delete your project with Source Code Repo.</p>
 </div>
-<pre class="codehilite"><code>gcloud projects delete  $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud projects delete  $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
 
 <!-- ### 3.3 Creating a secondary node pool with GPUs
 
@@ -1072,8 +1977,8 @@ In that case you can create a separate pool of nodes that have GPUs attached and
 Let's first create a node pool where each node has one GPU attached:
 
 
-<pre class="codehilite"><code>gcloud beta container node-pools create nvidia-tesla-k80-pool --cluster $ORG-$PRODUCT-$ENV-cluster --machine-type n1-standard-1 --num-nodes 1 --accelerator type=nvidia-tesla-k80,count=1
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud beta container node-pools create nvidia-tesla-k80-pool --cluster $ORG-$PRODUCT-$ENV-cluster --machine-type n1-standard-1 --num-nodes 1 --accelerator type=nvidia-tesla-k80,count=1
+</code></pre></div>
 
 
 
@@ -1081,16 +1986,16 @@ Machines with GPUs have certain limitations which may affect your workflow.
 Learn more at https://cloud.google.com/kubernetes-engine/docs/concepts/gpus
 
 
-<pre class="codehilite"><code>NAME                    MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
+<div class="codehilite"><pre><span></span><code>NAME                    MACHINE_TYPE   DISK_SIZE_GB  NODE_VERSION
 nvidia-tesla-k80-pool  n1-standard-1  100           1.9.6-gke.0
 Next, we must install the NVIDIA drivers.
-</code></pre>
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+</code></pre></div>
 
 
 
@@ -1098,8 +2003,8 @@ Next, we must install the NVIDIA drivers.
 Verify that the drivers are installed using the following command. Run the following commands to watch the status of the pod. When the pods are listed as 'Running", you will know that the drivers are finished installing. When you are done hit Ctrl-C to exit:
 
 
-<pre class="codehilite"><code>watch &quot;kubectl get pods -n kube-system | grep nvidia-driver-installer&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch &quot;kubectl get pods -n kube-system | grep nvidia-driver-installer&quot;
+</code></pre></div>
 
 
 
@@ -1107,25 +2012,25 @@ Verify that the drivers are installed using the following command. Run the follo
 You can verify that the new node has GPUs that are allocatable to pods with the following command:
 
 
-<pre class="codehilite"><code>kubectl get nodes -l cloud.google.com/gke-nodepool=nvidia-tesla-k80-pool -o yaml | grep allocatable -A4
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes -l cloud.google.com/gke-nodepool=nvidia-tesla-k80-pool -o yaml | grep allocatable -A4
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>    allocatable:
+<div class="codehilite"><pre><span></span><code>    allocatable:
       cpu: 940m
       memory: 2708864Ki
       nvidia.com/gpu: &quot;1&quot;
       pods: &quot;110&quot;
-</code></pre>
+</code></pre></div>
 
 
 
 Now let's create a pods that can consume GPUs:
 
 
-<pre class="codehilite"><code>cat &lt;&lt;EOF | kubectl apply -f -
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
 apiVersion: v1
 kind: Pod
 metadata:
@@ -1139,7 +2044,7 @@ spec:
         limits:
           nvidia.com/gpu: 1 # requesting 1 GPU
 EOF
-</code></pre>
+</code></pre></div>
 
 
 
@@ -1147,39 +2052,39 @@ The pod should complete fairly quickly. You can verify that it was completed by 
 
 
 
-<pre class="codehilite"><code>watch kubectl get pods --show-all -o wide
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get pods --show-all -o wide
+</code></pre></div>
 
 
 
-<pre class="codehilite"><code>NAME              READY     STATUS      RESTARTS   AGE       IP          NODE
+<div class="codehilite"><pre><span></span><code>NAME              READY     STATUS      RESTARTS   AGE       IP          NODE
 cuda-vector-add   0/1       Completed   0          10m       10.56.8.3   gke-gke-workshop-nvidia-tesla-k80-po-b310269d-gbs1
 Verify the logs for the pod:
-</code></pre>
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>kubectl logs cuda-vector-add
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl logs cuda-vector-add
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>[Vector addition of 50000 elements]
+<div class="codehilite"><pre><span></span><code>[Vector addition of 50000 elements]
 Copy input data from the host memory to the CUDA device
 CUDA kernel launch with 196 blocks of 256 threads
 Copy output data from the CUDA device to the host memory
 Test PASSED
 Done
 Finally we will delete the GPU node pool:
-</code></pre>
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>gcloud container node-pools delete nvidia-tesla-k80-pool --cluster=$ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools delete nvidia-tesla-k80-pool --cluster=$ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
 
 
 
@@ -1198,18 +2103,18 @@ Hold on though: before we create it, how do we schedule work on the Preemptible 
 
 
 
-<pre class="codehilite"><code>gcloud container node-pools create preemptible-pool \
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools create preemptible-pool \
     --cluster $ORG-$PRODUCT-$ENV-cluster --preemptible --num-nodes 0 \
     --enable-autoscaling --min-nodes 0 --max-nodes 5 \
     --node-taints=pod=preemptible:PreferNoSchedule
-</code></pre>
+</code></pre></div>
 
 
 
 
 
-<pre class="codehilite"><code>kubectl get nodes 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes 
+</code></pre></div>
 
 
 
@@ -1228,7 +2133,7 @@ We can then mark pods that we want to run on the preemptible nodes with a matchi
 Let's update a `gowebapp` workload that's designed to run on preemptible nodes and nowhere else.
 
 
-<pre class="codehilite"><code>cat &lt;&lt;EOF | kubectl apply -f -
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl apply -f -
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -1262,13 +2167,13 @@ spec:
       nodeSelector:
         cloud.google.com/gke-preemptible: &quot;true&quot;
 EOF
-</code></pre>
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>watch kubectl get nodes,pods -o wide
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes,pods -o wide
+</code></pre></div>
 
 
 
@@ -1279,23 +2184,23 @@ Due to the NodeSelector, initially there were no nodes on which we could schedul
 As we do the cleanup for this section, let's delete the preemptible node pool and see what happens to the pods that we just created. This isn't something you would want to do in production!
 
 
-<pre class="codehilite"><code>gcloud container node-pools delete preemptible-pool --cluster \
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools delete preemptible-pool --cluster \
     $ORG-$PRODUCT-$ENV-cluster
-</code></pre>
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>watch kubectl get pods 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get pods 
+</code></pre></div>
 
 
 
 As you can see, because of the NodeSelector, none of the pods are running. Now, delete the deployment.
 
 
-<pre class="codehilite"><code>kubectl delete deployment hello-preempt
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl delete deployment hello-preempt
+</code></pre></div>
 
 
 
@@ -1321,8 +2226,8 @@ Kubernetes Engine's node auto-repair feature helps you keep the nodes in your cl
 
 
 
-<pre class="codehilite"><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster --enable-autorepair
+</code></pre></div>
 
 
 
@@ -1336,38 +2241,38 @@ Now, for some fun: let's break a VM!
 This gcloud command will find the VM in your regional node pool which is in the default zone, and SSH into it. If you are asked to generate an SSH key just answer 'Y' at the prompt and hit enter to not set a passphrase.
 
 
-<pre class="codehilite"><code>gcloud compute ssh $(gcloud compute instances list | \
+<div class="codehilite"><pre><span></span><code>gcloud compute ssh $(gcloud compute instances list | \
                       grep -m 1 gke-workshop-new | \
                       grep $(gcloud config get-value compute/zone) | \
-                      awk '{ print $1 }')
-</code></pre>
+                      awk &#39;{ print $1 }&#39;)
+</code></pre></div>
 
 
 
 You can simulate a node failure by removing the kubelet binary, which is responsible for running Pods on every Kubernetes node:
 
 
-<pre class="codehilite"><code>sudo rm /home/kubernetes/bin/kubelet &amp;&amp; sudo systemctl restart kubelet
+<div class="codehilite"><pre><span></span><code>sudo rm /home/kubernetes/bin/kubelet &amp;&amp; sudo systemctl restart kubelet
 logout
-</code></pre>
+</code></pre></div>
 
 
 
 Now when we check the node status we see the node is NotReady.
 
 
-<pre class="codehilite"><code>watch kubectl get nodes
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
 
 
 
 
 
-<pre class="codehilite"><code>NAME                                          STATUS     ROLES     AGE       VERSION
+<div class="codehilite"><pre><span></span><code>NAME                                          STATUS     ROLES     AGE       VERSION
 gke-gke-workshop-new-pool-42b33f8c-9grf   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
 gke-gke-workshop-new-pool-847e18a1-f1bp   Ready      &lt;none&gt;    6m        v1.9.6-gke.1
 gke-gke-workshop-new-pool-8c4b26e9-fq8p   NotReady   &lt;none&gt;    6m        v1.9.6-gke.1
-</code></pre>
+</code></pre></div>
 
 
 
@@ -1391,8 +2296,8 @@ Node Auto-Upgrades use the same update mechanism as manual node upgrades, but do
 Auto-upgrades are enabled per node pool.
 
 
-<pre class="codehilite"><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster   --enable-autoupgrade
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools update new-pool --cluster $ORG-$PRODUCT-$ENV-cluster   --enable-autoupgrade
+</code></pre></div>
 
 
 
@@ -1404,8 +2309,8 @@ information on node autoupgrades.
 
 
 
-<pre class="codehilite"><code>ERROR: (gcloud.container.node-pools.update) ResponseError: code=400, message=Operation operation-1511896056410-dbda7f9f is currently operating on cluster gke-workshop. Please wait and try again once it's done.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>ERROR: (gcloud.container.node-pools.update) ResponseError: code=400, message=Operation operation-1511896056410-dbda7f9f is currently operating on cluster gke-workshop. Please wait and try again once it&#39;s done.
+</code></pre></div>
 
 
 
@@ -1417,14 +2322,14 @@ How is that node repair coming?
 After a few minutes, you will see that the master drained the node, and then removed it.
 
 
-<pre class="codehilite"><code>watch kubectl get nodes
-</code></pre>
+<div class="codehilite"><pre><span></span><code>watch kubectl get nodes
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>NotReady,SchedulingDisabled
-</code></pre>
+<div class="codehilite"><pre><span></span><code>NotReady,SchedulingDisabled
+</code></pre></div>
 
 
 
@@ -1432,95 +2337,112 @@ A few minutes after that, a new node was turned on in its place:
 
 
 
-<pre class="codehilite"><code>Ready
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Ready
+</code></pre></div>
 
 
 
 
-<pre class="codehilite"><code>kubectl get pods
-</code></pre>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
 
 
 
 
 ```
 kubectl delete deployment hello-web
-``` --></div>
-            </div>
-        </div>
+``` -->
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+
+
+                
+              </article>
             </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+          
+          
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../020_Module_3_Assignment_Production_GKE/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Module 3" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 3
             </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../020_Module_6_Assignment_Helm_Foundation/" class="md-footer__link md-footer__link--next" aria-label="Next: Module 6" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 6
             </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-
-    </body>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.37e9125f.min.js"></script>
+      
+    
+  </body>
 </html>

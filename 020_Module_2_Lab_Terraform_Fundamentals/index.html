@@ -1,234 +1,901 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        
-        <link rel="shortcut icon" href="../img/favicon.ico">
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3">
+    
+    
+      
         <title>020 Module 2 Lab Terraform Fundamentals - Cloud Architecture</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
-        <link href="../css/extra.css" rel="stylesheet">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
-
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">Cloud Architecture</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href=".." class="nav-link">Home</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT020 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="." class="dropdown-item">Module 2 Terraform Fundamentals</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_4_Traffic_control/" class="dropdown-item">Module 8 Traffic Management</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_5_EFK/" class="dropdown-item">Module 9 EFK Stack</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_Prometheus/" class="dropdown-item">Module 10 Monitoring with Prometheus</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_6_GMP/" class="dropdown-item">Module 10 Monitoring with GMP</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_9_GitOps/" class="dropdown-item">Module 11 GitOps with Flux</a>
-</li>
-            
-<li>
-    <a href="../020_Lab_10_cloudrun/" class="dropdown-item">Module 12 SERVERLESS Cloud Run</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="dropdown-item">Module 2</a>
-</li>
-            
-<li>
-    <a href="../020_Module_3_Assignment_Production_GKE/" class="dropdown-item">Module 3</a>
-</li>
-            
-<li>
-    <a href="../020_Module_4_Assignment_Production_GKE/" class="dropdown-item">Module 4</a>
-</li>
-            
-<li>
-    <a href="../020_Module_6_Assignment_Helm_Foundation/" class="dropdown-item">Module 6</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">YCIT019 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Labs</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_Module_5_Lab_Docker_basics/" class="dropdown-item">Module 5 Lab - Docker Basics</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="dropdown-item">Module 6 Lab - Advanced Docker</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="dropdown-item">Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="dropdown-item">Module 8 Lab - Kuberenetes Concepts</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_9_Kubernetes_Features/" class="dropdown-item">Module 9 Lab - Kubernetes Features</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="dropdown-item">Module 9 Part 2 Lab Kubernetes Autoscaling</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_10_Networking/" class="dropdown-item">Module 10 Lab - Kubernetes Networking</a>
-</li>
-            
-<li>
-    <a href="../ycit019_Lab_11_Storage/" class="dropdown-item">Module 11 Lab - Kubernetes Storage</a>
-</li>
-    </ul>
-  </li>
-                                    
-  <li class="dropdown-submenu">
-    <a href="#" class="dropdown-item">Assignments</a>
-    <ul class="dropdown-menu">
-            
-<li>
-    <a href="../ycit019_ass1/" class="dropdown-item">Module 5 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass1_sol/" class="dropdown-item">Module 5 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2/" class="dropdown-item">Module 6 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass2_solution/" class="dropdown-item">Module 6 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3/" class="dropdown-item">Module 8 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass3_solution/" class="dropdown-item">Module 8 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_2022/" class="dropdown-item">Module 9 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass4_sol/" class="dropdown-item">Module 9 Assignment Solution</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass7/" class="dropdown-item">Module 10 Assignment</a>
-</li>
-            
-<li>
-    <a href="../ycit019_ass6_solution/" class="dropdown-item">Module 10 Assignment Solution</a>
-</li>
-    </ul>
-  </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7a952b86.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#1-what-is-terraform" class="nav-link">1 What is Terraform?</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#12-key-features" class="nav-link">1.2 Key features</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#lab-demos" class="nav-link">Lab Demos</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-what-is-terraform" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              020 Module 2 Lab Terraform Fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          YCIT020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="." class="md-nav__link">
+        Module 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_4_Traffic_control/" class="md-nav__link">
+        Module 8 Traffic Management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_5_EFK/" class="md-nav__link">
+        Module 9 EFK Stack
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_Prometheus/" class="md-nav__link">
+        Module 10 Monitoring with Prometheus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_6_GMP/" class="md-nav__link">
+        Module 10 Monitoring with GMP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_9_GitOps/" class="md-nav__link">
+        Module 11 GitOps with Flux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Lab_10_cloudrun/" class="md-nav__link">
+        Module 12 SERVERLESS Cloud Run
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
+        Module 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
+        Module 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_4_Assignment_Production_GKE/" class="md-nav__link">
+        Module 4
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_6_Assignment_Helm_Foundation/" class="md-nav__link">
+        Module 6
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          YCIT019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        Module 5 Lab - Docker Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        Module 6 Lab - Advanced Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+        Module 8 Lab - Kuberenetes Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        Module 9 Lab - Kubernetes Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        Module 9 Part 2 Lab Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Module 10 Lab - Kubernetes Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Module 11 Lab - Kubernetes Storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Module 5 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Module 5 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Module 6 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Module 6 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Module 8 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Module 8 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        Module 9 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Module 9 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        Module 10 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Module 10 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lab-demos" class="md-nav__link">
+    Lab Demos
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab Demos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lab-1-simple-terraform" class="md-nav__link">
+    Lab 1: Simple Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-2-terraform-with-multiple-config-files-and-variables" class="md-nav__link">
+    Lab 2: Terraform with multiple config files and variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-3-terraform-deployment-to-multiple-environments-and-the-use-of-terraform-workspaces" class="md-nav__link">
+    Lab 3: Terraform deployment to multiple environments and the use of terraform workspaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-4-building-terraform-configuration-using-devops-pipeline-cloudbuild" class="md-nav__link">
+    Lab 4: Building Terraform configuration using DevOps Pipeline (Cloudbuild)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-5-instructor-demo-only-building-terraform-configuration-using-devops-pipeline-gitlab" class="md-nav__link">
+    Lab 5: [Instructor Demo Only] Building Terraform configuration using DevOps Pipeline (GITLAB)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-6-terrform-deployment-using-modules" class="md-nav__link">
+    Lab 6: Terrform deployment using modules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
 
 <p>Lab 2 Terraform Fundamentals</p>
 <p><strong>Objective:</strong></p>
@@ -252,217 +919,217 @@ Complex changesets can be applied to your infrastructure with minimal human inte
 <h3 id="lab-1-simple-terraform">Lab 1: Simple Terraform<a class="headerlink" href="#lab-1-simple-terraform" title="Permanent link">&para;</a></h3>
 <p>You will be performing the following steps in Cloud Shell. Launch Cloud Shell from Google Cloud Console</p>
 <p><strong>Step 1</strong> Ensure that you have a GCP Project and Billing enabled on the project. </p>
-<pre class="codehilite"><code>gcloud config set project &lt;PROJECT_ID&gt;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud config set project &lt;PROJECT_ID&gt;
+</code></pre></div>
 
 <p><strong>Step 2</strong>  Clone the following gitlab repository to your Cloud Shell, which going to use for our work:</p>
-<pre class="codehilite"><code>git clone https://github.com/Cloud-Architects-Program/ycit020_2022.git
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit020_2022.git
 cd tf-samples/terraform-basics-1
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> First we will explore a simple Terraform configuration. It has a single main.tf file. In this file you will have a section called provider. By stating the provider as "google", Terraform knows to invoke Google API using the provider to provision resources  </p>
-<pre class="codehilite"><code>provider &quot;google&quot; {
+<div class="codehilite"><pre><span></span><code>provider &quot;google&quot; {
     project = PROJECT_ID
     region = &quot;us-central1&quot;
 }
-</code></pre>
+</code></pre></div>
 
 <p>In the next section,  you will see the declaration and configuration of compute_instance resource, which will be used to provision a virtual machine. Now, lets execute the terraform using the commands</p>
-<pre class="codehilite"><code>terraform init 
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform init 
+</code></pre></div>
 
 <p>You can notice how the provider plugin has been initialized</p>
-<pre class="codehilite"><code>Initializing provider plugins...
+<div class="codehilite"><pre><span></span><code>Initializing provider plugins...
 - Finding latest version of hashicorp/google...
 - Installing hashicorp/google v4.36.0...
 - Installed hashicorp/google v4.36.0 (signed by HashiCorp)
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 4</strong> You can now run the validate command to check if the Terraform file and syntax are valid 
 terraform validate </p>
 <p>You will find the following error</p>
-<pre class="codehilite"><code>│ Error: Invalid reference
+<div class="codehilite"><pre><span></span><code>│ Error: Invalid reference
 │ 
 │   on main.tf line 3, in provider &quot;google&quot;:
 │    3:     project = PROJECT_ID
-</code></pre>
+</code></pre></div>
 
 <p>Open the main.tf file and modify the PROJECT_ID with you actual project-id and run <code>terraform validate</code> again</p>
 <p><strong>Step 5</strong>
 Next step is to preview the resources that are going to be built as part of the Terraform Configuration </p>
-<pre class="codehilite"><code>terraform plan
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform plan
+</code></pre></div>
 
 <p>Scroll through the output to see the resource type and values for each (identify few key ones you would like to know the output for eg: network_ip)</p>
-<pre class="codehilite"><code>Plan: 1 to add, 0 to change, 0 to destroy.
-</code></pre>
+<div class="codehilite"><pre><span></span><code>Plan: 1 to add, 0 to change, 0 to destroy.
+</code></pre></div>
 
 <p><strong>Step 6</strong> Perform a terraform deployment </p>
-<pre class="codehilite"><code>terraform apply
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform apply
+</code></pre></div>
 
 <p>When terraform tries to deploy your resource, you might run into a few issues</p>
-<pre class="codehilite"><code>If its a Permission issue --&gt; make sure you are authenticated to google cloud. You might have already been prompted with login prompt before 
+<div class="codehilite"><pre><span></span><code>If its a Permission issue --&gt; make sure you are authenticated to google cloud. You might have already been prompted with login prompt before 
 If its an API based error --&gt; then you might not have enabled Compute Engine API in your GCP Project 
 If its a invalid configuration error ---&gt; check if you have provided the correct project id 
-</code></pre>
+</code></pre></div>
 
 <h3 id="lab-2-terraform-with-multiple-config-files-and-variables">Lab 2: Terraform with multiple config files and variables<a class="headerlink" href="#lab-2-terraform-with-multiple-config-files-and-variables" title="Permanent link">&para;</a></h3>
 <p>In the next terraform we will look at how Terraform configurations can be separated as multiple files, but can be built together. We will also look at how to use <code>variables.tf</code> file and <code>.tfvars</code> files for ease of configuration</p>
 <p><strong>Step 1</strong> Navigate to the second lab folder </p>
-<pre class="codehilite"><code>cd..
+<div class="codehilite"><pre><span></span><code>cd..
 cd terraform-basic-2
-</code></pre>
+</code></pre></div>
 
 <p>Analyze the files and the contents of the files.</p>
-<pre class="codehilite"><code>firewall.tf
+<div class="codehilite"><pre><span></span><code>firewall.tf
 main.tf
 provider.tf
 terraform.tfvars
 variables.tf
-</code></pre>
+</code></pre></div>
 
 <p>Look at the configs on both <code>firewall.tf</code> and <code>provider.tf</code> to under resource definition segregation.All of the variable definition and default values are listed in <code>variables.tf</code> file. The run time values for these variables are provided in the <code>.tfvars</code> file</p>
 <p><strong>Step 2</strong> Open the main.tf file and modify the PROJECT_ID with you actual project-id and run </p>
-<pre class="codehilite"><code>terraform validate 
+<div class="codehilite"><pre><span></span><code>terraform validate 
 terraform init 
 terraform plan
-</code></pre>
+</code></pre></div>
 
 <p>Even though there are terraform files, there is only one planfile. Terraform automatically will create resources in the right order, if output of one is declared as input for other. You can deploy the terraform using </p>
-<pre class="codehilite"><code>terraform apply
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform apply
+</code></pre></div>
 
 <h3 id="lab-3-terraform-deployment-to-multiple-environments-and-the-use-of-terraform-workspaces">Lab 3: Terraform deployment to multiple environments and the use of terraform workspaces<a class="headerlink" href="#lab-3-terraform-deployment-to-multiple-environments-and-the-use-of-terraform-workspaces" title="Permanent link">&para;</a></h3>
 <p>In this lab, we will look at storing the terraform state file in a central storage (GCS backend). We will also look at how to deploy the same terraform code to mulitple environments, similar to how we use environment files in high level programming languages.</p>
 <p><strong>Step 1</strong> Navigate to the right folder and take a note of the 3 different <code>.tfvars</code> file, one for each environment</p>
-<pre class="codehilite"><code>cd..
+<div class="codehilite"><pre><span></span><code>cd..
 cd terraform-basic-3
 ls
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong>  You can also notice that we have a new file called <code>backend.tf</code> to store our state files in a central bucket instead of on the local filesystem. This ensure consistency when multiple people are working on the terraform file that the state file is synchronized with changes </p>
 <p>Create a storage bucket in the project </p>
-<pre class="codehilite"><code>gsutil mb gs://&lt;PROJECT-ID&gt;-tfstate
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gsutil mb gs://&lt;PROJECT-ID&gt;-tfstate
+</code></pre></div>
 
 <p>Update the backend.tf file with the appropiriate storage bucket name </p>
-<pre class="codehilite"><code>terraform {
+<div class="codehilite"><pre><span></span><code>terraform {
   backend &quot;gcs&quot; {
     bucket = &quot;PROJECT_ID-tfstate&quot;
   }
 }
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> Next, observe closely the different .tfvars file created for the corresponding environment. Notice the VM name change.  </p>
-<pre class="codehilite"><code>region=&quot;us-central1&quot;
+<div class="codehilite"><pre><span></span><code>region=&quot;us-central1&quot;
 project=PROJECT_ID
 name=&quot;flask-server-dev&quot;
 machine_type=&quot;f1-micro&quot;
 zone=&quot;us-central1-c&quot;
-</code></pre>
+</code></pre></div>
 
 <p>You can deploy terraform config to different environments by passing the respective .tfvars file as below</p>
-<pre class="codehilite"><code>terraform plan -var-file=&quot;dev.tfvars&quot;
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file=&quot;dev.tfvars&quot;
 terraform apply -var-file=&quot;dev.tfvars&quot;
-</code></pre>
+</code></pre></div>
 
 <p>If you try to deploy similarly to another environment, you will notice that terraform will force a replacement of the current deployment </p>
-<pre class="codehilite"><code>terraform plan -var-file=&quot;uat.tfvars&quot;
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file=&quot;uat.tfvars&quot;
+</code></pre></div>
 
 <p>Because there is only one state file and the state file has a single resource, its trying to replace the resource with new config. We will now use <strong>Terraform workspace</strong> to get it working without replace
 You can use </p>
-<pre class="codehilite"><code>terraform workspace list
-</code></pre>
+<div class="codehilite"><pre><span></span><code>terraform workspace list
+</code></pre></div>
 
 <p>to identify the current workspace. By default it uses the default workspace. Lets create worksapce corresponding to each environment. </p>
-<pre class="codehilite"><code>terraform workspace create uat
+<div class="codehilite"><pre><span></span><code>terraform workspace create uat
 terraform workspace select uat
 terraform init
 terraform plan -var-file=&quot;uat.tfvars&quot;
 terraform apply 
-</code></pre>
+</code></pre></div>
 
 <p>In order to ensure that the state file doesnt get overwritten due to env changes, you need to use separate workspace for each environment. Also naviagte to the GCS bucket and you will be able to see different state file for each environment </p>
-<pre class="codehilite"><code>gsutil ls gs://course-valavan-tfstate
+<div class="codehilite"><pre><span></span><code>gsutil ls gs://course-valavan-tfstate
   gs://course-valavan-tfstate/default.tfstate
   gs://course-valavan-tfstate/dev.tfstate
   gs://course-valavan-tfstate/prod.tfstate
   gs://course-valavan-tfstate/uat.tfstate
-</code></pre>
+</code></pre></div>
 
 <p>You can now perform the terraform destroy on these deployments</p>
-<pre class="codehilite"><code>terraform workspace select uat
+<div class="codehilite"><pre><span></span><code>terraform workspace select uat
 terraform destroy
 terraform workspace select prod
 terraform destroy
-</code></pre>
+</code></pre></div>
 
 <h3 id="lab-4-building-terraform-configuration-using-devops-pipeline-cloudbuild">Lab 4: Building Terraform configuration using DevOps Pipeline (Cloudbuild)<a class="headerlink" href="#lab-4-building-terraform-configuration-using-devops-pipeline-cloudbuild" title="Permanent link">&para;</a></h3>
 <p>In this lab, we will look to how DevOps team normally deploys the terraform configuration in a pipeline. We will take a closer look at how to build for different environments using the same pipeline and the base terraform code </p>
 <p><strong>Step 1</strong> Navigate to the right folder and take a note of the 3 different <code>.tfvars</code> file, one for each environment</p>
-<pre class="codehilite"><code>cd..
+<div class="codehilite"><pre><span></span><code>cd..
 cd terraform-basic-4
 ls
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 2</strong> 
 Lets look at the cloudbuild.yaml pipeline file </p>
-<pre class="codehilite"><code>steps:
-- id: 'tf init'
-  name: 'hashicorp/terraform:1.0.3'
-  entrypoint: 'sh'
+<div class="codehilite"><pre><span></span><code>steps:
+- id: &#39;tf init&#39;
+  name: &#39;hashicorp/terraform:1.0.3&#39;
+  entrypoint: &#39;sh&#39;
   args: 
-  - '-c'
+  - &#39;-c&#39;
   - |
-      echo &quot;Branch '$BRANCH_NAME'&quot;
+      echo &quot;Branch &#39;$BRANCH_NAME&#39;&quot;
       terraform init
       terraform workspace select $BRANCH_NAME || terraform workspace new $BRANCH_NAME
 
 # [START tf-plan]
-- id: 'tf plan'
-  name: 'hashicorp/terraform:1.0.3'
-  entrypoint: 'sh'
+- id: &#39;tf plan&#39;
+  name: &#39;hashicorp/terraform:1.0.3&#39;
+  entrypoint: &#39;sh&#39;
   args: 
-  - '-c'
+  - &#39;-c&#39;
   - | 
       terraform workspace select $BRANCH_NAME || terraform workspace new $BRANCH_NAME
       terraform plan -var-file=&quot;$BRANCH_NAME.tfvars&quot; -lock=false
 # [END tf-plan]
 
 # [START tf-apply]
-- id: 'tf apply'
-  name: 'hashicorp/terraform:1.0.3'
-  entrypoint: 'sh'
+- id: &#39;tf apply&#39;
+  name: &#39;hashicorp/terraform:1.0.3&#39;
+  entrypoint: &#39;sh&#39;
   args: 
-  - '-c'
+  - &#39;-c&#39;
   - | 
       terraform workspace select $BRANCH_NAME || terraform workspace new $BRANCH_NAME
       terraform apply -var-file=&quot;$BRANCH_NAME.tfvars&quot; -auto-approve -lock=false
-</code></pre>
+</code></pre></div>
 
 <p><strong>Step 3</strong> Before deploying the pipeline, you need to make sure that in the GCP Project IAM console that the <code>cloudbuild</code> service account needs to have <strong>Compute Admin</strong> Permissions as it uses the service account to deploy the VM</p>
 <p><strong>Step 4</strong> On the last line, you should also take note of the <code>auto-approve</code> flag, which will not wait for the user input before terraform deplyoment. You can trigger the pipeline by specifying the tfvars file to use for the build as Paramter as part of the cloud build job initiation</p>
-<pre class="codehilite"><code> gcloud builds submit --substitutions=BRANCH_NAME=&quot;dev&quot;
+<div class="codehilite"><pre><span></span><code> gcloud builds submit --substitutions=BRANCH_NAME=&quot;dev&quot;
  gcloud builds submit --substitutions=BRANCH_NAME=&quot;uat&quot;
  gcloud builds submit --substitutions=BRANCH_NAME=&quot;prod&quot;
-</code></pre>
+</code></pre></div>
 
 <p>If you need to destroy a deployment you can invoke cloudbuild, by specifying the destroy cloudbuild.yaml</p>
-<pre class="codehilite"><code>gcloud builds submit --substitutions=BRANCH_NAME=&quot;prod&quot; --config=cloudbuild-destroy.yaml
-</code></pre>
+<div class="codehilite"><pre><span></span><code>gcloud builds submit --substitutions=BRANCH_NAME=&quot;prod&quot; --config=cloudbuild-destroy.yaml
+</code></pre></div>
 
 <h3 id="lab-5-instructor-demo-only-building-terraform-configuration-using-devops-pipeline-gitlab">Lab 5: [Instructor Demo Only] Building Terraform configuration using DevOps Pipeline (GITLAB)<a class="headerlink" href="#lab-5-instructor-demo-only-building-terraform-configuration-using-devops-pipeline-gitlab" title="Permanent link">&para;</a></h3>
 <p>In the previous pipeline, we werent able to verify the plan output before applying. You will need to build seperate triggers for each and manully deploy the respective pipeline. Gitlab pipelines reduce this complexity to pause between steps in a pipeline and also provides a nice UI to trigger and view the status of deployments. </p>
 <p>Before deploying the gitlab pipeline, you need to make sure that Gitlab can deploy to your project by using a service account. You will need to create a service account first, download the key and upload it in the Gitlab pipeline variables. Before the gitlab pipeline executes the first step, it will authenticate to the project using the Service account key</p>
 <p><img alt="Terraform Gitlab Pipeline" src="../images/tf-pipeline.png" /></p>
 <p>Sample Terraform Gitlab Pipeline Code </p>
-<pre class="codehilite"><code>image:
+<div class="codehilite"><pre><span></span><code>image:
   name: hashicorp/terraform:light
   entrypoint:
-    - '/usr/bin/env'
-    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    - &#39;/usr/bin/env&#39;
+    - &#39;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&#39;
 
 before_script:
   - rm -rf .terraform
@@ -507,29 +1174,29 @@ destroy:
   script:
     - terraform destroy -auto-approve
   when: manual
-</code></pre>
+</code></pre></div>
 
 <p>Output and manual trigger options, to be shown by the instructor during the class</p>
 <h3 id="lab-6-terrform-deployment-using-modules">Lab 6: Terrform deployment using modules<a class="headerlink" href="#lab-6-terrform-deployment-using-modules" title="Permanent link">&para;</a></h3>
 <p>In this section, we will look at the advantages provided by Terraform Modules. Modules help with abstraction of complexity, encapsulaion of serveral resources into a simple format and also provides re-usability and ease of use. Similar in concepts to OOO Programming and Classes in higher level languages. </p>
 <p><strong>Step 1</strong>Navigate to the right folder and take a note of the 3 different <code>.tfvars</code> file, one for each environment</p>
-<pre class="codehilite"><code>cd..
+<div class="codehilite"><pre><span></span><code>cd..
 cd terraform-sql
 cat main.tf
-</code></pre>
+</code></pre></div>
 
 <p>Here we are building a private MYSQL instance. There are about 4 resouces that get created - including a private network, reserved IP, Service Peering, SQL instance. We need to build all of the configuration ourselves and know that to build a Private Cloud SQL, you will need all 4 resources. It doesnt include best practice configuration like having a Cloud SQL Proxy, configure default username for logging to the database and so on. </p>
 <p>Lets use a pre-built module that has all of the configurations ready and we will use this module to pass input paramaters alone and module can take care of the resource deployment in the backend.</p>
-<pre class="codehilite"><code>cd..
+<div class="codehilite"><pre><span></span><code>cd..
 cd terraform-sql-module
 cat main.tf
 cd ..
 cd examples/
 ls
-</code></pre>
+</code></pre></div>
 
 <p>Prebuilt configuration on how to use the specific module for certain configurations can be found.</p>
-<pre class="codehilite"><code>mssql-public
+<div class="codehilite"><pre><span></span><code>mssql-public
 mysql-backup-create-service-account
 mysql-ha
 mysql-private
@@ -538,88 +1205,69 @@ postgresql-backup-provided-service-account
 postgresql-ha
 postgresql-public-iam
 postgresql-public
-</code></pre>
+</code></pre></div>
 
 <p>You will need to how to use the module and what the various parameters in the module mean. But you dont have to reasearch terraform website on how to build each of the resource configuration yourself. </p>
 <p>Apply the configuration using the commands below. Since these are database creations, they generally take about 15-20 mins to complete deployment</p>
-<pre class="codehilite"><code>terraform init
+<div class="codehilite"><pre><span></span><code>terraform init
 terraform plan 
 terraform apply 
 </code></pre></div>
-            </div>
-        </div>
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+
+
+                
+              </article>
             </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+          
+          
         </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-
-    </body>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.37e9125f.min.js"></script>
+      
+    
+  </body>
 </html>
