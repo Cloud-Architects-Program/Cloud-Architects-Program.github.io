@@ -1851,7 +1851,7 @@ default  AUTO         REGIONAL
 <div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
 </code></pre></div>
 
-<p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> as <code>true</code> by default.</p>
+<p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> so that VPC will not be created by default.</p>
 <div class="codehilite"><pre><span></span><code>edit project.tf
 TODO
 </code></pre></div>
@@ -1865,14 +1865,14 @@ TODO
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>That you VPC will not be created during project creation based on the plan.</p>
+<p>That way your VPC will not be created during project creation based on the plan.</p>
 </div>
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
-<div class="admonition notice">
-<p class="admonition-title">Notice</p>
-<p>How long project is now getting created. This is due to after project creation, <code>default</code> vpc is being removed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>How long project is now getting created. This is due to after project creation, <code>default</code> vpc is being removed as an extra step.</p>
 </div>
 <p>Verify that <code>default</code> VPC has been deleted:</p>
 <div class="codehilite"><pre><span></span><code>NEW_PROJECT_ID=$(gcloud projects list --sort-by=projectId | grep notepad | grep PROJECT_ID |awk &#39;{ print $2}&#39;)
@@ -2254,7 +2254,7 @@ Terraform will perform the following actions:
 
 <p>Verify that <code>custom-mode</code> VPC has been created:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute networks list 
-gcloud compute networks describe $(gcloud compute networks list | grep CUSTOM |awk &#39;{ print $1 }&#39;)
+gcloud compute networks describe $(gcloud compute networks list | grep NAME |awk &#39;{ print $2 }&#39;)
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
