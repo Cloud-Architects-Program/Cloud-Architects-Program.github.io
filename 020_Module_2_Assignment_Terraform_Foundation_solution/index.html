@@ -13,7 +13,7 @@
     
     
       
-        <title>Module 2 Terraforming GCP Foundation - Cloud Architecture</title>
+        <title>020 Module 2 Assignment Terraform Foundation solution - Cloud Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module 2 Terraforming GCP Foundation
+              020 Module 2 Assignment Terraform Foundation solution
             
           </span>
         </div>
@@ -194,14 +194,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -269,14 +267,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
       
       
       
@@ -297,320 +293,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 2 Terraforming GCP Foundation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
         Module 2 Terraforming GCP Foundation
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-with-git-and-iac" class="md-nav__link">
-    Working with Git and IaC
-  </a>
-  
-    <nav class="md-nav" aria-label="Working with Git and IaC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-terrform-iac-code-to-source-code-repository" class="md-nav__link">
-    Add Terrform IaC code to Source Code repository
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-build-gcp-foundation-layer" class="md-nav__link">
-    1 Build GCP Foundation Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Build GCP Foundation Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-installing-terraform" class="md-nav__link">
-    1.1 Installing Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-configure-gcp-credentials-for-terraform" class="md-nav__link">
-    1.2 Configure GCP credentials for Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-initializing-terraform" class="md-nav__link">
-    1.3 Initializing Terraform
-  </a>
-  
-    <nav class="md-nav" aria-label="1.3 Initializing Terraform">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#131-declare-terraform-providers" class="md-nav__link">
-    1.3.1 Declare Terraform Providers
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#132-configure-the-terraform-provider" class="md-nav__link">
-    1.3.2 Configure the Terraform Provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#133-initialize-terraform" class="md-nav__link">
-    1.3.3 Initialize Terraform
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-terraform-variables" class="md-nav__link">
-    1.4 Terraform Variables
-  </a>
-  
-    <nav class="md-nav" aria-label="1.4 Terraform Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#141-declare-input-variables" class="md-nav__link">
-    1.4.1 Declare Input Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#142-using-variables" class="md-nav__link">
-    1.4.2 Using Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#143-working-with-variables-files" class="md-nav__link">
-    1.4.3 Working with Variables files.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#144-validate-configuration-and-code-syntax" class="md-nav__link">
-    1.4.4 Validate configuration and code syntax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-create-gcp-project-using-terraform" class="md-nav__link">
-    1.5 Create GCP project using Terraform
-  </a>
-  
-    <nav class="md-nav" aria-label="1.5 Create GCP project using Terraform">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#151-configure-google_project-resource" class="md-nav__link">
-    1.5.1 Configure google_project resource
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#152-making-project-resource-immutable" class="md-nav__link">
-    1.5.2 Making Project resource Immutable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#153-create-a-project-using-terraform-random-provider" class="md-nav__link">
-    1.5.3 Create a Project using Terraform Random Provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#153-create-a-project_id-name-using-local-values" class="md-nav__link">
-    1.5.3 Create a Project_ID name using Local Values
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#154-configure-terraform-output-for-gcp-project" class="md-nav__link">
-    1.5.4 Configure Terraform Output for GCP Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#155-recreate-gcp-project-without-default-vpc" class="md-nav__link">
-    1.5.5 Recreate GCP Project without Default VPC
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-create-gcp-storage-bucket" class="md-nav__link">
-    1.6 Create GCP Storage bucket
-  </a>
-  
-    <nav class="md-nav" aria-label="1.6 Create GCP Storage bucket">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#161-create-gcp-storage-bucket-in-new-gcp-project" class="md-nav__link">
-    1.6.1 Create GCP Storage bucket in New GCP Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#162-configure-versioning-on-gcp-storage-bucket" class="md-nav__link">
-    1.6.2 Configure versioning on GCP Storage bucket.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-build-gcp-services-layer" class="md-nav__link">
-    2 Build GCP Services Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="2 Build GCP Services Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-initialize-terraform-for-gcp-services-layer" class="md-nav__link">
-    2.1  Initialize Terraform for GCP Services Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="2.1  Initialize Terraform for GCP Services Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211-define-and-configure-terraform-provider" class="md-nav__link">
-    2.1.1 Define and configure terraform provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#212-configure-terraform-state-backend" class="md-nav__link">
-    2.1.2 Configure Terraform State backend
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-enable-required-gcp-services-api" class="md-nav__link">
-    2.2 Enable required GCP Services API
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-set-variables-to-define-standard-for-naming-convention" class="md-nav__link">
-    2.2 Set variables to define standard for Naming Convention
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-create-a-custom-mode-network-vpc-with-terraform" class="md-nav__link">
-    2.3 Create a custom mode network (VPC) with terraform
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    5 Commit Terraform configurations to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1313,7 +1000,7 @@
                   
 
 
-  <h1>Module 2 Terraforming GCP Foundation</h1>
+  <h1>020 Module 2 Assignment Terraform Foundation solution</h1>
 
 <p><strong>Objective:</strong></p>
 <ul>
@@ -1955,11 +1642,29 @@ default  AUTO         REGIONAL
 
 <p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> so that VPC will not be created by default.</p>
 <div class="codehilite"><pre><span></span><code>edit project.tf
-TODO
+</code></pre></div>
+
+<p>Update to:</p>
+<div class="codehilite"><pre><span></span><code>locals {
+  project_id     = &quot;${var.project_name}-${random_integer.id.result}&quot;
+}
+
+resource &quot;google_project&quot; &quot;project&quot; {
+  name                = var.project_name
+  billing_account     = var.billing_account
+  project_id          = local.project_id
+  auto_create_network = var.auto_vpc
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>edit variables.tf
-TODO
+</code></pre></div>
+
+<p>Update to:</p>
+<div class="codehilite"><pre><span></span><code>variable &quot;auto_vpc&quot; {
+  description = &quot;Choose if it is required to create the &#39;default&#39; network automatically&quot;
+  default     = &quot;false&quot;
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
@@ -2073,7 +1778,16 @@ EOF
 </a> find and configure argument that enables gcs bucket versioning feature.</p>
 <p>Edit <code>bucket.tf</code> with correct argument.</p>
 <div class="codehilite"><pre><span></span><code>edit bucket.tf
-TODO
+resource &quot;google_storage_bucket&quot; &quot;state&quot; {
+  name          = var.bucket_name
+  project       = local.project_id
+  storage_class = var.storage_class
+  location      = var.gcp_region
+  force_destroy = &quot;true&quot;
+  versioning {
+      enabled = &quot;true&quot;
+  }
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
@@ -2095,7 +1809,7 @@ TODO
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>Versioning Enabled
+<div class="codehilite"><pre><span></span><code>gs://$student-notepad-dev-tfstate: Enabled
 </code></pre></div>
 
 <div class="admonition result">
@@ -2319,12 +2033,24 @@ EOF
 <li>self_link - The URI of the created resource.</li>
 </ul>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; vpc.tf
-TODO
+resource &quot;google_compute_network&quot; &quot;vpc_network&quot; {
+  name                    = &quot;vpc-$ORG-$PRODUCT-$ENV&quot;
+  auto_create_subnetworks = false
+  mtu                     = 1460
+  routing_mode            = &quot;REGIONAL&quot;
+}
 EOF
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; outputs.tf
-TODO
+output &quot;vpc_network_name&quot; {
+  value = google_compute_network.vpc_network.id
+  description = &quot;full path to vpc&quot;
+}
+output &quot;vpc_network_self_link&quot; {
+  value = google_compute_network.vpc_network.self_link
+  description = &quot;The URI of the created VPC&quot;
+}
 EOF
 </code></pre></div>
 
@@ -2376,7 +2102,7 @@ x_gcloud_subnet_mode: CUSTOM
 <p>VPC Network has been created, without auto subnets.</p>
 </div>
 <h2 id="5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher">5 Commit Terraform configurations to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Commit <code>ycit020_module2</code> folder using the following Git commands:</p>
+<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
 </code></pre></div>
 
@@ -2418,42 +2144,6 @@ git commit -m &quot;TF manifests for Module 2 Assignment&quot;
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Home
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../020_Module_3_Assignment_Production_GKE/" class="md-footer__link md-footer__link--next" aria-label="Next: Module 3 Deploying Production GKE with gcloud" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Module 3 Deploying Production GKE with gcloud
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
