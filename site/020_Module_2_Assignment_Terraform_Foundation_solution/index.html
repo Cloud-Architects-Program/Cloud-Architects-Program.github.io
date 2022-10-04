@@ -14,7 +14,7 @@
     
     
       
-        <title>Module 2 Terraforming GCP Foundation - Cloud Architecture</title>
+        <title>Module 2 Terraforming GCP Foundation Solution - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Module 2 Terraforming GCP Foundation
+              Module 2 Terraforming GCP Foundation Solution
             
           </span>
         </div>
@@ -267,6 +267,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
+        Module 2 Terraforming GCP Foundation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -277,12 +289,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Module 2 Terraforming GCP Foundation
+          Module 2 Terraforming GCP Foundation Solution
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Module 2 Terraforming GCP Foundation
+        Module 2 Terraforming GCP Foundation Solution
       </a>
       
         
@@ -580,18 +592,6 @@
   
 </nav>
       
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-nav__link">
-        Module 2 Terraforming GCP Foundation Solution
-      </a>
     </li>
   
 
@@ -1235,7 +1235,7 @@
               
                 
                 
-                  <h1>Module 2 Terraforming GCP Foundation</h1>
+                  <h1>Module 2 Terraforming GCP Foundation Solution</h1>
                 
                 <p><strong>Objective:</strong></p>
 <ul>
@@ -1877,11 +1877,29 @@ default  AUTO         REGIONAL
 
 <p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> so that VPC will not be created by default.</p>
 <div class="codehilite"><pre><span></span><code>edit project.tf
-TODO
+</code></pre></div>
+
+<p>Update to:</p>
+<div class="codehilite"><pre><span></span><code>locals {
+  project_id     = &quot;${var.project_name}-${random_integer.id.result}&quot;
+}
+
+resource &quot;google_project&quot; &quot;project&quot; {
+  name                = var.project_name
+  billing_account     = var.billing_account
+  project_id          = local.project_id
+  auto_create_network = var.auto_vpc
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>edit variables.tf
-TODO
+</code></pre></div>
+
+<p>Update to:</p>
+<div class="codehilite"><pre><span></span><code>variable &quot;auto_vpc&quot; {
+  description = &quot;Choose if it is required to create the &#39;default&#39; network automatically&quot;
+  default     = &quot;false&quot;
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
@@ -1995,7 +2013,16 @@ EOF
 </a> find and configure argument that enables gcs bucket versioning feature.</p>
 <p>Edit <code>bucket.tf</code> with correct argument.</p>
 <div class="codehilite"><pre><span></span><code>edit bucket.tf
-TODO
+resource &quot;google_storage_bucket&quot; &quot;state&quot; {
+  name          = var.bucket_name
+  project       = local.project_id
+  storage_class = var.storage_class
+  location      = var.gcp_region
+  force_destroy = &quot;true&quot;
+  versioning {
+      enabled = &quot;true&quot;
+  }
+}
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
@@ -2017,7 +2044,7 @@ TODO
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>Versioning Enabled
+<div class="codehilite"><pre><span></span><code>gs://$student-notepad-dev-tfstate: Enabled
 </code></pre></div>
 
 <div class="admonition result">
@@ -2241,12 +2268,24 @@ EOF
 <li>self_link - The URI of the created resource.</li>
 </ul>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; vpc.tf
-TODO
+resource &quot;google_compute_network&quot; &quot;vpc_network&quot; {
+  name                    = &quot;vpc-$ORG-$PRODUCT-$ENV&quot;
+  auto_create_subnetworks = false
+  mtu                     = 1460
+  routing_mode            = &quot;REGIONAL&quot;
+}
 EOF
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; outputs.tf
-TODO
+output &quot;vpc_network_name&quot; {
+  value = google_compute_network.vpc_network.id
+  description = &quot;full path to vpc&quot;
+}
+output &quot;vpc_network_self_link&quot; {
+  value = google_compute_network.vpc_network.self_link
+  description = &quot;The URI of the created VPC&quot;
+}
 EOF
 </code></pre></div>
 
@@ -2298,7 +2337,7 @@ x_gcloud_subnet_mode: CUSTOM
 <p>VPC Network has been created, without auto subnets.</p>
 </div>
 <h2 id="5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher">5 Commit Terraform configurations to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Commit <code>ycit020_module2</code> folder using the following Git commands:</p>
+<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
 </code></pre></div>
 
@@ -2343,7 +2382,7 @@ git commit -m &quot;TF manifests for Module 2 Assignment&quot;
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2352,19 +2391,19 @@ git commit -m &quot;TF manifests for Module 2 Assignment&quot;
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Module 2 Terraforming GCP Foundation
             </div>
           </div>
         </a>
       
       
-        <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../020_Module_3_Assignment_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Module 2 Terraforming GCP Foundation Solution
+              Module 3 Deploying Production GKE with gcloud
             </div>
           </div>
           <div class="md-footer__button md-icon">
