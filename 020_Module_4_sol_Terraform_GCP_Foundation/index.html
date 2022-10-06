@@ -14,7 +14,7 @@
     
     
       
-        <title>SOLUTION Module 2 Terraforming GCP Foundation - Cloud Architecture</title>
+        <title>020 Module 4 sol Terraform GCP Foundation - Cloud Architecture</title>
       
     
     
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prepare-lab-environment" class="md-skip">
+        <a href="#working-with-git-and-iac" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SOLUTION Module 2 Terraforming GCP Foundation
+              020 Module 4 sol Terraform GCP Foundation
             
           </span>
         </div>
@@ -182,14 +182,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -244,14 +242,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
       
       <label class="md-nav__link" for="__nav_2_2">
         Assignments
@@ -279,319 +275,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          SOLUTION Module 2 Terraforming GCP Foundation
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-nav__link">
         SOLUTION Module 2 Terraforming GCP Foundation
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-with-git-and-iac" class="md-nav__link">
-    Working with Git and IaC
-  </a>
-  
-    <nav class="md-nav" aria-label="Working with Git and IaC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-terrform-iac-code-to-source-code-repository" class="md-nav__link">
-    Add Terrform IaC code to Source Code repository
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-build-gcp-foundation-layer" class="md-nav__link">
-    1 Build GCP Foundation Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Build GCP Foundation Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-installing-terraform" class="md-nav__link">
-    1.1 Installing Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-configure-gcp-credentials-for-terraform" class="md-nav__link">
-    1.2 Configure GCP credentials for Terraform
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-initializing-terraform" class="md-nav__link">
-    1.3 Initializing Terraform
-  </a>
-  
-    <nav class="md-nav" aria-label="1.3 Initializing Terraform">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#131-declare-terraform-providers" class="md-nav__link">
-    1.3.1 Declare Terraform Providers
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#132-configure-the-terraform-provider" class="md-nav__link">
-    1.3.2 Configure the Terraform Provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#133-initialize-terraform" class="md-nav__link">
-    1.3.3 Initialize Terraform
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-terraform-variables" class="md-nav__link">
-    1.4 Terraform Variables
-  </a>
-  
-    <nav class="md-nav" aria-label="1.4 Terraform Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#141-declare-input-variables" class="md-nav__link">
-    1.4.1 Declare Input Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#142-using-variables" class="md-nav__link">
-    1.4.2 Using Variables
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#143-working-with-variables-files" class="md-nav__link">
-    1.4.3 Working with Variables files.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#144-validate-configuration-and-code-syntax" class="md-nav__link">
-    1.4.4 Validate configuration and code syntax
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-create-gcp-project-using-terraform" class="md-nav__link">
-    1.5 Create GCP project using Terraform
-  </a>
-  
-    <nav class="md-nav" aria-label="1.5 Create GCP project using Terraform">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#151-configure-google_project-resource" class="md-nav__link">
-    1.5.1 Configure google_project resource
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#152-making-project-resource-immutable" class="md-nav__link">
-    1.5.2 Making Project resource Immutable
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#153-create-a-project-using-terraform-random-provider" class="md-nav__link">
-    1.5.3 Create a Project using Terraform Random Provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#153-create-a-project_id-name-using-local-values" class="md-nav__link">
-    1.5.3 Create a Project_ID name using Local Values
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#154-configure-terraform-output-for-gcp-project" class="md-nav__link">
-    1.5.4 Configure Terraform Output for GCP Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#155-recreate-gcp-project-without-default-vpc" class="md-nav__link">
-    1.5.5 Recreate GCP Project without Default VPC
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-create-gcp-storage-bucket" class="md-nav__link">
-    1.6 Create GCP Storage bucket
-  </a>
-  
-    <nav class="md-nav" aria-label="1.6 Create GCP Storage bucket">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#161-create-gcp-storage-bucket-in-new-gcp-project" class="md-nav__link">
-    1.6.1 Create GCP Storage bucket in New GCP Project
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#162-configure-versioning-on-gcp-storage-bucket" class="md-nav__link">
-    1.6.2 Configure versioning on GCP Storage bucket.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-build-gcp-services-layer" class="md-nav__link">
-    2 Build GCP Services Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="2 Build GCP Services Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-initialize-terraform-for-gcp-services-layer" class="md-nav__link">
-    2.1  Initialize Terraform for GCP Services Layer
-  </a>
-  
-    <nav class="md-nav" aria-label="2.1  Initialize Terraform for GCP Services Layer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#211-define-and-configure-terraform-provider" class="md-nav__link">
-    2.1.1 Define and configure terraform provider
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#212-configure-terraform-state-backend" class="md-nav__link">
-    2.1.2 Configure Terraform State backend
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-enable-required-gcp-services-api" class="md-nav__link">
-    2.2 Enable required GCP Services API
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-set-variables-to-define-standard-for-naming-convention" class="md-nav__link">
-    2.2 Set variables to define standard for Naming Convention
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-create-a-custom-mode-network-vpc-with-terraform" class="md-nav__link">
-    2.3 Create a custom mode network (VPC) with terraform
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    5 Commit Terraform configurations to repository and share it with Instructor/Teacher
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -968,13 +656,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare-lab-environment" class="md-nav__link">
-    Prepare Lab Environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#working-with-git-and-iac" class="md-nav__link">
     Working with Git and IaC
   </a>
@@ -983,8 +664,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#add-terrform-iac-code-to-source-code-repository" class="md-nav__link">
-    Add Terrform IaC code to Source Code repository
+  <a href="#add-your-iac-code-to-your-repository" class="md-nav__link">
+    Add your IaC code to your repository
   </a>
   
 </li>
@@ -1025,22 +706,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#131-declare-terraform-providers" class="md-nav__link">
-    1.3.1 Declare Terraform Providers
+  <a href="#131-declare-gcp-terraform-providers" class="md-nav__link">
+    1.3.1 Declare GCP Terraform Providers
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#132-configure-the-terraform-provider" class="md-nav__link">
-    1.3.2 Configure the Terraform Provider
+  <a href="#132-configure-the-gcp-terraform-provider" class="md-nav__link">
+    1.3.2 Configure the GCP Terraform Provider
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#133-initialize-terraform" class="md-nav__link">
-    1.3.3 Initialize Terraform
+  <a href="#133-initialize-gcp-terraform-provider" class="md-nav__link">
+    1.3.3 Initialize GCP Terraform Provider
   </a>
   
 </li>
@@ -1234,14 +915,118 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-create-a-user-managed-subnet-with-terraform" class="md-nav__link">
+    2.4 Create a user-managed subnet with terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-create-a-cloud-router" class="md-nav__link">
+    2.5 Create a Cloud router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-create-a-cloud-nat" class="md-nav__link">
+    2.6 Create a Cloud Nat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-create-ssh-firewall-rules-default-allow-internal-and-default-allow-ssh" class="md-nav__link">
+    2.7 Create SSH Firewall rules default-allow-internal and default-allow-ssh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-create-a-private-gke-cluster-and-delete-default-node-pool" class="md-nav__link">
+    2.8 Create a Private GKE Cluster and delete default node pool
+  </a>
+  
+    <nav class="md-nav" aria-label="2.8 Create a Private GKE Cluster and delete default node pool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#281-enable-gcp-beta-provider" class="md-nav__link">
+    2.8.1 Enable GCP Beta Provider
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#282-enable-kubernetes-engine-api" class="md-nav__link">
+    2.8.2 Enable Kubernetes Engine API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#283-create-a-private-gke-cluster-and-delete-default-node-pool" class="md-nav__link">
+    2.8.3 Create a Private GKE Cluster and delete default node pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#284-create-a-gke-custom-node-pool" class="md-nav__link">
+    2.8.4 Create a GKE custom Node pool
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#285-update-gke-node-pool-to-support-auto-upgrade-and-auto-recovery-features" class="md-nav__link">
+    2.8.5 Update GKE Node Pool to support Auto Upgrade and Auto Recovery features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-optional-repeatable-infrastructure" class="md-nav__link">
+    2.9 (Optional) Repeatable Infrastructure
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
-    5 Commit Terraform configurations to repository and share it with Instructor/Teacher
+  <a href="#3-create-documentation-for-terraform-code" class="md-nav__link">
+    3. Create Documentation for terraform code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-workaround-for-project-quota-issue" class="md-nav__link">
+    4. Workaround for Project Quota issue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    5 Commit Readme doc to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleanup" class="md-nav__link">
+    6 Cleanup
   </a>
   
 </li>
@@ -1259,9 +1044,8 @@
               
                 
                 
-                  <h1>SOLUTION Module 2 Terraforming GCP Foundation</h1>
-                
-                <p><strong>Objective:</strong></p>
+                <p>Lab 3 Creating Production GKE Cluster via IaC using Terraform</p>
+<p><strong>Objective:</strong></p>
 <ul>
 <li>Learn Terraform Commands</li>
 <li>Learn GCP Terraform Provider</li>
@@ -1269,33 +1053,30 @@
 <li>Store TF State in GCS buckets</li>
 <li>Learn how to create GCP resources with Terraform </li>
 </ul>
-<h2 id="prepare-lab-environment">Prepare Lab Environment<a class="headerlink" href="#prepare-lab-environment" title="Permanent link">&para;</a></h2>
-<p>This lab can be executed in you GCP Cloud Environment using Google Cloud Shell.</p>
-<p>Open the Google Cloud Shell by clicking on the icon on the top right of the screen:</p>
-<p><img alt="alt text" src="../images/cloud_shell.png" title="Google Cloud Shell" /></p>
-<p>Once opened, you can use it to run the instructions for this lab.</p>
 <h2 id="working-with-git-and-iac">Working with Git and IaC<a class="headerlink" href="#working-with-git-and-iac" title="Permanent link">&para;</a></h2>
-<p>Git-based workflows, merge requests and peer reviews create a level of documented transparency that is great for security teams and audits. They ensure every change is documented as well as the metadata surrounding the change, answering the why, who,
+<p>Git-based workflows, merge requests and peer reviews create a level of documented transparency that is great for security teams
+and audits. They ensure every change is documented as well as the metadata surrounding the change, answering the why, who,
 when and what questions.</p>
-<p>In this set of exercises you will continue using <code>notepad</code> Google Source Repository that already contains you application code, <code>dockerfiles</code> and kubernetes manifests, that we've used in <code>ycit019</code></p>
-<h3 id="add-terrform-iac-code-to-source-code-repository">Add Terrform IaC code to Source Code repository<a class="headerlink" href="#add-terrform-iac-code-to-source-code-repository" title="Permanent link">&para;</a></h3>
+<p>In this set of exercises you will continue using <code>notepad</code> Google Source Repository that already contains you application code,
+<code>dockerfiles</code> and kubernetes manifests.</p>
+<p>We will use so called <a href="https://en.wikipedia.org/wiki/Monorepo">Monorepo</a> approach, and store our terraform IAC configuration in the same repo as our application code and Kubernetes manifests.</p>
+<h3 id="add-your-iac-code-to-your-repository">Add your IaC code to your repository<a class="headerlink" href="#add-your-iac-code-to-your-repository" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1</strong> Go into your personal Google Cloud Source Repository:</p>
-<div class="codehilite"><pre><span></span><code>export student_name=&lt;write_your_name_here_and_remove_brakets&gt;
+<div class="codehilite"><pre><span></span><code>MY_REPO=your_student_id-notepad
 </code></pre></div>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Replace $student_id with your ID</p>
 </div>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
 </code></pre></div>
 
-<p><strong>Step 2</strong> Create 2 folders: <code>foundation-infrastructure</code> and <code>notepad-infrastructure</code>  that will contain terraform infrastructure for you GCP foundation and infrastructure that will be used Notepad application such as GKE clusters and CloudSQL database.</p>
-<div class="codehilite"><pre><span></span><code>mkdir ycit020_module2
-cd ycit020_module2
+<p><strong>Step 2</strong> Create <code>foundation-infrastructure</code> and <code>notepad-infrastructure</code> folders that will contains respective terraform configurations</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 mkdir foundation-infrastructure
 mkdir notepad-infrastructure
 </code></pre></div>
@@ -1305,7 +1086,7 @@ mkdir notepad-infrastructure
 
 # Creation of GCP Foundation Layer
 
-This terraform automation, is focused on creating GCP Foundation: GCP folders (if any) and GCP projects, GCS bucket to store terraform state and required IAM Configuration.
+This step, is focused on creating GCP Foundation: folders (if any) and service projects creation with their respictive GCS bucket to store terraform state and IAM Config.
 
 EOF
 </code></pre></div>
@@ -1314,7 +1095,7 @@ EOF
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt; notepad-infrastructure/README.md
 # Creation of GCP Services Layer
 
-This terraform automation, is focused on creating gcp services such as GKE, VPC, CloudSQL and etc. inside of projects created by `foundation-infrastructure` terraform automation.
+This step, is focused on creating gcp services such as GKE, VPC and etc. inside of existing project
 
 EOF
 </code></pre></div>
@@ -1338,7 +1119,7 @@ EOF
 <p><strong>Step 6</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
 <div class="codehilite"><pre><span></span><code>git status 
 git add .
-git commit -m &quot;Terraform Folder structure for module 2&quot;
+git commit -m &quot;Terraform Folder structure for assignement 3&quot;
 </code></pre></div>
 
 <p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
@@ -1346,8 +1127,11 @@ git commit -m &quot;Terraform Folder structure for module 2&quot;
 </code></pre></div>
 
 <h2 id="1-build-gcp-foundation-layer">1 Build GCP Foundation Layer<a class="headerlink" href="#1-build-gcp-foundation-layer" title="Permanent link">&para;</a></h2>
-<p>In this assignment we going to build GCP Foundation layer. As we learned in the class this includes Org Structure creation with Folders and Projects, creation IAM Roles and assigning them to users and groups in organization. This Layer usually build be DevOps or Infra team that.</p>
-<p>Since we don't have organization registered for each student, we going to skip creation of folders and IAM groups. We going to start from creation of a Project, deleting <code>default</code> VPC and configuring inside that project a <code>gcs</code> bucket that will be used in the next terraform layer to store a Terraform state.</p>
+<p>In this Lab we going to build GCP Foundation layer. As we learned in the class this includes Org Structure creation with Folders and Projects,
+creation IAM Roles and assigning them to users and groups in organization. This Layer usually build be DevOps or Infra team that.</p>
+<p>Since we don't have organization registered for each student, we going to skip creation of folders and IAM groups.
+We going to start from creation of a Project, deleting <code>default</code> VPC and configuring inside that project a <code>gcs</code> bucket that will be 
+used in the next terraform layer to store a Terraform state.</p>
 <p><strong>Part 1:</strong> Create Terraform Configurations file to create's  GCP Foundation Layer:</p>
 <p>Layer 1 From existing  (we going to call it seeding) project that you currently use to store code in Google Cloud Source Repository:</p>
 <ul>
@@ -1358,14 +1142,17 @@ git commit -m &quot;Terraform Folder structure for module 2&quot;
 </li>
 <li>Create a bucket in this project to store terraform state</li>
 </ul>
-<p><img alt="alt text" src="../images/foundation.png" title="Terraform Foundation Layer" /></p>
 <p><strong>Part 2:</strong> Create Terraform Configurations file that create's  GCP Services Layer:</p>
 <p>Layer 2 From <code>notepad-dev</code> GCP Project:</p>
 <ul>
 <li>Enable Google Project Service APIs</li>
 <li>Create VPC (google_compute_network) and Subnet (google_compute_subnetwork)</li>
+<li>Create Cloud Nat (google_compute_router) and (google_compute_router_nat)</li>
+<li>Private GKE<ul>
+<li>Private Nodes with Public API Endpoint (for simplicity)</li>
 </ul>
-<p><img alt="alt text" src="../images/gcp_service_layer.png" title="Terraform Service Layer" /></p>
+</li>
+</ul>
 <h3 id="11-installing-terraform">1.1 Installing Terraform<a class="headerlink" href="#11-installing-terraform" title="Permanent link">&para;</a></h3>
 <p>GCP Cloud Shell comes with many common tools pre-installed including <code>terraform</code></p>
 <p>Verify and validate the version of Terraform that is installed:</p>
@@ -1375,9 +1162,9 @@ git commit -m &quot;Terraform Folder structure for module 2&quot;
 <p>If you want to use specific version of terraform or want to install terraform in you local machine use following <a href="https://www.terraform.io/downloads.html">link</a> to download binary.</p>
 <h3 id="12-configure-gcp-credentials-for-terraform">1.2 Configure GCP credentials for Terraform<a class="headerlink" href="#12-configure-gcp-credentials-for-terraform" title="Permanent link">&para;</a></h3>
 <p>If you would like to use terraform on GCP you have 2 options:</p>
-<p>1). Using you <code>user credentials</code>, great option for testing terraform from you laptop and for learning purposes.</p>
+<p>1). Using you user credentials, great option for testing terraform from you laptop and for learning purposes.</p>
 <p>2). Using <a href="https://cloud.google.com/docs/authentication/getting-started#command-line">service account</a>, great option if you going to use terraform with CI/CD system and fully automate Terraform deployment.</p>
-<p>In this assignment we going to use Option 1 - using user credentials.</p>
+<p>In this Lab we going to use Option 1 - using user credentials.</p>
 <p><strong>Step 1:</strong> In order to make requests against the GCP API, you need to authenticate to prove that it's you making the request. 
 The preferred method of provisioning resources with Terraform on your workstation is to use the Google Cloud SDK (Option 1) </p>
 <div class="codehilite"><pre><span></span><code>gcloud auth application-default login
@@ -1387,41 +1174,40 @@ The preferred method of provisioning resources with Terraform on your workstatio
 <p>Terraform relies on <code>providers</code> to interact with remote systems. Every resource type is implemented by a provider; without
 <code>providers</code>, Terraform can't manage any kind of infrastructure; in order for terraform to install and use a provider it must be
 declared.</p>
-<p>In this exercise you will declare and configure the Terraform provider(s) that will be used for the rest of the assignment.</p>
-<h4 id="131-declare-terraform-providers">1.3.1 Declare Terraform Providers<a class="headerlink" href="#131-declare-terraform-providers" title="Permanent link">&para;</a></h4>
+<p>In this exercise you will declare and configure the Terraform provider(s) that will be used for the rest of the Lab.</p>
+<h4 id="131-declare-gcp-terraform-providers">1.3.1 Declare GCP Terraform Providers<a class="headerlink" href="#131-declare-gcp-terraform-providers" title="Permanent link">&para;</a></h4>
 <p>The <code>required_providers</code> block defines the providers terraform will use to provision resources and their source.</p>
 <ul>
 <li>
-<p><code>version</code>: The version argument is optional and is used to tell terraform to pick a particular version from the availale
+<p><code>version</code>: The version argument is optional and is used to tell terraform to pick a particular version from the available
 versions</p>
 </li>
 <li>
 <p><code>source</code>: The source is the provider registry e.g. hashicorp/gcp is the short for registry.terraform.io/hashicorp/gcp</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module2/foundation-infrastructure/
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; provider.tf
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure/
+cat &lt;&lt; EOF&gt;&gt; provider.tf
 terraform {
   required_providers {
     google = {
       source  = &quot;hashicorp/google&quot;
-      version = &quot;~&gt; 4.37.0&quot;
+      version = &quot;~&gt; 3.70.0&quot;
     }
   }
 }
 EOF
 </code></pre></div>
 
-<h4 id="132-configure-the-terraform-provider">1.3.2 Configure the Terraform Provider<a class="headerlink" href="#132-configure-the-terraform-provider" title="Permanent link">&para;</a></h4>
+<h4 id="132-configure-the-gcp-terraform-provider">1.3.2 Configure the GCP Terraform Provider<a class="headerlink" href="#132-configure-the-gcp-terraform-provider" title="Permanent link">&para;</a></h4>
 <p>Providers often require configuration (like endpoint URLs or cloud regions) before they can be used. These configurations are defined by a <code>provider</code> block. Multiple provider configuration blocks can be declared for the same by adding the <code>alias</code>
 argument</p>
 <p>Set you current <code>PROJECT_ID</code> value here:</p>
 <div class="codehilite"><pre><span></span><code>export PROJECT_ID=&lt;YOUR_PROJECT_ID&gt;
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; main.tf
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure/
+cat &lt;&lt; EOF&gt;&gt; main.tf
 provider &quot;google&quot; {
   alias   = &quot;gcp-provider&quot;
   project = &quot;$PROJECT_ID&quot;
@@ -1434,9 +1220,9 @@ EOF
 <p class="admonition-title">Result</p>
 <p>We configured <code>provider</code>, so that it can provision resource in specified gcp project in <code>us-central1</code> region.</p>
 </div>
-<h4 id="133-initialize-terraform">1.3.3 Initialize Terraform<a class="headerlink" href="#133-initialize-terraform" title="Permanent link">&para;</a></h4>
+<h4 id="133-initialize-gcp-terraform-provider">1.3.3 Initialize GCP Terraform Provider<a class="headerlink" href="#133-initialize-gcp-terraform-provider" title="Permanent link">&para;</a></h4>
 <p>Now that you have declared and configured the GCP provider for terraform, initialize terraform:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module2/foundation-infrastructure/
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure/
 terraform init
 </code></pre></div>
 
@@ -1448,7 +1234,7 @@ terraform init
 <p class="admonition-title">Result</p>
 <p>We can see that new directory <code>.terraform</code> and <code>.terraform.lock.hcl</code> file.</p>
 </div>
-<p><strong>Extra Research! Not Mandatory</strong></p>
+<p><strong>Extra!</strong></p>
 <p>Investigate available providers in the <a href="https://registry.terraform.io/">Terraform Provider Registry</a></p>
 <p>Select another provider from the list, add it to your required providers, and to your main.tf</p>
 <p>Run terraform init to load your new provider!</p>
@@ -1508,8 +1294,8 @@ provider &quot;google&quot; {
 EOF
 </code></pre></div>
 
-<p>Validate your terraform configuration:</p>
-<div class="codehilite"><pre><span></span><code>terraform validate
+<p>Test out your terraform configuration:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan
 </code></pre></div>
 
 <h4 id="143-working-with-variables-files">1.4.3 Working with Variables files.<a class="headerlink" href="#143-working-with-variables-files" title="Permanent link">&para;</a></h4>
@@ -1538,17 +1324,9 @@ EOF
 <p class="admonition-title">Result</p>
 <p>Seems the code is legit so far</p>
 </div>
-<p>Does your terraform files easy to read and follow? Terraform has a built-in function to <code>lint</code> your configuration manifests for readability and best practice spacing:</p>
-<p>Compare before lint:</p>
-<div class="codehilite"><pre><span></span><code>cat terraform.tfvars
-</code></pre></div>
-
-<p>Perform lint:</p>
+<p>Is your terraform easy to read and follow? Terraform has a built-in function to lint your configuration manifests
+for readability and best practice spacing:</p>
 <div class="codehilite"><pre><span></span><code>terraform fmt --recursive
-</code></pre></div>
-
-<p>Check file after linting:</p>
-<div class="codehilite"><pre><span></span><code>cat terraform.tfvars
 </code></pre></div>
 
 <p>The <code>--recursive</code> flag asks the <code>fmt</code> command to traverse all of your terraform directories and format the .tf files it finds. It
@@ -1584,28 +1362,15 @@ will report the files it changed as part of the return information of the comman
 </div>
 <h3 id="15-create-gcp-project-using-terraform">1.5 Create GCP project using Terraform<a class="headerlink" href="#15-create-gcp-project-using-terraform" title="Permanent link">&para;</a></h3>
 <h4 id="151-configure-google_project-resource">1.5.1 Configure <code>google_project</code> resource<a class="headerlink" href="#151-configure-google_project-resource" title="Permanent link">&para;</a></h4>
-<p><code>Resources</code> describe the infrastructure objects you want terraform to create. A resource block can be used to create any object such as virtual private cloud, security groups, DNS records etc.</p>
+<p><code>Resources</code> describe the infrastructure objects you want terraform to create. A resource block can be used to create any object such as virtual private cloud,
+security groups, DNS records etc.</p>
 <p>Let's create our first Terraform resource: GCP project.</p>
 <p>In order to accomplish this we going to use <code>google_project</code> resource, documented <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project">here</a></p>
 <p>In order to create a new Project we need to define following arguments:
   * name - (Required) The display name of the project.
   * project_id - (Required) The project ID. Changing this forces a new project to be created.
   * billing_account - The alphanumeric ID of the billing account this project belongs to.</p>
-<p><strong>Step 1</strong>  Let's define <code>google_project</code> resource in <code>project.tf</code> file, we will replace actual values for <code>name</code> and <code>billing_account</code> with variables:</p>
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; project.tf
-resource &quot;google_project&quot; &quot;project&quot; {
-  name                = var.project_name
-  billing_account     = var.billing_account
-  project_id          = var.project_id
-}
-EOF
-</code></pre></div>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are creating as part of the GCP organization,  you have to add the variable <code>org_id</code>in the project.tf file.</p>
-</div>
-<p><strong>Step 2</strong> Let's declare actual values for <code>name</code>, <code>project_id</code> and <code>billing_account</code> as variables in <code>variables.tf</code>:</p>
+<p>First, Let's declare actual values for <code>name</code>, <code>project_id</code> and <code>billing_account</code> with variables:</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; variables.tf
 variable &quot;billing_account&quot; {
   description = &quot;The billing account ID for this project&quot;
@@ -1621,32 +1386,26 @@ variable &quot;project_id&quot; {
 EOF
 </code></pre></div>
 
-<p><strong>Step 3</strong>  Update <code>terraform.tfvars</code> variables files, with actual values for  <code>name</code>, <code>project_id</code> and <code>billing_account</code>:</p>
-<p>As a best practices we going to follow specific naming convention when we going to create <code>PROJECT_ID</code> and <code>PROJECT_NAME</code>, in order to define your new GCP project:</p>
-<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+<p>Then, update <code>terraform.tfvars</code> variables files, with actual values for  <code>name</code>, <code>project_id</code> and <code>billing_account</code>:</p>
+<p>We going to use same naming structure for <code>PROJECT_ID</code> and <code>PROJECT_NAME</code> as in previous Assignment, in order to define your new GCP project:</p>
+<div class="codehilite"><pre><span></span><code>export ORG=&lt;student-name&gt;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export ORG=ayrat
 export PRODUCT=notepad
 export ENV=dev
-export PROJECT_PREFIX=1
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>export PROJECT_NAME=$ORG-$PRODUCT-$ENV
+export PROJECT_PREFIX=4  
+export PROJECT_NAME=$ORG-$PRODUCT-$ENV
 export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX  # Project ID has to be unique
-</code></pre></div>
-
-<p>Verify that project name looks good:</p>
-<div class="codehilite"><pre><span></span><code>echo $PROJECT_NAME
+echo $PROJECT_NAME
 echo $PROJECT_ID
 </code></pre></div>
 
-<p>In order to get Education <code>Billing account number</code> run following command:</p>
-<div class="codehilite"><pre><span></span><code>ACCOUNT_ID=$(gcloud beta billing accounts list | grep -B2 True  | head -1 | grep ACCOUNT_ID  |awk &#39;{ print $2}&#39;) 
+<p>In order to get Billing account run following command:</p>
+<div class="codehilite"><pre><span></span><code>ACCOUNT_ID=$(gcloud alpha billing accounts list | grep Education | grep True |awk &#39;{ print $1 }&#39;)
+echo $ACCOUNT_ID
 </code></pre></div>
 
-<p>Verify that number is good:</p>
-<div class="codehilite"><pre><span></span><code>echo $ACCOUNT_ID
-</code></pre></div>
-
-<p>This might force installation of <code>gcloud beta</code> commands and may take up to 10 mins. It may also ask for some APIs to be enabled.</p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
 billing_account = &quot;$ACCOUNT_ID&quot;
 project_name    = &quot;$PROJECT_NAME&quot;
@@ -1654,15 +1413,21 @@ project_id      = &quot;$PROJECT_ID&quot;
 EOF
 </code></pre></div>
 
-<p>Verify if <code>billing_account</code>, <code>project_name</code>, <code>project_id</code> are correct values:</p>
+<p>Verify if everything looks good, and correct values has been set:</p>
 <div class="codehilite"><pre><span></span><code>cat terraform.tfvars
 </code></pre></div>
 
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Verify if <code>billing_account</code>, <code>project_name</code>, <code>project_id</code> are correct values, if not set the values manually.</p>
-</div>
-<p><strong>Step 4</strong> Run <code>terraform plan</code> command:</p>
+<p>Finally, let's define <code>google_project</code> resource in <code>project.tf</code> file, we will replace actual values for <code>name</code> and <code>billing_account</code> with variables:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; project.tf
+resource &quot;google_project&quot; &quot;project&quot; {
+  name                = var.project_name
+  billing_account     = var.billing_account
+  project_id          = var.project_id
+}
+EOF
+</code></pre></div>
+
+<p>Run plan command:</p>
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
 </code></pre></div>
 
@@ -1677,21 +1442,11 @@ EOF
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
-<p>Verify <code>GCP Project</code> has been created:</p>
-<div class="codehilite"><pre><span></span><code>gcloud projects list | grep notepad
-</code></pre></div>
-
-<p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>PROJECT_ID: $student-name-notepad-dev-1
-NAME: $student-name-notepad-dev
-</code></pre></div>
-
 <div class="admonition success">
 <p class="admonition-title">Success</p>
-<p>We've created our first resource <code>gcp_project</code> with terraform</p>
+<p>We've created our first resource with terrraform</p>
 </div>
 <h4 id="152-making-project-resource-immutable">1.5.2 Making Project resource Immutable<a class="headerlink" href="#152-making-project-resource-immutable" title="Permanent link">&para;</a></h4>
-<p>Read more about Immutable Infrastructure <a href="https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure">in this article</a></p>
 <p>Very often when you developing IaC, you need to destroy and recreate your resorces, e.g. for troubleshooting or creating a new resources using same config.
 Let's <code>destroy</code> our project and try to recreate it again.</p>
 <div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
@@ -1700,19 +1455,11 @@ Let's <code>destroy</code> our project and try to recreate it again.</p>
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
-<p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>│ Error: error creating project archy-notepad-dev-1 (archy-notepad-dev): googleapi: Error 409: Requested entity already exists, alreadyExists. If you received a 403 error, make sure you have the `roles/resourcemanager.projectCreator` permission
-│
-│   with google_project.project,
-│   on project.tf line 1, in resource &quot;google_project&quot; &quot;project&quot;:
-│    1: resource &quot;google_project&quot; &quot;project&quot; {
-</code></pre></div>
-
 <div class="admonition failed">
 <p class="admonition-title">Failed</p>
 <p>What happened? Did you project been able to create? If not why ?</p>
 </div>
-<p>If we want to make our infrastructure to be <a href="https://www.hashicorp.com/resources/what-is-mutable-vs-immutable-infrastructure">Immutable</a> and fully automated, we need to make sure that we can destroy our service and recreate it any time the same way.
+<p>If we want to make our infrastructure to be Immutable and fully automated, we need to make sure that we can destroy our service and recreate it any time the same way.
 In our case we can't do that because  <code>Project ID</code> always has to be unique.
 To tackle this problem we need to randomize our <code>Project ID</code>  creation within the terraform.</p>
 <h4 id="153-create-a-project-using-terraform-random-provider">1.5.3 Create a Project using Terraform Random Provider<a class="headerlink" href="#153-create-a-project-using-terraform-random-provider" title="Permanent link">&para;</a></h4>
@@ -1747,7 +1494,7 @@ EOF
 <div class="codehilite"><pre><span></span><code>edit project.tf
 </code></pre></div>
 
-<p>Remove previous code and paste new code snippet of <code>project.tf</code> as following and save:</p>
+<p>Update code snippet of <code>project.tf</code> as following and save:</p>
 <div class="codehilite"><pre><span></span><code>locals {
   project_id     = &quot;${var.project_name}-${random_integer.id.result}&quot;
 }
@@ -1766,9 +1513,7 @@ resource &quot;google_project&quot; &quot;project&quot; {
 <p>Remove <code>project_id</code> line and save.</p>
 <p>We can now also remove <code>project_id</code> variable from <code>variables.tf</code>:</p>
 <div class="codehilite"><pre><span></span><code>rm variables.tf
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; variables.tf
+cat &lt;&lt;EOF &gt;&gt; variables.tf
 variable &quot;gcp_region&quot; {
   type        = string
   description = &quot;The GCP Region&quot;
@@ -1806,18 +1551,9 @@ EOF
 <div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
-<p>Verify <code>GCP Project</code> has been created:</p>
-<div class="codehilite"><pre><span></span><code>gcloud projects list | grep notepad
-</code></pre></div>
-
-<p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>PROJECT_ID: $student-name-notepad-dev-XXX
-NAME: $student-name-notepad-dev
-</code></pre></div>
-
 <div class="admonition result">
 <p class="admonition-title">Result</p>
-<p>Project has been created with <code>Random</code> project_id. This will help to make our infrastructure creation immutable, as every time project will be created with new project_id.</p>
+<p>Project has been created with Random project_id</p>
 </div>
 <h4 id="154-configure-terraform-output-for-gcp-project">1.5.4 Configure Terraform Output for GCP Project<a class="headerlink" href="#154-configure-terraform-output-for-gcp-project" title="Permanent link">&para;</a></h4>
 <p><code>Outputs</code> provide return values of a Terraform state at any given time. So you can get for example values of what GCP resources like project, VMs, GKE cluster been created and their parametres.</p>
@@ -1844,7 +1580,6 @@ output &quot;number&quot; {
   description = &quot;GCP project number&quot;
   sensitive = true
 }
-
 EOF
 </code></pre></div>
 
@@ -1880,13 +1615,7 @@ EOF
 </div>
 <h4 id="155-recreate-gcp-project-without-default-vpc">1.5.5 Recreate GCP Project without Default VPC<a class="headerlink" href="#155-recreate-gcp-project-without-default-vpc" title="Permanent link">&para;</a></h4>
 <p>One of the requirements for our solution is to create GCP project with <code>custom</code> VPC. However, when terraform creates GCP Project it creates <code>DEFAULT</code> vpc by default.</p>
-<div class="codehilite"><pre><span></span><code>NEW_PROJECT_ID=$(gcloud projects list --sort-by=projectId | grep notepad | grep PROJECT_ID |awk &#39;{ print $2}&#39;)
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>echo $NEW_PROJECT_ID
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>gcloud compute networks list --project `$NEW_PROJECT_ID`
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list --project ayrat-notepad-dev-631
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
@@ -1895,15 +1624,9 @@ default  AUTO         REGIONAL
 </code></pre></div>
 
 <p>In order to remove automatically created <code>default</code> VPC, specify special attribute during <code>google_project</code> resource creation. Check documentation <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project">here</a> and find this argument.</p>
-<p>Vpc get's deleted during project creation only, so let's delete again our project and recreate it without VPC following Task N1 instructions.</p>
-<div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
-</code></pre></div>
-
-<p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> so that VPC will not be created by default.</p>
-<div class="codehilite"><pre><span></span><code>edit project.tf
-</code></pre></div>
-
-<p>Update to:</p>
+<p><strong>Task N1:</strong> Find Attribute to remove <code>default</code> VPC during  <code>google_project</code> resource creation. Define in it <code>project.tf</code> and set it's value in <code>variables.tf</code> as <code>true</code> by default.</p>
+<p><strong>Solution:</strong></p>
+<p>Update code snippet of <code>project.tf</code> as following and save:</p>
 <div class="codehilite"><pre><span></span><code>locals {
   project_id     = &quot;${var.project_name}-${random_integer.id.result}&quot;
 }
@@ -1912,49 +1635,38 @@ resource &quot;google_project&quot; &quot;project&quot; {
   name                = var.project_name
   billing_account     = var.billing_account
   project_id          = local.project_id
-  auto_create_network = var.auto_vpc
+  auto_create_network = var.auto_create_network
 }
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>edit variables.tf
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; variables.tf
+variable &quot;auto_create_network&quot; {
+  description = &quot;Automatically provision a default global VPC network&quot;
+  default     = false
+}
+EOF
 </code></pre></div>
 
-<p>Update to:</p>
-<div class="codehilite"><pre><span></span><code>variable &quot;auto_vpc&quot; {
-  description = &quot;Choose if it is required to create the &#39;default&#39; network automatically&quot;
-  default     = &quot;false&quot;
-}
+<p>After changes you need to re-create a project, as vpc get's deleted during project creation only.</p>
+<div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>That way your VPC will not be created during project creation based on the plan.</p>
-</div>
-<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
-</code></pre></div>
-
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>How long project is now getting created. This is due to after project creation, <code>default</code> vpc is being removed as an extra step.</p>
+<div class="admonition notice">
+<p class="admonition-title">Notice</p>
+<p>How long project is now getting created. This is due to after project creation, <code>default</code> vpc is being removed.</p>
 </div>
 <p>Verify that <code>default</code> VPC has been deleted:</p>
-<div class="codehilite"><pre><span></span><code>NEW_PROJECT_ID=$(gcloud projects list --sort-by=projectId | grep notepad | grep PROJECT_ID |awk &#39;{ print $2}&#39;)
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>gcloud compute networks list --project $NEW_PROJECT_ID
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list --project ayrat-notepad-dev-631
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
 <div class="codehilite"><pre><span></span><code>Listed 0 items.
 </code></pre></div>
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You should <code>0</code> VPC networks. That means GCP project has been created without any VPC.</p>
-</div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>We now able to create a GCP project without <code>Default</code> VPC.</p>
@@ -1968,7 +1680,7 @@ resource &quot;google_storage_bucket&quot; &quot;state&quot; {
   name          = var.bucket_name
   project       = local.project_id
   storage_class = var.storage_class
-  location      = var.gcp_region
+
   force_destroy = &quot;true&quot;
 }
 EOF
@@ -1980,16 +1692,14 @@ variable &quot;bucket_name&quot; {
 }
 
 variable &quot;storage_class&quot; {
-  default = &quot;REGIONAL&quot;
+  description = 
+  default = &quot;MULTI_REGIONAL&quot;
 }
 EOF
 </code></pre></div>
 
 <p>Set variable that will be used to build name for a bucket:</p>
-<div class="codehilite"><pre><span></span><code>export student_name=&lt;write_your_name_here_and_remove_brakets&gt;
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+<div class="codehilite"><pre><span></span><code>export ORG=&lt;student-name&gt;
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
@@ -2037,15 +1747,19 @@ EOF
 </a> find and configure argument that enables gcs bucket versioning feature.</p>
 <p>Edit <code>bucket.tf</code> with correct argument.</p>
 <div class="codehilite"><pre><span></span><code>edit bucket.tf
-resource &quot;google_storage_bucket&quot; &quot;state&quot; {
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>resource &quot;google_storage_bucket&quot; &quot;state&quot; {
   name          = var.bucket_name
   project       = local.project_id
   storage_class = var.storage_class
-  location      = var.gcp_region
-  force_destroy = &quot;true&quot;
+
   versioning {
-      enabled = &quot;true&quot;
+    enabled = false
   }
+
+  force_destroy = &quot;true&quot;
 }
 </code></pre></div>
 
@@ -2068,7 +1782,7 @@ resource &quot;google_storage_bucket&quot; &quot;state&quot; {
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
-<div class="codehilite"><pre><span></span><code>gs://$student-notepad-dev-tfstate: Enabled
+<div class="codehilite"><pre><span></span><code>Versioning Enabled
 </code></pre></div>
 
 <div class="admonition result">
@@ -2087,12 +1801,16 @@ resource &quot;google_storage_bucket&quot; &quot;state&quot; {
 <ul>
 <li>Enable Google Project Service APIs</li>
 <li>Create VPC (google_compute_network) and Subnet (google_compute_subnetwork)</li>
+<li>Create Cloud Nat (google_compute_router) and (google_compute_router_nat)</li>
+<li>Private GKE<ul>
+<li>Private Nodes with Public API Endpoint (for simplicity)</li>
 </ul>
-<p><img alt="alt text" src="../images/gcp_service_layer.png" title="Terraform Service Layer" /></p>
+</li>
+</ul>
 <h3 id="21-initialize-terraform-for-gcp-services-layer">2.1  Initialize Terraform for GCP Services Layer<a class="headerlink" href="#21-initialize-terraform-for-gcp-services-layer" title="Permanent link">&para;</a></h3>
 <h4 id="211-define-and-configure-terraform-provider">2.1.1 Define and configure terraform provider<a class="headerlink" href="#211-define-and-configure-terraform-provider" title="Permanent link">&para;</a></h4>
 <p><strong>Step 1:</strong> Take note of newly created GCP Project_ID and BUCKET_ID:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module2/foundation-infrastructure
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/foundation-infrastructure
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>terraform output | grep &#39;id&#39; |awk &#39;{ print $3}&#39;
@@ -2108,7 +1826,7 @@ echo $BUCKET_ID
 
 <p><strong>Step 2:</strong> Declare the Terraform Provider for GCP Services Layer:</p>
 <p>We now going to switch to <code>notepad-infrastructure</code> where we going to create a new GCP service Layer terraform configuration:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module2/notepad-infrastructure
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt; EOF&gt;&gt; provider.tf
@@ -2116,7 +1834,7 @@ terraform {
   required_providers { 
     google = {
       source  = &quot;hashicorp/google&quot;
-      version = &quot;~&gt; 4.37.0&quot;
+      version = &quot;~&gt; 3.70.0&quot;
     }
   }
 }
@@ -2164,7 +1882,7 @@ the state file, and determine what changes need to be applied.</p>
 <p><strong>Local vs Remote backend:</strong>
 <code>Local</code> state files are the default for terraform. <code>Remote</code> state allows for collaboration between members of your team, for example multiple users or systems can deploy terraform configuration to the same environment as state is stored remotely and can be pulled <code>localy</code> during the execution. This however may create issues if 2 users running terraform <code>plan</code> and <code>apply</code> at the same time, however some remote backends including gcs provide <code>locking</code> feature that we covered and enabled in previous section <code>Configure versioning on GCP Storage bucket.</code></p>
 <p>In addition to that, <code>Remote</code> state is more secure storage of sensitive values that might be contained in variables or outputs.</p>
-<p>See documents for <a href="https://www.terraform.io/docs/language/settings/backends/remote.html">remote</a> backend for reference:</p>
+<p>See documents for<a href="https://www.terraform.io/docs/language/settings/backends/remote.html">remote</a> backend for reference:</p>
 <p><strong>Step 1</strong> Configure remote backend using gcs bucket:</p>
 <p>Let's configure a backend for your state, using the <code>gcs</code> bucket you previously created in Foundation Layer.</p>
 <p>Backends are configured with a nested backend block within the top-level terraform block While a backend can be declared
@@ -2192,7 +1910,7 @@ When you change, configure or unconfigure a backend, terraform must be re-initia
 </code></pre></div>
 
 <p>Verify if <code>folder</code> state has been created in our bucket:</p>
-<div class="codehilite"><pre><span></span><code>gsutil ls gs://$ORG-notepad-dev-tfstate/state
+<div class="codehilite"><pre><span></span><code>gsutil ls gs://$ORG-notepad-dev-tfstate
 </code></pre></div>
 
 <div class="admonition summary">
@@ -2217,7 +1935,7 @@ terraform apply -var-file terraform.tfvars
 </code></pre></div>
 
 <p>Verify Compute Engine API service has been enabled:</p>
-<div class="codehilite"><pre><span></span><code> gcloud services list | grep Compute
+<div class="codehilite"><pre><span></span><code>gcloud services list
 </code></pre></div>
 
 <div class="admonition result">
@@ -2258,7 +1976,7 @@ variable &quot;environment&quot; {
 EOF
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+<div class="codehilite"><pre><span></span><code>export ORG=ayrat
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
@@ -2291,24 +2009,23 @@ EOF
 <li>Generated VPC name: <code>google_compute_network.vpc_network.name</code></li>
 <li>self_link - The URI of the created resource.</li>
 </ul>
+<p><strong>Solution:</strong></p>
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; vpc.tf
 resource &quot;google_compute_network&quot; &quot;vpc_network&quot; {
-  name                    = &quot;vpc-$ORG-$PRODUCT-$ENV&quot;
-  auto_create_subnetworks = false
-  mtu                     = 1460
+  name                    = format(&quot;vpc-%s-%s-%s&quot;, var.org, var.product, var.environment)
   routing_mode            = &quot;REGIONAL&quot;
+  description             = &quot;VPC that will be used by the GKE private cluster on the related project&quot;
+  auto_create_subnetworks = false
 }
 EOF
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; outputs.tf
-output &quot;vpc_network_name&quot; {
-  value = google_compute_network.vpc_network.id
-  description = &quot;full path to vpc&quot;
+output &quot;vpc_name&quot; {
+  value = google_compute_network.vpc_network.name
 }
-output &quot;vpc_network_self_link&quot; {
-  value = google_compute_network.vpc_network.self_link
-  description = &quot;The URI of the created VPC&quot;
+output &quot;vpc_selflink&quot; {
+  value = &quot;\${google_compute_network.vpc_network.self_link}&quot;
 }
 EOF
 </code></pre></div>
@@ -2340,8 +2057,8 @@ Terraform will perform the following actions:
 </code></pre></div>
 
 <p>Verify that <code>custom-mode</code> VPC has been created:</p>
-<div class="codehilite"><pre><span></span><code>gcloud compute networks list 
-gcloud compute networks describe $(gcloud compute networks list | grep NAME |awk &#39;{ print $2 }&#39;)
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+gcloud compute networks describe $(gcloud compute networks list | grep CUSTOM |awk &#39;{ print $1 }&#39;)
 </code></pre></div>
 
 <p><strong>Output:</strong></p>
@@ -2360,34 +2077,776 @@ x_gcloud_subnet_mode: CUSTOM
 <p class="admonition-title">Result</p>
 <p>VPC Network has been created, without auto subnets.</p>
 </div>
-<h2 id="5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher">5 Commit Terraform configurations to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
-<p><strong>Step 1</strong> Commit <code>deploy</code> folder using the following Git commands:</p>
-<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+<h3 id="24-create-a-user-managed-subnet-with-terraform">2.4 Create a <code>user-managed</code> subnet with terraform<a class="headerlink" href="#24-create-a-user-managed-subnet-with-terraform" title="Permanent link">&para;</a></h3>
+<p>Using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork">google_compute_subnetwork</a> resource create a <code>user-managed</code> subnet with terraform.</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; subnet.tf
+resource &quot;google_compute_subnetwork&quot; &quot;gke_private_subnet&quot; {
+  name                     = format(&quot;subnet-%s-%s-%s&quot;, var.org, var.product, var.environment)
+  network                  = google_compute_network.vpc_network.self_link
+  region                   = var.gcp_region
+  project                  = var.gcp_project_id
+  ip_cidr_range            = var.network_cidr
+  secondary_ip_range {
+    range_name    = var.pods_cidr_name
+    ip_cidr_range = var.pods_cidr
+  }
+  secondary_ip_range {
+    range_name    = var.services_cidr_name
+    ip_cidr_range = var.services_cidr
+  }
+}
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice power of terraform outputs. Here we link <code>subnet</code> with our VPC <code>network</code> using <code>google_compute_network.vpc_network.self_link</code> <code>output</code> value of created <code>network</code> in previous step.</p>
+</div>
+<p>Define variables:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; variables.tf
+
+# variables used to create VPC
+
+variable &quot;network_cidr&quot; {
+  type = string
+}
+variable &quot;pods_cidr&quot; {
+  type = string
+}
+variable &quot;pods_cidr_name&quot; {
+  type = string
+}
+variable &quot;services_cidr&quot; {
+  type = string
+}
+variable &quot;services_cidr_name&quot; {
+  type = string
+}
+EOF
+</code></pre></div>
+
+<p>Define outputs:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; outputs.tf
+output &quot;subnet_selflink&quot; {
+  value = &quot;\${google_compute_subnetwork.gke_private_subnet.self_link}&quot;
+}
+EOF
+</code></pre></div>
+
+<p><strong>Task N4:</strong> Update <code>terraform.tfvars</code> file values with following information:</p>
+<ul>
+<li>Node Range: See column <code>subnet</code> in above table for <code>dev</code> cluster</li>
+<li>Secondary service range with name: <code>services</code></li>
+<li>Secondary Ranges:<ul>
+<li>Service range name: <code>services</code></li>
+<li>Service range CIDR: See column <code>srv range</code> in above table for <code>dev</code> cluster</li>
+<li>Pods range name: <code>pods</code></li>
+<li>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev</code> cluster</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>env |   subnet      | pod range        | srv range      | kubectl api range
+dev | 10.128.1.0/26 | 172.0.0.0/18    | 172.10.0.0/21   | 172.16.0.0/28
+stg | 10.128.2.0/26 | 172.1.0.0/18    | 172.11.0.0/21   | 172.16.0.16/28
+prd | 10.128.3.0/26 | 172.2.0.0/18    | 172.12.0.0/21   |  172.16.0.32/28
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ranges must be with in Private (RFC1918) <a href="https://en.wikipedia.org/wiki/Private_network">Address Space</a></p>
+</div>
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
+#subnet vars
+network_cidr       = &quot;10.128.1.0/26&quot;
+pods_cidr          = &quot;172.0.0.0/18&quot;
+pods_cidr_name     = &quot;pods&quot;
+services_cidr      = &quot;172.10.0.0/21&quot;
+services_cidr_name = &quot;services&quot;
+EOF
+</code></pre></div>
+
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Create VPC:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Review created subnet:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets list
+gcloud compute networks subnets describe $(gcloud compute networks subnets list | grep us-central1 |awk &#39;{ print $1 }&#39;)  --region us-central1
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>enableFlowLogs: false
+gatewayAddress: 10.128.1.1
+ipCidrRange: 10.128.1.0/26
+kind: compute#subnetwork
+logConfig:
+  enable: false
+name: subnet-student_name-notepad-dev
+privateIpGoogleAccess: false
+privateIpv6GoogleAccess: DISABLE_GOOGLE_ACCESS
+purpose: PRIVATE
+secondaryIpRanges:
+- ipCidrRange: 172.0.0.0/18
+  rangeName: pods
+- ipCidrRange: 172.10.0.0/21
+  rangeName: services
+stackType: IPV4_ONLY
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks -&gt; Click VPC network and check `Subnet` tab
+</code></pre></div>
+
+<p><strong>Task N5:</strong> Update  <code>subnet.tf</code> so that  <code>google_compute_subnetwork</code> resource supports following features:</p>
+<div class="codehilite"><pre><span></span><code>* Flow Logs
+  * Aggregation interval: 15 min
+  * Flow sampling: 0.1
+  * Metadata: &quot;INCLUDE_ALL_METADATA&quot;
+* Private IP Google Access
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>  private_ip_google_access = true
+  log_config {
+    aggregation_interval = &quot;INTERVAL_15_MIN&quot;
+    flow_sampling        = 0.1
+    metadata             = &quot;INCLUDE_ALL_METADATA&quot;
+  }
+</code></pre></div>
+
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Create VPC:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<h3 id="25-create-a-cloud-router">2.5 Create a Cloud router<a class="headerlink" href="#25-create-a-cloud-router" title="Permanent link">&para;</a></h3>
+<p>Create Cloud Router for <code>custom mode</code> network (VPC), in the same region as the instances that will use Cloud NAT. Cloud NAT is only used to place NAT information onto the VMs. It is not used as part of the actual NAT gateway.</p>
+<p><strong>Task N6:</strong> Define a <code>google_compute_router</code> inside <code>router.tf</code> that will be able to create a NAT router so the nodes can reach DockerHub and external APIs from private cluster, using following parameters:</p>
+<ul>
+<li>Create router for custom <code>vpc_network</code> created above with terraform</li>
+<li>Same project as VPC</li>
+<li>Same region as VPC</li>
+<li>Router name: <code>gke-net-router</code></li>
+<li>Local BGP Autonomous System Number (ASN): 64514</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>You can automatically recover vpc name from terraform output like this: <code>google_compute_network.vpc_network.self_link</code>.</p>
+</div>
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; router.tf
+resource &quot;google_compute_router&quot; &quot;gke_net_router&quot; {
+  project = var.gcp_project_id
+  name    = &quot;gke-net-router&quot;
+  region  = var.gcp_region
+  network = google_compute_network.vpc_network.self_link
+  bgp {
+    asn = 64514
+  }
+}
+EOF
+</code></pre></div>
+
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Create Cloud Router:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Verify created Cloud Router:</p>
+<p>CLI:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute routers list
+gcloud compute routers describe $(gcloud compute routers list | grep gke-net-router |awk &#39;{ print $1 }&#39;)  --region us-central1
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>bgp:
+  advertiseMode: DEFAULT
+  asn: 64514
+  keepaliveInterval: 20
+kind: compute#router
+name: gke-net-router
+</code></pre></div>
+
+<p>UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Hybrid Connectivity -&gt; Cloud Routers
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Router resource has been created for VPC Network</p>
+</div>
+<h3 id="26-create-a-cloud-nat">2.6 Create a Cloud Nat<a class="headerlink" href="#26-create-a-cloud-nat" title="Permanent link">&para;</a></h3>
+<p>Set up a simple Cloud Nat configuration using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat">google_compute_router_nat</a> resource, which will <code>automatically</code> allocates the necessary external IP addresses to provide NAT services to a region. </p>
+<p>When you use auto-allocation, Google Cloud reserves IP addresses in your project automatically. </p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; cloudnat.tf
+resource &quot;google_compute_router_nat&quot; &quot;gke_cloud_nat&quot; {
+  project                = var.gcp_project_id
+  name                   = &quot;gke-cloud-nat&quot;
+  router                 = google_compute_router.gke_net_router.name
+  region                 = var.gcp_region
+  nat_ip_allocate_option = &quot;AUTO_ONLY&quot;
+  source_subnetwork_ip_ranges_to_nat = &quot;ALL_SUBNETWORKS_ALL_IP_RANGES&quot;
+}
+EOF
+</code></pre></div>
+
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Create Cloud Router:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Verify created <code>Cloud Nat</code>:</p>
+<p>CLI:</p>
+<div class="codehilite"><pre><span></span><code># List available Cloud Nat Routers
+gcloud compute routers nats list --router gke-net-router --router-region us-central1
+# Describe Cloud Nat Routers `gke-cloud-nat`:
+gcloud compute routers nats describe gke-cloud-nat --router gke-net-router --router-region us-central1
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>enableEndpointIndependentMapping: true
+icmpIdleTimeoutSec: 30
+name: gke-cloud-nat
+natIpAllocateOption: AUTO_ONLY
+sourceSubnetworkIpRangesToNat: ALL_SUBNETWORKS_ALL_IP_RANGES
+tcpEstablishedIdleTimeoutSec: 1200
+tcpTransitoryIdleTimeoutSec: 30
+udpIdleTimeoutSec: 30
+</code></pre></div>
+
+<p>UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Network Services -&gt; Cloud NAT
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>A NAT service created in a router</p>
+</div>
+<p><strong>Task N7:</strong> Additionally turn <code>ON</code> logging feature for <code>ALL</code> log types of communication for Cloud Nat</p>
+<div class="codehilite"><pre><span></span><code>edit cloudnat.tf
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<p>Correctly add following configuration:</p>
+<div class="codehilite"><pre><span></span><code>  log_config {
+    filter = &quot;ALL&quot;
+    enable = true
+  }
+</code></pre></div>
+
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Update Cloud Nat Configuration:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gcloud compute routers nats describe gke-cloud-nat --router gke-net-router --router-region us-central1
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Cloud Nat now supports Logging. Cloud NAT logging allows you to log NAT connections and errors. When Cloud NAT logging is enabled, one log entry can be generated for each of the following scenarios:</p>
+<ul>
+<li>When a network connection using NAT is created.</li>
+<li>When a packet is dropped because no port was available for NAT.</li>
+</ul>
+</div>
+<h3 id="27-create-ssh-firewall-rules-default-allow-internal-and-default-allow-ssh">2.7 Create SSH Firewall rules <code>default-allow-internal</code> and <code>default-allow-ssh</code><a class="headerlink" href="#27-create-ssh-firewall-rules-default-allow-internal-and-default-allow-ssh" title="Permanent link">&para;</a></h3>
+<p>Let's create SSH Firewall rule with name <code>allow-tcp-ssh-icmp-$ORG-$PRODUCT-$ENV</code> to allow SSH, ping, using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall">google_compute_firewall</a> resource.</p>
+<p>Reference: </p>
+<ul>
+<li>https://cloud.google.com/kubernetes-engine/docs/concepts/firewall-rules</li>
+<li>https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF&gt;&gt; firewall.tf
+resource &quot;google_compute_firewall&quot; &quot;ssh-rule&quot; {
+  name =   format(&quot;allow-tcp-ssh-icmp-%s-%s-%s&quot;, var.org, var.product, var.environment)
+  network = google_compute_network.vpc_network.self_link
+  allow {
+    protocol = &quot;tcp&quot;
+    ports = [&quot;22&quot;]
+  }
+  allow {
+    protocol = &quot;icmp&quot;
+  }
+}
+EOF
+</code></pre></div>
+
+<p>Review created firewall rules:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
+
+<h3 id="28-create-a-private-gke-cluster-and-delete-default-node-pool">2.8 Create a Private GKE Cluster and delete default node pool<a class="headerlink" href="#28-create-a-private-gke-cluster-and-delete-default-node-pool" title="Permanent link">&para;</a></h3>
+<h4 id="281-enable-gcp-beta-provider">2.8.1 Enable GCP Beta Provider<a class="headerlink" href="#281-enable-gcp-beta-provider" title="Permanent link">&para;</a></h4>
+<p>In order to create a GKE cluster with terraform we will be leveraging <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster">google_container_cluster</a> resource.</p>
+<p>Some of  <code>google_container_cluster</code> arguments, such VPC-Native networking mode, VPA, Istio, CSI Driver add-ons, requires  <code>google-beta</code> Provider.</p>
+<p>The <code>google-beta</code> provider is distinct from the <code>google</code> provider in that it supports GCP products and features that are in beta, while google does not. Fields and resources that are only present in google-beta will be marked as such in the shared provider documentation.</p>
+<p><strong>Task N8:</strong> Configure and Initialize <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_versions">GCP Beta Provider</a>, similar to how we did it for GCP Provider in <a href="#133-initialize-terraform">1.3.3 Initialize Terraform</a> update <code>provider.tf</code> and <code>main.tf</code> configuration files.</p>
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>rm provider.tf
+cat &lt;&lt;EOF &gt;&gt; provider.tf
+terraform {
+  required_providers { 
+    google = {
+      source  = &quot;hashicorp/google&quot;
+      version = &quot;~&gt; 3.70.0&quot;
+    }
+    google-beta = {
+      source  = &quot;hashicorp/google-beta&quot;
+      version = &quot;~&gt; 3.70.0&quot;
+    }
+  }
+}
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt;  main.tf
+provider &quot;google-beta&quot; {
+  project = var.gcp_project_id
+  region  = var.gcp_region
+}
+EOF
+</code></pre></div>
+
+<p>Initialize <code>google-beta</code> provider plugin:</p>
+<div class="codehilite"><pre><span></span><code>terraform init
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Terraform has been successfully initialized!</p>
+</div>
+<h4 id="282-enable-kubernetes-engine-api">2.8.2 Enable Kubernetes Engine API<a class="headerlink" href="#282-enable-kubernetes-engine-api" title="Permanent link">&para;</a></h4>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/reference/rest">Kubernetes Engine API</a> used to build and manages container-based applications, powered by the open source Kubernetes technology. Before starting  GKE cluster creation it is required to enable it.</p>
+<p><strong>Task N9:</strong> Enable <code>container.googleapis.com</code> in <code>services.tf</code> file similar to what we already did in <a href="#22-enable-required-gcp-services-api">2.2 Enable required GCP Services API</a>.</p>
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; services.tf
+resource &quot;google_project_service&quot; &quot;gke_api&quot; {
+  service = &quot;container.googleapis.com&quot;
+  disable_on_destroy = false
+}
+EOF
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>disable_on_destroy=false</code> helps to prevent errors during redeployments of the system.</p>
+</div>
+<p>Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>Update Cloud Nat Configuration:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<h4 id="283-create-a-private-gke-cluster-and-delete-default-node-pool">2.8.3 Create a Private GKE Cluster and delete default node pool<a class="headerlink" href="#283-create-a-private-gke-cluster-and-delete-default-node-pool" title="Permanent link">&para;</a></h4>
+<p>Using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster">google_container_cluster</a> resource create a Regional, Private GKE cluster, with following characteristics:</p>
+<p>Cluster Configuration:</p>
+<ul>
+<li>Cluster name: <code>gke-$ORG-$PRODUCT-$ENV</code></li>
+<li>GKE Control plane is replicated across three zones of a region: <code>us-central1</code></li>
+<li>Private cluster with unrestricted access to the public endpoint:<ul>
+<li>Cluster Nodes access: <em>Private</em> Node GKE Cluster with <em>Public API</em> endpoint</li>
+<li>Cluster K8s API access: <em>with unrestricted access to the public endpoint</em></li>
+</ul>
+</li>
+<li>Cluster Node Communication: <code>VPC Native</code></li>
+<li>Secondary pod range with name: <code>pods</code></li>
+<li>Secondary service range with name: <code>services</code></li>
+<li>GKE master and node version: "1.20.8-gke.700"</li>
+<li>Terraform Provider: <code>google-beta</code></li>
+<li>Timeouts: 30M</li>
+</ul>
+<p>Node Pool Configuration:</p>
+<ul>
+<li>VM size: <code>e2-small</code></li>
+<li>Node count: 1 per zone</li>
+<li>Node images: Container-Optimized OS</li>
+<li>The name of a GCE machine (VM) type: e2-small</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Why delete default node pool?</strong> The <code>default</code> node pools cause trouble with managing the cluster, when created with terraform as it is not part of the terraform lifecycle. GKE Architecture Best Practice recommends to delete <code>default</code> node pool and create a <code>custom</code> one instead and manage the node pools explicitly.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Why define <code>Timeouts</code> for gke resource?</strong> Normally GKE creation takes few minutes. However, in our case we creating GKE Cluster, and then system cordon, drain and then destroy default node pool. This process may take 10-20 minutes and we want to make sure terraform will not time out during this time.</p>
+</div>
+<p><strong>Step 1:</strong> Let's define GKE resource first:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; gke.tf
+resource &quot;google_container_cluster&quot; &quot;primary_cluster&quot; {
+  provider = google-beta
+
+  project = var.gcp_project_id
+
+  name               = format(&quot;gke-%s-%s-%s&quot;, var.org, var.product, var.environment)
+  min_master_version = var.kubernetes_version
+  network            = google_compute_network.vpc_network.self_link
+  subnetwork         = google_compute_subnetwork.gke_private_subnet.self_link
+
+  location                    = var.gcp_region
+  logging_service             = var.logging_service
+  monitoring_service          = var.monitoring_service
+
+  remove_default_node_pool = true
+  initial_node_count       = 1
+
+  private_cluster_config {
+    enable_private_nodes   = var.enable_private_nodes
+    enable_private_endpoint = var.enable_private_endpoint
+    master_ipv4_cidr_block = var.master_ipv4_cidr_block
+  }
+
+  network_policy {
+    enabled  = var.network_policy
+    provider = var.network_policy ? &quot;CALICO&quot; : &quot;PROVIDER_UNSPECIFIED&quot;
+  }
+
+  addons_config {
+    http_load_balancing {
+      disabled = var.disable_http_load_balancing
+    }
+
+    network_policy_config {
+      disabled = var.network_policy ? false : true
+    }
+  }
+
+  ip_allocation_policy {
+    cluster_secondary_range_name  = var.pods_range_name
+    services_secondary_range_name = var.services_range_name
+  }
+
+  timeouts {
+    create = &quot;30m&quot;
+    update = &quot;30m&quot;
+    delete = &quot;30m&quot;
+  }
+
+  workload_identity_config {
+    identity_namespace = &quot;${var.gcp_project_id}.svc.id.goog&quot;
+  }
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Next define GKE cluster specific variables:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; gke_variables.tf
+
+variable &quot;kubernetes_version&quot; {
+  default     = &quot;&quot;
+  type        = string
+  description = &quot;The GKE version of Kubernetes&quot;
+}
+
+variable &quot;logging_service&quot; {
+  description = &quot;The logging service that the cluster should write logs to.&quot;
+  default     = &quot;logging.googleapis.com/kubernetes&quot;
+}
+
+variable &quot;monitoring_service&quot; {
+  default     = &quot;monitoring.googleapis.com/kubernetes&quot;
+  description = &quot;The GCP monitoring service scope&quot;
+}
+
+variable &quot;disable_http_load_balancing&quot; {
+  default     = false
+  description = &quot;Enable HTTP Load balancing GCP integration&quot;
+}
+
+variable &quot;network_policy&quot; {
+  description = &quot;Enable network policy addon&quot;
+  default     = true
+}
+
+variable &quot;pods_range_name&quot; {
+  description = &quot;The pre-defined IP Range the Cluster should use to provide IP addresses to pods&quot;
+  default     = &quot;&quot;
+}
+
+variable &quot;services_range_name&quot; {
+  description = &quot;The pre-defined IP Range the Cluster should use to provide IP addresses to services&quot;
+  default     = &quot;&quot;
+}
+
+variable &quot;enable_private_nodes&quot; {
+  default     = false
+  description = &quot;Enable Private-IP Only GKE Nodes&quot;
+}
+
+variable &quot;enable_private_endpoint&quot; {
+  default     = false
+  description = &quot;When true, the cluster&#39;s private endpoint is used as the cluster endpoint and access through the public endpoint is disabled.&quot;
+}
+
+variable &quot;master_ipv4_cidr_block&quot; {
+  description = &quot;The ipv4 cidr block that the GKE masters use&quot;
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Define GKE cluster specific outputs:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; outputs.tf
+output &quot;id&quot; {
+  value = &quot;${google_container_cluster.primary_cluster.id}&quot;
+}
+output &quot;endpoint&quot; {
+  value = &quot;${google_container_cluster.primary_cluster.endpoint}&quot;
+}
+output &quot;master_version&quot; {
+  value = &quot;${google_container_cluster.primary_cluster.master_version}&quot;
+}
+EOF
+</code></pre></div>
+
+<p><strong>Task N9:</strong> Complete <code>terraform.tfvars</code> with required values to GKE Cluster specified above:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
+//gke specific
+enable_private_nodes   = &quot;TODO&quot;
+master_ipv4_cidr_block = &quot;TODO&quot;
+pods_range_name        = &quot;TODO&quot;
+services_range_name    = &quot;TODO&quot;
+kubernetes_version     = &quot;TODO&quot;
+EOF
+</code></pre></div>
+
+<p><strong>Solution:</strong> </p>
+<div class="codehilite"><pre><span></span><code>//gke specific
+enable_private_nodes   = &quot;true&quot;
+master_ipv4_cidr_block = &quot;172.16.0.0/28&quot;
+pods_range_name        = &quot;pods&quot;
+services_range_name    = &quot;services&quot;
+kubernetes_version     = &quot;1.20.8-gke.700&quot;
+</code></pre></div>
+
+<p>In the next step, we going to create a <code>custom</code> GKE Node Pool.</p>
+<h4 id="284-create-a-gke-custom-node-pool">2.8.4 Create a GKE <code>custom</code> Node pool<a class="headerlink" href="#284-create-a-gke-custom-node-pool" title="Permanent link">&para;</a></h4>
+<p>Using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool">google_container_node_pool</a> resource create a <code>custom</code> GKE Node Pool with following characteristics:</p>
+<p>Node Pool Configuration:</p>
+<ul>
+<li>VM size: <code>e2-small</code></li>
+<li>Node count: 1 per zone</li>
+<li>Node images: Container-Optimized OS</li>
+<li>The name of a GCE machine (VM) type: <code>e2-small</code></li>
+<li>GKE Node Pool Boot Disk Size: "100 Gb"</li>
+</ul>
+<p><strong>Step 1:</strong> Let's define GKE resource first:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; gke.tf
+#Node Pool Resource
+resource &quot;google_container_node_pool&quot; &quot;custom-node_pool&quot; {
+  provider = google-beta
+
+  name       = &quot;main-pool&quot;
+  location = var.gcp_region
+  project  = var.gcp_project_id
+  cluster    = google_container_cluster.primary_cluster.name
+  node_count = var.gke_pool_node_count
+  version    = var.kubernetes_version
+
+  node_config {
+    image_type   = var.gke_pool_image_type
+    disk_size_gb = var.gke_pool_disk_size_gb
+    disk_type    = var.gke_pool_disk_type
+    machine_type = var.gke_pool_machine_type
+  }
+
+  timeouts {
+    create = &quot;10m&quot;
+    delete = &quot;10m&quot;
+  }
+
+  lifecycle {
+    ignore_changes = [
+      node_count
+    ]
+  }
+}
+EOF
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Next define GKE cluster specific variables:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; gke_variables.tf
+
+#Node Pool specific variables
+variable &quot;gke_pool_machine_type&quot; {
+  type = string
+}
+variable &quot;gke_pool_node_count&quot; {
+  type = number
+}
+variable &quot;gke_pool_disk_type&quot; {
+  type = string
+  default = &quot;pd-standard&quot;
+}
+variable &quot;gke_pool_disk_size_gb&quot; {
+  type = string
+}
+variable &quot;gke_pool_image_type&quot; {
+  type = string
+}
+EOF
+</code></pre></div>
+
+<p><strong>Task 9 (Continued):</strong> Complete <code>terraform.tfvars</code> with required values to GKE Node Pool values specified above:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt;&gt; terraform.tfvars
+#pool specific
+gke_pool_node_count   = &quot;TODO&quot;
+gke_pool_image_type   = &quot;TODO&quot;
+gke_pool_disk_size_gb = &quot;TODO&quot;
+gke_pool_machine_type = &quot;TODO&quot;
+EOF
+</code></pre></div>
+
+<p><strong>Solution:</strong> </p>
+<div class="codehilite"><pre><span></span><code>#pool specific
+gke_pool_node_count   = &quot;1&quot;
+gke_pool_image_type   = &quot;COS&quot;
+gke_pool_disk_size_gb = &quot;100&quot;
+gke_pool_machine_type = &quot;e2-small&quot;
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p><strong>Step 4:</strong> Create GKE Cluster and Node Pool:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>google_container_cluster.primary_cluster: Creating...
+...
+google_container_cluster.primary_cluster: Creation complete after 20m9s 
+google_container_node_pool.custom-node_pool: Creating...
+google_container_node_pool.custom-node_pool: Creation complete after 2m10s
+</code></pre></div>
+
+<h4 id="285-update-gke-node-pool-to-support-auto-upgrade-and-auto-recovery-features">2.8.5 Update GKE Node Pool to support Auto Upgrade and Auto Recovery features<a class="headerlink" href="#285-update-gke-node-pool-to-support-auto-upgrade-and-auto-recovery-features" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>GKE Master Nodes are managed by Google and get's upgraded automatically. Users can only specify Maintenance Window if they have preference for that process to occur (e.g. after busy hours). Users can however control Node Pool upgrade lifecycle. The can choose to do it themselves or with Auto Upgrade.</p>
+</div>
+<p><strong>Task N10:</strong> Using <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool">google_container_node_pool</a> resource update node pool to support Auto Upgrade and Auto Recovery features.</p>
+<div class="codehilite"><pre><span></span><code>edit gke.tf
+</code></pre></div>
+
+<p><strong>Solution:</strong></p>
+<div class="codehilite"><pre><span></span><code>  management {
+    auto_repair  = true
+    auto_upgrade = true
+  }
+</code></pre></div>
+
+<p><strong>Step 3:</strong> Review TF Plan:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+</code></pre></div>
+
+<p>No errors.</p>
+<p><strong>Step 4:</strong> Update GKE Cluster Node Pool configuration:</p>
+<div class="codehilite"><pre><span></span><code>terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>Congrats! You've now learned how to deploy production grade GKE clusters.</p>
+</div>
+<h3 id="29-optional-repeatable-infrastructure">2.9 (Optional) Repeatable Infrastructure<a class="headerlink" href="#29-optional-repeatable-infrastructure" title="Permanent link">&para;</a></h3>
+<p>When you doing IaC it is important to insure that you can both create and destroy resources consistently.
+This is especially important when doing CI/CD testing.</p>
+<p><strong>Step 3:</strong> Destroy all resources:</p>
+<div class="codehilite"><pre><span></span><code>terraform destroy -var-file terraform.tfvars
+</code></pre></div>
+
+<p>No errors.</p>
+<p><strong>Step 4:</strong> Recreate all resources:</p>
+<div class="codehilite"><pre><span></span><code>terraform plan -var-file terraform.tfvars
+terraform apply -var-file terraform.tfvars
+</code></pre></div>
+
+<h1 id="3-create-documentation-for-terraform-code">3. Create Documentation for terraform code<a class="headerlink" href="#3-create-documentation-for-terraform-code" title="Permanent link">&para;</a></h1>
+<p>Documentation for your terraform code is an important part of IaC. Make sure all your variables have a good description!</p>
+<p>There are community tools that have been developed to make the documentation process smoother, in terms of documenting
+Terraform resources and requirements.Its good practice to also include a usage example snippet.</p>
+<p><a href="https://terraform-docs.io/user-guide/introduction/">Terraform-Docs</a> is a good example of one tool that can generate some documentation based on the description argument of your Input Variables, Output Values, and from your required_providers configurations.</p>
+<p><strong>Step 1</strong> Install the terraform-docs cli to your Google CloudShell environment: </p>
+<div class="codehilite"><pre><span></span><code>curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.14.1/terraform-docs-v0.14.1-$(uname)-amd64.tar.gz
+tar -xzf terraform-docs.tar.gz
+rm terraform-docs.tar.gz
+chmod +x terraform-docs
+sudo mv terraform-docs /usr/local/bin/
+terraform-docs
+</code></pre></div>
+
+<p>Generating terraform documentation with Terraform Docs:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
+cd foundation-infrastructure
+terraform-docs markdown . &gt; README.md
+cd ../notepad-infrastructure
+terraform-docs markdown . &gt; README.md
+</code></pre></div>
+
+<p>Verify created documentation:</p>
+<div class="codehilite"><pre><span></span><code>edit README.md
+</code></pre></div>
+
+<h1 id="4-workaround-for-project-quota-issue">4. Workaround for Project Quota issue<a class="headerlink" href="#4-workaround-for-project-quota-issue" title="Permanent link">&para;</a></h1>
+<p>If you see following error during project creation in foundation layer:</p>
+<div class="codehilite"><pre><span></span><code>Error: Error setting billing account &quot;010BE6-CA1129-195D77&quot; for project &quot;projects/ayrat-notepad-dev-244&quot;: googleapi: Error 400: Precondition check failed., failedPrecondition
+</code></pre></div>
+
+<p>This is due to our Billing account has quota of 5 projects per account.</p>
+<p>To solve this issue find all unused accounts:</p>
+<div class="codehilite"><pre><span></span><code>gcloud beta billing projects list --billing-account $ACCOUNT_ID
+</code></pre></div>
+
+<p>And unlink them, so you have less then 5 projects per account:</p>
+<div class="codehilite"><pre><span></span><code>gcloud beta billing projects unlink $PROJECT_ID
+</code></pre></div>
+
+<h1 id="5-commit-readme-doc-to-repository-and-share-it-with-instructorteacher">5 Commit Readme doc to repository and share it with Instructor/Teacher<a class="headerlink" href="#5-commit-readme-doc-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h1>
+<p><strong>Step 1</strong> Commit <code>docs</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>git add .
-git commit -m &quot;TF manifests for Module 2 Assignment&quot;
+git commit -m &quot;Readme doc for Production GKE Creation using gcloud&quot;
 </code></pre></div>
 
 <p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
 <div class="codehilite"><pre><span></span><code>git push origin master
 </code></pre></div>
 
-<p><strong>Step 3</strong> This step will grant view access for Instructor to check you assignments</p>
-<p>In your Cloud Terminal:</p>
-<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding $PROJECT_ID --member=&#39;user:ayrat.khayretdinov@gmail.com&#39; --role=roles/viewer
+<h1 id="6-cleanup">6 Cleanup<a class="headerlink" href="#6-cleanup" title="Permanent link">&para;</a></h1>
+<p>We only going to cleanup GCP Service foundation layer, as we going to use GCP project in future.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$MY_REPO/notepad-infrastructure
+terraform destroy -var-file terraform.tfvars
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding $PROJECT_ID --member=&#39;user:valavan@gmail.com&#39; --role=roles/viewer
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>gcloud projects add-iam-policy-binding $PROJECT_ID --member=&#39;user:mfsilv@gmail.com&#39; --role=roles/viewer
-</code></pre></div>
-
-<div class="admonition result">
-<p class="admonition-title">Result</p>
-<p>Your instructor will be able to review you code and grade it.</p>
-</div>
                 
               
               
@@ -2403,39 +2862,6 @@ git commit -m &quot;TF manifests for Module 2 Assignment&quot;
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Module 2 Terraforming GCP Foundation
-            </div>
-          </div>
-        </a>
-      
-      
-        <a href="../020_Module_3_Assignment_Production_GKE/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Module 3 Deploying Production GKE with gcloud
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

@@ -14,7 +14,7 @@
     
     
       
-        <title>020 Module 3 Assignment Production GKE solution - Cloud Architecture</title>
+        <title>SOLUTION Module 3 Deploying Production GKE with gcloud - Cloud Architecture</title>
       
     
     
@@ -90,7 +90,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              020 Module 3 Assignment Production GKE solution
+              SOLUTION Module 3 Deploying Production GKE with gcloud
             
           </span>
         </div>
@@ -182,12 +182,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
         YCIT020
@@ -242,12 +244,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       <label class="md-nav__link" for="__nav_2_2">
         Assignments
@@ -278,7 +282,7 @@
   
     <li class="md-nav__item">
       <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-nav__link">
-        Module 2 Terraforming GCP Foundation Solution
+        SOLUTION Module 2 Terraforming GCP Foundation
       </a>
     </li>
   
@@ -291,6 +295,149 @@
     <li class="md-nav__item">
       <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
         Module 3 Deploying Production GKE with gcloud
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          SOLUTION Module 3 Deploying Production GKE with gcloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        SOLUTION Module 3 Deploying Production GKE with gcloud
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-production-gke-cluster" class="md-nav__link">
+    1 Creating Production GKE Cluster
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Creating Production GKE Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-locate-assignment-2" class="md-nav__link">
+    1.1 Locate Assignment 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-creating-a-gcp-project" class="md-nav__link">
+    1.2 Creating a GCP project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deleting-default-vpc-and-associated-firewall-rules-to-it" class="md-nav__link">
+    1.2 Deleting Default VPC and associated Firewall Rules to it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-creating-a-custom-mode-network-vpc" class="md-nav__link">
+    1.3 Creating a custom mode network (VPC)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-design-and-create-a-user-managed-subnet" class="md-nav__link">
+    1.4 Design and create a user-managed subnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" class="md-nav__link">
+    1.5 Creating a Private, Regional and VPC Native GKE Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-create-a-google-cloud-nat" class="md-nav__link">
+    1.6 Create a Google Cloud Nat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-delete-default-node-pool-and-create-custom-node-pool" class="md-nav__link">
+    1.7 Delete Default Node Pool and Create Custom Node Pool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-gke-autopilot-clusters" class="md-nav__link">
+    2 Creating GKE Autopilot Clusters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    3 Commit Terraform configurations to repository and share it with Instructor/Teacher
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cleanup" class="md-nav__link">
+    4 Cleanup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_4_Assignment_Production_GKE_terraform/" class="md-nav__link">
+        Module 4 Deploying Production GKE with terraform
       </a>
     </li>
   
@@ -734,7 +881,7 @@
               
                 
                 
-                  <h1>020 Module 3 Assignment Production GKE solution</h1>
+                  <h1>SOLUTION Module 3 Deploying Production GKE with gcloud</h1>
                 
                 <p><strong>Objective:</strong></p>
 <ul>
@@ -1543,6 +1690,39 @@ please do not delete your project with Source Code Repo.</p>
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../020_Module_3_Assignment_Production_GKE/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 3 Deploying Production GKE with gcloud
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../020_Module_4_Assignment_Production_GKE_terraform/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 4 Deploying Production GKE with terraform
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
