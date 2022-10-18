@@ -1,0 +1,1277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>Module 5 Cloud Database - Cloud Architecture</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#assignment-5-deploying-cloud-sql-database-and-connecting-from-gke" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module 5 Cloud Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          YCIT020
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT020" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT020
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Lab_Terraform_Fundamentals" class="md-nav__link">
+        Module 2 Terraform Fundamentals
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
+        Module 2 Terraforming GCP Foundation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-nav__link">
+        SOLUTION Module 2 Terraforming GCP Foundation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
+        Module 3 Deploying Production GKE with gcloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_3_Assignment_Production_GKE_solution/" class="md-nav__link">
+        SOLUTION Module 3 Deploying Production GKE with gcloud
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_4_Assignment_Production_GKE_terraform/" class="md-nav__link">
+        Module 4 Deploying Production GKE with terraform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 5 Cloud Database
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Module 5 Cloud Database
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-what-is-cloudsql" class="md-nav__link">
+    1.1 What is CloudSQL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignment" class="md-nav__link">
+    Assignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    Task
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          YCIT019
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          YCIT019
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Labs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Labs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Labs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        Module 5 Lab - Docker Basics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        Module 6 Lab - Advanced Docker
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+        Module 8 Lab - Kuberenetes Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        Module 9 Lab - Kubernetes Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        Module 9 Part 2 Lab Kubernetes Autoscaling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        Module 10 Lab - Kubernetes Networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        Module 11 Lab - Kubernetes Storage
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Assignments
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Assignments
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        Module 5 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1_sol/" class="md-nav__link">
+        Module 5 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        Module 6 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2_solution/" class="md-nav__link">
+        Module 6 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        Module 8 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3_solution/" class="md-nav__link">
+        Module 8 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        Module 9 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_sol/" class="md-nav__link">
+        Module 9 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        Module 10 Assignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6_solution/" class="md-nav__link">
+        Module 10 Assignment Solution
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-what-is-cloudsql" class="md-nav__link">
+    1.1 What is CloudSQL?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assignment" class="md-nav__link">
+    Assignment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    Task
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="assignment-5-deploying-cloud-sql-database-and-connecting-from-gke">Assignment 5 Deploying Cloud SQL Database and Connecting from GKE<a class="headerlink" href="#assignment-5-deploying-cloud-sql-database-and-connecting-from-gke" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>In this lab, we will be focusing on deploying Cloud SQL instance first on GCP using Terraform </li>
+<li>Next we will look at configuration changes required in GKE deployment to connect to Cloud SQL instance</li>
+<li>Deploy a sample application in GKE which will be using Cloud SQL as the backend database </li>
+</ul>
+<h2 id="11-what-is-cloudsql">1.1 What is CloudSQL?<a class="headerlink" href="#11-what-is-cloudsql" title="Permanent link">&para;</a></h2>
+<p>CloudSQL is a Fully managed relational database service for MySQL, PostgreSQL, and SQL Server with rich extension collections, configuration flags, and developer ecosystems.</p>
+<h2 id="12-key-features">1.2 Key features<a class="headerlink" href="#12-key-features" title="Permanent link">&para;</a></h2>
+<p><strong>Business continuity -</strong>
+Ensure business continuity with reliable, fault-tolerant and secure services managed by Google SRE team</p>
+<p><strong>Automation -</strong>
+Automate database provisioning, storage capacity management, and other time-consuming tasks</p>
+<p><strong>Observability -</strong>
+Database observability made easy for developers with Cloud SQL Insights</p>
+<p><strong>Integration -</strong>
+Easy integration with existing apps and Google Cloud services like GKE and BigQuery</p>
+<h2 id="assignment">Assignment<a class="headerlink" href="#assignment" title="Permanent link">&para;</a></h2>
+<p>You will be performing the following steps in Cloud Shell. Launch Cloud Shell from Google Cloud Console</p>
+<p><strong>Step 1</strong> Cleanup any previous resources created in the project, including </p>
+<ul>
+<li>
+<p>Goto &gt; Kubernetes Engine &gt; Delete all clusters</p>
+</li>
+<li>
+<p>Goto &gt; VPC Networks &gt; Delete any custom VPC network</p>
+</li>
+<li>
+<p>Goto &gt; Cloud Router &gt; Delete any Router</p>
+</li>
+<li>
+<p>Goto &gt; Cloud NAT &gt; Delete any Cloud Nat Config</p>
+</li>
+</ul>
+<p>We will be creating all of these resources using Terraform configuration </p>
+<p><strong>Step 2</strong> Ensure that your cloud shell is set to the correct GCP Project </p>
+<div class="codehilite"><pre><span></span><code>gcloud config set project &lt;PROJECT_ID&gt;
+</code></pre></div>
+
+<p>Activate all the api's which we will be using in the current assignment </p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable compute.googleapis.com sqladmin.googleapis.com \
+container.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com servicenetworking.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 3</strong>  Clone the following gitlab repository to your Cloud Shell, which going to use for our work:</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/Cloud-Architects-Program/ycit020_2022.git
+cd ycit020_2022/cloud-sql/
+</code></pre></div>
+
+<p><strong>Step 3</strong> Understand the folder structure<br />
+We have segregated the entire deployment and configuration into 3 three different folders </p>
+<ul>
+<li>
+<p><code>gke</code>  </p>
+<ul>
+<li>represetnts the configuration requitred to spin up VPC Networks, Cloud NAT, Router and GKE AutoPilot configuration. In a typical organization, most of these would be done by the platform administration team as they plan the subnet allocation to be used for Cluster. They also set the allowed GKE features to be used 
+   <img alt="alt text" src="../images/gke.png" title="GKE Cluster Config" /></li>
+</ul>
+</li>
+<li>
+<p><code>app-iac-folder</code> </p>
+<ul>
+<li>
+<p>represents all the Infra-Services that will be required to stand up the application. If your application requires CloudSQL, Memorystore/ Redis, Queueing system like Pub/Sub, Secret Manager, Alerting and Monitoring Configruration will all be declraed here </p>
+</li>
+<li>
+<p>In this case, all of the configuration was built using Terraform, but you can use any other tool like Cloud Connector, Pulumi, Gcloud commands to do these 
+ <img alt="alt text" src="../images/iac.png" title="IaC Services" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>app-code-folder</code> </p>
+<ul>
+<li>has the Kubernetes Configs for your application deployment </li>
+<li><code>src</code> folder has the application code required to build the container image
+<img alt="alt text" src="../images/code.png" title="Application Code and Deployment files" /></li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 4</strong> Deploy the GKE autopilot configuration using Terraform in a custom VPC</p>
+<div class="codehilite"><pre><span></span><code>cd gke
+</code></pre></div>
+
+<p>Review the <code>terraform.tfvars</code> file for all the variable names used for cluster creation, network creation. Below are the sample values used in the Terraform</p>
+<div class="codehilite"><pre><span></span><code>enable_private_nodes        = &quot;false&quot;  
+auto_master_ipv4_cidr_block = &quot;172.16.0.16/28&quot;        # IP Range to be used by Google Managed Kubernetes Master Nodes 
+kubernetes_version          = &quot;1.22.12-gke.300&quot;       # From GKE Cluster requirements
+release_channel             = &quot;regular&quot;               # Release Channel Configuration
+org                         = &quot;&lt;STUDENT&gt;&quot;             # Values will be used for VPC and GKE creation
+product                     = &quot;notepad&quot;               # Values will be used for VPC and GKE creation
+environment                 = &quot;dev&quot;                   # Values will be used for VPC and GKE creation
+gcp_project_id              = &quot;&lt;PROJECT_ID&gt;&quot;          # GCP Project ID 
+gcp_region                  = &quot;us-central1&quot;           # GCP Region 
+network_auto_cidr           = &quot;10.131.0.0/24&quot;         # GKE Node Range IP Address 
+pods_auto_cidr              = &quot;10.1.0.0/16&quot;           # GKE Pod Range IP Address
+services_auto_cidr          = &quot;10.100.2.0/23&quot;         # GKE Service Range IP Address
+</code></pre></div>
+
+<p>Once the configuration has been updated to suitable values for <code>gcp_project_id</code> and <code>org</code>, you can perform the following steps </p>
+<div class="codehilite"><pre><span></span><code>terraform init 
+terraform plan 
+</code></pre></div>
+
+<p>Review the terraform plan to check if there are any additional resources that are being modified or destroyed.</p>
+<div class="codehilite"><pre><span></span><code>Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + endpoint              = (known after apply)
+  + id                    = (known after apply)
+  + master_version        = (known after apply)
+  + subnet_auto_selflink  = (known after apply)
+  + vpc_network_name      = (known after apply)
+  + vpc_network_self_link = (known after apply)
+</code></pre></div>
+
+<p>If all the previously deployed reources were all deleted, then the plan should only show new resources would be getting created. Upon verifying the plan output, you can apply the changes </p>
+<div class="codehilite"><pre><span></span><code>terraform apply
+</code></pre></div>
+
+<p><strong>Step 5</strong> Connect to Autopilot cluster </p>
+<div class="codehilite"><pre><span></span><code>clustername=$(terraform output gke_cluster_name | tr -d &#39;&quot;&#39;)
+gcloud container clusters get-credentials $clustername --region us-central1
+</code></pre></div>
+
+<p>Once you have successfully connected to the cluster, you can perform the following commands as verification steps</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes  ## will display the node names
+kubectl get pods   ## will reutrn empty
+</code></pre></div>
+
+<p><strong>Step 6</strong> In this step you will be creating a MYSQL CloudSQL instance which will be used to host the database, using Terraform module. </p>
+<div class="codehilite"><pre><span></span><code>cd ..
+cd app-iac-folder
+</code></pre></div>
+
+<p>Review the <code>cloud-sql.tf</code> configuration. </p>
+<ul>
+<li>
+<p>The <code>network</code> and <code>private-service-access</code> module are sed to create a Private network to host Cloud SQL database and a VPC Peering connection to the project </p>
+</li>
+<li>
+<p>The <code>additional_databases</code> section is used to define new databases to be used for application </p>
+</li>
+<li>
+<p>The <code>additional_user</code> section is used to provide username and password authentication for the database. </p>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important<p>Make sure to modify the password provided to your choice.
+Remember to update the <code>project_id</code> in the <code>terraform.tfvars</code> file.</p>
+</p>
+</div>
+<p>Run the Terraform Script for Creating MySQL server and Provide the GCP service Account with Cloud SQL permissions</p>
+<div class="codehilite"><pre><span></span><code>terraform init
+terraform plan 
+</code></pre></div>
+
+<p>Review terraform output to see the resources that will be created </p>
+<div class="codehilite"><pre><span></span><code>Plan: 16 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + mysql_conn             = (known after apply)
+  + mysql_user_pass        = (sensitive value)
+  + name                   = (known after apply)
+  + private_ip_address     = (known after apply)
+  + project_id             = &quot;&lt;PROJECT_ID&gt;&quot;
+  + public_ip_address      = (known after apply)
+  + reserved_range_address = (known after apply)
+  + reserved_range_name    = (known after apply)
+</code></pre></div>
+
+<p>Once you reivew the resources to be created and looks good, apply the terraform </p>
+<div class="codehilite"><pre><span></span><code>terraform apply 
+</code></pre></div>
+
+<p>Output:</p>
+<div class="codehilite"><pre><span></span><code>mysql_conn = &quot;course-valavan:us-central1:example-mysql-private-a9aca803&quot;
+mysql_user_pass = &lt;sensitive&gt;
+name = &quot;example-mysql-private-a9aca803&quot;
+private_ip_address = &quot;10.34.0.2&quot;
+project_id = &quot;&lt;PROJECT_ID&gt;&quot;
+public_ip_address = &quot;x.x.x.x&quot;
+reserved_range_address = &quot;10.34.0.0&quot;
+reserved_range_name = &quot;google-managed-services-mysql-private-safer-a8bb20d40c&quot;
+</code></pre></div>
+
+<p>Verify the retuned SQL Connection ID , Public &amp; Private IP Address , VPC Services Peering range on the terraform output</p>
+<p>At this point, you can review the Cloud SQL instance created in Console. </p>
+<ul>
+<li>
+<p>Navigate to the <strong>Database</strong> Section to review the new databases created</p>
+</li>
+<li>
+<p>Navigate to the <strong>Users</strong> Section to review the username created to access the database </p>
+</li>
+</ul>
+<p><strong>Step 7</strong> Obtaining Service Account key file<br />
+In the Terraform configuration, a Service account for the application with Cloud SQL client permissions are also created. 
+The configuration is listed in the <code>sa.tf</code> file.</p>
+<p>Navigate to <code>Service Accounts</code> Page in Console </p>
+<p><img alt="alt text" src="../images/service-account.png" title="Service Account Verification" /></p>
+<div class="admonition important">
+<p class="admonition-title">Important<p>After this step, you will download the service account JSON key from Console to your computer. Please note the path where the file is downloaded. You will need it in the next steps**</p>
+</p>
+</div>
+<p><img alt="alt text" src="../images/sa-key.png" title="Service Account Key Generation" /></p>
+<p><strong>Step 8</strong> Applicaiton build and deployment </p>
+<div class="codehilite"><pre><span></span><code>cd ..
+cd app-code-folder
+</code></pre></div>
+
+<p>Create Artifact repo</p>
+<div class="codehilite"><pre><span></span><code>gcloud artifacts repositories create gke-cloud-sql-repo \
+--repository-format=docker \
+--location=us-central1 \
+--description=&quot;GKE Quickstart sample app&quot;
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gcloud auth configure-docker us-central1-docker.pkg.dev
+</code></pre></div>
+
+<p>Build the application image from Code and push it into the artifact repository. Replace the PROJECT_ID in the config below </p>
+<div class="codehilite"><pre><span></span><code>gcloud builds submit --tag us-central1-docker.pkg.dev/&lt;PROJECT_ID&gt;/gke-cloud-sql-repo/gke-sql src/
+</code></pre></div>
+
+<p><strong>Step 9</strong> Create secret for DB - hostname, username, password, Service Account.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In the Password field here, you will provide the same password used in the <code>cloudsql.tf</code> configuration file in the <code>app-iac-folder</code></p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl create secret generic gke-cloud-sql-secrets \
+--from-literal=database=quickstart-db \
+--from-literal=username=quickstart-user \
+--from-literal=password=PaSsWoRd
+</code></pre></div>
+
+<p>A successful output of the above step should have <strong>secret/gke-cloud-sql-secrets created</strong>.
+Copy the path for the downloaded service account key.
+In the next step, inject the service account key as a secret by poiting to the downloaded file. In the command below, replace the <code>key.json</code> with the actual path for the key</p>
+<div class="codehilite"><pre><span></span><code>kubectl create secret generic sql-credentials --from-file=sql_credentials.json=~/Downloads/key.json
+</code></pre></div>
+
+<p>A successful output of the above step should have <strong>secret/sql-credentials created</strong></p>
+<h2 id="task"><strong>Task</strong><a class="headerlink" href="#task" title="Permanent link">&para;</a></h2>
+<p><strong>Step 10</strong>
+Modifying lines 34 and lines 75 in the <code>deployment.yaml</code> file to our desired configuration 
+   <img alt="alt text" src="../images/deployment.png" title="deployment YAML file" /></p>
+<p><strong>Task 1</strong></p>
+<ul>
+<li>Modify the image name on line 34, the image name should include an image from your project's artifact registry which you built on Step 8. You can find the image name in the artifact registry. You can copy the image name by hitting the <code>copy</code> link as shown in the image below</li>
+</ul>
+<p><img alt="alt text" src="../images/artifact.png" title="Artifact image link" /></p>
+<p><strong>Task 2</strong></p>
+<ul>
+<li>Modify the instances configuration on line 75. The instance name should represent the CloudSQL instance name you created in the previous step. You will find this in the Cloud SQL instance page. You will look for <code>connection name</code> as highlighted in the image</li>
+</ul>
+<p><img alt="alt text" src="../images/cloud-sql-connection.png" title="Cloud SQL connection name" /></p>
+<p><strong>Step 11</strong>
+As a final step, you can now run the deployment and service yaml </p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f service-account.yaml
+kubectl apply -f deployment.yaml
+</code></pre></div>
+
+<p>You should be able to see the Deployement in the Kubernetes Cluster </p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods 
+kubectl describe pods
+</code></pre></div>
+
+<p>Events sections will show if both containers started without any crashes</p>
+<div class="codehilite"><pre><span></span><code>Events:
+  Type    Reason     Age   From                                   Message
+  ----    ------     ----  ----                                   -------
+  Normal  Scheduled  27s   gke.io/optimize-utilization-scheduler  Successfully assigned default/gke-cloud-sql-quickstart-54f464d4cc-rkkb8 to gk3-gke-auto-valavan-not-nap-i8jmtam0-15cdcc58-c9g6
+  Normal  Pulling    26s   kubelet                                Pulling image &quot;us-central1-docker.pkg.dev/course-valavan/gke-cloud-sql-repo/gke-sql:latest&quot;
+  Normal  Pulled     25s   kubelet                                Successfully pulled image &quot;us-central1-docker.pkg.dev/course-valavan/gke-cloud-sql-repo/gke-sql:latest&quot; in 243.900462ms
+  Normal  Created    25s   kubelet                                Created container gke-cloud-sql-app
+  Normal  Started    25s   kubelet                                Started container gke-cloud-sql-app
+  Normal  Pulling    25s   kubelet                                Pulling image &quot;gcr.io/cloudsql-docker/gce-proxy:latest&quot;
+  Normal  Pulled     24s   kubelet                                Successfully pulled image &quot;gcr.io/cloudsql-docker/gce-proxy:latest&quot; in 125.723593ms
+  Normal  Created    24s   kubelet                                Created container cloud-sql-proxy
+  Normal  Started    23s   kubelet                                Started container cloud-sql-proxy
+</code></pre></div>
+
+<p>To see the status of each container, you can use the following commands </p>
+<div class="codehilite"><pre><span></span><code>PODNAME=$(kubectl get pods -o name)
+kubectl logs $PODNAME -c gke-cloud-sql-app
+kubectl logs $PODNAME -c cloud-sql-proxy
+</code></pre></div>
+
+<p>Finally, to make the application externally accessible, execute the following command</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f service.yaml
+</code></pre></div>
+
+<p>The service.yaml configuration also includes a Load balancer deployment in the backend
+Goto <strong>Load Balancer</strong> section to obtain the load balancer IP address </p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc  # will provide the external IP for Load Balancer
+</code></pre></div>
+
+<p>Sample Output</p>
+<div class="codehilite"><pre><span></span><code>NAME                TYPE           CLUSTER-IP     EXTERNAL-IP    PORT(S)        AGE
+gke-cloud-sql-app   LoadBalancer   10.100.2.214   34.67.178.40   80:31840/TCP   2m15s
+</code></pre></div>
+
+<p>Look for the EXTERNAL-IP section in the output above. You can open the  IP in a Web browser, which would load the application.</p>
+<p><strong>Step 12</strong> Assignment Submissions </p>
+<div class="codehilite"><pre><span></span><code>kubectl get events --field-selector involvedObject.name=gke-cloud-sql-quickstart
+</code></pre></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../020_Module_4_Assignment_Production_GKE_terraform/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Module 4 Deploying Production GKE with terraform" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Module 4 Deploying Production GKE with terraform
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-footer__link md-footer__link--next" aria-label="Next: Module 5 Lab - Docker Basics" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Module 5 Lab - Docker Basics
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
