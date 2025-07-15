@@ -13,7 +13,7 @@
     
     
       
-        <title>020 Module 2 Lab Terraform Fundamentals - Cloud Architecture</title>
+        <title>Module 2 Terraform Fundamentals - Cloud Architecture</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              020 Module 2 Lab Terraform Fundamentals
+              Module 2 Terraform Fundamentals
             
           </span>
         </div>
@@ -194,12 +194,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -220,12 +222,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       
       
@@ -246,480 +250,107 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="." class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Module 2 Terraform Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Module 2 Terraform Fundamentals
       </a>
-    </li>
-  
+      
+        
 
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
     
-    <li class="md-nav__item md-nav__item--nested">
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
+        <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    1.2 Key features
+  </a>
+  
+</li>
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <li class="md-nav__item">
+  <a href="#lab-demos" class="md-nav__link">
+    Lab Demos
+  </a>
+  
+    <nav class="md-nav" aria-label="Lab Demos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lab-1-simple-terraform" class="md-nav__link">
+    Lab 1: Simple Terraform
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-2-terraform-with-multiple-config-files-and-variables" class="md-nav__link">
+    Lab 2: Terraform with multiple config files and variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-3-terraform-deployment-to-multiple-environments-and-the-use-of-terraform-workspaces" class="md-nav__link">
+    Lab 3: Terraform deployment to multiple environments and the use of terraform workspaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-4-building-terraform-configuration-using-devops-pipeline-cloudbuild" class="md-nav__link">
+    Lab 4: Building Terraform configuration using DevOps Pipeline (Cloudbuild)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-5-instructor-demo-only-building-terraform-configuration-using-devops-pipeline-gitlab" class="md-nav__link">
+    Lab 5: [Instructor Demo Only] Building Terraform configuration using DevOps Pipeline (GITLAB)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lab-6-terrform-deployment-using-modules" class="md-nav__link">
+    Lab 6: Terrform deployment using modules
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
+    </ul>
+  
+</nav>
       
-      
-      
-        <label class="md-nav__link" for="__nav_2_2">
-          Assignments
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_2">
-          <span class="md-nav__icon md-icon"></span>
-          Assignments
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_2_Assignment_Terraform_Foundation/" class="md-nav__link">
-        Module 2 Terraforming GCP Foundation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_2_Assignment_Terraform_Foundation_solution/" class="md-nav__link">
-        SOLUTION Module 2 Terraforming GCP Foundation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_3_Assignment_Production_GKE/" class="md-nav__link">
-        Module 3 Deploying Production GKE with gcloud
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_3_Assignment_Production_GKE_solution/" class="md-nav__link">
-        SOLUTION Module 3 Deploying Production GKE with gcloud
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_4_Assignment_Production_GKE_terraform/" class="md-nav__link">
-        Module 4 Deploying Production GKE with terraform
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../020_Module_5_Assignment_CloudSQL_Database/" class="md-nav__link">
-        Module 5 Cloud Database
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          YCIT019
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="YCIT019" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          YCIT019
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_1">
-          Labs
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Labs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_1">
-          <span class="md-nav__icon md-icon"></span>
-          Labs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
-        Module 5 Lab - Docker Basics
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
-        Module 6 Lab - Advanced Docker
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
-        Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
-        Module 8 Lab - Kuberenetes Concepts
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
-        Module 9 Lab - Kubernetes Features
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
-        Module 9 Part 2 Lab Kubernetes Autoscaling
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
-        Module 10 Lab - Kubernetes Networking
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
-        Module 11 Lab - Kubernetes Storage
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_2">
-          Assignments
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Assignments" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Assignments
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1/" class="md-nav__link">
-        Module 5 Assignment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass1_sol/" class="md-nav__link">
-        Module 5 Assignment Solution
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2/" class="md-nav__link">
-        Module 6 Assignment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass2_solution/" class="md-nav__link">
-        Module 6 Assignment Solution
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3/" class="md-nav__link">
-        Module 8 Assignment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass3_solution/" class="md-nav__link">
-        Module 8 Assignment Solution
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_2022/" class="md-nav__link">
-        Module 9 Assignment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass4_sol/" class="md-nav__link">
-        Module 9 Assignment Solution
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass7/" class="md-nav__link">
-        Module 10 Assignment
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ycit019_ass6_solution/" class="md-nav__link">
-        Module 10 Assignment Solution
-      </a>
     </li>
   
 
@@ -1190,6 +821,27 @@ terraform apply  ## Enter the project id when prompted
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
