@@ -1,0 +1,1280 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cloud-architects-program.github.io/020_Module_3_Assignment_Production_GKE/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>020 Module 3 Assignment Production GKE - Cloud Architecture</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-creating-production-gke-cluster" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              020 Module 3 Assignment Production GKE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../working_labs/020_Module_2_Lab_Terraform_Fundamentals.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 2 Terraform Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-production-gke-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Creating Production GKE Cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Creating Production GKE Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-locate-assignment-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Locate Assignment 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-creating-a-gcp-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Creating a GCP project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deleting-default-vpc-and-associated-firewall-rules-to-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Deleting Default VPC and associated Firewall Rules to it
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-creating-a-custom-mode-network-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Creating a custom mode network (VPC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-design-and-create-a-user-managed-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Design and create a user-managed subnet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 Creating a Private, Regional and VPC Native GKE Cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-create-a-google-cloud-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6 Create a Google Cloud Nat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-delete-default-node-pool-and-create-custom-node-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7 Delete Default Node Pool and Create Custom Node Pool
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-gke-autopilot-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Creating GKE Autopilot Clusters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Commit Terraform configurations to repository and share it with Instructor/Teacher
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Cleanup
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>020 Module 3 Assignment Production GKE</h1>
+
+<p><strong>Objective:</strong></p>
+<ul>
+<li>GKE Regional, Private Standard Cluster for Production Deployment</li>
+<li>GKE Autopilot Cluster </li>
+</ul>
+<h2 id="1-creating-production-gke-cluster">1 Creating Production GKE Cluster<a class="headerlink" href="#1-creating-production-gke-cluster" title="Permanent link">&para;</a></h2>
+<p>In Part 1 of the Assignment we going to deploy <code>GKE</code> Standard cluster for production usage. This cluster will have <code>Regional</code> control plain for high availability.
+Also following production security Best Practices we going to setup <code>GKE</code> with <code>private</code> nodes (No Public IP) and learn how to setup <code>Cloud Nat</code> which allows Private cluster's Pods access securely Internet.</p>
+<h3 id="11-locate-assignment-2">1.1 Locate Assignment 2<a class="headerlink" href="#11-locate-assignment-2" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong>  Clone <code>ycit020</code> repo with Kubernetes manifests, which going to use for our work:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/ycit020_2022/
+git pull       # Pull latest Mod3_assignment
+</code></pre></div>
+
+<p>In case you don't have this folder clone it as following:</p>
+<div class="codehilite"><pre><span></span><code>cd ~
+git clone https://github.com/Cloud-Architects-Program/ycit020_2022
+cd ~/ycit020_2022/module3_assignment/
+ls
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You can see Kubernetes manifests </p>
+</div>
+<p><strong>Step 2</strong> Go into your personal Google Cloud Source Repository:</p>
+<div class="codehilite"><pre><span></span><code>export student_name=&lt;write_your_name_here_and_remove_brakets&gt;
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace $student_id with your ID</p>
+</div>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>git pull                              # Pull latest code from you repo
+</code></pre></div>
+
+<p><strong>Step 3</strong> Copy <code>module3_assignment</code> folder to your repo:</p>
+<div class="codehilite"><pre><span></span><code>cp -r ~/ycit020_2022/module3_assignment ycit020_module3
+</code></pre></div>
+
+<p><strong>Step 4</strong> Create <code>production_gke.txt</code> file that will have instructions how to deploy Production GKE Clusters.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+cat &gt; production_gke.txt &lt;&lt; EOF
+# Creating Production GKE Cluster
+
+**Step 1** Create a vpc network:
+
+**Step 2** Create a subnet VPC design:
+
+**Step 3** Create a subnet with primary and secondary ranges:
+
+**Step 4** Create a Private GKE Cluster:
+
+**Step 5** Create a Cloud Router:
+
+**Step 6** Create a Cloud Nat Gateway:
+
+**Step 7** Create an Autopilot GKE Cluster:
+
+EOF
+</code></pre></div>
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>This document will be graded.</p>
+</div>
+<p><strong>Step 5</strong> Commit <code>ycit020_module3</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+git status 
+git add .
+git commit -m &quot;adding documentation for ycit020 module 3 assignment&quot;
+</code></pre></div>
+
+<p><strong>Step 6</strong> Once you've committed code to the local repository, add its contents to Cloud Source Repositories using the git push command:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<h3 id="12-creating-a-gcp-project">1.2 Creating a GCP project<a class="headerlink" href="#12-creating-a-gcp-project" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are going to create a temporary project for this assignment.
+While you going to store code in existing project that we've used so far in class</p>
+</div>
+<p>Set variables:</p>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+export PROJECT_PREFIX=1   # Project has to be unique
+export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
+
+<p>Create a project:</p>
+<div class="codehilite"><pre><span></span><code>gcloud projects create $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
+
+<p>List billings and take note of <code>ACCOUNT_ID</code>:</p>
+<div class="codehilite"><pre><span></span><code>ACCOUNT_ID=$(gcloud beta billing accounts list | grep -B2 True  | head -1 | grep ACCOUNT_ID  |awk &#39;{ print $2}&#39;) 
+</code></pre></div>
+
+<p>Check account ID was set properly as variable:</p>
+<div class="codehilite"><pre><span></span><code>echo $ACCOUNT_ID
+</code></pre></div>
+
+<p>Attach your project to the correct billing account:</p>
+<div class="codehilite"><pre><span></span><code>gcloud beta billing projects link $PROJECT_ID --billing-account=$ACCOUNT_ID
+</code></pre></div>
+
+<p>Set the newly created project as default for gcloud:</p>
+<div class="codehilite"><pre><span></span><code>gcloud config set project $PROJECT_ID
+</code></pre></div>
+
+<p>Enable <code>compute</code>, <code>container</code>, <code>cloudresourcemanager</code> APIs:</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
+gcloud services enable compute.googleapis.com 
+gcloud services enable cloudresourcemanager.googleapis.com
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Enabling GCP Service APIs very important step in automation (e.g. terraform)</p>
+</div>
+<p>Get a list of services that enabled in your project:</p>
+<div class="codehilite"><pre><span></span><code>gcloud services list
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some services APIs enabled by default during project creation</p>
+</div>
+<div class="codehilite"><pre><span></span><code>gcloud config set compute/region us-central1
+</code></pre></div>
+
+<h3 id="12-deleting-default-vpc-and-associated-firewall-rules-to-it">1.2 Deleting Default VPC and associated Firewall Rules to it<a class="headerlink" href="#12-deleting-default-vpc-and-associated-firewall-rules-to-it" title="Permanent link">&para;</a></h3>
+<p>Observe Asset Inventory in GCP UI:</p>
+<div class="codehilite"><pre><span></span><code>Products -&gt; IAM &amp; Admin -&gt; Asset Inventory -&gt; Overview
+</code></pre></div>
+
+<p>Select resource type <code>compute.Subnetwork</code></p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You can see that <code>vpc</code> default network spans across all GCP Regions, which
+for many companies will not be acceptable practice (e.g. GDPR)</p>
+</div>
+<p>List all networks in a project:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME     SUBNET_MODE  BGP_ROUTING_MODE  IPV4_RANGE  GATEWAY_IPV4
+default  AUTO         REGIONAL
+</code></pre></div>
+
+<p>Review existing firewall rules for <code>default</code> vpc:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>VPC Network-&gt;Firewall
+</code></pre></div>
+
+<p>Delete firewall rules associated with <code>default</code> vpc network:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules delete default-allow-internal
+gcloud compute firewall-rules delete default-allow-ssh
+gcloud compute firewall-rules delete default-allow-rdp
+gcloud compute firewall-rules delete default-allow-icmp
+</code></pre></div>
+
+<p>Delete the <code>Default</code> network, following best practices:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks delete default
+</code></pre></div>
+
+<h3 id="13-creating-a-custom-mode-network-vpc">1.3 Creating a custom mode network (VPC)<a class="headerlink" href="#13-creating-a-custom-mode-network-vpc" title="Permanent link">&para;</a></h3>
+<p><strong>Task N1:</strong> Using reference doc: <a href="https://cloud.google.com/vpc/docs/using-vpc#create-custom-network">Creating a custom mode network</a>. Create a new custom mode VPC network using gcloud command with following parameters:</p>
+<ul>
+<li>Network name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
+<li>Subnet mode: <code>custom</code></li>
+<li>Bgp routing mode: <code>regional</code></li>
+<li>MTUs: <code>default</code></li>
+</ul>
+<p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
+<p>with name <code>$ORG-$PRODUCT-$ENV-vpc</code>, with subnet mode <code>custom</code>,
+and <code>regional</code>.</p>
+<p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
+<p>Set variables:</p>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>TODO: gcloud create network
+</code></pre></div>
+
+<p>Review created network:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks
+</code></pre></div>
+
+<p>Document a command to create <code>vpc</code> network in <code>production_gke.txt</code> doc under <code>step 1</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If <code>production_gke.txt</code> is not updated with commands this will reduce score for you assignment</p>
+</div>
+<p><strong>Step 2:</strong> Create firewall rules  <code>default-allow-ssh</code>:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules create $ORG-$PRODUCT-$ENV-allow-tcp-ssh-icmp --network $ORG-$PRODUCT-$ENV-vpc --allow tcp:22,tcp:3389,icmp
+</code></pre></div>
+
+<p>Reference: https://cloud.google.com/kubernetes-engine/docs/concepts/firewall-rules</p>
+<p>Review created firewall rules:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;Firewalls
+</code></pre></div>
+
+<h3 id="14-design-and-create-a-user-managed-subnet">1.4 Design and create a <code>user-managed</code> subnet<a class="headerlink" href="#14-design-and-create-a-user-managed-subnet" title="Permanent link">&para;</a></h3>
+<p>After you've created VPC network, it is require to add subnet to it.</p>
+<p><strong>Task N2:</strong> In order to ensure that GKE clusters in you organization doesn't overlap each other,
+design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code> VPC-native GKE clusters, where</p>
+<ul>
+<li>
+<p>2 GKE Clusters per Project</p>
+</li>
+<li>
+<p>Max 200 <code>Nodes</code> per cluster and <em>primary range</em> belongs to Class A and starting from (10.130.0.0/x) </p>
+</li>
+<li>
+<p>Max 110 <code>Pods</code> per node and <em>pod secondary ranges</em>  belongs to Class A and starting from (10.0.0.0/x) </p>
+</li>
+<li>
+<p>Max 500 <code>Services</code> per cluster and <em>service secondary ranges</em>  belongs to Class A and starting from (10.100.0.0/x)</p>
+</li>
+<li>
+<p>CIDR range for master-ipv4-cidr (k8s api range) belongs to Class B (172.16.0.0/x)</p>
+</li>
+</ul>
+<p>Use following reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
+<li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
+</ol>
+<p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>production_gke.txt</code>:</p>
+<div class="codehilite"><pre><span></span><code>Project   | Subnet Name |     subnet          |    pod range     |    srv range   | kubectl api range
+app 1 Dev | dev-1       |     (10.130.0.0/x)  |     IP range     |     IP range   |     IP range    
+          | dev-2       |     (10.130.0.0/x)  |     IP range     |     IP range   |     IP range      
+</code></pre></div>
+
+<p>Document a subnet VPC design in <code>production_gke.txt</code> doc under <code>step 2</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<p><strong>Task N3:</strong> Create a <code>user-managed</code> subnet.</p>
+<p>Create a subnet for <code>dev</code> cluster, taking in consideration VPC subnet ranges created in above table, where:</p>
+<p>Subnet N1 for <code>GKE Standard Cluster</code>:</p>
+<ul>
+<li>
+<p>Subnet name: <code>gke-standard-$ORG-$PRODUCT-$ENV-subnet</code></p>
+</li>
+<li>
+<p>Region: <code>us-central1</code></p>
+</li>
+<li>
+<p>Node Range: See column <code>subnet</code> in above table for <code>dev-1</code> cluster</p>
+</li>
+<li>
+<p>Secondary Ranges:</p>
+<ul>
+<li>
+<p>Service range name: <code>gke-standard-services</code></p>
+</li>
+<li>
+<p>Service range CIDR: See column <code>srv range</code> in above table for <code>dev-1</code> cluster</p>
+</li>
+<li>
+<p>Pods range name: <code>gke-standard-pods</code></p>
+</li>
+<li>
+<p>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-1</code> cluster</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Features:</p>
+<ul>
+<li>Flow Logs</li>
+<li>Private IP Google Access</li>
+</ul>
+</li>
+</ul>
+<p>Subnet N2 for <code>GKE Autopilot</code>:</p>
+<ul>
+<li>Subnet name: <code>gke-auto-$ORG-$PRODUCT-$ENV-subnet</code></li>
+<li>Region: <code>us-central1</code></li>
+<li>Node Range: See column <code>subnet</code> in above table for <code>dev-2</code> cluster</li>
+<li>Secondary Ranges:<ul>
+<li>Service range name: <code>gke-auto-services</code></li>
+<li>Service range CIDR: See column <code>srv range</code> in above table for <code>dev-2</code> cluster</li>
+<li>Pods range name: <code>gke-auto-pods</code></li>
+<li>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-2</code> cluster</li>
+</ul>
+</li>
+<li>Features:<ul>
+<li>Flow Logs</li>
+<li>Private IP Google Access</li>
+</ul>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>TODO: gcloud compute networks subnets create gke-standard-$ORG-$PRODUCT-$ENV-subnet
+
+TODO: gcloud compute networks subnets create gke-auto-$ORG-$PRODUCT-$ENV-subnet
+</code></pre></div>
+
+<p>Reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#custom_subnet">Creating a private cluster with custom subnet</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
+<li>Use <code>gcloud subnets create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/compute/networks/subnets/create">reference</a> for all available options.</li>
+</ol>
+<p>Review created subnet:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets list
+</code></pre></div>
+
+<p>Also check in Google cloud UI:</p>
+<div class="codehilite"><pre><span></span><code>Networking-&gt;VPC Networks -&gt; Click VPC network and check `Subnet` tab
+</code></pre></div>
+
+<p>Document a subnet VPC creation command in <code>production_gke.txt</code> doc under <code>step 3</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<h3 id="15-creating-a-private-regional-and-vpc-native-gke-cluster">1.5 Creating a Private, Regional and VPC Native GKE Cluster<a class="headerlink" href="#15-creating-a-private-regional-and-vpc-native-gke-cluster" title="Permanent link">&para;</a></h3>
+<p><strong>Task N4:</strong> Create GKE Standard Cluster with  <em>Private</em> Nodes and following values:</p>
+<ul>
+<li>Cluster name: <code>$ORG-$PRODUCT-$ENV-standard-cluster</code></li>
+<li>VPC <code>network</code> name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
+<li>VPC <code>subnet</code> name: <code>gke-standard-$ORG-$PRODUCT-$ENV-subnet</code></li>
+<li>Secondary <code>pod</code> range with name: <code>gke-standard-pods</code></li>
+<li>Secondary <code>service</code> range with name: <code>gke-standard-services</code></li>
+<li>VM size: <code>e2-micro</code></li>
+<li>Node count 1 per zone: <code>num-nodes</code></li>
+<li>GKE Control plane is replicated across three zones of a region: <code>us-central1</code></li>
+<li>GKE Release channel: <code>regular</code></li>
+<li>Enable Cilium based Networking DataplaneV2: <code>enable-dataplane-v2</code></li>
+<li>GKE version: "1.22.12-gke.300"</li>
+<li>Cluster Node Communication <code>VPC Native</code>: <code>enable-ip-alias</code></li>
+<li>Cluster Nodes access: <em>Private</em> Node GKE Cluster with <em>Public API</em> endpoint</li>
+<li>For <code>master-ipv4-cidr</code> ranges: See column <code>kubectl api range</code> in above table for <code>dev-1</code> cluster</li>
+</ul>
+<p>Use following reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters">Creating a private cluster</a></li>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#channels">GKE Release Channels</a></li>
+<li>Use <code>gcloud container clusters create</code> command <a href="https://cloud.google.com/sdk/gcloud/reference/container/clusters/create">reference</a> for all available options.</li>
+</ol>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>#TODO gcloud clusters create $ORG-$PRODUCT-$ENV-cluster
+</code></pre></div>
+
+<p>Document a GKE cluster creation command in <code>production_gke.txt</code> doc under <code>step 4</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>The private cluster is now created. <code>gcloud</code> has set up <code>kubectl</code> to authenticate with the private cluster but the cluster's K8s API server will only accept connections from the primary range of your subnetwork, and the secondary range of your subnetwork that is used for pods. That means nobody can access K8s API at this point of time, until we specify allowed ranges.</p>
+</div>
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials $ORG-$PRODUCT-$ENV-standard-cluster --region us-central1 
+</code></pre></div>
+
+<p><strong>Step 4:</strong> Connecting to a Private Cluster</p>
+<p>Let's try to connect to the cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>Unable to connect to the server i/o timeout
+</code></pre></div>
+
+<div class="admonition fail">
+<p class="admonition-title">Fail</p>
+<p>This fails because private clusters firewall traffic to the master by default. In order to connect to the cluster you need to make use of the master authorized networks feature. </p>
+</div>
+<p><strong>Step 4:</strong> Enable Master Authorized networks on you cluster</p>
+<p>Suppose you have a group of machines, outside of your VPC network, belongs to your organization. You could authorize ONLY those machines to access the public endpoint (Kubernetes API).</p>
+<p>Here we will enable master authorized networks and whitelist the IP address for our Cloud Shell instance, to allow access to the master:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters update $ORG-$PRODUCT-$ENV-standard-cluster --enable-master-authorized-networks --master-authorized-networks $(curl ipinfo.io/ip)/32 --region us-central1
+</code></pre></div>
+
+<p>Now we can access the API server using <code>kubectl</code> from GCP console:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In real life it could be CIDR Range for you company, so only engineers or CI/CD systems from you company can connect to <code>kubectl</code> apis in secure manner.</p>
+</div>
+<p>Now we can access the API server using kubectl:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>No resources found in default namespace.
+</code></pre></div>
+
+<p>Let's deploy basic application on the GKE Standard Cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run hello-web --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME        READY   STATUS    RESTARTS   AGE
+hello-web   1/1     Running   0          7s
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We can deploy Pods to our Private Cluster.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod hello-web
+</code></pre></div>
+
+<p><strong>Step 2:</strong> Testing Outbound Traffic</p>
+<p>Outbound traffic is not routable in private clusters so access to the internet is limited. This isolates pods that are running sensitive workloads.</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wget
+spec:
+  containers:
+  - name: wget
+    image: alpine
+    command: [&#39;wget&#39;, &#39;-T&#39;, &#39;5&#39;, &#39;http://www.example.com/&#39;]
+  restartPolicy: Never
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME   READY   STATUS   RESTARTS   AGE
+wget   0/1     Error    0          4m41s
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl logs wget
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Connecting to www.example.com (93.184.216.34:80)
+wget: download timed out
+wget: bad address &#39;www.example.com&#39;
+</code></pre></div>
+
+<div class="admonition results">
+<p class="admonition-title">Results</p>
+<p>Pods can't access internet, because it's a private cluster</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Normally, if cluster is Private and doesn't have Cloud Nat configured, users
+can't even deploy images from Docker Hub. See troubleshooting details <a href="https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#docker_hub">here</a></p>
+</div>
+<p>Delete test pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pods wget
+</code></pre></div>
+
+<h3 id="16-create-a-google-cloud-nat">1.6 Create a Google Cloud Nat<a class="headerlink" href="#16-create-a-google-cloud-nat" title="Permanent link">&para;</a></h3>
+<p>Private clusters give you the ability to isolate nodes from having inbound and outbound connectivity to the public internet. This isolation is achieved as the nodes have internal IP addresses only.</p>
+<p>If you want to provide outbound internet access for certain private nodes, you can use <a href="https://cloud.google.com/nat/docs/overview#NATwithGKE">Cloud NAT</a></p>
+<p>Cloud NAT is a distributed, software-defined managed service. It's not based on proxy VMs or appliances.</p>
+<p>You configure a NAT gateway on a Cloud Router, which provides the control plane for NAT, holding configuration parameters that you specify. Google Cloud runs and maintains processes on the physical machines that run your Google Cloud VMs.</p>
+<p>Cloud NAT can be configured to automatically scale the number of NAT IP addresses that it uses, and it supports VMs that belong to managed instance groups, including those with autoscaling enabled.</p>
+<p><strong>Step 1:</strong> Create a Cloud NAT configuration using Cloud Router</p>
+<p>Create Cloud Router in the same region as the instances that use Cloud NAT. Cloud NAT is only used to place NAT information onto the VMs. It is not used as part of the actual NAT gateway.</p>
+<p><strong>Task N5:</strong> Create <code>Cloud Router</code></p>
+<p><strong>Step 1a:</strong> Create a <code>Cloud Router</code>:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute routers create gke-nat-router \
+    --network $ORG-$PRODUCT-$ENV-vpc \
+    --region us-central1
+</code></pre></div>
+
+<p>Verify created Cloud Router:</p>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Hybrid Connectivity -&gt; Cloud Routers
+</code></pre></div>
+
+<p>Document <code>Cloud Router</code> creation  command in <code>production_gke.txt</code> doc under <code>step 5</code></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p><strong>Task N6:</strong> Create <code>Cloud Nat</code> Gateway</p>
+<p><strong>Step 1b:</strong> Create a <code>Cloud Nat</code> Gateway:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute routers nats create nat-config \
+    --router-region us-central1 \
+    --router gke-nat-router \
+    --nat-all-subnet-ip-ranges \
+    --auto-allocate-nat-external-ips
+</code></pre></div>
+
+<p>Verify created <code>Cloud Nat</code>:</p>
+<div class="codehilite"><pre><span></span><code>Networking -&gt; Network Services -&gt; Cloud NAT
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cloud NAT uses Cloud Router only to group NAT configuration information (control plane). Cloud NAT does not direct a Cloud Router to use BGP or to add routes. NAT traffic does not pass through a Cloud Router (data plane).</p>
+</div>
+<p>Document Cloud Nat creation  command in <code>production_gke.txt</code> doc under <code>step 6</code>:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<p><strong>Step 2:</strong> Testing Outbound Traffic</p>
+<p>Most outbound traffic is not routable in private clusters so access to the internet is limited. This isolates pods that are running sensitive workloads.</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wget
+spec:
+  containers:
+  - name: wget
+    image: alpine
+    command: [&#39;wget&#39;, &#39;-T&#39;, &#39;5&#39;, &#39;http://www.example.com/&#39;]
+  restartPolicy: Never
+EOF
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                              READY   STATUS      RESTARTS   AGE
+wget                              0/1     Completed   0          2m53s
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl logs wget
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Connecting to www.example.com (93.184.216.34:80)
+saving to &#39;index.html&#39;
+index.html           100% |********************************|  1256  0:00:00 ETA
+&#39;index.html&#39; saved
+</code></pre></div>
+
+<div class="admonition results">
+<p class="admonition-title">Results</p>
+<p>Pods can access internet, thanks to our configured Cloud Nat.</p>
+</div>
+<h3 id="17-delete-default-node-pool-and-create-custom-node-pool">1.7 Delete Default Node Pool and Create Custom Node Pool<a class="headerlink" href="#17-delete-default-node-pool-and-create-custom-node-pool" title="Permanent link">&para;</a></h3>
+<p>A Kubernetes Engine cluster consists of a master and nodes. Kubernetes doesn't handle provisioning of nodes, so Google Kubernetes Engine handles this for you with a concept called <em>node pools</em>.</p>
+<p>A node pool is a subset of node instances within a cluster that all have the same configuration. They map to instance templates in Google Compute Engine, which provides the VMs used by the cluster. By default a Kubernetes Engine cluster has a single node pool, but you can add or remove them as you wish to change the shape of your cluster.</p>
+<p>In the previous example, you've created a Kubernetes Engine cluster. This gave us three nodes (three e2-micro (2 vCPUs, 1 GB memory), 100 GB of disk each) in a single node pool (called default-pool). Let's inspect the node pool:</p>
+<div class="codehilite"><pre><span></span><code>gcloud config set compute/region us-central1
+gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-standard-cluster
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME: default-pool
+MACHINE_TYPE: e2-micro
+DISK_SIZE_GB: 100
+NODE_VERSION: 1.22.12-gke.300
+</code></pre></div>
+
+<p>If you want to add more nodes of this type, you can grow this node pool. If you want to add more nodes of a different type, you can add other node pools.</p>
+<p>A common method of moving a cluster to larger nodes is to add a new node pool, move the work from the old nodes to the new, and delete the old node pool.</p>
+<p>Let's add a second node pool. This time we will use the larger <code>e2-medium</code>  (2 vCPUs, 4 GB memory), 100 GB of disk each machine type.</p>
+<p><strong>Task N7:</strong> Create Create Custom Node Pool and Delete Default Node Pool </p>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools create custom-pool --cluster $ORG-$PRODUCT-$ENV-standard-cluster \
+    --machine-type e2-medium --num-nodes 1
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME: custom-pool
+MACHINE_TYPE: e2-medium
+DISK_SIZE_GB: 100
+NODE_VERSION: 1.22.12-gke.300
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-standard-cluster
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME: default-pool
+MACHINE_TYPE: e2-micro
+DISK_SIZE_GB: 100
+NODE_VERSION: 1.22.12-gke.300
+
+NAME: custom-pool
+MACHINE_TYPE: e2-medium
+DISK_SIZE_GB: 100
+NODE_VERSION: 1.22.12-gke.300
+</code></pre></div>
+
+<p>You can now delete the original <code>default-pool</code> node pool:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools delete default-pool --cluster $ORG-$PRODUCT-$ENV-standard-cluster
+</code></pre></div>
+
+<p>Check that node-pool has been deleted:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container node-pools list --cluster $ORG-$PRODUCT-$ENV-standard-cluster
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>GKE cluster running only on <code>custom-pool</code> Node pool.</p>
+</div>
+<h2 id="2-creating-gke-autopilot-clusters">2 Creating GKE Autopilot Clusters<a class="headerlink" href="#2-creating-gke-autopilot-clusters" title="Permanent link">&para;</a></h2>
+<p>In Part 2 of the Assignment we going to deploy GKE Autopilot Clusters for Production Usage.
+Autopilot Clusters provides easy way to configure and manage GKE Clusters.
+They configured with best practices and  high availability out of the box. 
+And can additionally configured with Private Clusters. </p>
+<p><strong>Task N8:</strong> Create GKE Autopilot Cluster with following subnet ranges:</p>
+<ul>
+<li>Cluster name: <code>$ORG-$PRODUCT-$ENV-auto-cluster</code></li>
+<li>In <code>region</code>: <code>us-central1</code></li>
+<li>VPC <code>network</code> name: <code>$ORG-$PRODUCT-$ENV-vpc</code></li>
+<li>VPC <code>subnet</code> name: <code>gke-auto-$ORG-$PRODUCT-$ENV-subnet</code></li>
+<li>Secondary <code>pod</code> range with name: <code>gke-auto-pods</code></li>
+<li>Secondary <code>service</code> range with name: <code>gke-auto-services</code></li>
+</ul>
+<p>Use following reference docs:</p>
+<ol>
+<li><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster#gcloud">Creating a GKE Autopilot cluster</a></li>
+</ol>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>#TODO gcloud container clusters create-auto $ORG-$PRODUCT-$ENV-auto-cluster
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Production ready GKE Autopilot Cluster has been created</p>
+</div>
+<p>Document a GKE Autopilot cluster creation command in <code>production_gke.txt</code> doc under <code>step 8</code>.</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad/ycit020_module3
+edit production_gke.txt
+</code></pre></div>
+
+<p>Save and go to next step.</p>
+<p>Authenticate to GKE Autopilot cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials $ORG-$PRODUCT-$ENV-auto-cluster --region us-central1 
+</code></pre></div>
+
+<p>GKE Autopilot starts with 2 small Nodes, that is not charged to Customers:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>gk3-archy-notepad-gcloud-default-pool-5c17f5f3-lp4p   Ready    &lt;none&gt;   11m   v1.22.12-gke.300
+gk3-archy-notepad-gcloud-default-pool-fae5625e-cwxx   Ready    &lt;none&gt;   11m   v1.22.12-gke.300
+</code></pre></div>
+
+<p>This Nodes are used to run GKE system containers such as various agents and networking pods:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -o wide --all-namespaces
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With GKE Autopilot, you don't need to worry about nodes or nodepools at all. Autopilot will spin nodes up and down based on the resources needed by your deployments, but you will only be charged for the resources requested by your actual deployments.</p>
+</div>
+<p>Let's deploy basic application on the GKE Standard Cluster:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run hello-web --image=gcr.io/google-samples/hello-app:1.0 --port=8080
+</code></pre></div>
+
+<p>Let's verify that Pod deployed:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME        READY   STATUS    RESTARTS   AGE
+hello-web   0/1     Pending   0          9s
+</code></pre></div>
+
+<p>After about 1 munute you should see:</p>
+<div class="codehilite"><pre><span></span><code>NAME        READY   STATUS              RESTARTS   AGE
+hello-web   0/1     ContainerCreating   0          101s
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>That the application takes longer than usual to start. This is because Autopilot NAP system starting off new Nodes for application.</p>
+</div>
+<p>Let's verify that Pod deployment after few minutes:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME        READY   STATUS    RESTARTS   AGE
+hello-web   1/1     Running   0          7s
+</code></pre></div>
+
+<p>Let's verify that Nodes deployed:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                                  STATUS   ROLES    AGE     VERSION
+gk3-archy-notepad-gcloud-default-pool-5c17f5f3-lp4p   Ready    &lt;none&gt;   24m     v1.22.12-gke.300
+gk3-archy-notepad-gcloud-default-pool-5c17f5f3-t89j   Ready    &lt;none&gt;   5m35s   v1.22.12-gke.300
+gk3-archy-notepad-gcloud-default-pool-fae5625e-cwxx   Ready    &lt;none&gt;   24m     v1.22.12-gke.300
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>You will see 3d node has been created. GKE Autopilot created a Node based on workload requirement</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't specify resource requests in your deployment spec, then Autopilot will set <code>CPU</code> to 2000m and <code>Memory</code> to 4gb. If your app requires less resources than that, make sure you set the resource request for your deployment. The minimum CPU is 250m and the minimum memory is 512mb.</p>
+</div>
+<h2 id="3-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher">3 Commit Terraform configurations to repository and share it with Instructor/Teacher<a class="headerlink" href="#3-commit-terraform-configurations-to-repository-and-share-it-with-instructorteacher" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Commit <code>ycit020_module3</code> folder using the following Git commands:</p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>git add .
+git commit -m &quot;Gcloud Documentation for Module 3 Assignment&quot;
+</code></pre></div>
+
+<p><strong>Step 2</strong> Push commit to the Cloud Source Repositories:</p>
+<div class="codehilite"><pre><span></span><code>git push origin master
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Your instructor will be able to review your code and grade it.</p>
+</div>
+<h2 id="4-cleanup">4 Cleanup<a class="headerlink" href="#4-cleanup" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>export ORG=$student_name
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export PRODUCT=notepad
+export ENV=gcloud
+export PROJECT_PREFIX=1   # Project has to be unique
+export PROJECT_ID=$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
+
+<p>Delete GKE standard Cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-standard-cluster
+</code></pre></div>
+
+<p>Delete GKE Autopilot Cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete $ORG-$PRODUCT-$ENV-auto-cluster
+</code></pre></div>
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>We are going to delete the <code>$ORG-$PRODUCT-$ENV-$PROJECT_PREFIX</code> only,
+please do not delete your project with Source Code Repo.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>gcloud projects delete $ORG-$PRODUCT-$ENV-$PROJECT_PREFIX
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
