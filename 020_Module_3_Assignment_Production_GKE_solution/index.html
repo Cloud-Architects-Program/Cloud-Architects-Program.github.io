@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://cloud-architects-program.github.io/020_Module_3_Assignment_Production_GKE/">
+        <link rel="canonical" href="https://cloud-architects-program.github.io/020_Module_3_Assignment_Production_GKE_solution/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>020 Module 3 Assignment Production GKE - Cloud Architecture</title>
+        <title>020 Module 3 Assignment Production GKE solution - Cloud Architecture</title>
       
     
     
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              020 Module 3 Assignment Production GKE
+              020 Module 3 Assignment Production GKE solution
             
           </span>
         </div>
@@ -984,7 +984,7 @@
   
 
 
-  <h1>020 Module 3 Assignment Production GKE</h1>
+  <h1>020 Module 3 Assignment Production GKE solution</h1>
 
 <p><strong>Objective:</strong></p>
 <ul>
@@ -1171,7 +1171,7 @@ gcloud compute firewall-rules delete default-allow-icmp
 <li>MTUs: <code>default</code></li>
 </ul>
 <p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
-<p>with name <code>$ORG-$PRODUCT-$ENV-vpc</code>, with subnet mode <code>custom</code>,
+<p>with name <code>ORG-$PRODUCT-$ENV-vpc</code>, with subnet mode <code>custom</code>,
 and <code>regional</code>.</p>
 <p><strong>Step 1:</strong> Create a new custom mode VPC network:</p>
 <p>Set variables:</p>
@@ -1182,7 +1182,10 @@ and <code>regional</code>.</p>
 export ENV=gcloud
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>TODO: gcloud create network
+<div class="codehilite"><pre><span></span><code>gcloud compute networks create $ORG-$PRODUCT-$ENV-vpc \
+    --subnet-mode=custom \
+    --bgp-routing-mode=regional \
+    --mtu=1460
 </code></pre></div>
 
 <p>Review created network:</p>
@@ -1203,7 +1206,7 @@ edit production_gke.txt
 <p class="admonition-title">Important</p>
 <p>If <code>production_gke.txt</code> is not updated with commands this will reduce score for you assignment</p>
 </div>
-<p><strong>Step 2:</strong> Create firewall rules  <code>default-allow-ssh</code>:</p>
+<p><strong>Step 2:</strong> Create firewall rules <code>default-allow-internal</code> and <code>default-allow-ssh</code>:</p>
 <div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules create $ORG-$PRODUCT-$ENV-allow-tcp-ssh-icmp --network $ORG-$PRODUCT-$ENV-vpc --allow tcp:22,tcp:3389,icmp
 </code></pre></div>
 
@@ -1222,9 +1225,6 @@ edit production_gke.txt
 design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code> VPC-native GKE clusters, where</p>
 <ul>
 <li>
-<p>2 GKE Clusters per Project</p>
-</li>
-<li>
 <p>Max 200 <code>Nodes</code> per cluster and <em>primary range</em> belongs to Class A and starting from (10.130.0.0/x) </p>
 </li>
 <li>
@@ -1233,19 +1233,17 @@ design VPC subnet ranges for <code>dev</code>, <code>stg</code>, <code>prd</code
 <li>
 <p>Max 500 <code>Services</code> per cluster and <em>service secondary ranges</em>  belongs to Class A and starting from (10.100.0.0/x)</p>
 </li>
-<li>
-<p>CIDR range for master-ipv4-cidr (k8s api range) belongs to Class B (172.16.0.0/x)</p>
-</li>
 </ul>
+<p>In your design assume that each cluster will have maximum of 59 Nodes with max 110 Pods per node and 1700 Service per cluster.</p>
 <p>Use following reference docs:</p>
 <ol>
 <li><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters</a></li>
 <li><a href="https://cloud.google.com/architecture/gke-address-management-options">GKE address management</a> </li>
 </ol>
 <p>Using tables from <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips">VPC-native clusters document</a> and online subnet <a href="https://www.subnet-calculator.com/">calculator</a>, create a table for <code>dev</code>, <code>stg</code>, <code>prd</code> in the following format and store result under <code>production_gke.txt</code>:</p>
-<div class="codehilite"><pre><span></span><code>Project   | Subnet Name |     subnet          |    pod range     |    srv range   | kubectl api range
-app 1 Dev | dev-1       |     (10.130.0.0/x)  |     IP range     |     IP range   |     IP range    
-          | dev-2       |     (10.130.0.0/x)  |     IP range     |     IP range   |     IP range      
+<div class="codehilite"><pre><span></span><code>Project   | Subnet Name |     subnet       |    pod range       |    srv range        | kubectl api range
+app 1 Dev | dev-1       |   10.130.0.0/24  |     10.0.0.0/16    |     10.100.0.0/23   |     172.16.0.0/28
+          | dev-2       |   10.131.0.0/24  |     10.1.0.0/16    |     10.100.2.0/23   |     172.16.0.16/28
 </code></pre></div>
 
 <p>Document a subnet VPC design in <code>production_gke.txt</code> doc under <code>step 2</code>.</p>
@@ -1256,60 +1254,30 @@ edit production_gke.txt
 <p>Save and go to next step.</p>
 <p><strong>Task N3:</strong> Create a <code>user-managed</code> subnet.</p>
 <p>Create a subnet for <code>dev</code> cluster, taking in consideration VPC subnet ranges created in above table, where:</p>
-<p>Subnet N1 for <code>GKE Standard Cluster</code>:</p>
-<ul>
-<li>
-<p>Subnet name: <code>gke-standard-$ORG-$PRODUCT-$ENV-subnet</code></p>
-</li>
-<li>
-<p>Region: <code>us-central1</code></p>
-</li>
-<li>
-<p>Node Range: See column <code>subnet</code> in above table for <code>dev-1</code> cluster</p>
-</li>
-<li>
-<p>Secondary Ranges:</p>
-<ul>
-<li>
-<p>Service range name: <code>gke-standard-services</code></p>
-</li>
-<li>
-<p>Service range CIDR: See column <code>srv range</code> in above table for <code>dev-1</code> cluster</p>
-</li>
-<li>
-<p>Pods range name: <code>gke-standard-pods</code></p>
-</li>
-<li>
-<p>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-1</code> cluster</p>
-</li>
-</ul>
-</li>
-<li>
-<p>Features:</p>
-<ul>
-<li>Flow Logs</li>
-<li>Private IP Google Access</li>
-</ul>
-</li>
-</ul>
-<p>Subnet N2 for <code>GKE Autopilot</code>:</p>
-<ul>
-<li>Subnet name: <code>gke-auto-$ORG-$PRODUCT-$ENV-subnet</code></li>
-<li>Region: <code>us-central1</code></li>
-<li>Node Range: See column <code>subnet</code> in above table for <code>dev-2</code> cluster</li>
-<li>Secondary Ranges:<ul>
-<li>Service range name: <code>gke-auto-services</code></li>
-<li>Service range CIDR: See column <code>srv range</code> in above table for <code>dev-2</code> cluster</li>
-<li>Pods range name: <code>gke-auto-pods</code></li>
-<li>Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-2</code> cluster</li>
-</ul>
-</li>
-<li>Features:<ul>
-<li>Flow Logs</li>
-<li>Private IP Google Access</li>
-</ul>
-</li>
-</ul>
+<p>Subnet N1 for <code>GKE Standard Cluster</code>:
+  * Subnet name: <code>gke-standard-$ORG-$PRODUCT-$ENV-subnet</code>
+  * Region: <code>us-central1</code>
+  * Node Range: See column <code>subnet</code> in above table for <code>dev-1</code> cluster
+  * Secondary Ranges:
+    * Service range name: <code>gke-standard-services</code>
+    * Service range CIDR: See column <code>srv range</code> in above table for <code>dev-1</code> cluster
+    * Pods range name: <code>gke-standard-pods</code>
+    * Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-1</code> cluster
+  * Features:
+    * Flow Logs
+    * Private IP Google Access</p>
+<p>Subnet N2 for <code>GKE Standard Autopilot</code>:
+  * Subnet name: <code>gke-auto-$ORG-$PRODUCT-$ENV-subnet</code>
+  * Region: <code>us-central1</code>
+  * Node Range: See column <code>subnet</code> in above table for <code>dev-2</code> cluster
+  * Secondary Ranges:
+    * Service range name: <code>gke-auto-services</code>
+    * Service range CIDR: See column <code>srv range</code> in above table for <code>dev-2</code> cluster
+    * Pods range name: <code>gke-auto-pods</code>
+    * Pods range CIDR: See column <code>pod range</code> in above table for <code>dev-2</code> cluster
+  * Features:
+    * Flow Logs
+    * Private IP Google Access</p>
 <div class="codehilite"><pre><span></span><code>export ORG=$student_name
 </code></pre></div>
 
@@ -1317,9 +1285,20 @@ edit production_gke.txt
 export ENV=gcloud
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>TODO: gcloud compute networks subnets create gke-standard-$ORG-$PRODUCT-$ENV-subnet
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets create gke-standard-$ORG-$PRODUCT-$ENV-subnet \
+--network $ORG-$PRODUCT-$ENV-vpc \
+--range 10.130.0.0/24 \
+--region us-central1 --enable-flow-logs \
+--enable-private-ip-google-access \
+--secondary-range gke-standard-services=10.100.0.0/23,gke-standard-pods=10.0.0.0/16
+</code></pre></div>
 
-TODO: gcloud compute networks subnets create gke-auto-$ORG-$PRODUCT-$ENV-subnet
+<div class="codehilite"><pre><span></span><code>gcloud compute networks subnets create gke-auto-$ORG-$PRODUCT-$ENV-subnet \
+--network $ORG-$PRODUCT-$ENV-vpc \
+--range 10.131.0.0/24 \
+--region us-central1 --enable-flow-logs \
+--enable-private-ip-google-access \
+--secondary-range gke-auto-services=10.100.2.0/23,gke-auto-pods=10.1.0.0/16
 </code></pre></div>
 
 <p>Reference docs:</p>
@@ -1373,7 +1352,20 @@ edit production_gke.txt
 export ENV=gcloud
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>#TODO gcloud clusters create $ORG-$PRODUCT-$ENV-cluster
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create  $ORG-$PRODUCT-$ENV-standard-cluster \
+    --region us-central1 \
+    --num-nodes 1 \
+    --machine-type &quot;e2-micro&quot; \
+    --cluster-version &quot;1.22.12-gke.300&quot; \
+    --release-channel &quot;regular&quot; \
+    --enable-dataplane-v2 \
+    --network $ORG-$PRODUCT-$ENV-vpc \
+    --subnetwork gke-standard-$ORG-$PRODUCT-$ENV-subnet \
+    --cluster-secondary-range-name gke-standard-pods \
+    --services-secondary-range-name gke-standard-services \
+    --enable-ip-alias \
+    --enable-private-nodes \
+    --master-ipv4-cidr 172.16.0.0/28
 </code></pre></div>
 
 <p>Document a GKE cluster creation command in <code>production_gke.txt</code> doc under <code>step 4</code>.</p>
@@ -1653,7 +1645,13 @@ And can additionally configured with Private Clusters. </p>
 export ENV=gcloud
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>#TODO gcloud container clusters create-auto $ORG-$PRODUCT-$ENV-auto-cluster
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create-auto $ORG-$PRODUCT-$ENV-auto-cluster \
+    --region us-central1 \
+    --network $ORG-$PRODUCT-$ENV-vpc \
+    --subnetwork gke-auto-$ORG-$PRODUCT-$ENV-subnet \
+    --cluster-secondary-range-name gke-auto-pods \
+    --services-secondary-range-name gke-auto-services \
+    --async
 </code></pre></div>
 
 <div class="admonition result">

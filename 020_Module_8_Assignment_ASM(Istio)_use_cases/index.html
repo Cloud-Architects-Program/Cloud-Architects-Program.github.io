@@ -1,0 +1,1341 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cloud-architects-program.github.io/020_Module_8_Assignment_ASM%28Istio%29_use_cases/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Istio Policies - Cloud Architecture</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#istio-policies" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Istio Policies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    YCIT020
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            YCIT020
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Lab_Terraform_Fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 2 Terraform Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    YCIT019
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            YCIT019
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 5 Lab - Docker Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 6 Lab - Advanced Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_8_Lab_Kubernetes_Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 8 Lab - Kuberenetes Concepts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Lab - Kubernetes Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Part 2 Lab Kubernetes Autoscaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 10 Lab - Kubernetes Networking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 11 Lab - Kubernetes Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Assignments
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Assignments
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 5 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 6 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 8 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 10 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assignment5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assignment6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-gke-cluster-on-gcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create GKE Cluster on GCP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-deploy-anthos-service-mesh-on-the-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Deploy Anthos Service Mesh on the cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deploy-application-to-the-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Deploy application to the cluster:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-generate-traffic-to-the-application-using-seige" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Generate traffic to the application using seige
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-exploring-istio-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Exploring Istio Policies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Exploring Istio Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-istio-security-mtls-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Istio Security &amp; mTLS configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Assignment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Cleanup
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="istio-policies">Istio Policies<a class="headerlink" href="#istio-policies" title="Permanent link">&para;</a></h1>
+<p><strong>Objective:</strong></p>
+<ul>
+<li>Install Anthos Service Mesh (Managed Istio)</li>
+<li>Deploy bookshelf application and enable anthos proxy sidecar injection</li>
+<li>Deploy Istio policies and verify funcationality </li>
+</ul>
+<h2 id="1-create-gke-cluster-on-gcp">1. Create GKE Cluster on GCP<a class="headerlink" href="#1-create-gke-cluster-on-gcp" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enable the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com \
+anthos.googleapis.com container.googleapis.com \
+compute.googleapis.com monitoring.googleapis.com \
+logging.googleapis.com cloudtrace.googleapis.com \
+iamcredentials.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 2</strong> Export variable names to be used in the lab</p>
+<div class="codehilite"><pre><span></span><code>ZONE1=us-central1-b
+PROJECT=&lt;PROJECT_ID&gt;
+</code></pre></div>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with 3 nodes:</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute networks create default \
+    --subnet-mode=auto \
+    --bgp-routing-mode=regional \
+    --mtu=1460
+</code></pre></div>
+
+<p>WORKLOAD_POOL will be used to enable Workload Identity, which is the recommended way to safely access Google Cloud services from GKE applications.
+MESH_ID will be used to set the mesh_id label on the cluster, which is required for metrics to get displayed on the Anthos Service Mesh Dashboard in the Cloud Console. If no MESH_ID is provided, a deafult ID based on project ID is used for creation</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create central-gke-cluster \
+--project=${PROJECT} --zone=${ZONE1} \
+--machine-type=e2-standard-2 --num-nodes=3 \
+--scopes=cloud-platform \
+--workload-pool=${PROJECT}.svc.id.goog
+</code></pre></div>
+
+<p>Modify the cluster admin permissions to your user ID. This will allow the user to install Anthos Service Mesh on to the cluster  </p>
+<div class="codehilite"><pre><span></span><code>kubectl create clusterrolebinding cluster-admin-binding   --clusterrole=cluster-admin   --user=&lt;USER_EMAIL&gt;
+</code></pre></div>
+
+<h2 id="2-deploy-anthos-service-mesh-on-the-cluster">2. Deploy Anthos Service Mesh on the cluster<a class="headerlink" href="#2-deploy-anthos-service-mesh-on-the-cluster" title="Permanent link">&para;</a></h2>
+<p>This installation guide install Anthos Service Mesh on the GKE Cluster. Installing ASM triggers a set of managed services to be active on the GCP backend, including the ASM Service Mesh Dashboard.  </p>
+<p>Google provides a tool, asmcli, which allows you to install or upgrade Anthos Service Mesh. <code>asmcli</code> will configure your project and cluster as follows:</p>
+<ul>
+<li>Grant you the required Identity and Access Management (IAM) permissions on your Google Cloud project.</li>
+<li>Enable the required Google APIs on your Cloud project.</li>
+<li>Set a label on the cluster that identifies the mesh.</li>
+<li>Create a service account that lets data plane components, such as the sidecar proxy, securely access your project's data and resources.</li>
+<li>Register the cluster to the fleet if it isn't already registered.</li>
+</ul>
+<p>Download the latest version of Anthos Mesh CLI</p>
+<div class="codehilite"><pre><span></span><code>curl https://storage.googleapis.com/csm-artifacts/asm/asmcli &gt; asmcli
+chmod +x asmcli
+</code></pre></div>
+
+<p>Connect to the Anthos Cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials central-gke-cluster --zone us-central1-b --project &lt;PROJECT_ID&gt;
+</code></pre></div>
+
+<p><strong>Step 2</strong> Run Pre-verification steps on the cluster </p>
+<div class="codehilite"><pre><span></span><code>./asmcli validate \
+--project_id $PROJECT \
+--cluster_name central-gke-cluster \
+--cluster_location $ZONE1 \
+--fleet_id $PROJECT
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please ignore any validation errors as in this case, the validation is confirming that the cluster has all necessary components to install ASM, not that ASM was installed correctly.</p>
+</div>
+<p><strong>Step 3</strong> Install Anthos Service Mesh 
+ The following command will install Anthos Service Mesh. The --enable_all flag allows the script to enable the required Google APIs, set Identity and Access Management permissions, and make the required updates to your cluster, which includes enabling GKE Workload Identity:</p>
+<div class="codehilite"><pre><span></span><code>./asmcli install \
+  --project_id $PROJECT \
+  --cluster_name central-gke-cluster \
+  --cluster_location $ZONE1 \
+  --fleet_id $PROJECT \
+  --option legacy-default-ingressgateway \
+  --enable_all \
+  --ca mesh_ca
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Wait a few seconds for the Anthos Service Mesh install to complete.</p>
+</div>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n istio-system
+</code></pre></div>
+
+<p>The isito-system namespace created, will be used in the further steps to deploy Istio Ingress Gateway </p>
+<p><strong>Step 4</strong> Obtain the revision version for ASM identified in the label.</p>
+<div class="codehilite"><pre><span></span><code>REVISION=$(kubectl get deploy -n istio-system -l app=istiod -o jsonpath={.items[*].metadata.labels.&#39;istio\.io\/rev&#39;}&#39;{&quot;\n&quot;}&#39;)
+</code></pre></div>
+
+<p><strong>Step 5</strong> Istio Ingress Gateway install
+Anthos Service Mesh gives you the option to deploy and manage gateways as part of your service mesh. A gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections. Gateways are Envoy proxies that provide you with fine-grained control over traffic entering and leaving the mesh.</p>
+<p>The Default ASM configuration doesnt include the installation of Istio Ingress Gateway. Hence we will manually create the Istio Ingress Gateway configuration. </p>
+<div class="codehilite"><pre><span></span><code>GATEWAY_NS=istio-gateway
+kubectl create namespace $GATEWAY_NS
+kubectl label namespace $GATEWAY_NS istio.io/rev=${REVISION} --overwrite
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<div class="codehilite"><pre><span></span><code>    &gt; namespace/istio-gateway labeled
+</code></pre></div>
+
+<p>Anthos Service Mesh uses sidecar proxies to enhance network security, reliability, and observability. With Anthos Service Mesh, these functions are abstracted away from an application's primary container and implemented in a common out-of-process proxy delivered as a separate container in the same Pod.</p>
+<p><strong>Step 6</strong> Next we will download configurations for Istio Ingress gateway and start configuration </p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-packages
+kubectl apply -n $GATEWAY_NS -f anthos-service-mesh-packages/samples/gateways/istio-ingressgateway
+</code></pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+</div>
+<p>The above steps installs the Istio Ingress Gateway </p>
+<div class="codehilite"><pre><span></span><code>* `istiod` - contains components such as `Citadel` and `Pilot`
+* `istio-ingressgateway` Istio Ingress Gateway
+</code></pre></div>
+
+<h2 id="3-deploy-application-to-the-cluster">3. Deploy application to the cluster:<a class="headerlink" href="#3-deploy-application-to-the-cluster" title="Permanent link">&para;</a></h2>
+<p>In the next section, we will deploy the sample BookInfo application on the GKE cluster 
+  <img alt="alt text" src="../images/bookinfo-app.png" title="Book Info Application" /></p>
+<div class="codehilite"><pre><span></span><code>kubectl label namespace default istio-injection- istio.io/rev=$REVISION --overwrite
+git clone https://github.com/istio/istio.git
+</code></pre></div>
+
+<p>Review the following BookShelf sample application Deployment and service configuration </p>
+<div class="codehilite"><pre><span></span><code>cat istio/samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p>Apply the Kubernetes manifests to the cluster</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f istio/samples/bookinfo/platform/kube/bookinfo.yaml
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>service/details created
+serviceaccount/bookinfo-details created
+deployment.apps/details-v1 created
+service/ratings created
+serviceaccount/bookinfo-ratings created
+deployment.apps/ratings-v1 created
+service/reviews created
+serviceaccount/bookinfo-reviews created
+deployment.apps/reviews-v1 created
+deployment.apps/reviews-v2 created
+deployment.apps/reviews-v3 created
+service/productpage created
+serviceaccount/bookinfo-productpage created
+deployment.apps/productpage-v1 created
+</code></pre></div>
+
+<p>Notice that the Deployments should have two containers per pod, of which one is the istio-proxy</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p>To review the list of services created, we can run the following command</p>
+<div class="codehilite"><pre><span></span><code>kubectl get services
+</code></pre></div>
+
+<p>To test if the services are runnning, we can access the homepage of the deployment. In this case, we are accessing the Product Page from Rating Pods </p>
+<div class="codehilite"><pre><span></span><code>kubectl exec -it $(kubectl get pod -l app=ratings \
+-o jsonpath=&#39;{.items[0].metadata.name}&#39;) \
+-c ratings -- curl productpage:9080/productpage | grep -o &quot;&lt;title&gt;.*&lt;/title&gt;&quot;
+</code></pre></div>
+
+<p><strong>Step 3</strong> Next, we will work on making the service externally accessible</p>
+<p>Verify that Istio Ingressgateway using external Load Balancer:</p>
+<div class="codehilite"><pre><span></span><code>cat istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+kubectl apply -f istio/samples/bookinfo/networking/bookinfo-gateway.yaml
+kubectl get gateway 
+</code></pre></div>
+
+<p>To access the external access, it is important to understand that all the traffic goes through the istio-ingressgateway Load Balancer</p>
+<div class="codehilite"><pre><span></span><code>kubectl get svc istio-ingressgateway -n istio-system
+</code></pre></div>
+
+<p><strong>Output</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                   TYPE           CLUSTER-IP    EXTERNAL-IP     Ports
+istio-ingressgateway   LoadBalancer   10.32.1.153   35.192.101.76   15021:32714/TCP,80:30042/TCP,443:31889/TCP,...  62s
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>export GATEWAY_URL=&lt;EXTERNAL-IP&gt;   
+curl -I http://${GATEWAY_URL}/productpage
+</code></pre></div>
+
+<p>You can also open the link in the browser to see the same page</p>
+<p>Refresh the page several times.</p>
+<p>Notice how you see three different versions of reviews, since we have not yet used Istio to control the version routing.</p>
+<p>There are three different book review services being called in a round-robin style:</p>
+<ul>
+<li>no stars</li>
+<li>black stars</li>
+<li>red stars</li>
+</ul>
+<h2 id="4-generate-traffic-to-the-application-using-seige">4. Generate traffic to the application using seige<a class="headerlink" href="#4-generate-traffic-to-the-application-using-seige" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Install the seige application and run load tests for 5 mins </p>
+<div class="codehilite"><pre><span></span><code>sudo apt install siege
+siege http://${GATEWAY_URL}/productpage
+</code></pre></div>
+
+<p>Stop the tests by using <code>Ctrl+C</code></p>
+<p><strong>Step 2</strong> Verify output in the Console</p>
+<ul>
+<li>
+<p>Anthos Service Mesh Page</p>
+</li>
+<li>
+<p>Observe the Services, Connection and Latency in the Table / Topology View</p>
+<p><img alt="alt text" src="../images/asm-console.png" title="ASM console view" /></p>
+</li>
+</ul>
+<h2 id="5-exploring-istio-policies">5. Exploring Istio Policies<a class="headerlink" href="#5-exploring-istio-policies" title="Permanent link">&para;</a></h2>
+<h3 id="51-istio-security-mtls-configuration">5.1 Istio Security &amp; mTLS configuration<a class="headerlink" href="#51-istio-security-mtls-configuration" title="Permanent link">&para;</a></h3>
+<p>We will be enforcing strict mTLS between the services in this step by making configuration changes </p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f - &lt;&lt;EOF
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+name: &quot;default&quot;
+namespace: &quot;istio-system&quot;
+spec:
+mtls:
+    mode: STRICT
+EOF
+</code></pre></div>
+
+<p>Create 3 new namespaces for testing purposes and two of those will have anthos proxy enabled and one of them will not have any proxy config. </p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns foo
+kubectl create ns bar
+kubectl create ns legacy
+
+kubectl label namespace foo istio-injection- istio.io/rev=$REVISION --overwrite
+kubectl label namespace bar istio-injection- istio.io/rev=$REVISION --overwrite
+</code></pre></div>
+
+<p>Any traffic that is originating from the anthos proxy is authenticated adnd will be allowed in the cluster, whereas any deployment with no proxy will not be allowed to communicated with deployments that have the proxy. </p>
+<p>In this step, we will be deploying two sample pods per namespace </p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f  istio/samples/httpbin/httpbin.yaml -n foo
+kubectl apply -f  istio/samples/sleep/sleep.yaml -n foo
+
+kubectl apply -f  istio/samples/httpbin/httpbin.yaml -n bar
+kubectl apply -f  istio/samples/sleep/sleep.yaml -n bar
+
+kubectl apply -f istio/samples/httpbin/httpbin.yaml -n legacy
+kubectl apply -f istio/samples/sleep/sleep.yaml -n legacy
+</code></pre></div>
+
+<p>Run the following authentication Tests </p>
+<div class="codehilite"><pre><span></span><code>kubectl exec &quot;$(kubectl get pod -l app=sleep -n bar -o jsonpath={.items..metadata.name})&quot; -c sleep -n bar -- curl http://httpbin.foo:8000/ip -s -o /dev/null -w &quot;%{http_code}\n&quot;
+
+for from in &quot;foo&quot; &quot;bar&quot; &quot;legacy&quot;; do for to in &quot;foo&quot; &quot;bar&quot; &quot;legacy&quot;; do kubectl exec &quot;$(kubectl get pod -l app=sleep -n ${from} -o jsonpath={.items..metadata.name})&quot; -c sleep -n ${from} -- curl -s &quot;http://httpbin.${to}:8000/ip&quot; -s -o /dev/null -w &quot;sleep.${from} to httpbin.${to}: %{http_code}\n&quot;; done; done
+</code></pre></div>
+
+<p>We can observe that any traffic that originated from namespaces that doesnt have the Istio proxy enabled will not have a successful response as indicated below </p>
+<p>Delete all the temp configration created for testing </p>
+<div class="codehilite"><pre><span></span><code>kubectl delete peerauthentication -n istio-system default
+kubectl delete ns legacy
+</code></pre></div>
+
+<h3 id="52-assignment">5.2 Assignment<a class="headerlink" href="#52-assignment" title="Permanent link">&para;</a></h3>
+<p><strong>Task 1</strong>
+For the assignment you will be primarily working on deploying Istio Authorization Policy. 
+Navigate to assignment submission repo</p>
+<div class="codehilite"><pre><span></span><code>mkdir -p ~/$student_name-notepad/module8
+cd ~/$student_name-notepad/module8
+</code></pre></div>
+
+<p>For the assignment tasks </p>
+<ul>
+<li>
+<p>Use the two namespaces <code>foo</code> &amp; <code>bar</code> and the deployments created in the previous step for this task</p>
+</li>
+<li>
+<p>You will not modify the existing deployments in both namespace</p>
+</li>
+<li>
+<p>You wil be creating an authorization policy for both namespaces that will not allow
+    communication outside of its own namespace </p>
+</li>
+<li>
+<p>Create the policy with the filename <code>istio-policy-1.yaml</code></p>
+<p><code>kubectl apply -f istio-policy-1.yaml</code></p>
+</li>
+</ul>
+<p>You can run the following command to test output of the Istio authorization policy  </p>
+<div class="codehilite"><pre><span></span><code>for from in &quot;foo&quot; &quot;bar&quot;; do for to in &quot;foo&quot; &quot;bar&quot;; do kubectl exec &quot;$(kubectl get pod -l app=sleep -n ${from} -o jsonpath={.items..metadata.name})&quot; -c sleep -n ${from} -- curl -s &quot;http://httpbin.${to}:8000/ip&quot; -s -o /dev/null -w &quot;sleep.${from} to httpbin.${to}: %{http_code}\n&quot;; done; done
+</code></pre></div>
+
+<p><strong>Task 2</strong>
+In this task, you will use IP allow access list to allow traiffc to ingress gateway from only certain IPs.</p>
+<ul>
+<li>
+<p>You will use the <code>Istio Authorization Policy</code> configuration to allow traffic only from your cloud console IP. You will be applying the policy to the istio-system namespace so that it applies to all the deployments </p>
+</li>
+<li>
+<p>Create the policy with the filename <code>istio-policy-2.yaml</code></p>
+</li>
+<li>
+<p><code>kubectl apply -f istio-policy-2.yaml</code></p>
+</li>
+</ul>
+<p>You can use the following command to test access to the page based on the IP allow list </p>
+<div class="codehilite"><pre><span></span><code>curl -I http://${GATEWAY_URL}/productpage -s -o /dev/null -w &quot;%{http_code}\n&quot;
+</code></pre></div>
+
+<p><strong>Submission the assignement to the git repo</strong></p>
+<div class="codehilite"><pre><span></span><code>cd ~/$student_name-notepad
+git add .
+git commit -m &quot;TF manifests for Module 8 Assignment&quot;
+</code></pre></div>
+
+<h2 id="6-cleanup">6 Cleanup<a class="headerlink" href="#6-cleanup" title="Permanent link">&para;</a></h2>
+<p>Delete GKE cluster:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete central-gke-clusuter --region $ZONE1
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

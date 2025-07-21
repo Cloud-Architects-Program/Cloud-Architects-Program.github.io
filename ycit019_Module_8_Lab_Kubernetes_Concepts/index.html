@@ -1,0 +1,2112 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://cloud-architects-program.github.io/ycit019_Module_8_Lab_Kubernetes_Concepts/">
+      
+      
+        <link rel="prev" href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/">
+      
+      
+        <link rel="next" href="../ycit019_Module_9_Kubernetes_Features/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Module 8 Lab - Kuberenetes Concepts - Cloud Architecture</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kubernetes-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Cloud Architecture" class="md-header__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cloud Architecture
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Module 8 Lab - Kuberenetes Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cloud Architecture" class="md-nav__button md-logo" aria-label="Cloud Architecture" data-md-component="logo">
+      
+  <img src="../images/k8s.svg" alt="logo">
+
+    </a>
+    Cloud Architecture
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Cloud-Architects-Program/assignment" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    YCIT020
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            YCIT020
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../020_Module_2_Lab_Terraform_Fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 2 Terraform Fundamentals
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    YCIT019
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            YCIT019
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_5_Lab_Docker_basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 5 Lab - Docker Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_6_Lab_Advanced_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 6 Lab - Advanced Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 7 Lab - Deploy Kubernetes Cluster with Kubeadm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Module 8 Lab - Kuberenetes Concepts
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 8 Lab - Kuberenetes Concepts
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-gke-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Create GKE Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Pods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Pods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-pod-with-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Create a Pod with manifest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-labels-selectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Labels &amp; Selectors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Labels &amp; Selectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-label-and-select-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Label and Select Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-label-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Label Nodes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create a Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cleanup-services-and-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Cleanup Services and Pods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Deployments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-hello-app-on-kubernetes-using-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Deploy hello-app on Kubernetes using Deployments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Deploy hello-app on Kubernetes using Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-create-a-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 Create a Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-scale-a-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 Scale a Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-rolling-update-of-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 Rolling Update of Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 NameSpace
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 NameSpace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-viewing-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Viewing namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-creating-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Creating Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-setting-the-namespace-preference" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Setting the namespace preference.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-deleting-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Deleting Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-create-a-pod-in-a-different-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Create a pod in a different namespace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Cleaning Up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_9_Kubernetes_Features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Lab - Kubernetes Features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Module_10_Kubernetes_Scaling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Part 2 Lab Kubernetes Autoscaling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_10_Networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 10 Lab - Kubernetes Networking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_Lab_11_Storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 11 Lab - Kubernetes Storage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Assignments
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Assignments
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 5 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 6 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 8 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass4_2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 9 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Module 10 Assignment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assignment5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ycit019_ass6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Assignment6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-create-gke-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Create GKE Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Pods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Pods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-create-a-pod-with-manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Create a Pod with manifest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-labels-selectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Labels &amp; Selectors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Labels &amp; Selectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-label-and-select-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Label and Select Pods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-label-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Label Nodes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Services
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-create-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Create a Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cleanup-services-and-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Cleanup Services and Pods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Deployments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-deploy-hello-app-on-kubernetes-using-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Deploy hello-app on Kubernetes using Deployments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 Deploy hello-app on Kubernetes using Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-create-a-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 Create a Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-scale-a-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 Scale a Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-rolling-update-of-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 Rolling Update of Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 NameSpace
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 NameSpace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-viewing-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Viewing namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-creating-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Creating Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-setting-the-namespace-preference" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Setting the namespace preference.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-deleting-namespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Deleting Namespaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-create-a-pod-in-a-different-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5 Create a pod in a different namespace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cleaning-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Cleaning Up
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kubernetes-concepts">Kubernetes Concepts<a class="headerlink" href="#kubernetes-concepts" title="Permanent link">&para;</a></h1>
+<p>Objective:</p>
+<p>Learn basic Kubernetes concepts:</p>
+<ul>
+<li>Create a GKE Cluster</li>
+<li>Pods</li>
+<li>Labels, Selectors and Annotations</li>
+<li>Create Deployments</li>
+<li>Create Services</li>
+<li>namespaces</li>
+</ul>
+<h2 id="0-create-gke-cluster">0 Create GKE Cluster<a class="headerlink" href="#0-create-gke-cluster" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Enbale the Google Kubernetes Engine API.</p>
+<div class="codehilite"><pre><span></span><code>gcloud services enable container.googleapis.com
+</code></pre></div>
+
+<p><strong>Step 2</strong> From the cloud shell, run the following command to create a cluster with two nodes:</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters create k8s-concepts \
+--zone us-central1-c \
+--num-nodes 2
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME          LOCATION       MASTER_VERSION   MASTER_IP      MACHINE_TYPE  NODE_VERSION     NUM_NODES  STATUS
+k8s-concepts  us-central1-c  1.19.9-gke.1400  34.121.222.83  e2-medium     1.19.9-gke.1400  2          RUNNING
+</code></pre></div>
+
+<p><strong>Step 3</strong> Authenticate to the cluster.</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters get-credentials k8s-concepts --zone us-central1-c
+</code></pre></div>
+
+<h2 id="1-pods">1 Pods<a class="headerlink" href="#1-pods" title="Permanent link">&para;</a></h2>
+<h3 id="11-create-a-pod-with-manifest">1.1 Create a Pod with manifest<a class="headerlink" href="#11-create-a-pod-with-manifest" title="Permanent link">&para;</a></h3>
+<p><strong>Reference:</strong> <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/">Pod Overview</a></p>
+<p><strong>Step 1</strong> Printout explanation of the object and lists of attributes:</p>
+<div class="codehilite"><pre><span></span><code>kubectl explain pods
+</code></pre></div>
+
+<p>See all possible fields available for the pods:</p>
+<div class="codehilite"><pre><span></span><code>kubectl explain pods.spec --recursive
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It's not require to provide all possible fields for the Pods or any other
+resources. Most of the fields will be added by default if not specified.
+For the Pods at minimum it is required to specify <code>image</code>, <code>name</code>, <code>ports</code>
+inside of spec.containers.</p>
+</div>
+<p><strong>Step 2</strong> Define a new pod in the file <code>echoserver-pod.yaml</code> :</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; echoserver-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: echoserver
+  labels:
+    app: echoserver
+spec:
+  containers:
+  - name: echoserver
+    image: gcr.io/google_containers/echoserver:1.10
+    ports:
+    - containerPort: 8080
+EOF
+</code></pre></div>
+
+<p>Here, we use the existing image <code>echoserver</code>. This is a simple server that
+responds with the http headers it received. It runs on nginx server and
+implemented using lua in the nginx configuration: <a href="https://github.com/kubernetes/contrib/tree/master/ingress/echoheaders">https://github.com/kubernetes/contrib/tree/master/ingress/echoheaders</a></p>
+<p><strong>Step 3</strong> Create the <code>echoserver</code> pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl apply -f echoserver-pod.yaml
+</code></pre></div>
+
+<p><strong>Step 4</strong> Use <code>kubectl get pods</code> to watch the pod get created:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Result:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME         READY     STATUS    RESTARTS   AGE
+echoserver   1/1       Running   0          5s
+</code></pre></div>
+
+<p><strong>Step 5</strong> Use <code>kubectl describe pods/podname</code> to watch the details about scheduled pod:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe pods/echoserver
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Review and discuss the following fields:</p>
+<ul>
+<li>
+<p>Namespace</p>
+</li>
+<li>
+<p>Status</p>
+</li>
+<li>
+<p>Containers</p>
+</li>
+<li>
+<p>QoS Class</p>
+</li>
+<li>
+<p>Events</p>
+</li>
+</ul>
+</div>
+<p><strong>Step 6</strong> Now let’s get the pod definition back from Kubernetes:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods echoserver -o yaml &gt; echoserver-pod-created.yaml
+cat echoserver-pod-created.yaml
+</code></pre></div>
+
+<p>Compare echoserver-pod.yaml and echoserver-pod-created.yaml to see additional
+properties that have been added to the original pod definition.</p>
+<h2 id="2-labels-selectors">2 Labels &amp; Selectors<a class="headerlink" href="#2-labels-selectors" title="Permanent link">&para;</a></h2>
+<p>Organizing pods and other resources with labels.</p>
+<h3 id="21-label-and-select-pods">2.1 Label and Select Pods<a class="headerlink" href="#21-label-and-select-pods" title="Permanent link">&para;</a></h3>
+<p>Reference: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/</p>
+<p><strong>Step 1</strong> Label Pod <code>hello-world</code> with label <code>app=hello</code> and <code>env=test</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl label pods echoserver dep=sales
+kubectl label pods echoserver env=test
+</code></pre></div>
+
+<p><strong>Step 2</strong> See all Pods and all their Labels.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods --show-labels
+</code></pre></div>
+
+<p><strong>Step 3</strong> Select all Pods with labels <code>env=test</code></p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -l env=test
+</code></pre></div>
+
+<h3 id="22-label-nodes">2.2 Label Nodes<a class="headerlink" href="#22-label-nodes" title="Permanent link">&para;</a></h3>
+<p>Reference: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/</p>
+<p><strong>Step 1</strong> List available nodes</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes
+</code></pre></div>
+
+<p><strong>Step 2</strong> List a detailed view of nodes</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes -o wide
+</code></pre></div>
+
+<p><strong>Step 3</strong> List Nodes and their labels</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes --show-labels
+</code></pre></div>
+
+<p><strong>Step 4</strong>  Label the node as <code>size: small</code>. Make sure to replace YOUR_NODE_NAME with one of the nodes you have.</p>
+<div class="codehilite"><pre><span></span><code>kubectl label node YOUR_NODE_NAME size=small
+</code></pre></div>
+
+<p><strong>Step 5</strong> Check the labels for this node</p>
+<div class="codehilite"><pre><span></span><code>kubectl get node YOUR_NODE_NAME --show-labels | grep size
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the upcoming classes we will use node labels to make sure our applications run on eligible nodes only.</p>
+</div>
+<h2 id="3-services">3 Services<a class="headerlink" href="#3-services" title="Permanent link">&para;</a></h2>
+<h3 id="31-create-a-service">3.1 Create a Service<a class="headerlink" href="#31-create-a-service" title="Permanent link">&para;</a></h3>
+<p>We have three running <code>echoserver</code> pods, but we cannot access them yet,
+because the container ports are not accessible. Let’s define a new service that
+will expose echoserver ports and make them accessible.</p>
+<p><strong>Step 1</strong> Create a new file <code>echoserver-service.yaml</code> with the following content:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; echoserver-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: echoserver
+spec:
+  selector:
+    app: echoserver
+  type: &quot;NodePort&quot;
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: echoserver
+EOF
+</code></pre></div>
+
+<p><strong>Step 2</strong> Create a new service:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f echoserver-service.yaml
+</code></pre></div>
+
+<p><strong>Step 3</strong> Check the service details:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe services/echoserver
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Name:               echoserver
+Namespace:          default
+Labels:             &lt;none&gt;
+Selector:           app=echoserver
+Type:               NodePort
+IP:                 ...
+Port:               &lt;unset&gt; 8080/TCP
+NodePort:           &lt;unset&gt; 30366/TCP
+Endpoints:          ...:8080,...:8080,..:8080
+Session Affinity:   None
+No events.
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above output contains one endpoint and a node port, 30366, but it can be different in your case. Remember this port to use it in the next step.</p>
+</div>
+<p><strong>Step 4</strong> We need to open the node port on one of the cluster nodes to be able to access the service externally. Let's first find the exteran IP address of one of the nodes.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get nodes -o wide
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                          STATUS   ROLES    AGE   VERSION            INTERNAL-IP   EXTERNAL-IP    OS-IMAGE                             KERNEL-VERSION   CONTAINER-RUNTIME
+gke-k8s-concepts-default-pool-ad96fd50-1rf1   Ready    &lt;none&gt;   20m   v1.19.9-gke.1400   10.128.0.32   34.136.1.22
+gke-k8s-concepts-default-pool-ad96fd50-jpd2   Ready    &lt;none&gt;   20m   v1.19.9-gke.1400   10.128.0.31   34.69.114.67
+</code></pre></div>
+
+<p><strong>Step 5</strong> Create a firewall rule to allow TCP traffic on your node port. Make sure to replace YOUR_NODE_PORT.</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules create echoserver-node-port --allow tcp:YOUR_NODE_PORT
+</code></pre></div>
+
+<p><strong>Step 6</strong> To access a service exposed via a node port, specify the node port
+from the previous step and use one of the IP addresses of the cluster nodes. Make sure to replace both NODE_IP and YOUR_NODE_PORT</p>
+<div class="codehilite"><pre><span></span><code>curl http://NODE_IP:YOUR_NODE_PORT
+</code></pre></div>
+
+<h3 id="32-cleanup-services-and-pods">3.2 Cleanup Services and Pods<a class="headerlink" href="#32-cleanup-services-and-pods" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Before diving into Kubernetes deployment, let’s delete our service and pods. To delete the service execute the following command:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete service echoserver
+</code></pre></div>
+
+<p><strong>Step 2</strong> delete the pod</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete pod echoserver
+</code></pre></div>
+
+<p><strong>Step 3</strong> Check that there are no running pods:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<h2 id="4-deployments">4 Deployments<a class="headerlink" href="#4-deployments" title="Permanent link">&para;</a></h2>
+<h3 id="41-deploy-hello-app-on-kubernetes-using-deployments">4.1 Deploy hello-app on Kubernetes using Deployments<a class="headerlink" href="#41-deploy-hello-app-on-kubernetes-using-deployments" title="Permanent link">&para;</a></h3>
+<h4 id="411-create-a-deployment">4.1.1 Create a Deployment<a class="headerlink" href="#411-create-a-deployment" title="Permanent link">&para;</a></h4>
+<p><strong>Step 1</strong> The simplest way to create a new deployment for a single-container
+pod is to use <code>kubectl run</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create deployment hello-app \
+--image=gcr.io/google-samples/hello-app:1.0 \
+--port=8080 \
+--replicas=2
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>--port</code> Deployment opens port 8080 for use by the Pods.</p>
+<p><code>--replicas</code> number of replicas.</p>
+</div>
+<p><strong>Step 2</strong> Check pods:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 3</strong> To access the <code>hello-app</code> deployment, create a new service of type LoadBalancer this time using
+<code>kubectl expose deployment</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl expose deployment hello-app --type=LoadBalancer
+</code></pre></div>
+
+<p>To get the external IP for the loadbalancer that got created:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get services/hello-app
+</code></pre></div>
+
+<p>The Loadbalancer might take few minutes to get created, and it'll show pending status.</p>
+<p><strong>Step 4</strong> Check that the hello-app is accessible:
+Make sure to replace the LB_IP.</p>
+<div class="codehilite"><pre><span></span><code>curl http://LB_IP:8080
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>Hello, world!
+Version: 1.0.0
+Hostname: hello-app-76f778987d-rdhr7
+</code></pre></div>
+
+<p><strong>Step 5</strong> You can open the app in the browser by navigating to LB_IP:8080</p>
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>We learned how to create a deployment and expose our container.</p>
+</div>
+<h4 id="412-scale-a-deployment">4.1.2 Scale a Deployment<a class="headerlink" href="#412-scale-a-deployment" title="Permanent link">&para;</a></h4>
+<p>Now, let's scale our application as our website get popular.</p>
+<p><strong>Step 1</strong> Deployments using replica set (RS) to scale the containers.
+Let's check how replica set (RS) looks like:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get rs,deploy
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/hello-app-76f778987d   2         2         2       5m12s
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/hello-app   2/2     2            2           5m12s
+</code></pre></div>
+
+<p><strong>Step 2</strong> Let’s scale number of pods in replica for the deployment.
+Use going to use <code>kubectl scale</code> to change the number of replicas to 5:</p>
+<div class="codehilite"><pre><span></span><code>kubectl scale  deployment hello-app --replicas=5
+</code></pre></div>
+
+<p><strong>Step 3</strong> View the deployment details:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe deployment hello-app
+</code></pre></div>
+
+<p><strong>Step 4</strong> Check that there are 5 running pods:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<h4 id="413-rolling-update-of-containers">4.1.3 Rolling Update of Containers<a class="headerlink" href="#413-rolling-update-of-containers" title="Permanent link">&para;</a></h4>
+<p>To perform rolling upgrade we need a new version of our application and
+then  perform Rolling Upgrade using <code>deployments</code></p>
+<p><strong>Step 4</strong> Use <code>kubectl rollout history deployment</code> to see revisions of the
+deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl rollout history deployment hello-app
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>deployment.apps/hello-app 
+REVISION    CHANGE-CAUSE
+1           &lt;none&gt;
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Since we've just deployed there is only 1 revision that currenly running.</p>
+</div>
+<p><strong>Step 5</strong> Now we want to replace our <code>hello-app</code> with a new implementation.
+We want to use a new version of <code>hello-app</code> image. We are going to use <code>kubectl set</code>
+command this time around.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><code>kubectl set</code> used only to change image name/version.
+You can use this for command for CI/CD pipeline.</p>
+</div>
+<p>Suppose that we want to update the webk8sbirthday Pods to use the
+hello-app:2.0 image instead of the hello-app:1.0 image.</p>
+<div class="codehilite"><pre><span></span><code>kubectl set image deployment/hello-app hello-app=gcr.io/google-samples/hello-app:2.0 --record
+kubectl get pods
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is a good practice to paste <code>--record</code> at the end of the rolling upgrade
+command as it will record the action in the <code>rollout history</code></p>
+</div>
+<p><strong>Result:</strong> We can see that the Rolling Upgraded was recorded:</p>
+<div class="codehilite"><pre><span></span><code>kubectl rollout history deployment hello-app
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>deployment.apps/hello-app 
+REVISION  CHANGE-CAUSE
+1         &lt;none&gt;
+2         kubectl set image deployment/hello-app hello-app=gcr.io/google-samples/hello-app:2.0 --record=true
+</code></pre></div>
+
+<p><strong>Step 6</strong> Refresh browser and see new version of app deployed</p>
+<div class="codehilite"><pre><span></span><code>http://LB_IP:8080
+</code></pre></div>
+
+<p><strong>Step 7</strong> Let's assume there was something wrong with this new version and we need to <strong>rollback</strong> with <code>kubectl rollout undo</code> our deployment:</p>
+<div class="codehilite"><pre><span></span><code>kubectl rollout undo deployment/hello-app
+</code></pre></div>
+
+<p>Refresh the browser again to see how we rolledback to version 1.0.0</p>
+<p>We have successfully rolled back the deployment and our pods are based on the
+hello-app:1.0.0 image again.</p>
+<p><strong>Step 8</strong> Let's delete the deployment and the service:</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete deployment hello-app
+kubectl delete services/hello-app
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>You are now up to speed with Kubernetes Concepts such as Pods, Services and Deployments.  Let's move on to Kubernetes
+Features to learn what else Kubernetes is capable of!</p>
+</div>
+<h2 id="5-namespace">5 NameSpace<a class="headerlink" href="#5-namespace" title="Permanent link">&para;</a></h2>
+<p>Namespace can be used for:</p>
+<ul>
+<li>Splitting complex systems with several components into smaller groups</li>
+<li>Separating resources in a multi-tenant env: production, development and
+QA environments</li>
+<li>Separating resources per production</li>
+<li>Separating per-user or per-department or any other logical group</li>
+</ul>
+<p>Some other rules and regulations:</p>
+<ul>
+<li>Resource names only need to be unique within a namespace.</li>
+<li>Two different namespaces can contain resources of the same name.</li>
+<li>Most of the Kubernetes resources (e.g. pods, svc, rcs, and others) are
+  namespaced.</li>
+<li>However, some resource can be cluster-wide e.g nodes, persistentVolumes and
+  PodSecurityPolicy.</li>
+</ul>
+<h3 id="51-viewing-namespaces">5.1 Viewing namespaces<a class="headerlink" href="#51-viewing-namespaces" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> List the current namespaces in a cluster using:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get ns
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME              STATUS   AGE
+default           Active   71m
+kube-node-lease   Active   71m
+kube-public       Active   71m
+kube-system       Active   71m
+</code></pre></div>
+
+<p><strong>Step 2</strong> You can also get the summary of a specific namespace using:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get namespaces &lt;name&gt;
+</code></pre></div>
+
+<p>Or you can get detailed information with:</p>
+<div class="codehilite"><pre><span></span><code>kubectl describe namespaces &lt;name&gt;
+</code></pre></div>
+
+<p>A namespace can be in one of two phases:</p>
+<ul>
+<li><code>Active</code> the namespace is in use</li>
+<li><code>Terminating</code> the namespace is being deleted, and can not be used for new
+    objects</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These details show both <code>resource quota</code> (if present) as well as <code>resource
+and limit</code> ranges.</p>
+<p><code>Resource quota</code> tracks aggregate usage of resources in the <em>Namespace</em> and
+allows cluster operators to define <em>Hard</em> resource usage limits that a
+<em>Namespace</em> may consume.</p>
+<p>A <code>limit range</code> defines min/max constraints on the amount of resources a
+ single entity can consume in a <em>Namespace</em>.</p>
+</div>
+<p><strong>Step 3</strong> Let’s have a look at the pods that belong to the <code>kube-system</code>
+namespace, by telling kubectl to list pods in that namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get po --namespace kube-system
+</code></pre></div>
+
+<p><strong>Output:</strong></p>
+<div class="codehilite"><pre><span></span><code>NAME                                                        READY   STATUS    RESTARTS   AGE
+event-exporter-gke-67986489c8-5fsdv                         2/2     Running   0          71m
+fluentbit-gke-fqcsx                                         2/2     Running   0          71m
+fluentbit-gke-ppb9j                                         2/2     Running   0          71m
+gke-metrics-agent-5vl7t                                     1/1     Running   0          71m
+gke-metrics-agent-bxt2r                                     1/1     Running   0          71m
+kube-dns-5d54b45645-9srx6                                   4/4     Running   0          71m
+kube-dns-5d54b45645-b7njm                                   4/4     Running   0          71m
+kube-dns-autoscaler-58cbd4f75c-2scrv                        1/1     Running   0          71m
+kube-proxy-gke-k8s-concepts-default-pool-ad96fd50-1rf1      1/1     Running   0          71m
+kube-proxy-gke-k8s-concepts-default-pool-ad96fd50-jpd2      1/1     Running   0          71m
+l7-default-backend-66579f5d7-dsbdt                          1/1     Running   0          71m
+metrics-server-v0.3.6-6c47ffd7d7-mtls4                      2/2     Running   0          71m
+pdcsi-node-knlqp                                            2/2     Running   0          71m
+pdcsi-node-vh4tx                                            2/2     Running   0          71m
+stackdriver-metadata-agent-cluster-level-6f7d66dc98-zcd25   2/2     Running   0          71m
+</code></pre></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also use -n instead of --namespace</p>
+</div>
+<p>Yot may already know some of the pods, the rest we will cover later. It’s clear
+from the name of the namespace, that resources inside <code>kube-system</code> related to
+the Kubernetes system itself. By having them in this separate namespace, it
+keeps everything nicely organized. If they were all in the default namespace,
+mixed in with the resources we create ourselves, we’d have a hard time seeing
+what belongs where and we might inadvertently delete some system resources.</p>
+<p><strong>Step 4</strong> Now you know how to view resources in specific namespaces.
+Additionally, it is also possible to view list all resources in all namespaces.
+For example below is example to list all pods in all namespaces:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods --all-namespaces
+</code></pre></div>
+
+<h3 id="52-creating-namespaces">5.2 Creating Namespaces<a class="headerlink" href="#52-creating-namespaces" title="Permanent link">&para;</a></h3>
+<p>A namespace is a Kubernetes resource, therefore it is possible to create it by
+posting a YAML file to the Kubernetes API server or using <code>kubectl create ns</code>.</p>
+<p><strong>Step 1</strong> First, create a custom-namespace.yaml file with the following
+content:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; custom-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: custom-namespace
+EOF
+</code></pre></div>
+
+<p><strong>Step 2</strong> Than, use kubectl to post the file to the Kubernetes API server:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f custom-namespace.yaml
+</code></pre></div>
+
+<p><strong>Step 3</strong>
+A much easier and faster way to create a namespaces using <code>kubectl create ns</code>
+command, as shown below:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create namespace custom-namespace2
+</code></pre></div>
+
+<h3 id="53-setting-the-namespace-preference">5.3 Setting the namespace preference.<a class="headerlink" href="#53-setting-the-namespace-preference" title="Permanent link">&para;</a></h3>
+<p>By default, a Kubernetes cluster will instantiate a <code>default namespace</code> when
+provisioning the cluster to hold the default set of Pods, Services, and
+Deployments used by the cluster. So by default all <code>kubectl</code> calls such as
+list or create resources will end up in <code>default namespace</code>.</p>
+<p>However sometimes you want to list or create resources in other namespaces than
+<code>default namespace</code>. As we discussed in previous exercise this can be done by
+specifying <code>-n</code>  or <code>--namespace</code> to point in which namespaces action has to
+be done. However it is not convenient to do this action every time. Below example will show
+how to create 2 namespaces <code>dev</code> and <code>prod</code> and switch between each other.</p>
+<p><strong>Step 1</strong> <code>kubectl</code> API uses so called <code>kubeconfig context</code> where you can
+controls which namespace, user or cluster needs to be accessed.</p>
+<p>In order to display which context is currently in use run:</p>
+<div class="codehilite"><pre><span></span><code>KUBECONFIG=~/.kube/config
+kubectl config current-context
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>We running in <code>kubernetes-admin@kubernetes</code> context, which is default for
+lab environment.</p>
+</div>
+<p><strong>Step 3</strong> To see full view of the <code>kubeconfig context</code> run:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>Our context named as <code>kubernetes-admin@kubernetes</code> uses cluster <code>cluster</code>,
+and user <code>kubernetes-admin</code></p>
+</div>
+<p><strong>Step 4</strong> The result of the above command comes from kubeconfig file, in our
+case we defined it under <code>~/.kube/config</code>.</p>
+<div class="codehilite"><pre><span></span><code>echo $KUBECONFIG
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>KUBECONFIG is configured to use following ~/.kube/config file</p>
+</div>
+<div class="codehilite"><pre><span></span><code>cat ~/.kube/config
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The KUBECONFIG environment variable is a list of paths to configuration
+files. The list is colon-delimited for Linux and Mac, and
+semicolon-delimited for Windows. We already set KUBECONFIG environment
+variable in a first step of exercise to be <code>~/.kube/config</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use use multiple <code>kubeconfig</code> files at the same time and view merged
+config:</p>
+<p><code>$ KUBECONFIG=~/.kube/config:~/.kube/kubconfig2 kubectl config view</code></p>
+</div>
+<p><strong>Step 5</strong> Create two new namespaces <code>dev</code>:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create namespace dev
+</code></pre></div>
+
+<p>And  <code>prod</code> namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create namespace prod
+</code></pre></div>
+
+<p><strong>Step 7</strong> Let’s switch to operate in the <code>development</code> namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=dev
+</code></pre></div>
+
+<p>We can see now that our current context is switched to dev:</p>
+<div class="codehilite"><pre><span></span><code>kubectl config view | grep namespace
+</code></pre></div>
+
+<p>Output:</p>
+<div class="codehilite"><pre><span></span><code>    namespace: dev
+</code></pre></div>
+
+<div class="admonition result">
+<p class="admonition-title">Result</p>
+<p>At this point, all requests we make to the Kubernetes cluster from the
+command line are scoped to the development namespace.</p>
+</div>
+<p><strong>Step 8</strong> Let's test that all resources going to be created in <code>dev</code> namespace.</p>
+<div class="codehilite"><pre><span></span><code>kubectl run devsnowflake --image=nginx
+</code></pre></div>
+
+<p><strong>Step 9</strong> Verify result of creation:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Developers are able to do what they want, and they do not have to worry
+about affecting content in the production namespace.</p>
+</div>
+<p><strong>Step 10</strong> Now switch to the <code>production</code> namespace and show how resources in
+one namespace are hidden from the other.</p>
+<div class="codehilite"><pre><span></span><code>kubectl config set-context --current --namespace=prod
+</code></pre></div>
+
+<p>The production namespace should be empty, and the following commands should
+return nothing.</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods
+</code></pre></div>
+
+<p><strong>Step 11</strong> Let's create some <code>production</code> workloads:</p>
+<div class="codehilite"><pre><span></span><code>kubectl run prodapp --image=nginx
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n prod
+</code></pre></div>
+
+<div class="admonition summary">
+<p class="admonition-title">Summary</p>
+<p>At this point, it should be clear that the resources users create in one
+namespace are hidden from the other namespace.</p>
+</div>
+<h3 id="64-deleting-namespaces">6.4 Deleting Namespaces<a class="headerlink" href="#64-deleting-namespaces" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1</strong> Delete a namespace with</p>
+<div class="codehilite"><pre><span></span><code>kubectl delete namespaces custom-namespace
+kubectl delete namespaces dev
+kubectl delete namespaces prod
+</code></pre></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Unlike with OpenStack where when you delete a project/tenant, underlining
+resources will still exist as zombies and not deleted. In Kubernetes when you
+delete namespace it deletes <em>everything</em> under it (pods, svc, rc, and etc.)!
+This is called <code>resource garbage collection</code> in Kubernetes.</p>
+</div>
+<p>Delete process is asynchronous, so you may see <code>Terminating</code> state for some
+time.</p>
+<h3 id="65-create-a-pod-in-a-different-namespace">6.5 Create a pod in a different namespace<a class="headerlink" href="#65-create-a-pod-in-a-different-namespace" title="Permanent link">&para;</a></h3>
+<p>Create <code>test</code> namespace:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create ns test
+</code></pre></div>
+
+<p>Create a pod in this namespaces:</p>
+<div class="codehilite"><pre><span></span><code>cat &lt;&lt;EOF &gt; echoserver-pod_ns.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: echoserverns
+spec:
+  containers:
+  - name: echoserver
+    image: gcr.io/google_containers/echoserver:1.4
+    ports:
+    - containerPort: 8080
+EOF
+</code></pre></div>
+
+<p>Create Pod in namespaces:</p>
+<div class="codehilite"><pre><span></span><code>kubectl create -f echoserver-pod_ns.yaml -n test
+</code></pre></div>
+
+<p>Verify Pods created in specified namespaces:</p>
+<div class="codehilite"><pre><span></span><code>kubectl get pods -n test
+</code></pre></div>
+
+<h2 id="6-cleaning-up">6 Cleaning Up<a class="headerlink" href="#6-cleaning-up" title="Permanent link">&para;</a></h2>
+<p><strong>Step 1</strong> Delete the cluster</p>
+<div class="codehilite"><pre><span></span><code>gcloud container clusters delete k8s-concepts
+</code></pre></div>
+
+<p><strong>Step 2</strong> Delete the firewall rule</p>
+<div class="codehilite"><pre><span></span><code>gcloud compute firewall-rules delete echoserver-node-port
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/googlecloud" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
