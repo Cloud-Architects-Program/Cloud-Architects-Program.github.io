@@ -2,202 +2,218 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://cloud-architects-program.github.io/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Lab_10_cloudrun/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Lab_11_GitOps/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Lab_4_Traffic_control/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Lab_5_EFK/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Lab_6_Prometheus/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module7_Lab_Istio_Install/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_10_Assignment_EFK/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_10_Assignment_EFK_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_2_Assignment_Terraform_Foundation/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_2_Assignment_Terraform_Foundation_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_2_Lab_Terraform_Fundamentals/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_3_Assignment_Production_GKE/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_3_Assignment_Production_GKE_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_4_Assignment_Production_GKE_terraform/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_4_Assignment_Production_GKE_terraform_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_4_sol_Terraform_GCP_Foundation/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_5_Assignment_CloudSQL_Database/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_5_Assignment_CloudSQL_Database_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_6_Assignment_Helm_Foundation/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_6_Assignment_Helm_Foundation_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_8_Assignment_ASM%28Istio%29_use_cases/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_Module_8_Assignment_ASM%28Istio%29_use_cases_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/020_ass2/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/Istio%20Demo/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/backup_ycit019_Lab_4_Docker_Images_Docker_Hub_Quya_io/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/test/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Lab_10_Networking/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Lab_11_Storage/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Lab_2_Docker_basics/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Lab_3_Advanced_Docker/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Lab_5_Docker_Compose/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_10_Kubernetes_Scaling/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_5_Lab_Docker_basics/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_6_Lab_Advanced_Docker/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_7_Lab_Deploy_Kubernetes_kubeadm/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_8_Lab_Kubernetes_Concepts/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_Module_9_Kubernetes_Features/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass1/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass1_sol/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass2/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass2_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass3/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass3_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass4_2022/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass4_sol/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass5/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass6/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass6_solution/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
     </url>
     <url>
          <loc>https://cloud-architects-program.github.io/ycit019_ass7/</loc>
-         <lastmod>2025-07-21</lastmod>
+         <lastmod>2025-07-28</lastmod>
+    </url>
+    <url>
+         <loc>https://cloud-architects-program.github.io/reveal/info/</loc>
+         <lastmod>2025-07-28</lastmod>
+    </url>
+    <url>
+         <loc>https://cloud-architects-program.github.io/reveal/css/theme/</loc>
+         <lastmod>2025-07-28</lastmod>
+    </url>
+    <url>
+         <loc>https://cloud-architects-program.github.io/reveal/examples/markdown/</loc>
+         <lastmod>2025-07-28</lastmod>
+    </url>
+    <url>
+         <loc>https://cloud-architects-program.github.io/reveal/test/simple/</loc>
+         <lastmod>2025-07-28</lastmod>
     </url>
 </urlset>
